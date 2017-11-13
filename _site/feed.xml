@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/lrun1124.github.io/</link>
     <atom:link href="http://localhost:4000/lrun1124.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 10 Nov 2017 01:58:04 +0800</pubDate>
-    <lastBuildDate>Fri, 10 Nov 2017 01:58:04 +0800</lastBuildDate>
+    <pubDate>Mon, 13 Nov 2017 22:21:46 +0800</pubDate>
+    <lastBuildDate>Mon, 13 Nov 2017 22:21:46 +0800</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
     
       <item>
@@ -60,7 +60,7 @@
 
 &lt;p&gt;原型链: JS的继承是通过原型链实现的。当JS的对象需要某个属性的时候，首先会从当前对象的属性中去找，找不到就会到原型prototyoe中去找，还是找不到就会沿着原型链向上寻找，直到找到Object.prototype，如果最终找不到，则返回null&lt;/p&gt;
 
-&lt;h3 id=&quot;js作用域和作用域链&quot;&gt;JS作用域和作用域链&lt;/h3&gt;
+&lt;h3 id=&quot;作用域&quot;&gt;作用域&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;全局作用域
     &lt;ul&gt;
@@ -108,7 +108,7 @@ in&lt;br /&gt;
 in&lt;br /&gt;
 out&lt;/p&gt;
 
-&lt;p&gt;造成结果的原因都是因为JS的函数作用域，所谓函数作用域：变量在其所声明的函数内的任意位置都是可访问的，这里就引出了JS变量的函数提升，对于code1，其实际的执行code可以改写如下:&lt;/p&gt;
+&lt;p&gt;造成结果的原因都是因为JS的函数作用域，所谓函数作用域：&lt;strong&gt;变量在其所声明的函数内的任意位置都是可访问的&lt;/strong&gt;，这里就引出了JS变量的函数提升，对于code1，其实际的执行code可以改写如下:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;var i = 'out';
 var test = function(){
@@ -135,6 +135,44 @@ test();
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;i在if中被修改了&lt;/p&gt;
 
+&lt;h3 id=&quot;作用域链&quot;&gt;作用域链&lt;/h3&gt;
+
+&lt;p&gt;当代码在环境中执行的时候，会创建变量对象的一个作用域链（scope chain）。其用途是&lt;strong&gt;保证能够有序访问当前环境中的变量和函数&lt;/strong&gt;。作用域链的前端始终是当前代码所在的变量对象，下一个变量对象总是外部环境的变量对象。&lt;strong&gt;标识符解析时,总是沿着作用域链从前端向后逐层的搜索&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;环境之前的联系是&lt;strong&gt;线性有序&lt;/strong&gt;的,内部环境是可以通过作用域链访问所有外部环境，但是外部环境不能访问内部环境。所以引发了&lt;strong&gt;闭包&lt;/strong&gt;的概念&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;另使用with可以在作用域顶端添加某个对象，因为有可能造成混淆和兼容错误，所以不被推荐使用，不过在某些情况下可以减少不必要的作用域链搜索过程并简化代码，当然，这种简化方式用一个指针也可以做到。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;var a, x, y;
+var r = 10;
+
+with (Math) {
+  a = PI * r * r;
+  x = r * cos(PI);
+  y = r * sin(PI / 2);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;闭包&quot;&gt;闭包&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;闭包就是能够读取其他函数内部变量的函数&lt;/strong&gt;, 本质上是将函数内部和外部联系起来的桥梁。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;function f1(){
+	var n=999;
+	function add(){
+		n++;
+		alert(n);
+	}
+	return add;
+}
+var result=f1();
+result();//1000
+result();//1001
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;以上代码通过内部的add在函数f1之外操作内部变量n，这里还体现了一个闭包的特点，可以看到在f1执行一次后n的值是被保存的，这是因为f2第一次在调用时被赋给了一个全局变量，而f2依赖于f1，所以f1的环境也始终被保存在内存中，不会被垃圾回收机制回收，所以&lt;strong&gt;大量使用闭包内存消耗很大，会导致性能下降&lt;/strong&gt;&amp;gt;，第二个要注意地方时&lt;strong&gt;函数内部的值可能会被修改&lt;/strong&gt;。&lt;/p&gt;
 </description>
         <pubDate>Tue, 07 Nov 2017 19:00:00 +0800</pubDate>
         <link>http://localhost:4000/lrun1124.github.io/2017/11/07/JavaScript%E5%9F%BA%E7%A1%80(%E4%B8%80)/</link>
