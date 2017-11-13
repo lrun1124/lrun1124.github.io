@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "JavaScript基础(一)"
-subtitle:   ""
+subtitle:   "类型，原型，原型链，作用域，作用域链，闭包"
 date:       2017-11-07 11:00:00
 author:     "Run"
 header-img: "img/jsbase1-bg.jpg"
