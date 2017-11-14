@@ -22,6 +22,11 @@ tags:
 * Boolean, null, undefined, String, Number
 * ES 2015 新增 : Symbol
 	- 独一无二的变量，由于对象中的方法属性可能在传递分享时被不小心修改或覆盖，用Symbol可以保证唯一性。let s = Symbol();
+* 储存结构
+	- 基本(原始)数据类型在栈(stack)中存储，空间较小，大小固定，会被频繁调用；
+	- 引用数据类型大小不固定，放在堆中存储
+
+<img src="http://127.0.0.1:4000/lrun1124.github.io/img/jsbase/database.jpg"/>
 
 ### JS内置对象
 

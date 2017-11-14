@@ -5,9 +5,35 @@
     <description></description>
     <link>http://localhost:4000/lrun1124.github.io/</link>
     <atom:link href="http://localhost:4000/lrun1124.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 13 Nov 2017 22:26:06 +0800</pubDate>
-    <lastBuildDate>Mon, 13 Nov 2017 22:26:06 +0800</lastBuildDate>
+    <pubDate>Tue, 14 Nov 2017 18:57:37 +0800</pubDate>
+    <lastBuildDate>Tue, 14 Nov 2017 18:57:37 +0800</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
+    
+      <item>
+        <title>JavaScrip Practice</title>
+        <description>&lt;h2 id=&quot;1&quot;&gt;1&lt;/h2&gt;
+
+&lt;p&gt;如何将浮点数点左边的数每三位添加一个逗号，如12000000.11转化为『12,000,000.11』?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;//先找到'.'的位置或末尾，依次向前拼接直到头部
+function transfer(num){
+	let str = num + '';
+	let i = (str.indexOf('.') &amp;gt; 0 ? str.indexOf('.') : str.length) - 3;
+	for(; i&amp;gt;0; i-=3){
+		str = str.substring(0, i) + ',' + str.substring(i);
+	}
+	return str;
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        <pubDate>Tue, 07 Nov 2017 19:00:00 +0800</pubDate>
+        <link>http://localhost:4000/lrun1124.github.io/2017/11/07/JavaScript-Pritice/</link>
+        <guid isPermaLink="true">http://localhost:4000/lrun1124.github.io/2017/11/07/JavaScript-Pritice/</guid>
+        
+        <category>JavaScript</category>
+        
+        
+      </item>
     
       <item>
         <title>JavaScrip Note(一)</title>
@@ -30,7 +56,15 @@
       &lt;li&gt;独一无二的变量，由于对象中的方法属性可能在传递分享时被不小心修改或覆盖，用Symbol可以保证唯一性。let s = Symbol();&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
+  &lt;li&gt;储存结构
+    &lt;ul&gt;
+      &lt;li&gt;基本(原始)数据类型在栈(stack)中存储，空间较小，大小固定，会被频繁调用；&lt;/li&gt;
+      &lt;li&gt;引用数据类型大小不固定，放在堆中存储&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://127.0.0.1:4000/lrun1124.github.io/img/jsbase/database.jpg&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;js内置对象&quot;&gt;JS内置对象&lt;/h3&gt;
 
