@@ -24,3 +24,42 @@ function transfer(num){
 	return str;
 }
 ```
+
+## 2
+
+数组随机排列
+
+- 方法1:
+
+```JS
+//Random位置插入新数组，删除原数组内元素
+function arrayRandom(arr){
+	let res = [],
+		index;
+	while(arr.length > 0){
+		index = parseInt(Math.random() * arr.length);
+		res.push(arr[index]);
+		arr.splice(index,1)
+	}
+	return res;
+}
+//test
+let arr = [1,2,3,4,5,6,7,8,9,10];
+console.log(arrayRandom(arr));
+```
+
+- 方法2:
+
+```JS
+//利用Array.prototype.sort的compare function
+function arrayRandom(arr){
+	return arr.sort(function(){
+		return Math.random() - 0.5;
+		})
+}
+//test
+let arr = [1,2,3,4,5,6,7,8,9,10];
+console.log(arrayRandom(arr));
+```
+
+## 3

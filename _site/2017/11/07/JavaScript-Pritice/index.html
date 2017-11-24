@@ -185,6 +185,47 @@ function transfer(num){
 }
 </code></pre>
 
+<h2 id="2">2</h2>
+
+<p>数组随机排列</p>
+
+<ul>
+  <li>方法1:</li>
+</ul>
+
+<pre><code class="language-JS">//Random位置插入新数组，删除原数组内元素
+function arrayRandom(arr){
+	let res = [],
+		index;
+	while(arr.length &gt; 0){
+		index = parseInt(Math.random() * arr.length);
+		res.push(arr[index]);
+		arr.splice(index,1)
+	}
+	return res;
+}
+//test
+let arr = [1,2,3,4,5,6,7,8,9,10];
+console.log(arrayRandom(arr));
+</code></pre>
+
+<ul>
+  <li>方法2:</li>
+</ul>
+
+<pre><code class="language-JS">//利用Array.prototype.sort的compare function
+function arrayRandom(arr){
+	return arr.sort(function(){
+		return Math.random() - 0.5;
+		})
+}
+//test
+let arr = [1,2,3,4,5,6,7,8,9,10];
+console.log(arrayRandom(arr));
+</code></pre>
+
+<h2 id="3">3</h2>
+
 
                 <hr>
 
@@ -225,6 +266,10 @@ function transfer(num){
                     </li>
                     
                     
+                    <li class="next">
+                        <a href="/lrun1124.github.io/2017/11/24/JavaScript%E5%9F%BA%E7%A1%80(%E4%BA%8C)/" data-toggle="tooltip" data-placement="top" title="JavaScrip Note(二)">Next Post &rarr;</a>
+                    </li>
+                    
                 </ul>
 
 
@@ -260,7 +305,7 @@ function transfer(num){
                             
         				
                             
-                				<a href="/lrun1124.github.io/tags/#JavaScript" title="JavaScript" rel="3">
+                				<a href="/lrun1124.github.io/tags/#JavaScript" title="JavaScript" rel="4">
                                     JavaScript
                                 </a>
                             
@@ -274,8 +319,6 @@ function transfer(num){
                 <hr>
                 <h5>FRIENDS</h5>
                 <ul class="list-inline">
-                    
-                        <li><a href="http://huangxuan.me">Hux Blog</a></li>
                     
                         <li><a href="#">Foo</a></li>
                     
@@ -365,7 +408,7 @@ function transfer(num){
                     <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
                     
                     <li>
-                        <a target="_blank" href="https://www.zhihu.com/people/lrun">
+                        <a target="_blank" href="https://www.zhihu.com/people/san-hua-yimo">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa  fa-stack-1x fa-inverse">知</i>

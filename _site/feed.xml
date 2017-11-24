@@ -5,9 +5,88 @@
     <description></description>
     <link>http://localhost:4000/lrun1124.github.io/</link>
     <atom:link href="http://localhost:4000/lrun1124.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 14 Nov 2017 18:57:37 +0800</pubDate>
-    <lastBuildDate>Tue, 14 Nov 2017 18:57:37 +0800</lastBuildDate>
+    <pubDate>Fri, 24 Nov 2017 19:43:46 +0800</pubDate>
+    <lastBuildDate>Fri, 24 Nov 2017 19:43:46 +0800</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
+    
+      <item>
+        <title>JavaScrip Note(二)</title>
+        <description>&lt;h3 id=&quot;1&quot;&gt;1&lt;/h3&gt;
+
+&lt;p&gt;This的理解&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;this总是指向函数的直接调用者（而非简洁调用者）,即此次调用的所有者&lt;/li&gt;
+  &lt;li&gt;如果有new对象，this指向new出来的对象&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;2&quot;&gt;2&lt;/h3&gt;
+
+&lt;p&gt;Eval&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Eval将传入的字符串当做JS代码执行, 应避免在不必要的情况下使用
+    &lt;ul&gt;
+      &lt;li&gt;运行Eval存在风险，有可能运行的是恶意代码&lt;/li&gt;
+      &lt;li&gt;运行效率差，因为会调用JS解析器&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;3&quot;&gt;3&lt;/h3&gt;
+
+&lt;p&gt;window对象和document对象&lt;/p&gt;
+
+&lt;p&gt;window对象是浏览器打开的窗口，顶层对象，document是window对象的一个属性，HTML文档对象的一个&lt;strong&gt;只读引用&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;4&quot;&gt;4&lt;/h3&gt;
+
+&lt;p&gt;IE和firefox事件机制&lt;/p&gt;
+
+&lt;p&gt;IE是事件冒泡，firefox同时支持事件冒泡和捕获&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;时间捕获: 越高层的元素越早接收到事件，由上到下&lt;/li&gt;
+  &lt;li&gt;事件冒泡: 越低层的元素越早接收到时间，由下到上&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;组织冒泡事件的方法&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;xxx.click = function(e){
+	e.stopPropagation();
+	e.cancelBubble = true;//旧IE需要
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;5&quot;&gt;5&lt;/h3&gt;
+
+&lt;p&gt;new的过程&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;创建空对象；
+    &lt;ul&gt;
+      &lt;li&gt;var obj = {};&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;将创建出对象的原型链引用指向所要构造函数的原型；
+    &lt;ul&gt;
+      &lt;li&gt;obj.__proto__ = ClassA.prototype;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;调用构造函数，this指向新实例对象：
+    &lt;ul&gt;
+      &lt;li&gt;ClassA.call(obj);　　//{}.构造函数();&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;将初始化完毕的新对象地址，保存到等号左边的变量中&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Fri, 24 Nov 2017 03:00:00 +0800</pubDate>
+        <link>http://localhost:4000/lrun1124.github.io/2017/11/24/JavaScript%E5%9F%BA%E7%A1%80(%E4%BA%8C)/</link>
+        <guid isPermaLink="true">http://localhost:4000/lrun1124.github.io/2017/11/24/JavaScript%E5%9F%BA%E7%A1%80(%E4%BA%8C)/</guid>
+        
+        <category>JavaScript</category>
+        
+        
+      </item>
     
       <item>
         <title>JavaScrip Practice</title>
@@ -25,6 +104,47 @@ function transfer(num){
 	return str;
 }
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;2&quot;&gt;2&lt;/h2&gt;
+
+&lt;p&gt;数组随机排列&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;方法1:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;//Random位置插入新数组，删除原数组内元素
+function arrayRandom(arr){
+	let res = [],
+		index;
+	while(arr.length &amp;gt; 0){
+		index = parseInt(Math.random() * arr.length);
+		res.push(arr[index]);
+		arr.splice(index,1)
+	}
+	return res;
+}
+//test
+let arr = [1,2,3,4,5,6,7,8,9,10];
+console.log(arrayRandom(arr));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;方法2:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;//利用Array.prototype.sort的compare function
+function arrayRandom(arr){
+	return arr.sort(function(){
+		return Math.random() - 0.5;
+		})
+}
+//test
+let arr = [1,2,3,4,5,6,7,8,9,10];
+console.log(arrayRandom(arr));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;3&quot;&gt;3&lt;/h2&gt;
 </description>
         <pubDate>Tue, 07 Nov 2017 19:00:00 +0800</pubDate>
         <link>http://localhost:4000/lrun1124.github.io/2017/11/07/JavaScript-Pritice/</link>
@@ -92,7 +212,7 @@ function transfer(num){
 
 &lt;p&gt;可以看到其中包括了很多常用内置方法，在其他object调用这些方法的时候就是通过原型链生效的&lt;/p&gt;
 
-&lt;p&gt;原型链: JS的继承是通过原型链实现的。当JS的对象需要某个属性的时候，首先会从当前对象的属性中去找，找不到就会到原型prototyoe中去找，还是找不到就会沿着原型链向上寻找，直到找到Object.prototype，如果最终找不到，则返回null&lt;/p&gt;
+&lt;p&gt;原型链: JS的继承是通过原型链实现的。当JS的对象需要某个属性的时候，首先会从当前对象的属性中去找，找不到就会到原型prototype中去找，还是找不到就会沿着原型链向上寻找，直到找到Object.prototype，如果最终找不到，则返回null&lt;/p&gt;
 
 &lt;h3 id=&quot;作用域&quot;&gt;作用域&lt;/h3&gt;
 &lt;ul&gt;
