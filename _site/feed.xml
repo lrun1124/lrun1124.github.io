@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/lrun1124.github.io/</link>
     <atom:link href="http://localhost:4000/lrun1124.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 24 Nov 2017 19:43:46 +0800</pubDate>
-    <lastBuildDate>Fri, 24 Nov 2017 19:43:46 +0800</lastBuildDate>
+    <pubDate>Fri, 24 Nov 2017 19:58:42 +0800</pubDate>
+    <lastBuildDate>Fri, 24 Nov 2017 19:58:42 +0800</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
     
       <item>
@@ -184,7 +184,7 @@ console.log(arrayRandom(arr));
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://127.0.0.1:4000/lrun1124.github.io/img/jsbase/database.jpg&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/jsbase/database.jpg&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;js内置对象&quot;&gt;JS内置对象&lt;/h3&gt;
 
@@ -204,11 +204,11 @@ console.log(arrayRandom(arr));
 
 &lt;p&gt;原型: JavaScript借鉴了面向对象语言‘一切皆是对象’的思想，对于每一个对象都存在一个prototype对象，也就是原型，prototype属性默认有一个constructor属性指向对象本身。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://127.0.0.1:4000/lrun1124.github.io/img/jsbase/prototype.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/jsbase/prototype.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;以内置对象Object为例，其prototype对象如下&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://127.0.0.1:4000/lrun1124.github.io/img/jsbase/objectPrototype.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/jsbase/objectPrototype.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;可以看到其中包括了很多常用内置方法，在其他object调用这些方法的时候就是通过原型链生效的&lt;/p&gt;
 

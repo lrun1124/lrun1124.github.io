@@ -26,7 +26,7 @@ tags:
 	- 基本(原始)数据类型在栈(stack)中存储，空间较小，大小固定，会被频繁调用；
 	- 引用数据类型大小不固定，放在堆中存储
 
-<img src="http://127.0.0.1:4000/lrun1124.github.io/img/jsbase/database.jpg"/>
+<img src="http://lrun1124.github.io/img/jsbase/database.jpg"/>
 
 ### JS内置对象
 
@@ -46,11 +46,11 @@ null === undefined 为true, null == undefined为false，目前的JS环境中，�
 
 原型: JavaScript借鉴了面向对象语言‘一切皆是对象’的思想，对于每一个对象都存在一个prototype对象，也就是原型，prototype属性默认有一个constructor属性指向对象本身。
 
-<img src="http://127.0.0.1:4000/lrun1124.github.io/img/jsbase/prototype.png"/>
+<img src="http://lrun1124.github.io/img/jsbase/prototype.png"/>
 
 以内置对象Object为例，其prototype对象如下
 
-<img src="http://127.0.0.1:4000/lrun1124.github.io/img/jsbase/objectPrototype.png"/>
+<img src="http://lrun1124.github.io/img/jsbase/objectPrototype.png"/>
 
 可以看到其中包括了很多常用内置方法，在其他object调用这些方法的时候就是通过原型链生效的
 
