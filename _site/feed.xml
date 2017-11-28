@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/lrun1124.github.io/</link>
     <atom:link href="http://localhost:4000/lrun1124.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 24 Nov 2017 19:58:42 +0800</pubDate>
-    <lastBuildDate>Fri, 24 Nov 2017 19:58:42 +0800</lastBuildDate>
+    <pubDate>Tue, 28 Nov 2017 19:52:02 +0800</pubDate>
+    <lastBuildDate>Tue, 28 Nov 2017 19:52:02 +0800</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
     
       <item>
@@ -78,6 +78,147 @@
   &lt;/li&gt;
   &lt;li&gt;将初始化完毕的新对象地址，保存到等号左边的变量中&lt;/li&gt;
 &lt;/ol&gt;
+
+&lt;h3 id=&quot;6&quot;&gt;6&lt;/h3&gt;
+
+&lt;p&gt;JS中不会查找原型的函数&lt;/p&gt;
+
+&lt;p&gt;hasOwnProperty判断对象中是否有指定名称的属性，object.hasOwnProperty(proName)，proName是属性名称的&lt;strong&gt;字符串值&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;7&quot;&gt;7&lt;/h3&gt;
+
+&lt;p&gt;JSON的了解&lt;/p&gt;
+
+&lt;p&gt;JSON（JavaScript Object Notation）是一种&lt;strong&gt;轻量级的数据交换格式&lt;/strong&gt;，是基于JavaScript的一个子集，具有&lt;strong&gt;数据格式简单，易于读写且占用带宽小&lt;/strong&gt;的优点。&lt;/p&gt;
+
+&lt;p&gt;字符串转对象：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;JSON.parse(str);
+str.parseJSON(str);
+eval('(' + str + ')')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;对象转字符串：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;JSON.stringify(obj);
+obj.toJSONString(str);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;8&quot;&gt;8&lt;/h3&gt;
+
+&lt;p&gt;Ajax&lt;/p&gt;
+
+&lt;p&gt;Asynchronous JavaScript and Xml, 异步传输+JS+xml，异步的含义是在向服务器发送请求后，不必等待响应，可以先做其他的事，等相应返回可以根据设定的callback函数进行操作，于此同时，网页不会发生整页刷新，提高了效率和用户体验。&lt;/p&gt;
+
+&lt;p&gt;步骤：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;创建XMLHttpRequest对象&lt;/li&gt;
+  &lt;li&gt;设置响应HTTP请求状态变化的函数&lt;/li&gt;
+  &lt;li&gt;指定该对象的的方法、URL及验证信息&lt;/li&gt;
+  &lt;li&gt;发送HTTP请求&lt;/li&gt;
+  &lt;li&gt;获取异步调用返回的数据&lt;/li&gt;
+  &lt;li&gt;使用JavaScript和DOM实现局部刷新&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;button id=&quot;ajaxButton&quot; type =&quot;button&quot;&amp;gt;Make Ajax request&amp;lt;/button&amp;gt;
+
+&amp;lt;script&amp;gt;
+var httpRequest;
+document.getElementbyId('ajaxButton').addEventListener(&quot;click&quot;, sendRequest);
+
+function sendRequest(){
+	httpRequest = new XMLHttpRequest(); //1
+
+	if(httpRequest){
+		alert('Cannot creat XMLHttpRequest');
+		return;
+	}
+
+	httpRequest.onreadystatechange = stateFunction;//2
+	httpRequest.open('GET', 'test.html');//3
+	httpRequest.send();//4
+}
+
+function stateFunction(){
+	if(httpRequest.readyState === XMLHttpRequet.Done){
+		if(httpRequest.state === 200){
+			alert(httpRequest.responseText);//5
+			//... 6
+		}
+		else{
+			alert('The request has some problem');
+		}
+	}
+}
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;9&quot;&gt;9&lt;/h3&gt;
+
+&lt;p&gt;JS延迟加载方式&lt;/p&gt;
+
+&lt;p&gt;JS延迟加载就是在页面加载完成后再加载JS文件，有助于提高页面加载速度，提高用户体验。&lt;/p&gt;
+
+&lt;h4 id=&quot;使用defer或async属性&quot;&gt;使用defer或async属性&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;script src=&quot;test1.js&quot; defer=&quot;defer&quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script src=&quot;test2.js&quot; async&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;只适用于外部脚本，缺点是不能保证脚本会按顺序执行&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;动态dom操作&quot;&gt;动态DOM操作&lt;/h4&gt;
+
+&lt;p&gt;即利用动态DOM操作按需插入JS文件&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//延迟1000ms加载new.js
+window.onload = function(){
+	setTimeout(function(){
+		var head = document.getEßlementByTagName('head')[0];
+		var js = document.createElement('Script');
+		js.type = 'text/javascript';
+		js.src = 'new.js';
+		head.appendChlid(js); 
+	},1000);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;分组最后加载js&quot;&gt;分组最后加载JS&lt;/h4&gt;
+
+&lt;p&gt;JS的引入如果放在head中，则页面加载前就会JS就会被加载，如果放在body中，则会按顺序加载，所以可以将JS分组，将加载过程中不需要的JS放在页面的底部，&amp;lt;/body&amp;gt;标签之前，然而这种方法偶尔会收到Google页面速度测试工具的“延迟加载javascript”警告，Google提供了一套推荐方案：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//这些代码应被放置在&amp;lt;/body&amp;gt;标签前(接近HTML文件底部)
+&amp;lt;script type=&quot;text/javascript&quot;&amp;gt;
+    function downloadJSAtOnload() {
+        var element = document.createElement(&quot;script&quot;);
+        element.src = &quot;defer.js&quot;;
+        document.body.appendChild(element);
+    }
+    if (window.addEventListener)
+        window.addEventListener(&quot;load&quot;, downloadJSAtOnload, false);
+    else if (window.attachEvent)
+        window.attachEvent(&quot;onload&quot;, downloadJSAtOnload);
+    else window.onload = downloadJSAtOnload;
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这段代码意思是等到整个文档加载完后，再加载外部文件“defer.js”。&lt;/p&gt;
+
+&lt;p&gt;使用此段代码的步骤：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;复制上面代码；&lt;/li&gt;
+  &lt;li&gt;粘贴代码放置在&amp;lt;/body&amp;gt;标签前 (靠近HTML文件底部)；&lt;/li&gt;
+  &lt;li&gt;修改“defer.js”为外部JS文件名；&lt;/li&gt;
+  &lt;li&gt;确保文件路径是正确的。例如：如果仅输入“defer.js”，那么“defer.js”文件一定与HTML文件在同一文件夹下。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;注意：这段代码直到文档加载完才会加载指定的外部js文件。因此，不应该把那些页面正常加载需要依赖的javascript代码放在这里。而应该将JavaScript代码分成两组。&lt;strong&gt;一组是因页面需要而立即加载的javascript代码，另外一组是在页面加载后进行操作的javascript代码(例如添加click事件或其他东西)&lt;/strong&gt;。这些需等到页面加载后再执行的JavaScript代码，应放在一个外部文件，然后再引进来。&lt;/li&gt;
+&lt;/ul&gt;
+
 </description>
         <pubDate>Fri, 24 Nov 2017 03:00:00 +0800</pubDate>
         <link>http://localhost:4000/lrun1124.github.io/2017/11/24/JavaScript%E5%9F%BA%E7%A1%80(%E4%BA%8C)/</link>
