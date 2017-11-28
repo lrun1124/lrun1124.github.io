@@ -196,6 +196,17 @@ JS的引入如果放在head中，则页面加载前就会JS就会被加载，如
 
 - 注意：这段代码直到文档加载完才会加载指定的外部js文件。因此，不应该把那些页面正常加载需要依赖的javascript代码放在这里。而应该将JavaScript代码分成两组。<strong>一组是因页面需要而立即加载的javascript代码，另外一组是在页面加载后进行操作的javascript代码(例如添加click事件或其他东西)</strong>。这些需等到页面加载后再执行的JavaScript代码，应放在一个外部文件，然后再引进来。
 
+### 10
 
+Ajax缓存问题
+
+Ajax能提高页面载入的速度主要的原因是通过ajax减少了重复数据的载入，也就是说在载入数据的同时将数据缓存到内存中，一旦数据被加载其中，只要我们没有刷新页面，这些数据就会一直被缓存在内存中，当我们提交的URL与历史的URL一致时，就不需要提交给服务器，也就是不需要从服务器上面去获取数据，虽然这样降低了服务器的负载提高了用户的体验，但是我们不能获取最新的数据。为了保证我们读取的信息都是最新的，我们就需要禁止缓存功能。
+
+解决方案有如下几种：
+
+1. 在ajax发送请求前加上 anyAjaxObj.setRequestHeader("If-Modified-Since","0")。
+2. 在ajax发送请求前加上 anyAjaxObj.setRequestHeader("Cache-Control","no-cache")。
+3. 在URL后面加上一个随机数： "fresh=" + Math.random();。
+4. 在URL后面加上时间搓："nowtime=" + new Date().getTime();。
 
 
