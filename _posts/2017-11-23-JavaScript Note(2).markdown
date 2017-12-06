@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "JavaScrip Note(二)"
+title:      "JavaScrip Note(2)"
 subtitle:   "This, Eval, document, 时间机制，new，JSON，Ajax，延迟加载"
 date:       2017-11-23 19:00:00
 author:     "Run"

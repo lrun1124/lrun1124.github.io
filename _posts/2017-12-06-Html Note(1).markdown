@@ -1,0 +1,132 @@
+---
+layout:     post
+title:      "Html Note"
+subtitle:   ""
+date:       2017-12-06 11:00:00
+author:     "Run"
+header-img: "img/htmlbase1/htmlbase1-bg.jpg"
+tags:
+    - Html
+---
+
+### 1
+
+Doctype作用？标准模式与兼容模式各有什么区别?
+
+（1）、<!DOCTYPE>声明位于位于HTML文档中的第一行，处于 <html> 标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。
+
+（2）、标准模式的排版 和JS运作模式都是以该浏览器支持的最高标准运行。在兼容模式中，页面以宽松的向后兼容的方式显示,模拟老式浏览器的行为以防止站点无法工作。
+
+### 2
+
+HTML5 为什么只需要写 <!DOCTYPE HTML>？
+
+HTML5 不基于 SGML，因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为（让浏览器按照它们应该的方式来运行）；
+
+而HTML4.01基于SGML,所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型。
+
+### 3
+
+行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？
+
+首先：CSS规范规定，每个元素都有display属性，确定该元素的类型，每个元素都有默认的display值，如div的display默认值为“block”，则为“块级”元素；span默认display属性值为“inline”，是“行内”元素。
+
+（1）行内元素有：a b span img input select strong（强调的语气）
+
+（2）块级元素有：div ul ol li dl dt dd h1 h2 h3 h4…p
+
+（3）常见的空元素：\<br> \<hr> \<img> \<input> \<link> \<meta>
+
+  	鲜为人知的是：\<area> \<base> \<col> \<command> \<embed> \<keygen> \<param> \<source> \<track> \<wbr>
+
+### 4
+
+页面导入样式时，使用link和@import有什么区别？
+
+  （1）link属于XHTML标签，除了加载CSS外，还能用于定义RSS, 定义rel连接属性等作用；而@import是CSS提供的，只能用于加载CSS;
+
+  （2）页面被加载的时，link会同时被加载，而@import引用的CSS会等到页面被加载完再加载;
+
+  （3）import是CSS2.1 提出的，只在IE5以上才能被识别，而link是XHTML标签，无兼容问题;
+
+### 5
+
+介绍一下你对浏览器内核的理解？
+
+主要分成两部分：渲染引擎(layout engineer或Rendering Engine)和JS引擎。
+
+渲染引擎：负责取得网页的内容（HTML、XML、图像等等）、整理讯息（例如加入CSS等），以及计算网页的显示方式，然后会输出至显示器或打印机。浏览器的内核的不同对于网页的语法解释会有不同，所以渲染的效果也不相同。所有网页浏览器、电子邮件客户端以及其它需要编辑、显示网络内容的应用程序都需要内核。
+
+JS引擎：解析和执行javascript来实现网页的动态效果。
+
+最开始渲染引擎和JS引擎并没有区分的很明确，后来JS引擎越来越独立，内核就倾向于只指渲染引擎。
+
+### 6
+
+常见的浏览器内核有哪些？
+
+  Trident内核：IE,MaxThon,TT,The World,360,搜狗浏览器等。[又称MSHTML]<br>
+  Gecko内核：Netscape6及以上版本，FF,MozillaSuite/SeaMonkey等
+  Presto内核：Opera7及以上。      [Opera内核原为：Presto，现为：Blink;]
+  Webkit内核：Safari,Chrome等。   [ Chrome的：Blink（WebKit的分支）]
+
+### 7
+
+html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？
+
+* HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存储，多任务等功能的增加。
+1. 绘画 canvas;
+2. 用于媒介回放的 video 和 audio 元素;
+3. 本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失;
+4. 用来保存当前会话信息的sessionStorage，数据在浏览器关闭后自动删除;
+5. 语意化更好的内容元素，比如 article、footer、header、nav、section;
+6. 表单控件，calendar、date、time、email、url、search;
+7. 新的技术webworker, websocket, Geolocation;
+
+* 移除的元素：<br>
+1. 纯表现的元素：basefont，big，center，font, s，strike，tt，u;<br>
+2. 对可用性产生负面影响的元素：frame，frameset，noframes；
+
+* 支持HTML5新标签：
+1. IE8/IE7/IE6支持通过document.createElement方法产生的标签，可以利用这一特性让这些浏览器支持HTML5新标签，浏览器支持新标签后，还需要添加标签默认的样式。
+2. 也可以直接使用成熟的框架、比如html5shim;
+
+* 如何区分HTML5： DOCTYPE声明\新增的结构元素\功能元素
+
+### 8
+
+XML,SGML,HTML,XHTML,HTML5
+
+他们都是ML，都是标记语言（Markup Language），所以不同就是前面的部分了。
+
+SGML(Standard Generalized Markup Language)，即标准通用标记语言, 是一种古老，复杂的标准
+
+HTML(HyperText Markup Language)，超文本标记语言，是语法较为松散的、不严格的Web语言，SGML的子集，其中的HTML5已经不是SGML的子集了
+
+XML（eXtensible Markup Language），可扩展标记语言，主要用于存储数据和结构，可扩展，SGML的子集
+
+XHTML（eXtensible HyperText Markup Language），可扩展超文本标记语言，基于XML，作用与HTML类似，但语法更严格。所有标签必须闭合，每一个属性都必须使用引号包住。\<br>要写成\<br />，不能写为\<BR />（同hr）；使用了\<p>之后必须有一个\</p>以结束段落。
+
+### 9 
+
+HTML语义化
+
+就是用正确的标签做正确的事情。
+
+优点：
+1. html语义化让页面的内容结构化，结构更清晰，便于对浏览器、搜索引擎解析;
+2. 即使在没有样式CSS情况下也以一种文档格式显示，并且是容易阅读的;
+3. 搜索引擎的爬虫也依赖于HTML标记来确定上下文和各个关键字的权重，利于SEO;
+4. 使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。
+
+### 10
+
+cookie, loaclStorage, sessionStorage
+
+cookie: 可设置失效时间，默认是浏览器关闭后，大小4K左右，每次都会携带在HTTP头中，这也是大小限制的原因，如果使用cookie保存过多数据会带来性能问题，主要用于保存密码等信息
+
+localStorage: 除非主动删除，否则永久保留，一般5M左右，仅在浏览器保存，不参与通信
+
+sessionStorage: 仅在当前会话下有效，刷新不删除，关闭页面或浏览器清除，一般5M左右，仅在浏览器保存，不参与通信
+
+另外sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；localStorage 在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的。

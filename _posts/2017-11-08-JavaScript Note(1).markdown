@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "JavaScrip Note(一)"
+title:      "JavaScrip Note(1)"
 subtitle:   "类型，原型，原型链，作用域，作用域链，闭包"
 date:       2017-11-07 11:00:00
 author:     "Run"
