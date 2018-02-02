@@ -130,3 +130,53 @@ localStorage: 除非主动删除，否则永久保留，一般5M左右，仅在�
 sessionStorage: 仅在当前会话下有效，刷新不删除，关闭页面或浏览器清除，一般5M左右，仅在浏览器保存，不参与通信
 
 另外sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；localStorage 在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的。
+
+### 11
+
+浏览器是怎么对HTML5的离线储存资源进行管理和加载的呢？
+
+在线的情况下，浏览器发现html头部有manifest属性，它会请求manifest文件，如果是第一次访问app，那么浏览器就会根据manifest文件的内容下载相应的资源并且进行离线存储。如果已经访问过app并且资源已经离线存储了，那么浏览器就会使用离线的资源加载页面，然后浏览器会对比新的manifest文件与旧的manifest文件，如果文件没有发生改变，就不做任何操作，如果文件改变了，那么就会重新下载文件中的资源并进行离线存储。
+离线的情况下，浏览器就直接使用离线存储的资源。
+
+### 12
+
+iframe缺点：
+1. iframe会阻塞主页面的Onload事件；
+2. 搜索引擎的检索程序无法解读这种页面，不利于SEO;
+3. iframe和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载。
+
+使用iframe之前需要考虑这两个缺点。如果需要使用iframe，最好是通过javascript
+  动态给iframe添加src属性值，这样可以绕开以上两个问题。
+
+### 13
+
+Label的作用是什么？是怎么用的？
+
+\<label> 标签为 input 元素定义标注（标记）。
+label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用户改进了可用性。如果在 label 元素内点击文本，就会触发此控件。就是说，当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。用for属性绑定id。
+
+```
+<form>
+<label for="male">Male</label>
+<input type="radio" name="sex" id="male" />
+<br />
+<label for="female">Female</label>
+<input type="radio" name="sex" id="female" />
+</form>
+```
+
+### 14
+
+title与h1的区别、b与strong的区别、i与em的区别？
+
+title属性没有明确意义只表示是个标题，H1则表示层次明确的标题，对页面信息的抓取也有很大的影响；
+
+strong是标明重点内容，有语气加强的含义，使用阅读设备阅读网络时：\<strong>会重读，而\<B>是展示强调内容。
+
+i内容展示为斜体，em表示强调的文本；
+
+  Physical Style Elements -- 自然样式标签<br>
+  b, i, u, s, pre<br>
+  Semantic Style Elements -- 语义样式标签<br>
+  strong, em, ins, del, code<br>
+  应该准确使用语义样式标签, 但不能滥用, 如果不能确定时首选使用自然样式标签。<br>

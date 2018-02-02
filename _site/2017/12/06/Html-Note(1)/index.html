@@ -302,6 +302,57 @@
 
 <p>另外sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；localStorage 在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的。</p>
 
+<h3 id="11">11</h3>
+
+<p>浏览器是怎么对HTML5的离线储存资源进行管理和加载的呢？</p>
+
+<p>在线的情况下，浏览器发现html头部有manifest属性，它会请求manifest文件，如果是第一次访问app，那么浏览器就会根据manifest文件的内容下载相应的资源并且进行离线存储。如果已经访问过app并且资源已经离线存储了，那么浏览器就会使用离线的资源加载页面，然后浏览器会对比新的manifest文件与旧的manifest文件，如果文件没有发生改变，就不做任何操作，如果文件改变了，那么就会重新下载文件中的资源并进行离线存储。
+离线的情况下，浏览器就直接使用离线存储的资源。</p>
+
+<h3 id="12">12</h3>
+
+<p>iframe缺点：</p>
+<ol>
+  <li>iframe会阻塞主页面的Onload事件；</li>
+  <li>搜索引擎的检索程序无法解读这种页面，不利于SEO;</li>
+  <li>iframe和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载。</li>
+</ol>
+
+<p>使用iframe之前需要考虑这两个缺点。如果需要使用iframe，最好是通过javascript
+  动态给iframe添加src属性值，这样可以绕开以上两个问题。</p>
+
+<h3 id="13">13</h3>
+
+<p>Label的作用是什么？是怎么用的？</p>
+
+<p>&lt;label&gt; 标签为 input 元素定义标注（标记）。
+label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用户改进了可用性。如果在 label 元素内点击文本，就会触发此控件。就是说，当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。用for属性绑定id。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;form&gt;
+&lt;label for="male"&gt;Male&lt;/label&gt;
+&lt;input type="radio" name="sex" id="male" /&gt;
+&lt;br /&gt;
+&lt;label for="female"&gt;Female&lt;/label&gt;
+&lt;input type="radio" name="sex" id="female" /&gt;
+&lt;/form&gt;
+</code></pre></div></div>
+
+<h3 id="14">14</h3>
+
+<p>title与h1的区别、b与strong的区别、i与em的区别？</p>
+
+<p>title属性没有明确意义只表示是个标题，H1则表示层次明确的标题，对页面信息的抓取也有很大的影响；</p>
+
+<p>strong是标明重点内容，有语气加强的含义，使用阅读设备阅读网络时：&lt;strong&gt;会重读，而&lt;B&gt;是展示强调内容。</p>
+
+<p>i内容展示为斜体，em表示强调的文本；</p>
+
+<p>Physical Style Elements – 自然样式标签<br />
+  b, i, u, s, pre<br />
+  Semantic Style Elements – 语义样式标签<br />
+  strong, em, ins, del, code<br />
+  应该准确使用语义样式标签, 但不能滥用, 如果不能确定时首选使用自然样式标签。<br /></p>
+
 
                 <hr>
 
@@ -342,6 +393,10 @@ Doctype作用？标准模式与兼容模式各有什么区别?
                     </li>
                     
                     
+                    <li class="next">
+                        <a href="/lrun1124.github.io/2017/12/07/CSS-Note(1)/" data-toggle="tooltip" data-placement="top" title="Css Note">Next Post &rarr;</a>
+                    </li>
+                    
                 </ul>
 
 
@@ -380,6 +435,8 @@ Doctype作用？标准模式与兼容模式各有什么区别?
                 				<a href="/lrun1124.github.io/tags/#JavaScript" title="JavaScript" rel="6">
                                     JavaScript
                                 </a>
+                            
+        				
                             
         				
                             

@@ -408,7 +408,7 @@ http状态码
 
 5. 浏览器解密并计算握手消息的HASH，如果与服务端发来的HASH一致，此时握手过程结束，Alice和Bank使用对称秘钥互相传输数据。
 
-<img src="http://127.0.0.1:4000/lrun1124.github.io/img/jsbase4/Alice&Bank.png"/>
+<img src="http://lrun1124.github.io/img/jsbase4/Alice&Bank.png"/>
 
 HTTPS一般使用的加密与HASH算法如下：
 

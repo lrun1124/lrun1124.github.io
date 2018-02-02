@@ -13,7 +13,7 @@ tags:
 
 This的理解
 
-* this总是指向函数的直接调用者（而非简洁调用者）,即此次调用的所有者
+* this总是指向函数的直接调用者（而非间接调用者）,即此次调用的所有者
 * 如果有new对象，this指向new出来的对象
 
 ### 2
@@ -35,10 +35,10 @@ window对象是浏览器打开的窗口，顶层对象，document是window对象
 IE和firefox事件机制
 
 IE是事件冒泡，firefox同时支持事件冒泡和捕获
-* 时间捕获: 越高层的元素越早接收到事件，由上到下
+* 事件捕获: 越高层的元素越早接收到事件，由上到下
 * 事件冒泡: 越低层的元素越早接收到时间，由下到上
 
-组织冒泡事件的方法
+阻止冒泡事件的方法
 
 ```JS
 xxx.click = function(e){
@@ -156,7 +156,7 @@ JS延迟加载就是在页面加载完成后再加载JS文件，有助于提高�
 //延迟1000ms加载new.js
 window.onload = function(){
 	setTimeout(function(){
-		var head = document.getEßlementByTagName('head')[0];
+		var head = document.getElementByTagName('head')[0];
 		var js = document.createElement('Script');
 		js.type = 'text/javascript';
 		js.src = 'new.js';
@@ -167,7 +167,7 @@ window.onload = function(){
 
 #### 分组最后加载JS
 
-JS的引入如果放在head中，则页面加载前就会JS就会被加载，如果放在body中，则会按顺序加载，所以可以将JS分组，将加载过程中不需要的JS放在页面的底部，</body>标签之前，然而这种方法偶尔会收到Google页面速度测试工具的“延迟加载javascript”警告，Google提供了一套推荐方案：
+JS的引入如果放在head中，则页面加载前JS就会被加载，如果放在body中，则会按顺序加载，所以可以将JS分组，将加载过程中不需要的JS放在页面的底部，</body>标签之前，然而这种方法偶尔会收到Google页面速度测试工具的“延迟加载javascript”警告，Google提供了一套推荐方案：
 
 ```
 //这些代码应被放置在</body>标签前(接近HTML文件底部)
@@ -200,13 +200,13 @@ JS的引入如果放在head中，则页面加载前就会JS就会被加载，如
 
 Ajax缓存问题
 
-Ajax能提高页面载入的速度主要的原因是通过ajax减少了重复数据的载入，也就是说在载入数据的同时将数据缓存到内存中，一旦数据被加载其中，只要我们没有刷新页面，这些数据就会一直被缓存在内存中，当我们提交的URL与历史的URL一致时，就不需要提交给服务器，也就是不需要从服务器上面去获取数据，虽然这样降低了服务器的负载提高了用户的体验，但是我们不能获取最新的数据。为了保证我们读取的信息都是最新的，我们就需要禁止缓存功能。
+Ajax能提高页面载入的速度主要的原因是通过Ajax减少了重复数据的载入，也就是说在载入数据的同时将数据缓存到内存中，一旦数据被加载其中，只要我们没有刷新页面，这些数据就会一直被缓存在内存中，当我们提交的URL与历史的URL一致时，就不需要提交给服务器，也就是不需要从服务器上面去获取数据，虽然这样降低了服务器的负载提高了用户的体验，但是我们不能获取最新的数据。为了保证我们读取的信息都是最新的，我们就需要禁止缓存功能。
 
 解决方案有如下几种：
 
 1. 在ajax发送请求前加上 anyAjaxObj.setRequestHeader("If-Modified-Since","0")。
 2. 在ajax发送请求前加上 anyAjaxObj.setRequestHeader("Cache-Control","no-cache")。
 3. 在URL后面加上一个随机数： "fresh=" + Math.random();。
-4. 在URL后面加上时间搓："nowtime=" + new Date().getTime();。
+4. 在URL后面加上时间戳："nowtime=" + new Date().getTime();。
 
 

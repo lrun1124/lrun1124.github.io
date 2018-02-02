@@ -55,7 +55,7 @@ Array.prototype.unique = function() {
 
 ### 方法三: 利用hash
 
-使用一个Object做hash，循环检测当前想是否在hash中，没有则加入hash并加入数组
+使用一个Object做hash，循环检测当前项是否在hash中，没有则加入hash并加入数组
 
 ```js
 Array.prototype.unique = function() {

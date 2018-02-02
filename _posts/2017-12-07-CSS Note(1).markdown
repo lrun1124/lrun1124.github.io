@@ -1,0 +1,55 @@
+---
+layout:     post
+title:      "Css Note"
+subtitle:   ""
+date:       2017-12-07 11:00:00
+author:     "Run"
+header-img: "img/cssbase1/cssbase1-bg.jpg"
+tags:
+    - CSS
+---
+
+### 1
+
+CSS的盒子模型，低版本IE的盒子模型有什么不同的？
+
+W3C标准盒子模型，content(内容)，padding(内边距)，border(边框)，margin(外边距)组成
+
+以margin：10px； border：2px； padding：5px； width：200px；height：100px 为例
+
+则整个盒子模型的宽是：10px*2 + 2px*2 + 5px*2 + 200px = 234px
+
+则整个盒子模型的高是：10px*2 + 2px*2 + 5px*2 + 100px = 134px
+
+<img src="http://127.0.0.1:4000/lrun1124.github.io/img/cssbase1/boxModelW3C.jpg"/>
+
+旧IE，主要是指IE5和（IE6的怪异模式），content部分的width和height是把padding和border也算了进去
+
+整个盒子模型的宽是： margin*2 + width（严格来说是：margin-left + width + margin-right
+
+整个盒子模型的高是： margin*2 + height（严格来说是：margin-left + height + margin-right）
+
+<img src="http://127.0.0.1:4000/lrun1124.github.io/img/cssbase1/boxModelOldIE.jpg"/>
+
+### 2
+
+CSS选择器
+
+1. id选择器（# myid）
+2. 类选择器（.myclassname）
+3. 标签选择器（div, h1, p）
+4. 相邻选择器（h1 + p）
+5. 子选择器（ul > li）
+6. 后代选择器（li a）
+7. 通配符选择器（ * ）
+8. 属性选择器（a[rel = "external"]）
+9. 伪类选择器（a:hover, li:nth-child
+
+### display的值及作用
+1. block       	块类型。默认宽度为父元素宽度，可设置宽高，换行显示。
+2. none        	缺省值。象行内元素类型一样显示。
+3. inline      	行内元素类型。默认宽度为内容宽度，不可设置宽高，同行显示。
+4. inline-block  默认宽度为内容宽度，可以设置宽高，同行显示。
+5. list-item   	象块类型元素一样显示，并添加样式列表标记。
+6. table       	此元素会作为块级表格来显示。
+7. inherit     	规定应该从父元素继承 display 属性的值。
