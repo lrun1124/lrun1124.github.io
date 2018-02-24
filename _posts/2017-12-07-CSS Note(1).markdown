@@ -21,7 +21,7 @@ W3C标准盒子模型，content(内容)，padding(内边距)，border(边框)，
 
 则整个盒子模型的高是：10px*2 + 2px*2 + 5px*2 + 100px = 134px
 
-<img src="http://127.0.0.1:4000/lrun1124.github.io/img/cssbase1/boxModelW3C.jpg"/>
+<img src="http://lrun1124.github.io/img/cssbase1/boxModelW3C.jpg"/>
 
 旧IE，主要是指IE5和（IE6的怪异模式），content部分的width和height是把padding和border也算了进去
 
@@ -29,7 +29,7 @@ W3C标准盒子模型，content(内容)，padding(内边距)，border(边框)，
 
 整个盒子模型的高是： margin*2 + height（严格来说是：margin-left + height + margin-right）
 
-<img src="http://127.0.0.1:4000/lrun1124.github.io/img/cssbase1/boxModelOldIE.jpg"/>
+<img src="http://lrun1124.github.io/img/cssbase1/boxModelOldIE.jpg"/>
 
 ### 2
 
