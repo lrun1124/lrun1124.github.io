@@ -201,8 +201,8 @@
 
 <h3 id="js内置对象">JS内置对象</h3>
 
-<p>Object对象：所有对象的父对象，原型链最上层
-数据封装对象：Array, Boolean, String, Number, Object
+<p>Object对象：所有对象的父对象，原型链最上层<br />
+数据封装对象：Array, Boolean, String, Number, Object<br />
 其他： Math, Date, RegExp, Error, Function</p>
 
 <h3 id="null-undefined区别">null, undefined区别</h3>
@@ -306,7 +306,7 @@ test();
 
 <p>当代码在环境中执行的时候，会创建变量对象的一个作用域链（scope chain）。其用途是<strong>保证能够有序访问当前环境中的变量和函数</strong>。作用域链的前端始终是当前代码所在的变量对象，下一个变量对象总是外部环境的变量对象。<strong>标识符解析时,总是沿着作用域链从前端向后逐层的搜索</strong>。</p>
 
-<p>环境之前的联系是<strong>线性有序</strong>的,内部环境是可以通过作用域链访问所有外部环境，但是外部环境不能访问内部环境。所以引发了<strong>闭包</strong>的概念</p>
+<p>环境之间的联系是<strong>线性有序</strong>的,内部环境是可以通过作用域链访问所有外部环境，但是外部环境不能访问内部环境。所以引发了<strong>闭包</strong>的概念</p>
 
 <ul>
   <li>另使用with可以在作用域顶端添加某个对象，因为有可能造成混淆和兼容错误，所以不被推荐使用，不过在某些情况下可以减少不必要的作用域链搜索过程并简化代码，当然，这种简化方式用一个指针也可以做到。</li>
@@ -328,11 +328,11 @@ with (Math) {
 
 <pre><code class="language-JS">function f1(){
 	var n=999;
-	function add(){
+	function f2(){
 		n++;
 		alert(n);
 	}
-	return add;
+	return f2;
 }
 var result=f1();
 result();//1000
@@ -578,7 +578,7 @@ JS基本数据类型
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Run Note 2017
+                    Copyright &copy; Run Note 2018
                     <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> |
                     <iframe

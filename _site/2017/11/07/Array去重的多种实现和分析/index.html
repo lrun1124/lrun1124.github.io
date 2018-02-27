@@ -220,7 +220,7 @@
 
 <h3 id="方法三-利用hash">方法三: 利用hash</h3>
 
-<p>使用一个Object做hash，循环检测当前想是否在hash中，没有则加入hash并加入数组</p>
+<p>使用一个Object做hash，循环检测当前项是否在hash中，没有则加入hash并加入数组</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">unique</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 	<span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="p">{},</span> 
@@ -577,7 +577,7 @@ console.log("unique4: " + (end - start) + "ms");
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Run Note 2017
+                    Copyright &copy; Run Note 2018
                     <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> |
                     <iframe
