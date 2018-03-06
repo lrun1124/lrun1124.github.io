@@ -204,11 +204,13 @@
 
 <p>页面导入样式时，使用link和@import有什么区别？</p>
 
-<p>（1）link属于XHTML标签，除了加载CSS外，还能用于定义RSS, 定义rel连接属性等作用；而@import是CSS提供的，只能用于加载CSS;</p>
+<p>(1) link属于HTML标签，而@import是CSS提供的;</p>
 
-<p>（2）页面被加载的时，link会同时被加载，而@import引用的CSS会等到页面被加载完再加载;</p>
+<p>(2) 页面被加载的时，link会同时被加载，而@import被引用的CSS会等到引用它的CSS文件被加载完再加载;</p>
 
-<p>（3）import是CSS2.1 提出的，只在IE5以上才能被识别，而link是XHTML标签，无兼容问题;</p>
+<p>(3) import只在IE5以上才能识别，而link是HTML标签，无兼容问题;</p>
+
+<p>(4) link方式的样式的权重 高于@import的权重</p>
 
 <h3 id="5">5</h3>
 
@@ -274,7 +276,7 @@
 
 <p>XML（eXtensible Markup Language），可扩展标记语言，主要用于存储数据和结构，可扩展，SGML的子集</p>
 
-<p>XHTML（eXtensible HyperText Markup Language），可扩展超文本标记语言，基于XML，作用与HTML类似，但语法更严格。所有标签必须闭合，每一个属性都必须使用引号包住。&lt;br&gt;要写成&lt;br /&gt;，不能写为&lt;BR /&gt;（同hr）；使用了&lt;p&gt;之后必须有一个&lt;/p&gt;以结束段落。</p>
+<p>XHTML（eXtensible HyperText Markup Language），可扩展超文本标记语言，基于XML，作用与HTML类似，但语法更严格。所有标签必须闭合，每一个属性都必须使用引号包住，所有&lt;和&amp;特殊符号用编码表示。&lt;br&gt;要写成&lt;br /&gt;，不能写为&lt;BR /&gt;（同hr）；使用了&lt;p&gt;之后必须有一个&lt;/p&gt;以结束段落。</p>
 
 <h3 id="9">9</h3>
 
@@ -347,11 +349,32 @@ label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用�
 
 <p>i内容展示为斜体，em表示强调的文本；</p>
 
-<p>Physical Style Elements – 自然样式标签<br />
+<p>Physical Style Elements – 自然样式标签, 重在视觉作用<br />
   b, i, u, s, pre<br />
-  Semantic Style Elements – 语义样式标签<br />
+  Semantic Style Elements – 语义样式标签, 重在含义<br />
   strong, em, ins, del, code<br />
   应该准确使用语义样式标签, 但不能滥用, 如果不能确定时首选使用自然样式标签。<br /></p>
+
+<h2 id="15">15</h2>
+<p>Doctype作用? 严格模式与混杂模式如何区分？它们有何意义?</p>
+
+<p>1）、&lt;!DOCTYPE&gt; 声明位于文档中的最前面，处于 &lt;html&gt; 标签之前。告知浏览器以何种模式来渲染文档。</p>
+
+<p>2）、严格模式的排版和 JS 运作模式是 以该浏览器支持的最高标准运行。</p>
+
+<p>3）、在混杂模式中，页面以宽松的向后兼容的方式显示。模拟老式浏览器的行为以防止站点无法工作。</p>
+
+<p>4）、DOCTYPE不存在或格式不正确会导致文档以混杂模式呈现。</p>
+
+<p>你知道多少种Doctype文档类型？</p>
+
+<p>该标签可声明三种 DTD 类型，分别表示严格版本、过渡版本以及基于框架的 HTML 文档</p>
+
+<h2 id="16">16</h2>
+
+<p>如何实现浏览器内多个标签页之间的通信?</p>
+
+<p>调用localstorge、cookies等本地存储方式</p>
 
 
                 <hr>

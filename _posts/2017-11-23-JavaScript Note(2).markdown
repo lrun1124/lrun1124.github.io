@@ -145,8 +145,25 @@ JS延迟加载就是在页面加载完成后再加载JS文件，有助于提高�
 <script src="test1.js" defer="defer"></script>
 <script src="test2.js" async></script>
 ```
-
 - 只适用于外部脚本，缺点是不能保证脚本会按顺序执行
+
+当浏览器碰到 script 脚本的时候：
+
+<script src="script.js"></script>
+
+没有 defer 或 async，浏览器会立即加载并执行指定的脚本，“立即”指的是在渲染该 script 标签之下的文档元素之前，也就是说不等待后续载入的文档元素，读到就加载并执行。
+
+<script async src="script.js"></script>
+
+有 async，加载和渲染后续文档元素的过程将和 script.js 的加载与执行并行进行（异步）。
+
+<script defer src="myscript.js"></script>
+
+有 defer，加载后续文档元素的过程将和 script.js 的加载并行进行（异步），但是 script.js 的执行要在所有元素解析完成之后，DOMContentLoaded 事件触发之前完成。
+
+然后从实用角度来说呢，首先把所有脚本都丢到 </body> 之前是最佳实践，因为对于旧浏览器来说这是唯一的优化选择，此法可保证非脚本的其他一切元素能够以最快的速度得到加载和解析
+
+<img src="http://lrun1124.github.io/img/jsbase2/defer&async.jpg"/>
 
 #### 动态DOM操作
 
@@ -209,4 +226,23 @@ Ajax能提高页面载入的速度主要的原因是通过Ajax减少了重复数
 3. 在URL后面加上一个随机数： "fresh=" + Math.random();。
 4. 在URL后面加上时间戳："nowtime=" + new Date().getTime();。
 
+### 11
 
+GET和POST的区别，何时使用POST？
+
+GET：一般用于信息获取，使用URL传递参数，对所发送信息的数量也有限制，一般在2000个字符
+
+POST：一般用于修改服务器上的资源，对所发送的信息没有限制。
+
+
+GET方式需要使用Request.QueryString来取得变量的值，而POST方式通过Request.Form来获取变量的值，
+
+也就是说Get是通过地址栏来传值，而Post是通过提交表单来传值。
+
+然而，在以下情况中，请使用 POST 请求：
+
+无法使用缓存文件（更新服务器上的文件或数据库）
+
+向服务器发送大量数据（POST 没有数据量限制）
+
+发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠

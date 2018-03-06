@@ -11,13 +11,16 @@ tags:
 
 > “Step 1. ”
 
+
+---
+
 ## 前言
 
 转前端工作一年多后对JS的一些基础仍然存在盲区，记录一些note查漏补缺
 
 ## 正文
 
-### JS基本数据类型
+### JS基本数据类型及存储结构
 
 * Boolean, null, undefined, String, Number
 * ES 2015 新增 : Symbol

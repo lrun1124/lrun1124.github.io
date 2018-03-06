@@ -490,8 +490,9 @@ test.addELementListener('click', fn2, false);
 
 <p>（7）图片预加载，将样式表放在顶部，将脚本放在底部  加上时间戳。</p>
 
-<p>（8）避免在页面的主体布局中使用table，table要等其中的内容完全下载之后才会显示出来，显示比div+css布局慢。
-    对普通的网站有一个统一的思路，就是尽量向前端优化、减少数据库操作、减少磁盘IO。向前端优化指的是，在不影响功能和体验的情况下，能在浏览器执行的不要在服务端执行，能在缓存服务器上直接返回的不要到应用服务器，程序能直接取得的结果不要到外部取得，本机内能取得的数据不要到远程取，内存能取到的不要到磁盘取，缓存中有的不要去数据库查询。减少数据库操作指减少更新次数、缓存结果减少查询次数、将数据库执行的操作尽可能的让你的程序完成（例如join查询），减少磁盘IO指尽量不使用文件系统作为缓存、减少读写文件次数等。程序优化永远要优化慢的部分，换语言是无法“优化”的。</p>
+<p>（8）避免在页面的主体布局中使用table，table要等其中的内容完全下载之后才会显示出来，显示比div+css布局慢。</p>
+
+<p>对普通的网站有一个统一的思路，就是尽量向前端优化、减少数据库操作、减少磁盘IO。向前端优化指的是，在不影响功能和体验的情况下，能在浏览器执行的不要在服务端执行，能在缓存服务器上直接返回的不要到应用服务器，程序能直接取得的结果不要到外部取得，本机内能取得的数据不要到远程取，内存能取到的不要到磁盘取，缓存中有的不要去数据库查询。减少数据库操作指减少更新次数、缓存结果减少查询次数、将数据库执行的操作尽可能的让你的程序完成（例如join查询），减少磁盘IO指尽量不使用文件系统作为缓存、减少读写文件次数等。程序优化永远要优化慢的部分，换语言是无法“优化”的。</p>
 
 <h3 id="5">5</h3>
 
@@ -594,6 +595,246 @@ test.addELementListener('click', fn2, false);
 <p>对称加密算法：AES，RC4，3DES</p>
 
 <p>HASH算法：MD5，SHA1，SHA256</p>
+
+<h3 id="8">8</h3>
+
+<p>XML和JSON的区别？</p>
+
+<p>(1).数据体积方面。</p>
+
+<p>JSON相对于XML来讲，数据的体积小，传递的速度更快些。</p>
+
+<p>(2).数据交互方面。</p>
+
+<p>JSON与JavaScript的交互更加方便，更容易解析处理，更好的数据交互。</p>
+
+<p>(3).数据描述方面。</p>
+
+<p>JSON对数据的描述性比XML较差。</p>
+
+<p>(4).传输速度方面。</p>
+
+<p>JSON的速度要远远快于XML。</p>
+
+<h3 id="9">9</h3>
+
+<p>JavaScript垃圾回收机制</p>
+
+<ul>
+  <li>
+    <p>标记清除： 为所有进入内存的变量加上标记，除去环境中的变量和被环境中变量引用的变量（闭包）后，剩下被标记的变量就是要被清除的变量，到目前为止，IE、Firefox、Opera、Chrome、Safari的js实现使用的都是标记清除的垃圾回收策略或类似的策略，只不过垃圾收集的时间间隔互不相同。</p>
+  </li>
+  <li>
+    <p>引用计数： 跟踪每个值被引用的次数，当声明一个变量并将引用类型的值赋给此变量，则引用+1，当次变量引用的值改变时，则引用-1，当引用为0时，代表没有变量可以引用这个值，可以进行回收。这种机制存在一个问题，当变量存在循环引用的情况会造成内存泄漏。</p>
+  </li>
+</ul>
+
+<p>什么时候进行：</p>
+
+<p>垃圾回收周期性进行，一般都是动态进行的，如垃圾回收器回收的内存分配量低于程序占用内存的15%，说明大部分内存不可被回收，设的垃圾回收触发条件过于敏感，这时候把临街条件翻倍，如果回收的内存高于85%，说明大部分内存早就该清理了，这时候把触发条件置回。</p>
+
+<h3 id="10">10</h3>
+
+<p>Web安全及防护原理</p>
+
+<ul>
+  <li>SQL注入</li>
+</ul>
+
+<p>通过把SQL插入Web表单欺骗服务器执行恶意SQL</p>
+
+<ol>
+  <li>不要相信用户输入，利用正则等方式对输入的合法性进行判断，格式，长度，特殊字符等。</li>
+  <li>不要使用动态拼装SQL，使用参数化的SQL或存储过程进行数据库操作</li>
+  <li>不要使用管理员权限连接数据库，应为每个应用分配单独的权限有限的数据库连接</li>
+  <li>不要明文存放敏感信息，加密或Hash</li>
+</ol>
+
+<ul>
+  <li>XSS(cross-site scripting)</li>
+</ul>
+
+<p>攻击者向Web页面中恶意插入html标签或Js代码，比如攻击者在页面中插入一个看似安全的链接，用户点击后窃取cookie和用户输入信息；或者攻击者在论坛中加一个恶意表单，当用户提交表单的时候，却把信息传送到攻击者的服务器中，而不是用户原本以为的信任站点。</p>
+
+<ol>
+  <li>
+    <p>对于用户输入要仔细检查长度以及’&lt;’’&gt;’等特殊符号，任何内容写到页面之前都要encode，避免在页面显示时出现html tag，做到这一步能避免超过半数的XSS攻击</p>
+  </li>
+  <li>
+    <p>避免在cookie中直接暴露用户隐私</p>
+  </li>
+  <li>
+    <p>通过使cookie 和系统ip 绑定来降低cookie 泄露后的危险</p>
+  </li>
+</ol>
+
+<ul>
+  <li>CSRF（Cross-site request forgery），跨站请求伪造</li>
+</ul>
+
+<p>攻击者盗用了你的身份，以你的名义发送恶意请求。CSRF能够做的事情包括：以你名义发送邮件，发消息，盗取你的账号，甚至于购买商品，虚拟货币转账……造成的问题包括：个人隐私泄露以及财产安全</p>
+
+<p>要完成一次CSRF攻击，受害者必须依次完成两个步骤：<br /></p>
+<ol>
+  <li>登录受信任网站A，并在本地生成Cookie。</li>
+  <li>在不登出A的情况下，访问危险网站B。</li>
+</ol>
+
+<p>防御：<br /></p>
+<ol>
+  <li>服务端的CSRF方式方法很多样，但总的思想都是一致的，就是在客户端页面增加伪随机数</li>
+  <li>通过验证码的方法</li>
+</ol>
+
+<h3 id="10-1">10</h3>
+
+<p>ES6</p>
+
+<ol>
+  <li>let和const，let加入块级作用域</li>
+  <li>模板字符串，为JavaScript提供了简单的字符串插编辑功能</li>
+  <li>Symbol，独一无二变量</li>
+  <li>箭头函数</li>
+  <li>Set和Map</li>
+  <li>原生Promise</li>
+  <li>Module Import，Export</li>
+  <li>Class</li>
+  <li>interator和for of</li>
+</ol>
+
+<h3 id="11">11</h3>
+
+<p>for in和for of</p>
+
+<ol>
+  <li>for…in循环出的是key，for…of循环出的是value</li>
+  <li>for…of是ES6对于forEach的改善，for…in循环不仅遍历数字键名，还会遍历手动添加的其他键，甚至包括原型链上的键。for of只可以循环可迭代对象的可迭代属性，不可迭代属性在循环中被忽略了（优点1）；可以与break、continue和return配合使用。（优点2）</li>
+</ol>
+
+<p>结论：推荐在循环对象属性的时候，使用for…in,在遍历数组的时候的时候使用for…of。</p>
+
+<h3 id="12">12</h3>
+
+<p>Cookie和Session</p>
+
+<ol>
+  <li>session 在服务器端，cookie 在客户端（浏览器）</li>
+  <li>session 默认被存在在服务器的一个文件里（不是内存）</li>
+  <li>session 的运行依赖 session id，而 session id 是存在 cookie 中的，也就是说，如果浏览器禁用了 cookie ，同时 session 也会失效（但是可以通过其它方式实现，比如在 url 中传递 session_id）</li>
+  <li>session 可以放在 文件、数据库、或内存中都可以。</li>
+  <li>用户验证这种场合一般会用 session 因此，维持一个会话的核心就是客户端的唯一标识，即 session id</li>
+  <li>cookie是不安全的，一些网络攻击如XSS和CSRF可以获取cookie或进行cookie欺骗，所以重要信息放在session里，必要放在cookie里要枷锁</li>
+</ol>
+
+<h2 id="13">13</h2>
+
+<p>javascript继承的6种方法</p>
+
+<ol>
+  <li>
+    <p>原型链继承: 将父类的实例作为子类的原型</p>
+  </li>
+  <li>
+    <p>借用构造函数继承: 使用父类的构造函数来增强子类实例，等于是复制父类的实例属性给子类（没用到原型）</p>
+  </li>
+  <li>
+    <p>实例继承：为父类实例添加新特性，作为子类实例返回</p>
+  </li>
+  <li>
+    <p>拷贝继承</p>
+  </li>
+  <li>
+    <p>组合继承：通过调用父类构造，继承父类的属性并保留传参的优点，然后通过将父类实例作为子类原型，实现函数复用</p>
+  </li>
+</ol>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function Cat(name){
+  Animal.call(this);
+  this.name = name || 'Tom';
+}
+Cat.prototype = new Animal();
+
+//组合继承也是需要修复构造函数指向的。
+Cat.prototype.constructor = Cat;
+
+// Test Code
+var cat = new Cat();
+console.log(cat.name);
+console.log(cat.sleep());
+console.log(cat instanceof Animal); // true
+console.log(cat instanceof Cat); // true
+</code></pre></div></div>
+
+<p>特点：</p>
+
+<ol>
+  <li>弥补了方式2的缺陷，可以继承实例属性/方法，也可以继承原型属性/方法</li>
+  <li>既是子类的实例，也是父类的实例</li>
+  <li>不存在引用属性共享问题
+4.5可传参</li>
+  <li>函数可复用</li>
+</ol>
+
+<p>缺点：</p>
+
+<p>调用了两次父类构造函数，生成了两份实例（子类实例将子类原型上的那份屏蔽了）</p>
+
+<p>6.寄生继承</p>
+
+<p>核心：与原型链继承相似，也是基于某个对象或某些信息创建一个对象，然后增强对象，最后返回对象。寄生式继承解决了组合式继承中两次调用父类的情况，寄生继承不用实例化父类，直接实例化一个临时副本实现相同的原型链继承</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function Cat(name){
+  Animal.call(this);
+  this.name = name || 'Tom';
+}
+(function(){
+  // 创建一个没有实例方法的类
+  var Super = function(){};
+  Super.prototype = Animal.prototype;
+  //将实例作为子类的原型
+  Cat.prototype = new Super();
+})();
+
+// Test Code
+var cat = new Cat();
+console.log(cat.name);
+console.log(cat.sleep());
+console.log(cat instanceof Animal); // true
+console.log(cat instanceof Cat); //true
+
+Cat.prototype.constructor = Cat; // 需要修复下构造函数
+</code></pre></div></div>
+
+<h3 id="13-1">13</h3>
+
+<p>MVC和MVVM的理解</p>
+
+<p>MVC</p>
+
+<p>View 传送指令到 Controller, Controller 完成业务逻辑后，要求 Model 改变状态, Model 将新的数据发送到 View，用户得到反馈, 所有通信都是单向的。</p>
+
+<p>MVVM</p>
+
+<p>典型的Angular，它采用双向绑定（data-binding）：View的变动，自动反映在ViewModel，反之亦然。组成部分Model、View、ViewModel</p>
+
+<p>View：UI界面</p>
+
+<p>ViewModel：它是View的抽象，负责View与Model之间信息转换，将View的Command传送到Model；</p>
+
+<p>Model：数据访问层</p>
+
+<h3 id="14">14</h3>
+
+<p>事件代理</p>
+
+<p>事件代理（Event Delegation），又称之为事件委托。是 JavaScript 中常用绑定事件的常用技巧。顾名思义，“事件代理”即是把原本需要绑定的事件委托给父元素，让父元素担当事件监听的职务。事件代理的原理是DOM元素的事件冒泡。使用事件代理的好处是可以提高性能，提高代码可读性，对于动态化的页面（如li、span会新增和删除），不用频繁的绑定事件，减少了内存泄露的概率。</p>
+
+<h3 id="15">15</h3>
+
+<p>304缓存原理</p>
+
+<p>客户端请求一个页面（A）。 服务器返回页面A，并在给A加上一个ETag。 客户端展现该页面，并将页面连同ETag一起缓存。 客户再次请求页面A，并将上次请求时服务器返回的ETag一起传递给服务器。 服务器检查该ETag，并判断出该页面自上次客户端请求之后还未被修改，直接返回响应304（未修改——Not Modified）和一个空的响应体</p>
+
 
 
                 <hr>
