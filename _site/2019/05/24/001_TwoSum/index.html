@@ -10,9 +10,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/lrun1124.github.io/img/favicon.ico">
 
-    <title>Walkways Problem - Run Note</title>
+    <title>001_TwoSum - Run Note</title>
 
-    <link rel="canonical" href="http://localhost:4000/lrun1124.github.io/2017/11/07/Walkways-Problem/">
+    <link rel="canonical" href="http://localhost:4000/lrun1124.github.io/2019/05/24/001_TwoSum/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/lrun1124.github.io/css/bootstrap.min.css">
@@ -144,15 +144,15 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/lrun1124.github.io/tags/#Math" title="Math">Math</a>
+                        <a class="tag" href="/lrun1124.github.io/tags/#LeetCode" title="LeetCode">LeetCode</a>
                         
                     </div>
-                    <h1>Walkways Problem</h1>
+                    <h1>001_TwoSum</h1>
                     
                     
-                    <h2 class="subheading">陶哲轩的数学问题</h2>
+                    <h2 class="subheading"></h2>
                     
-                    <span class="meta">Posted by Run on November 7, 2017</span>
+                    <span class="meta">Posted by Run on May 24, 2019</span>
                 </div>
             </div>
         </div>
@@ -171,52 +171,38 @@
                 post-container">
 
 				<blockquote>
-  <p>“Yeah It’s on. ”</p>
+  <p>“Move on. ”</p>
 </blockquote>
 
-<h2 id="前言">前言</h2>
+<h2 id="problem">problem</h2>
 
-<p>前段时间看到一篇文章，其中讨论了陶哲轩（Terrence Tao）blog上提出的一个数学问题，文章并没有给出明确的解答，在此记录自己的一点思考：</p>
+<p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.</p>
 
-<p id="build"></p>
-<hr />
+<p>You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
 
-<h2 id="问题">问题</h2>
+<p>Example:</p>
 
-<p>Suppose you are trying to get from one end A of a terminal to the other end B. (For simplicity, assume the terminal is a one-dimensional line segment.) Some portions of the terminal have moving walkways (in both directions); other portions do not. Your walking speed is a constant v, but while on a walkway, it is boosted by the speed u of the walkway for a net speed of v+u. (Obviously, given a choice, one would only take those walkways that are going in the direction one wishes to travel in.) Your objective is to get from A to B in the shortest time possible.</p>
+<p>Given nums = [2, 7, 11, 15], target = 9,</p>
 
-<p>在机场中，你想从A点前往B点。（为了将问题简化，假设机场是一条线性通道。）一些区域有电动扶梯（双向的），另一些区域没有。你的步行速度恒定为v，电动扶梯的运行速度为u，因此在扶梯上，你的实际速度为v+u。（显然，你不会搭乘与你前进方向不一致的扶梯。）你的目标是尽可能快地从A点到达B点。</p>
+<p>Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1].</p>
 
-<h3 id="问题1">问题1</h3>
-<p>Suppose you need to pause for some period of time, say to tie your shoe. Is it more efficient to do so while on a walkway, or off the walkway? Assume the period of time required is the same in both cases.</p>
+<h2 id="solve">solve</h2>
 
-<p>假定你需要暂停片刻，比如系鞋带。请问你应该在电动扶梯上系，还是在没有上电动扶梯时系？假定两种情况下，系鞋带的时间相同。</p>
+<p>用一个map记录[value: index], 每次搜索tagert-nums[i], 匹配则返回，不匹配插入map</p>
 
-<h3 id="问题2">问题2</h3>
-<p>Suppose you have a limited amount of energy available to run and increase your speed to a higher quantity v’ (or v’+u, if you are on a walkway). Is it more efficient to run while on a walkway, or off the walkway? Assume that the energy expenditure is the same in both cases.</p>
-
-<p>假定你有有限数量的多余能量，用来奔跑。在跑动时，你的速度提高到v’（如果在电动扶梯上，就相应为v’+u）。请问你应该在电动扶梯上跑，还是在没有上电动扶梯时跑？假定两种情况下，你可供奔跑的能量相同。</p>
-
-<h3 id="问题3">问题3</h3>
-<p>Do the answers to the above questions change if one takes into account the various effects of special relativity? (This is of course an academic question rather than a practical one. But presumably it should be the time in the airport frame that one wants to minimise, not time in one’s personal frame.)</p>
-
-<p>在狭义相对论的情况下，上述答案是否发生改变？</p>
-
-<h2 id="思考">思考</h2>
-
-<p>首先，第一问很简单，肯定是在电梯上，主要讨论第二问：</p>
-
-<p>设想有3个人，A不加速，B行走时加速，C扶梯时加速。加速值记为dV，加速时间记为dT。</p>
-
-<p>假设A和B先比赛，从起点到终点A和B都是先扶梯再走路，A和B同时下扶梯，B到终点时，A落后 dS=dV*dT 距离，相当于B领先A dS/v 时间。</p>
-
-<p>假设A和C后比赛，是同一段路反向走，即先走路后电梯，则A与C同一时间走上扶梯，C到终点（也是扶梯终点）时，A仍然落后 dS=dV*dT 距离，但A只用 dS/(v+u) 时间即可到达终点
-由于是同一段路A只是正反向走
-因此，B最快，C次之，A最慢。</p>
-
-<p>还可以这么解释我觉得也不错，时间是匀速流逝的前提下，当然是要充分利用传送带，因为传送带的长度是固定，所以鞋带留在传送带上系，加速在地面来做。属于一种“边际效益递减”。</p>
-
-<hr />
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">twoSum</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">nums</span><span class="p">,</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Map</span><span class="p">();</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">nums</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">target</span> <span class="o">-</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">i</span><span class="p">])){</span>
+        <span class="k">return</span> <span class="p">[</span><span class="nx">m</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">target</span> <span class="o">-</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">i</span><span class="p">]),</span> <span class="nx">i</span><span class="p">];</span>
+      <span class="p">}</span>
+      <span class="k">else</span><span class="p">{</span>
+        <span class="nx">m</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="nx">nums</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">i</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
 
 
                 <hr>
@@ -226,17 +212,17 @@
                 </style>
                 <div class="ds-share"
                     style="text-align: right"
-                    data-thread-key="/2017/11/07/Walkways Problem"
-                    data-title="Walkways Problem"
-                    data-url="http://localhost:4000/lrun1124.github.io/2017/11/07/Walkways-Problem/"
+                    data-thread-key="/2019/05/24/001_TwoSum"
+                    data-title="001_TwoSum"
+                    data-url="http://localhost:4000/lrun1124.github.io/2019/05/24/001_TwoSum/"
                     data-images="http://localhost:4000/lrun1124.github.io/img/walkway-bg.jpg"
                     data-content="
-  “Yeah It’s on. ”
+  “Move on. ”
 
 
-前言
+problem
 
-前段时间看到一篇文章，其中讨论了陶哲轩（Terrence Tao）blog上提出的一个数学问题，文章并... | Run Note " >
+Given an array of integers, return indices of the t... | Run Note " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -255,9 +241,13 @@
 
                 <ul class="pager">
                     
+                    <li class="previous">
+                        <a href="/lrun1124.github.io/2019/05/23/N-Sum-problem/" data-toggle="tooltip" data-placement="top" title="Array去重的多种实现和分析">&larr; Previous Post</a>
+                    </li>
+                    
                     
                     <li class="next">
-                        <a href="/lrun1124.github.io/2017/11/07/Array%E5%8E%BB%E9%87%8D%E7%9A%84%E5%A4%9A%E7%A7%8D%E5%AE%9E%E7%8E%B0%E5%92%8C%E5%88%86%E6%9E%90/" data-toggle="tooltip" data-placement="top" title="Array去重的多种实现和分析">Next Post &rarr;</a>
+                        <a href="/lrun1124.github.io/2019/07/24/JavaScript%E5%80%BC%E4%BC%A0%E9%80%92and%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92/" data-toggle="tooltip" data-placement="top" title="JavaScrip值传递和引用传递">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -267,9 +257,9 @@
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="/2017/11/07/Walkways Problem"
-                        data-title="Walkways Problem"
-                        data-url="http://localhost:4000/lrun1124.github.io/2017/11/07/Walkways-Problem/" >
+                        data-thread-key="/2019/05/24/001_TwoSum"
+                        data-title="001_TwoSum"
+                        data-url="http://localhost:4000/lrun1124.github.io/2019/05/24/001_TwoSum/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->

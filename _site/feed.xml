@@ -5,9 +5,290 @@
     <description></description>
     <link>http://localhost:4000/lrun1124.github.io/</link>
     <atom:link href="http://localhost:4000/lrun1124.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 06 Mar 2018 11:04:27 +0800</pubDate>
-    <lastBuildDate>Tue, 06 Mar 2018 11:04:27 +0800</lastBuildDate>
-    <generator>Jekyll v3.6.2</generator>
+    <pubDate>Thu, 25 Jul 2019 11:19:51 +0800</pubDate>
+    <lastBuildDate>Thu, 25 Jul 2019 11:19:51 +0800</lastBuildDate>
+    <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>JavaScrip值传递和引用传递</title>
+        <description>&lt;p&gt;面试很容易碰到这个问题&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;JavaScript是采用值传递还是引用传递的，并解释一下原理&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;很多人的回答应该是，基础类型采用值传递，Number其他采取引用查传递&lt;/p&gt;
+
+&lt;p&gt;今天和一个刚转做前端的同事解释JS的值传递和引用传递，发现这句话其实很有问题。&lt;/p&gt;
+
+&lt;p&gt;下面一段代码&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function reset(nums) {
+  nums = [];
+}
+var nums = [1,2,3];
+reset(nums);
+console.log(nums);
+
+//output:
+//[1,2,3]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Array属于引用传递，但是Array确并没有在reset函数中被重置。按照引用传递的含义，nums的引用（指针）被传递到函数内部，这个引用指向的内容变化了，nums也应该变化。所以这里存在问题。&lt;/p&gt;
+
+&lt;p&gt;实际上还有一种传递方式，叫共享调用（Call-by-sharing), 它和引用调用的不同在于，传递的是对象指针的拷贝，而不是指针本身，那就是说nums在reset函数中是函数外nums的指针拷贝。&lt;/p&gt;
+
+&lt;p&gt;从上面的解释可以看出，对于 JS 来说：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;基本类型是传值调用（call by value）&lt;/li&gt;
+  &lt;li&gt;引用类型传共享调用 (call by sharing)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;传值调用本质上传递的是变量的值的拷贝。&lt;/p&gt;
+
+&lt;p&gt;传共享调用本质上是传递对象的指针的拷贝，其指针也是变量的值。所以传共享调用也可以说是传值调用。&lt;/p&gt;
+
+&lt;p&gt;所以《JavaScript 高级程序设计》说 JavaScript 参数传递都是按值传参也是有道理的。&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 24 Jul 2019 19:00:00 +0800</pubDate>
+        <link>http://localhost:4000/lrun1124.github.io/2019/07/24/JavaScript%E5%80%BC%E4%BC%A0%E9%80%92and%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92/</link>
+        <guid isPermaLink="true">http://localhost:4000/lrun1124.github.io/2019/07/24/JavaScript%E5%80%BC%E4%BC%A0%E9%80%92and%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92/</guid>
+        
+        <category>JavaScript</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>001_TwoSum</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;“Move on. ”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;problem&quot;&gt;problem&lt;/h2&gt;
+
+&lt;p&gt;Given an array of integers, return indices of the two numbers such that they add up to a specific target.&lt;/p&gt;
+
+&lt;p&gt;You may assume that each input would have exactly one solution, and you may not use the same element twice.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;p&gt;Given nums = [2, 7, 11, 15], target = 9,&lt;/p&gt;
+
+&lt;p&gt;Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1].&lt;/p&gt;
+
+&lt;h2 id=&quot;solve&quot;&gt;solve&lt;/h2&gt;
+
+&lt;p&gt;用一个map记录[value: index], 每次搜索tagert-nums[i], 匹配则返回，不匹配插入map&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;twoSum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;has&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])){&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]),&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Fri, 24 May 2019 01:00:00 +0800</pubDate>
+        <link>http://localhost:4000/lrun1124.github.io/2019/05/24/001_TwoSum/</link>
+        <guid isPermaLink="true">http://localhost:4000/lrun1124.github.io/2019/05/24/001_TwoSum/</guid>
+        
+        <category>LeetCode</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Array去重的多种实现和分析</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;“Move on. ”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
+&lt;p&gt;有趣的小问题，似乎经常在面试中出现&lt;/p&gt;
+
+&lt;h3 id=&quot;方法一-双层循环&quot;&gt;方法一: 双层循环&lt;/h3&gt;
+
+&lt;p&gt;外层循环遍历数组，内层循环判断重复，检测到重复即break，无重复则Push进结果数组。&lt;/p&gt;
+
+&lt;p&gt;利用Array.prototype.indexOf()可以简化如下：&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;unique&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[];&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;forEach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;indexOf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;时间复杂度O(n^2)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;方法二-排序&quot;&gt;方法二: 排序&lt;/h3&gt;
+
+&lt;p&gt;先排序后从第二项循环，和前一项不同则加入&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;unique&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]];&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]){&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;时间复杂度O(log(n)+n)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;方法三-利用hash&quot;&gt;方法三: 利用hash&lt;/h3&gt;
+
+&lt;p&gt;使用一个Object做hash，循环检测当前项是否在hash中，没有则加入hash并加入数组&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;unique&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;hash&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt; 
+    &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[];&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;forEach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]){&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;hash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;时间复杂度O(n)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;方法四-利用es6的set&quot;&gt;方法四: 利用ES6的Set&lt;/h3&gt;
+
+&lt;p&gt;数组构造set会自动去重，set再展开为数组，代码最简洁&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;Array.prototype.unique = function(){
+  return [...new Set(this)];
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;效率分析&quot;&gt;效率分析&lt;/h2&gt;
+
+&lt;p&gt;使用随机函数分别生成length为10^3，10^4，10^5，10^6的随机数，范围为0-500的整数。&lt;/p&gt;
+
+&lt;p&gt;结果如下：&lt;/p&gt;
+
+&lt;p&gt;10^3&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/ArrayUnique/ArrayUnique_10^3.png&quot; width=&quot;450&quot; height=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;10^4&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/ArrayUnique/ArrayUnique_10^4.png&quot; width=&quot;450&quot; height=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;10^5&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/ArrayUnique/ArrayUnique_10^5.png&quot; width=&quot;450&quot; height=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;10^6&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/ArrayUnique/ArrayUnique_10^6.png&quot; width=&quot;450&quot; height=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;结论&quot;&gt;结论&lt;/h3&gt;
+
+&lt;p&gt;可以看到前两种方法使用的时间比后两种高一个数量级，相对而言，第二种排序的方法最耗时；而后两种中，使用set的方法比使用hash的方法更加耗时，所以从耗时的角度，最好的是使用方法三，即使用hash记录，从代码简洁的角度，利用set的机制最好，并且耗时和方法三也在一个数量级。&lt;/p&gt;
+
+&lt;h3 id=&quot;test-code&quot;&gt;Test code&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;Array.prototype.unique1 = function() {
+  var res = [];
+  this.forEach(function(item){
+    if(res.indexOf(item) &amp;lt; 0){
+      res.push(item);
+    }
+  });
+  return res;
+};
+
+
+Array.prototype.unique2 = function() {
+  var res = [this[0]];
+  this.sort();
+  for(let i = 1; i &amp;lt; this.length; i++){
+    if(this[i] !== this[i-1]){
+      res.push(this[i])
+    }
+  }
+  return res;
+};
+
+Array.prototype.unique3 = function() {
+  var hash = {}, 
+    res = [];
+  this.forEach(function(item){
+    if(!hash[item]){
+      hash[item] = true;
+      res.push(item);
+    }
+  });
+  return res;
+};
+
+Array.prototype.unique4 = function(){
+  return [...new Set(this)];
+}
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+}
+
+var count = 10000000;
+var testArray = [];
+for(let i =0 ; i &amp;lt; count; i++){
+  testArray.push(getRandomInt(0,500))
+}
+var start = new Date().getTime();
+console.log(testArray.unique1());
+var end = new Date().getTime();
+console.log(&quot;unique1: &quot; + (end - start) + &quot;ms&quot;);
+
+var start = new Date().getTime();
+console.log(testArray.unique2());
+var end = new Date().getTime();
+console.log(&quot;unique2: &quot; + (end - start) + &quot;ms&quot;);
+
+var start = new Date().getTime();
+console.log(testArray.unique3());
+var end = new Date().getTime();
+console.log(&quot;unique3: &quot; + (end - start) + &quot;ms&quot;);
+
+var start = new Date().getTime();
+console.log(testArray.unique4());
+var end = new Date().getTime();
+console.log(&quot;unique4: &quot; + (end - start) + &quot;ms&quot;);
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        <pubDate>Thu, 23 May 2019 19:00:00 +0800</pubDate>
+        <link>http://localhost:4000/lrun1124.github.io/2019/05/23/N-Sum-problem/</link>
+        <guid isPermaLink="true">http://localhost:4000/lrun1124.github.io/2019/05/23/N-Sum-problem/</guid>
+        
+        <category>JavaScript</category>
+        
+        
+      </item>
     
       <item>
         <title>Css Note</title>
@@ -2238,250 +2519,6 @@ result();//1001
         <guid isPermaLink="true">http://localhost:4000/lrun1124.github.io/2017/11/07/JavaScript-Note(1)/</guid>
         
         <category>JavaScript</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>Array去重的多种实现和分析</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;“Move on. ”&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
-&lt;p&gt;有趣的小问题，似乎经常在面试中出现&lt;/p&gt;
-
-&lt;h3 id=&quot;方法一-双层循环&quot;&gt;方法一: 双层循环&lt;/h3&gt;
-
-&lt;p&gt;外层循环遍历数组，内层循环判断重复，检测到重复即break，无重复则Push进结果数组。&lt;/p&gt;
-
-&lt;p&gt;利用Array.prototype.indexOf()可以简化如下：&lt;/p&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;unique&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[];&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;forEach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;indexOf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-			&lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;时间复杂度O(n^2)&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;方法二-排序&quot;&gt;方法二: 排序&lt;/h3&gt;
-
-&lt;p&gt;先排序后从第二项循环，和前一项不同则加入&lt;/p&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;unique&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]];&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]){&lt;/span&gt;
-			&lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;时间复杂度O(log(n)+n)&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;方法三-利用hash&quot;&gt;方法三: 利用hash&lt;/h3&gt;
-
-&lt;p&gt;使用一个Object做hash，循环检测当前项是否在hash中，没有则加入hash并加入数组&lt;/p&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;unique&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;hash&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt; 
-		&lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[];&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;forEach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]){&lt;/span&gt;
-		 	&lt;span class=&quot;nx&quot;&gt;hash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-		 	&lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;时间复杂度O(n)&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;方法四-利用es6的set&quot;&gt;方法四: 利用ES6的Set&lt;/h3&gt;
-
-&lt;p&gt;数组构造set会自动去重，set再展开为数组，代码最简洁&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;Array.prototype.unique = function(){
-	return [...new Set(this)];
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;效率分析&quot;&gt;效率分析&lt;/h2&gt;
-
-&lt;p&gt;使用随机函数分别生成length为10^3，10^4，10^5，10^6的随机数，范围为0-500的整数。&lt;/p&gt;
-
-&lt;p&gt;结果如下：&lt;/p&gt;
-
-&lt;p&gt;10^3&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/ArrayUnique/ArrayUnique_10^3.png&quot; width=&quot;450&quot; height=&quot;400&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;10^4&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/ArrayUnique/ArrayUnique_10^4.png&quot; width=&quot;450&quot; height=&quot;400&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;10^5&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/ArrayUnique/ArrayUnique_10^5.png&quot; width=&quot;450&quot; height=&quot;400&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;10^6&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/ArrayUnique/ArrayUnique_10^6.png&quot; width=&quot;450&quot; height=&quot;400&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;结论&quot;&gt;结论&lt;/h3&gt;
-
-&lt;p&gt;可以看到前两种方法使用的时间比后两种高一个数量级，相对而言，第二种排序的方法最耗时；而后两种中，使用set的方法比使用hash的方法更加耗时，所以从耗时的角度，最好的是使用方法三，即使用hash记录，从代码简洁的角度，利用set的机制最好，并且耗时和方法三也在一个数量级。&lt;/p&gt;
-
-&lt;h3 id=&quot;test-code&quot;&gt;Test code&lt;/h3&gt;
-&lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;Array.prototype.unique1 = function() {
-	var res = [];
-	this.forEach(function(item){
-		if(res.indexOf(item) &amp;lt; 0){
-			res.push(item);
-		}
-	});
-	return res;
-};
-
-
-Array.prototype.unique2 = function() {
-	var res = [this[0]];
-	this.sort();
-	for(let i = 1; i &amp;lt; this.length; i++){
-		if(this[i] !== this[i-1]){
-			res.push(this[i])
-		}
-	}
-	return res;
-};
-
-Array.prototype.unique3 = function() {
-	var hash = {}, 
-		res = [];
-	this.forEach(function(item){
-		if(!hash[item]){
-		 	hash[item] = true;
-		 	res.push(item);
-		}
-	});
-	return res;
-};
-
-Array.prototype.unique4 = function(){
-	return [...new Set(this)];
-}
-
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-}
-
-var count = 10000000;
-var testArray = [];
-for(let i =0 ; i &amp;lt; count; i++){
-	testArray.push(getRandomInt(0,500))
-}
-var start = new Date().getTime();
-console.log(testArray.unique1());
-var end = new Date().getTime();
-console.log(&quot;unique1: &quot; + (end - start) + &quot;ms&quot;);
-
-var start = new Date().getTime();
-console.log(testArray.unique2());
-var end = new Date().getTime();
-console.log(&quot;unique2: &quot; + (end - start) + &quot;ms&quot;);
-
-var start = new Date().getTime();
-console.log(testArray.unique3());
-var end = new Date().getTime();
-console.log(&quot;unique3: &quot; + (end - start) + &quot;ms&quot;);
-
-var start = new Date().getTime();
-console.log(testArray.unique4());
-var end = new Date().getTime();
-console.log(&quot;unique4: &quot; + (end - start) + &quot;ms&quot;);
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-        <pubDate>Tue, 07 Nov 2017 19:00:00 +0800</pubDate>
-        <link>http://localhost:4000/lrun1124.github.io/2017/11/07/Array%E5%8E%BB%E9%87%8D%E7%9A%84%E5%A4%9A%E7%A7%8D%E5%AE%9E%E7%8E%B0%E5%92%8C%E5%88%86%E6%9E%90/</link>
-        <guid isPermaLink="true">http://localhost:4000/lrun1124.github.io/2017/11/07/Array%E5%8E%BB%E9%87%8D%E7%9A%84%E5%A4%9A%E7%A7%8D%E5%AE%9E%E7%8E%B0%E5%92%8C%E5%88%86%E6%9E%90/</guid>
-        
-        <category>JavaScript</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>Walkways Problem</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;“Yeah It’s on. ”&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
-
-&lt;p&gt;前段时间看到一篇文章，其中讨论了陶哲轩（Terrence Tao）blog上提出的一个数学问题，文章并没有给出明确的解答，在此记录自己的一点思考：&lt;/p&gt;
-
-&lt;p id=&quot;build&quot;&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;问题&quot;&gt;问题&lt;/h2&gt;
-
-&lt;p&gt;Suppose you are trying to get from one end A of a terminal to the other end B. (For simplicity, assume the terminal is a one-dimensional line segment.) Some portions of the terminal have moving walkways (in both directions); other portions do not. Your walking speed is a constant v, but while on a walkway, it is boosted by the speed u of the walkway for a net speed of v+u. (Obviously, given a choice, one would only take those walkways that are going in the direction one wishes to travel in.) Your objective is to get from A to B in the shortest time possible.&lt;/p&gt;
-
-&lt;p&gt;在机场中，你想从A点前往B点。（为了将问题简化，假设机场是一条线性通道。）一些区域有电动扶梯（双向的），另一些区域没有。你的步行速度恒定为v，电动扶梯的运行速度为u，因此在扶梯上，你的实际速度为v+u。（显然，你不会搭乘与你前进方向不一致的扶梯。）你的目标是尽可能快地从A点到达B点。&lt;/p&gt;
-
-&lt;h3 id=&quot;问题1&quot;&gt;问题1&lt;/h3&gt;
-&lt;p&gt;Suppose you need to pause for some period of time, say to tie your shoe. Is it more efficient to do so while on a walkway, or off the walkway? Assume the period of time required is the same in both cases.&lt;/p&gt;
-
-&lt;p&gt;假定你需要暂停片刻，比如系鞋带。请问你应该在电动扶梯上系，还是在没有上电动扶梯时系？假定两种情况下，系鞋带的时间相同。&lt;/p&gt;
-
-&lt;h3 id=&quot;问题2&quot;&gt;问题2&lt;/h3&gt;
-&lt;p&gt;Suppose you have a limited amount of energy available to run and increase your speed to a higher quantity v’ (or v’+u, if you are on a walkway). Is it more efficient to run while on a walkway, or off the walkway? Assume that the energy expenditure is the same in both cases.&lt;/p&gt;
-
-&lt;p&gt;假定你有有限数量的多余能量，用来奔跑。在跑动时，你的速度提高到v’（如果在电动扶梯上，就相应为v’+u）。请问你应该在电动扶梯上跑，还是在没有上电动扶梯时跑？假定两种情况下，你可供奔跑的能量相同。&lt;/p&gt;
-
-&lt;h3 id=&quot;问题3&quot;&gt;问题3&lt;/h3&gt;
-&lt;p&gt;Do the answers to the above questions change if one takes into account the various effects of special relativity? (This is of course an academic question rather than a practical one. But presumably it should be the time in the airport frame that one wants to minimise, not time in one’s personal frame.)&lt;/p&gt;
-
-&lt;p&gt;在狭义相对论的情况下，上述答案是否发生改变？&lt;/p&gt;
-
-&lt;h2 id=&quot;思考&quot;&gt;思考&lt;/h2&gt;
-
-&lt;p&gt;首先，第一问很简单，肯定是在电梯上，主要讨论第二问：&lt;/p&gt;
-
-&lt;p&gt;设想有3个人，A不加速，B行走时加速，C扶梯时加速。加速值记为dV，加速时间记为dT。&lt;/p&gt;
-
-&lt;p&gt;假设A和B先比赛，从起点到终点A和B都是先扶梯再走路，A和B同时下扶梯，B到终点时，A落后 dS=dV*dT 距离，相当于B领先A dS/v 时间。&lt;/p&gt;
-
-&lt;p&gt;假设A和C后比赛，是同一段路反向走，即先走路后电梯，则A与C同一时间走上扶梯，C到终点（也是扶梯终点）时，A仍然落后 dS=dV*dT 距离，但A只用 dS/(v+u) 时间即可到达终点
-由于是同一段路A只是正反向走
-因此，B最快，C次之，A最慢。&lt;/p&gt;
-
-&lt;p&gt;还可以这么解释我觉得也不错，时间是匀速流逝的前提下，当然是要充分利用传送带，因为传送带的长度是固定，所以鞋带留在传送带上系，加速在地面来做。属于一种“边际效益递减”。&lt;/p&gt;
-
-&lt;hr /&gt;
-</description>
-        <pubDate>Tue, 07 Nov 2017 01:00:00 +0800</pubDate>
-        <link>http://localhost:4000/lrun1124.github.io/2017/11/07/Walkways-Problem/</link>
-        <guid isPermaLink="true">http://localhost:4000/lrun1124.github.io/2017/11/07/Walkways-Problem/</guid>
-        
-        <category>Math</category>
         
         
       </item>
