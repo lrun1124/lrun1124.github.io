@@ -13,9 +13,8 @@ baseurl: "/lrun1124.github.io"         # for example, '/blog' if your blog hoste
 # SNS settings
 RSS: false
 weibo_username:     lrun
-zhihu_username:     san-hua-yimo
+zhihu_username:     
 github_username:    lrun1124
-#twitter_username:  huxpro
 facebook_username:  lrun
 
 
