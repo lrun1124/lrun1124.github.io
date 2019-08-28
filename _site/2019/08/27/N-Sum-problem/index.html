@@ -10,9 +10,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/lrun1124.github.io/img/favicon.ico">
 
-    <title>Array去重的多种实现和分析 - Run Note</title>
+    <title>N Sum problem - Run Note</title>
 
-    <link rel="canonical" href="http://localhost:4000/lrun1124.github.io/2019/05/23/N-Sum-problem/">
+    <link rel="canonical" href="http://localhost:4000/lrun1124.github.io/2019/08/27/N-Sum-problem/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/lrun1124.github.io/css/bootstrap.min.css">
@@ -147,12 +147,12 @@
                         <a class="tag" href="/lrun1124.github.io/tags/#JavaScript" title="JavaScript">JavaScript</a>
                         
                     </div>
-                    <h1>Array去重的多种实现和分析</h1>
+                    <h1>N Sum problem</h1>
                     
                     
-                    <h2 class="subheading">111</h2>
+                    <h2 class="subheading"></h2>
                     
-                    <span class="meta">Posted by Run on May 23, 2019</span>
+                    <span class="meta">Posted by Run on August 27, 2019</span>
                 </div>
             </div>
         </div>
@@ -175,174 +175,7 @@
 </blockquote>
 
 <h2 id="前言">前言</h2>
-<p>有趣的小问题，似乎经常在面试中出现</p>
-
-<h3 id="方法一-双层循环">方法一: 双层循环</h3>
-
-<p>外层循环遍历数组，内层循环判断重复，检测到重复即break，无重复则Push进结果数组。</p>
-
-<p>利用Array.prototype.indexOf()可以简化如下：</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">unique</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="p">[];</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">){</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
-      <span class="nx">res</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">});</span>
-  <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
-<span class="p">};</span>
-</code></pre></div></div>
-
-<blockquote>
-  <p>时间复杂度O(n^2)</p>
-</blockquote>
-
-<h3 id="方法二-排序">方法二: 排序</h3>
-
-<p>先排序后从第二项循环，和前一项不同则加入</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">unique</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="p">[</span><span class="k">this</span><span class="p">[</span><span class="mi">0</span><span class="p">]];</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">sort</span><span class="p">();</span>
-  <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
-    <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">!==</span> <span class="k">this</span><span class="p">[</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]){</span>
-      <span class="nx">res</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<blockquote>
-  <p>时间复杂度O(log(n)+n)</p>
-</blockquote>
-
-<h3 id="方法三-利用hash">方法三: 利用hash</h3>
-
-<p>使用一个Object做hash，循环检测当前项是否在hash中，没有则加入hash并加入数组</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">unique</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="p">{},</span> 
-    <span class="nx">res</span> <span class="o">=</span> <span class="p">[];</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">){</span>
-    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">hash</span><span class="p">[</span><span class="nx">item</span><span class="p">]){</span>
-      <span class="nx">hash</span><span class="p">[</span><span class="nx">item</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-      <span class="nx">res</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">});</span>
-  <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-<blockquote>
-  <p>时间复杂度O(n)</p>
-</blockquote>
-
-<h3 id="方法四-利用es6的set">方法四: 利用ES6的Set</h3>
-
-<p>数组构造set会自动去重，set再展开为数组，代码最简洁</p>
-
-<pre><code class="language-JS">Array.prototype.unique = function(){
-  return [...new Set(this)];
-}
-</code></pre>
-
-<h2 id="效率分析">效率分析</h2>
-
-<p>使用随机函数分别生成length为10^3，10^4，10^5，10^6的随机数，范围为0-500的整数。</p>
-
-<p>结果如下：</p>
-
-<p>10^3</p>
-
-<p><img src="http://lrun1124.github.io/img/ArrayUnique/ArrayUnique_10^3.png" width="450" height="400" /></p>
-
-<p>10^4</p>
-
-<p><img src="http://lrun1124.github.io/img/ArrayUnique/ArrayUnique_10^4.png" width="450" height="400" /></p>
-
-<p>10^5</p>
-
-<p><img src="http://lrun1124.github.io/img/ArrayUnique/ArrayUnique_10^5.png" width="450" height="400" /></p>
-
-<p>10^6</p>
-
-<p><img src="http://lrun1124.github.io/img/ArrayUnique/ArrayUnique_10^6.png" width="450" height="400" /></p>
-
-<h3 id="结论">结论</h3>
-
-<p>可以看到前两种方法使用的时间比后两种高一个数量级，相对而言，第二种排序的方法最耗时；而后两种中，使用set的方法比使用hash的方法更加耗时，所以从耗时的角度，最好的是使用方法三，即使用hash记录，从代码简洁的角度，利用set的机制最好，并且耗时和方法三也在一个数量级。</p>
-
-<h3 id="test-code">Test code</h3>
-<pre><code class="language-JS">Array.prototype.unique1 = function() {
-  var res = [];
-  this.forEach(function(item){
-    if(res.indexOf(item) &lt; 0){
-      res.push(item);
-    }
-  });
-  return res;
-};
-
-
-Array.prototype.unique2 = function() {
-  var res = [this[0]];
-  this.sort();
-  for(let i = 1; i &lt; this.length; i++){
-    if(this[i] !== this[i-1]){
-      res.push(this[i])
-    }
-  }
-  return res;
-};
-
-Array.prototype.unique3 = function() {
-  var hash = {}, 
-    res = [];
-  this.forEach(function(item){
-    if(!hash[item]){
-      hash[item] = true;
-      res.push(item);
-    }
-  });
-  return res;
-};
-
-Array.prototype.unique4 = function(){
-  return [...new Set(this)];
-}
-
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-}
-
-var count = 10000000;
-var testArray = [];
-for(let i =0 ; i &lt; count; i++){
-  testArray.push(getRandomInt(0,500))
-}
-var start = new Date().getTime();
-console.log(testArray.unique1());
-var end = new Date().getTime();
-console.log("unique1: " + (end - start) + "ms");
-
-var start = new Date().getTime();
-console.log(testArray.unique2());
-var end = new Date().getTime();
-console.log("unique2: " + (end - start) + "ms");
-
-var start = new Date().getTime();
-console.log(testArray.unique3());
-var end = new Date().getTime();
-console.log("unique3: " + (end - start) + "ms");
-
-var start = new Date().getTime();
-console.log(testArray.unique4());
-var end = new Date().getTime();
-console.log("unique4: " + (end - start) + "ms");
-</code></pre>
+<p>To do</p>
 
 
                 <hr>
@@ -352,20 +185,17 @@ console.log("unique4: " + (end - start) + "ms");
                 </style>
                 <div class="ds-share"
                     style="text-align: right"
-                    data-thread-key="/2019/05/23/N Sum problem"
-                    data-title="Array去重的多种实现和分析"
-                    data-url="http://localhost:4000/lrun1124.github.io/2019/05/23/N-Sum-problem/"
+                    data-thread-key="/2019/08/27/N Sum problem"
+                    data-title="N Sum problem"
+                    data-url="http://localhost:4000/lrun1124.github.io/2019/08/27/N-Sum-problem/"
                     data-images="http://localhost:4000/lrun1124.github.io/img/ArrayUnique-bg.jpg"
                     data-content="
   “Move on. ”
 
 
 前言
-有趣的小问题，似乎经常在面试中出现
-
-方法一: 双层循环
-
-外层循环遍历数组，内层循环判断重复，检测到重复即bre... | Run Note " >
+To do
+ | Run Note " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -385,13 +215,9 @@ console.log("unique4: " + (end - start) + "ms");
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/lrun1124.github.io/2017/12/07/CSS-Note(1)/" data-toggle="tooltip" data-placement="top" title="Css Note">&larr; Previous Post</a>
+                        <a href="/lrun1124.github.io/2019/07/24/JavaScript%E5%80%BC%E4%BC%A0%E9%80%92and%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92/" data-toggle="tooltip" data-placement="top" title="JavaScrip值传递和引用传递">&larr; Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/lrun1124.github.io/2019/05/24/001_TwoSum/" data-toggle="tooltip" data-placement="top" title="001_TwoSum">Next Post &rarr;</a>
-                    </li>
                     
                 </ul>
 
@@ -400,9 +226,9 @@ console.log("unique4: " + (end - start) + "ms");
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="/2019/05/23/N Sum problem"
-                        data-title="Array去重的多种实现和分析"
-                        data-url="http://localhost:4000/lrun1124.github.io/2019/05/23/N-Sum-problem/" >
+                        data-thread-key="/2019/08/27/N Sum problem"
+                        data-title="N Sum problem"
+                        data-url="http://localhost:4000/lrun1124.github.io/2019/08/27/N-Sum-problem/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -535,15 +361,6 @@ console.log("unique4: " + (end - start) + "ms");
                     
 
                     <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
-                    
-                    <li>
-                        <a target="_blank" href="https://www.zhihu.com/people/san-hua-yimo">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa  fa-stack-1x fa-inverse">知</i>
-                            </span>
-                        </a>
-                    </li>
                     
                     
                     <li>
