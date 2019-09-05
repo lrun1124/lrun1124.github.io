@@ -1,0 +1,30 @@
+---
+layout:     post
+title:      "V8 GC机制"
+subtitle:   ""
+date:       2019-09-04 11:00:00
+author:     "Run"
+header-img: "img/ArrayUnique-bg.jpg"
+tags:
+    - JavaScript
+---
+
+> “Move on. ”
+
+## 引用计数
+
+传统的GC方法，维护对象的引用计数器，引用为0时清除，优点是清除及时，清除时间均匀分布，缺点主要是循环引用问题
+
+## V8机制
+
+<img src="http://lrun1124.github.io/img/jsgc.png" width="450"/>
+
+将内存分为新生带和老生带两部分
+
+### 新生代
+
+Scavenge垃圾回收算法进行管理，主要实现是Cheney算法，将内存分为两部分，From和To，新建对象都进入From空间中，当From空间分配到一定程度，将存活对象对象copy到To空间，清空From空间，然后调换From和To空间，继续进行分配，当一个对象被多次移动后仍然存活，或者如果一个对象被复制到To空间，To空间占用超过阈值（25%），这个对象会被移到老生带
+
+### 老生带
+
+综合使用Mark-Sweep和Mark-compact, Mark-Sweep是当GC触发时，从根节点出发对所有能到达的对象进行遍历，一般是深度优先搜索，对能达到对象进行标记，最后清除掉未被标记的对象，Mark-Sweep会产生碎片内存，Mark-compact是将使用的内存向一侧移动，然后清楚掉内存的边界，由于Mark-compact需要移动对象，所以速度不会很快，V8上尽量才去Mark-Sweep，当内存不足以对新生代晋升过来的对象进行分配时，再进行Mark-compact

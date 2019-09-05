@@ -10,9 +10,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/lrun1124.github.io/img/favicon.ico">
 
-    <title>JavaScrip Note(2) - Run Note</title>
+    <title>V8 GC机制 - Run Note</title>
 
-    <link rel="canonical" href="http://localhost:4000/lrun1124.github.io/2017/11/24/JavaScript-Note(2)/">
+    <link rel="canonical" href="http://localhost:4000/lrun1124.github.io/2019/09/04/V8-GC%E6%9C%BA%E5%88%B6/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/lrun1124.github.io/css/bootstrap.min.css">
@@ -129,12 +129,12 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/lrun1124.github.io/img/jsbase2/jsbase2-bg.jpg" width="0" height="0"> -->
+<!-- <img src="/lrun1124.github.io/img/ArrayUnique-bg.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/lrun1124.github.io/img/jsbase2/jsbase2-bg.jpg')
+        background-image: url('/lrun1124.github.io/img/ArrayUnique-bg.jpg')
     }
 </style>
 <header class="intro-header" >
@@ -147,12 +147,12 @@
                         <a class="tag" href="/lrun1124.github.io/tags/#JavaScript" title="JavaScript">JavaScript</a>
                         
                     </div>
-                    <h1>JavaScrip Note(2)</h1>
+                    <h1>V8 GC机制</h1>
                     
                     
-                    <h2 class="subheading">This, Eval, document, 时间机制，new，JSON，Ajax，延迟加载</h2>
+                    <h2 class="subheading"></h2>
                     
-                    <span class="meta">Posted by Run on November 24, 2017</span>
+                    <span class="meta">Posted by Run on September 4, 2019</span>
                 </div>
             </div>
         </div>
@@ -170,265 +170,27 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h3 id="1">1</h3>
+				<blockquote>
+  <p>“Move on. ”</p>
+</blockquote>
 
-<p>This的理解</p>
+<h2 id="引用计数">引用计数</h2>
 
-<ul>
-  <li>this总是指向函数的直接调用者（而非间接调用者）,即此次调用的所有者</li>
-  <li>如果有new对象，this指向new出来的对象</li>
-</ul>
+<p>传统的GC方法，维护对象的引用计数器，引用为0时清除，优点是清除及时，清除时间均匀分布，缺点主要是循环引用问题</p>
 
-<h3 id="2">2</h3>
+<h2 id="v8机制">V8机制</h2>
 
-<p>Eval</p>
+<p><img src="http://lrun1124.github.io/img/jsgc.png" width="450" /></p>
 
-<ul>
-  <li>Eval将传入的字符串当做JS代码执行, 应避免在不必要的情况下使用
-    <ul>
-      <li>运行Eval存在风险，有可能运行的是恶意代码</li>
-      <li>运行效率差，因为会调用JS解析器</li>
-    </ul>
-  </li>
-</ul>
+<p>将内存分为新生带和老生带两部分</p>
 
-<h3 id="3">3</h3>
+<h3 id="新生代">新生代</h3>
 
-<p>window对象和document对象</p>
+<p>Scavenge垃圾回收算法进行管理，主要实现是Cheney算法，将内存分为两部分，From和To，新建对象都进入From空间中，当From空间分配到一定程度，将存活对象对象copy到To空间，清空From空间，然后调换From和To空间，继续进行分配，当一个对象被多次移动后仍然存活，或者如果一个对象被复制到To空间，To空间占用超过阈值（25%），这个对象会被移到老生带</p>
 
-<p>window对象是浏览器打开的窗口，顶层对象，document是window对象的一个属性，HTML文档对象的一个<strong>只读引用</strong></p>
+<h3 id="老生带">老生带</h3>
 
-<h3 id="4">4</h3>
-
-<p>IE和firefox事件机制</p>
-
-<p>IE是事件冒泡，firefox同时支持事件冒泡和捕获</p>
-<ul>
-  <li>事件捕获: 越高层的元素越早接收到事件，由上到下</li>
-  <li>事件冒泡: 越低层的元素越早接收到时间，由下到上</li>
-</ul>
-
-<p>阻止冒泡事件的方法</p>
-
-<pre><code class="language-JS">xxx.click = function(e){
-	e.stopPropagation();
-	e.cancelBubble = true;//旧IE需要
-}
-</code></pre>
-<h3 id="5">5</h3>
-
-<p>new的过程</p>
-
-<ol>
-  <li>创建空对象；
-    <ul>
-      <li>var obj = {};</li>
-    </ul>
-  </li>
-  <li>将创建出对象的原型链引用指向所要构造函数的原型；
-    <ul>
-      <li>obj.__proto__ = ClassA.prototype;</li>
-    </ul>
-  </li>
-  <li>调用构造函数，this指向新实例对象：
-    <ul>
-      <li>ClassA.call(obj);　　//{}.构造函数();</li>
-    </ul>
-  </li>
-  <li>将初始化完毕的新对象地址，保存到等号左边的变量中</li>
-</ol>
-
-<h3 id="6">6</h3>
-
-<p>JS中不会查找原型的函数</p>
-
-<p>hasOwnProperty判断对象中是否有指定名称的属性，object.hasOwnProperty(proName)，proName是属性名称的<strong>字符串值</strong></p>
-
-<h3 id="7">7</h3>
-
-<p>JSON的了解</p>
-
-<p>JSON（JavaScript Object Notation）是一种<strong>轻量级的数据交换格式</strong>，是基于JavaScript的一个子集，具有<strong>数据格式简单，易于读写且占用带宽小</strong>的优点。</p>
-
-<p>字符串转对象：</p>
-
-<pre><code class="language-JS">JSON.parse(str);
-str.parseJSON(str);
-eval('(' + str + ')')
-</code></pre>
-
-<p>对象转字符串：</p>
-
-<pre><code class="language-JS">JSON.stringify(obj);
-obj.toJSONString(str);
-</code></pre>
-
-<h3 id="8">8</h3>
-
-<p>Ajax</p>
-
-<p>Asynchronous JavaScript and Xml, 异步传输+JS+xml，异步的含义是在向服务器发送请求后，不必等待响应，可以先做其他的事，等相应返回可以根据设定的callback函数进行操作，于此同时，网页不会发生整页刷新，提高了效率和用户体验。</p>
-
-<p>步骤：</p>
-
-<ol>
-  <li>创建XMLHttpRequest对象</li>
-  <li>设置响应HTTP请求状态变化的函数</li>
-  <li>指定该对象的的方法、URL及验证信息</li>
-  <li>发送HTTP请求</li>
-  <li>获取异步调用返回的数据</li>
-  <li>使用JavaScript和DOM实现局部刷新</li>
-</ol>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;button id="ajaxButton" type ="button"&gt;Make Ajax request&lt;/button&gt;
-
-&lt;script&gt;
-var httpRequest;
-document.getElementbyId('ajaxButton').addEventListener("click", sendRequest);
-
-function sendRequest(){
-	httpRequest = new XMLHttpRequest(); //1
-
-	if(httpRequest){
-		alert('Cannot creat XMLHttpRequest');
-		return;
-	}
-
-	httpRequest.onreadystatechange = stateFunction;//2
-	httpRequest.open('GET', 'test.html');//3
-	httpRequest.send();//4
-}
-
-function stateFunction(){
-	if(httpRequest.readyState === XMLHttpRequet.Done){
-		if(httpRequest.state === 200){
-			alert(httpRequest.responseText);//5
-			//... 6
-		}
-		else{
-			alert('The request has some problem');
-		}
-	}
-}
-&lt;/script&gt;
-</code></pre></div></div>
-<h3 id="9">9</h3>
-
-<p>JS延迟加载方式</p>
-
-<p>JS延迟加载就是在页面加载完成后再加载JS文件，有助于提高页面加载速度，提高用户体验。</p>
-
-<h4 id="使用defer或async属性">使用defer或async属性</h4>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;script src="test1.js" defer="defer"&gt;&lt;/script&gt;
-&lt;script src="test2.js" async&gt;&lt;/script&gt;
-</code></pre></div></div>
-<ul>
-  <li>只适用于外部脚本，缺点是不能保证脚本会按顺序执行</li>
-</ul>
-
-<p>当浏览器碰到 script 脚本的时候：</p>
-
-<script src="script.js"></script>
-
-<p>没有 defer 或 async，浏览器会立即加载并执行指定的脚本，“立即”指的是在渲染该 script 标签之下的文档元素之前，也就是说不等待后续载入的文档元素，读到就加载并执行。</p>
-
-<script async="" src="script.js"></script>
-
-<p>有 async，加载和渲染后续文档元素的过程将和 script.js 的加载与执行并行进行（异步）。</p>
-
-<script defer="" src="myscript.js"></script>
-
-<p>有 defer，加载后续文档元素的过程将和 script.js 的加载并行进行（异步），但是 script.js 的执行要在所有元素解析完成之后，DOMContentLoaded 事件触发之前完成。</p>
-
-<p>然后从实用角度来说呢，首先把所有脚本都丢到 &lt;/body&gt; 之前是最佳实践，因为对于旧浏览器来说这是唯一的优化选择，此法可保证非脚本的其他一切元素能够以最快的速度得到加载和解析</p>
-
-<p><img src="http://lrun1124.github.io/img/jsbase2/defer&amp;async.jpg" /></p>
-
-<h4 id="动态dom操作">动态DOM操作</h4>
-
-<p>即利用动态DOM操作按需插入JS文件</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//延迟1000ms加载new.js
-window.onload = function(){
-	setTimeout(function(){
-		var head = document.getElementByTagName('head')[0];
-		var js = document.createElement('Script');
-		js.type = 'text/javascript';
-		js.src = 'new.js';
-		head.appendChlid(js); 
-	},1000);
-}
-</code></pre></div></div>
-
-<h4 id="分组最后加载js">分组最后加载JS</h4>
-
-<p>JS的引入如果放在head中，则页面加载前JS就会被加载，如果放在body中，则会按顺序加载，所以可以将JS分组，将加载过程中不需要的JS放在页面的底部，&lt;/body&gt;标签之前，然而这种方法偶尔会收到Google页面速度测试工具的“延迟加载javascript”警告，Google提供了一套推荐方案：</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//这些代码应被放置在&lt;/body&gt;标签前(接近HTML文件底部)
-&lt;script type="text/javascript"&gt;
-    function downloadJSAtOnload() {
-        var element = document.createElement("script");
-        element.src = "defer.js";
-        document.body.appendChild(element);
-    }
-    if (window.addEventListener)
-        window.addEventListener("load", downloadJSAtOnload, false);
-    else if (window.attachEvent)
-        window.attachEvent("onload", downloadJSAtOnload);
-    else window.onload = downloadJSAtOnload;
-&lt;/script&gt;
-</code></pre></div></div>
-
-<p>这段代码意思是等到整个文档加载完后，再加载外部文件“defer.js”。</p>
-
-<p>使用此段代码的步骤：</p>
-
-<ol>
-  <li>复制上面代码；</li>
-  <li>粘贴代码放置在&lt;/body&gt;标签前 (靠近HTML文件底部)；</li>
-  <li>修改“defer.js”为外部JS文件名；</li>
-  <li>确保文件路径是正确的。例如：如果仅输入“defer.js”，那么“defer.js”文件一定与HTML文件在同一文件夹下。</li>
-</ol>
-
-<ul>
-  <li>注意：这段代码直到文档加载完才会加载指定的外部js文件。因此，不应该把那些页面正常加载需要依赖的javascript代码放在这里。而应该将JavaScript代码分成两组。<strong>一组是因页面需要而立即加载的javascript代码，另外一组是在页面加载后进行操作的javascript代码(例如添加click事件或其他东西)</strong>。这些需等到页面加载后再执行的JavaScript代码，应放在一个外部文件，然后再引进来。</li>
-</ul>
-
-<h3 id="10">10</h3>
-
-<p>Ajax缓存问题</p>
-
-<p>Ajax能提高页面载入的速度主要的原因是通过Ajax减少了重复数据的载入，也就是说在载入数据的同时将数据缓存到内存中，一旦数据被加载其中，只要我们没有刷新页面，这些数据就会一直被缓存在内存中，当我们提交的URL与历史的URL一致时，就不需要提交给服务器，也就是不需要从服务器上面去获取数据，虽然这样降低了服务器的负载提高了用户的体验，但是我们不能获取最新的数据。为了保证我们读取的信息都是最新的，我们就需要禁止缓存功能。</p>
-
-<p>解决方案有如下几种：</p>
-
-<ol>
-  <li>在ajax发送请求前加上 anyAjaxObj.setRequestHeader(“If-Modified-Since”,”0”)。</li>
-  <li>在ajax发送请求前加上 anyAjaxObj.setRequestHeader(“Cache-Control”,”no-cache”)。</li>
-  <li>在URL后面加上一个随机数： “fresh=” + Math.random();。</li>
-  <li>在URL后面加上时间戳：”nowtime=” + new Date().getTime();。</li>
-</ol>
-
-<h3 id="11">11</h3>
-
-<p>GET和POST的区别，何时使用POST？</p>
-
-<p>GET：一般用于信息获取，使用URL传递参数，对所发送信息的数量也有限制，一般在2000个字符</p>
-
-<p>POST：一般用于修改服务器上的资源，对所发送的信息没有限制。</p>
-
-<p>GET方式需要使用Request.QueryString来取得变量的值，而POST方式通过Request.Form来获取变量的值，</p>
-
-<p>也就是说Get是通过地址栏来传值，而Post是通过提交表单来传值。</p>
-
-<p>然而，在以下情况中，请使用 POST 请求：</p>
-
-<p>无法使用缓存文件（更新服务器上的文件或数据库）</p>
-
-<p>向服务器发送大量数据（POST 没有数据量限制）</p>
-
-<p>发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠</p>
+<p>综合使用Mark-Sweep和Mark-compact, Mark-Sweep是当GC触发时，从根节点出发对所有能到达的对象进行遍历，一般是深度优先搜索，对能达到对象进行标记，最后清除掉未被标记的对象，Mark-Sweep会产生碎片内存，Mark-compact是将使用的内存向一侧移动，然后清楚掉内存的边界，由于Mark-compact需要移动对象，所以速度不会很快，V8上尽量才去Mark-Sweep，当内存不足以对新生代晋升过来的对象进行分配时，再进行Mark-compact</p>
 
 
                 <hr>
@@ -438,18 +200,17 @@ window.onload = function(){
                 </style>
                 <div class="ds-share"
                     style="text-align: right"
-                    data-thread-key="/2017/11/24/JavaScript Note(2)"
-                    data-title="JavaScrip Note(2)"
-                    data-url="http://localhost:4000/lrun1124.github.io/2017/11/24/JavaScript-Note(2)/"
-                    data-images="http://localhost:4000/lrun1124.github.io/img/jsbase2/jsbase2-bg.jpg"
-                    data-content="1
+                    data-thread-key="/2019/09/04/V8 GC机制"
+                    data-title="V8 GC机制"
+                    data-url="http://localhost:4000/lrun1124.github.io/2019/09/04/V8-GC%E6%9C%BA%E5%88%B6/"
+                    data-images="http://localhost:4000/lrun1124.github.io/img/ArrayUnique-bg.jpg"
+                    data-content="
+  “Move on. ”
 
-This的理解
 
+引用计数
 
-  this总是指向函数的直接调用者（而非间接调用者）,即此次调用的所有者
-  如果有new对象，this指向new出来的对象
-... | Run Note " >
+传统的GC方法，维护对象的引用计数器，引用为0时清除，优点是清除及时，清除时间均匀分布，缺点主要是循环引用问... | Run Note " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -469,13 +230,9 @@ This的理解
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/lrun1124.github.io/2017/11/07/JavaScript-Pritice/" data-toggle="tooltip" data-placement="top" title="JavaScrip Practice">&larr; Previous Post</a>
+                        <a href="/lrun1124.github.io/2019/09/02/%E5%AE%9E%E7%8E%B0call,apply,bind/" data-toggle="tooltip" data-placement="top" title="N Sum problem">&larr; Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/lrun1124.github.io/2017/11/29/JavaScript-Note(3)/" data-toggle="tooltip" data-placement="top" title="JavaScrip Note(3)">Next Post &rarr;</a>
-                    </li>
                     
                 </ul>
 
@@ -484,9 +241,9 @@ This的理解
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="/2017/11/24/JavaScript Note(2)"
-                        data-title="JavaScrip Note(2)"
-                        data-url="http://localhost:4000/lrun1124.github.io/2017/11/24/JavaScript-Note(2)/" >
+                        data-thread-key="/2019/09/04/V8 GC机制"
+                        data-title="V8 GC机制"
+                        data-url="http://localhost:4000/lrun1124.github.io/2019/09/04/V8-GC%E6%9C%BA%E5%88%B6/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->

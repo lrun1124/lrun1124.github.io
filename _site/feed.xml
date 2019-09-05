@@ -5,9 +5,103 @@
     <description></description>
     <link>http://localhost:4000/lrun1124.github.io/</link>
     <atom:link href="http://localhost:4000/lrun1124.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 28 Aug 2019 10:52:24 +0800</pubDate>
-    <lastBuildDate>Wed, 28 Aug 2019 10:52:24 +0800</lastBuildDate>
+    <pubDate>Thu, 05 Sep 2019 11:06:19 +0800</pubDate>
+    <lastBuildDate>Thu, 05 Sep 2019 11:06:19 +0800</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>V8 GC机制</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;“Move on. ”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;引用计数&quot;&gt;引用计数&lt;/h2&gt;
+
+&lt;p&gt;传统的GC方法，维护对象的引用计数器，引用为0时清除，优点是清除及时，清除时间均匀分布，缺点主要是循环引用问题&lt;/p&gt;
+
+&lt;h2 id=&quot;v8机制&quot;&gt;V8机制&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/jsgc.png&quot; width=&quot;450&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;将内存分为新生带和老生带两部分&lt;/p&gt;
+
+&lt;h3 id=&quot;新生代&quot;&gt;新生代&lt;/h3&gt;
+
+&lt;p&gt;Scavenge垃圾回收算法进行管理，主要实现是Cheney算法，将内存分为两部分，From和To，新建对象都进入From空间中，当From空间分配到一定程度，将存活对象对象copy到To空间，清空From空间，然后调换From和To空间，继续进行分配，当一个对象被多次移动后仍然存活，或者如果一个对象被复制到To空间，To空间占用超过阈值（25%），这个对象会被移到老生带&lt;/p&gt;
+
+&lt;h3 id=&quot;老生带&quot;&gt;老生带&lt;/h3&gt;
+
+&lt;p&gt;综合使用Mark-Sweep和Mark-compact, Mark-Sweep是当GC触发时，从根节点出发对所有能到达的对象进行遍历，一般是深度优先搜索，对能达到对象进行标记，最后清除掉未被标记的对象，Mark-Sweep会产生碎片内存，Mark-compact是将使用的内存向一侧移动，然后清楚掉内存的边界，由于Mark-compact需要移动对象，所以速度不会很快，V8上尽量才去Mark-Sweep，当内存不足以对新生代晋升过来的对象进行分配时，再进行Mark-compact&lt;/p&gt;
+</description>
+        <pubDate>Wed, 04 Sep 2019 19:00:00 +0800</pubDate>
+        <link>http://localhost:4000/lrun1124.github.io/2019/09/04/V8-GC%E6%9C%BA%E5%88%B6/</link>
+        <guid isPermaLink="true">http://localhost:4000/lrun1124.github.io/2019/09/04/V8-GC%E6%9C%BA%E5%88%B6/</guid>
+        
+        <category>JavaScript</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>N Sum problem</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;“Move on. ”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;call&quot;&gt;call&lt;/h2&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;myCall&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Symbol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'temp'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(...&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;delete&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;apply&quot;&gt;apply&lt;/h2&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;myApply&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Symbol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'temp'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(...&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;delete&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;bind&quot;&gt;bind&lt;/h2&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;myBind&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arg1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(...&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arg2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;myApply&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;arg1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;concat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arg2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;myBind&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arg1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(...&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arg2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;myApply&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arg1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arg2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//不用前面的function&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;myBind&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arg1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(...&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arg2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Symbol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'temp'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;fn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(...&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arg1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arg2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;delete&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Mon, 02 Sep 2019 19:00:00 +0800</pubDate>
+        <link>http://localhost:4000/lrun1124.github.io/2019/09/02/%E5%AE%9E%E7%8E%B0call,apply,bind/</link>
+        <guid isPermaLink="true">http://localhost:4000/lrun1124.github.io/2019/09/02/%E5%AE%9E%E7%8E%B0call,apply,bind/</guid>
+        
+        <category>JavaScript</category>
+        
+        
+      </item>
     
       <item>
         <title>N Sum problem</title>
@@ -2099,257 +2193,6 @@ window.onload = function(){
         <pubDate>Fri, 24 Nov 2017 03:00:00 +0800</pubDate>
         <link>http://localhost:4000/lrun1124.github.io/2017/11/24/JavaScript-Note(2)/</link>
         <guid isPermaLink="true">http://localhost:4000/lrun1124.github.io/2017/11/24/JavaScript-Note(2)/</guid>
-        
-        <category>JavaScript</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>JavaScrip Practice</title>
-        <description>&lt;h2 id=&quot;1&quot;&gt;1&lt;/h2&gt;
-
-&lt;p&gt;如何将浮点数点左边的数每三位添加一个逗号，如12000000.11转化为『12,000,000.11』?&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;//先找到'.'的位置或末尾，依次向前拼接直到头部
-function transfer(num){
-	let str = num + '';
-	let i = (str.indexOf('.') &amp;gt; 0 ? str.indexOf('.') : str.length) - 3;
-	for(; i&amp;gt;0; i-=3){
-		str = str.substring(0, i) + ',' + str.substring(i);
-	}
-	return str;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;2&quot;&gt;2&lt;/h2&gt;
-
-&lt;p&gt;数组随机排列&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;方法1:&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;//Random位置插入新数组，删除原数组内元素
-function arrayRandom(arr){
-	let res = [],
-		index;
-	while(arr.length &amp;gt; 0){
-		index = parseInt(Math.random() * arr.length);
-		res.push(arr[index]);
-		arr.splice(index,1)
-	}
-	return res;
-}
-//test
-let arr = [1,2,3,4,5,6,7,8,9,10];
-console.log(arrayRandom(arr));
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;方法2:&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;//利用Array.prototype.sort的compare function
-function arrayRandom(arr){
-	return arr.sort(function(){
-		return Math.random() - 0.5;
-		})
-}
-//test
-let arr = [1,2,3,4,5,6,7,8,9,10];
-console.log(arrayRandom(arr));
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;3&quot;&gt;3&lt;/h2&gt;
-</description>
-        <pubDate>Tue, 07 Nov 2017 19:00:00 +0800</pubDate>
-        <link>http://localhost:4000/lrun1124.github.io/2017/11/07/JavaScript-Pritice/</link>
-        <guid isPermaLink="true">http://localhost:4000/lrun1124.github.io/2017/11/07/JavaScript-Pritice/</guid>
-        
-        <category>JavaScript</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>JavaScrip Note(1)</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;“Step 1. ”&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
-
-&lt;p&gt;转前端工作一年多后对JS的一些基础仍然存在盲区，记录一些note查漏补缺&lt;/p&gt;
-
-&lt;h2 id=&quot;正文&quot;&gt;正文&lt;/h2&gt;
-
-&lt;h3 id=&quot;js基本数据类型及存储结构&quot;&gt;JS基本数据类型及存储结构&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Boolean, null, undefined, String, Number&lt;/li&gt;
-  &lt;li&gt;ES 2015 新增 : Symbol
-    &lt;ul&gt;
-      &lt;li&gt;独一无二的变量，由于对象中的方法属性可能在传递分享时被不小心修改或覆盖，用Symbol可以保证唯一性。let s = Symbol();&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;储存结构
-    &lt;ul&gt;
-      &lt;li&gt;基本(原始)数据类型在栈(stack)中存储，空间较小，大小固定，会被频繁调用；&lt;/li&gt;
-      &lt;li&gt;引用数据类型大小不固定，放在堆中存储&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/jsbase/database.jpg&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;js内置对象&quot;&gt;JS内置对象&lt;/h3&gt;
-
-&lt;p&gt;Object对象：所有对象的父对象，原型链最上层&lt;br /&gt;
-数据封装对象：Array, Boolean, String, Number, Object&lt;br /&gt;
-其他： Math, Date, RegExp, Error, Function&lt;/p&gt;
-
-&lt;h3 id=&quot;null-undefined区别&quot;&gt;null, undefined区别&lt;/h3&gt;
-
-&lt;p&gt;null表示一个对象没有值，一般是程序员显示声明，Js不会自己设置为null，typeof(null)为Object&lt;/p&gt;
-
-&lt;p&gt;undefined表示一个变量声明了，但还没有初始化， typeof(undefined)为undefined&lt;/p&gt;
-
-&lt;p&gt;null === undefined 为true, null == undefined为false，目前的JS环境中，它们的差别很小，同时存在是因为历史原因，Js初期的设计参考了C等语言，在C中，null可以自动转型为0，由于JS的设计者Brendan Eich认为‘无’的概念最好不是一个对象，并且JS早期缺乏错误处理机制，null自动转型为0可能会造成一些不被察觉的错误，所以设计了undefined&lt;/p&gt;
-
-&lt;h3 id=&quot;js原型原型链&quot;&gt;JS原型，原型链&lt;/h3&gt;
-
-&lt;p&gt;原型: JavaScript借鉴了面向对象语言‘一切皆是对象’的思想，对于每一个对象都存在一个prototype对象，也就是原型，prototype属性默认有一个constructor属性指向对象本身。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/jsbase/prototype.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;以内置对象Object为例，其prototype对象如下&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/jsbase/objectPrototype.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;可以看到其中包括了很多常用内置方法，在其他object调用这些方法的时候就是通过原型链生效的&lt;/p&gt;
-
-&lt;p&gt;原型链: JS的继承是通过原型链实现的。当JS的对象需要某个属性的时候，首先会从当前对象的属性中去找，找不到就会到原型prototype中去找，还是找不到就会沿着原型链向上寻找，直到找到Object.prototype，如果最终找不到，则返回null&lt;/p&gt;
-
-&lt;h3 id=&quot;作用域&quot;&gt;作用域&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;全局作用域
-    &lt;ul&gt;
-      &lt;li&gt;最外层定义的变量&lt;/li&gt;
-      &lt;li&gt;未定义直接赋值的变量&lt;/li&gt;
-      &lt;li&gt;顶层对象windows下的变量&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;局部作用域&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;JS的作用域和Java,C++之类语言最大的区别就在于它的函数作用域，对于一些熟悉Java,C++语言的人，会造成一些难以理解的结果。可以通过几个例子来看一下：&lt;/p&gt;
-
-&lt;p&gt;code1：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;var i = 'out';
-var test = function(){
-	console.log(i);
-	var i = 'in';
-	console.log(i);
-}
-test();
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;这里运行结果是&lt;br /&gt;
-undefined&lt;br /&gt;
-in&lt;br /&gt;
-而不是&lt;br /&gt;
-out&lt;br /&gt;in&lt;/p&gt;
-
-&lt;p&gt;code2：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;var i = 'out';
-if(true){
-	var i = 'in'
-	console.log(i);
-}
-console.log(i);
-
-test();
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;这里运行结果是&lt;br /&gt;
-in&lt;br /&gt;
-in&lt;br /&gt;
-而不是&lt;br /&gt;
-in&lt;br /&gt;
-out&lt;/p&gt;
-
-&lt;p&gt;造成结果的原因都是因为JS的函数作用域，所谓函数作用域：&lt;strong&gt;变量在其所声明的函数内的任意位置都是可访问的&lt;/strong&gt;，这里就引出了JS变量的函数提升，对于code1，其实际的执行code可以改写如下:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;var i = 'out';
-var test = function(){
-	var i;
-	console.log(i);
-	i = 'in';
-	console.log(i);
-}
-test();
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;可以看到变量i的声明在函数内部是被提升到了开始的位置，但是赋值的位置确是不变的。类似的code2可以改写为:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;var i;
-var i; 
-i = 'out';
-if(true){
-	i = 'in'
-	console.log(i);
-}
-console.log(i);
-
-test();
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;i在if中被修改了&lt;/p&gt;
-
-&lt;h3 id=&quot;作用域链&quot;&gt;作用域链&lt;/h3&gt;
-
-&lt;p&gt;当代码在环境中执行的时候，会创建变量对象的一个作用域链（scope chain）。其用途是&lt;strong&gt;保证能够有序访问当前环境中的变量和函数&lt;/strong&gt;。作用域链的前端始终是当前代码所在的变量对象，下一个变量对象总是外部环境的变量对象。&lt;strong&gt;标识符解析时,总是沿着作用域链从前端向后逐层的搜索&lt;/strong&gt;。&lt;/p&gt;
-
-&lt;p&gt;环境之间的联系是&lt;strong&gt;线性有序&lt;/strong&gt;的,内部环境是可以通过作用域链访问所有外部环境，但是外部环境不能访问内部环境。所以引发了&lt;strong&gt;闭包&lt;/strong&gt;的概念&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;另使用with可以在作用域顶端添加某个对象，因为有可能造成混淆和兼容错误，所以不被推荐使用，不过在某些情况下可以减少不必要的作用域链搜索过程并简化代码，当然，这种简化方式用一个指针也可以做到。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;var a, x, y;
-var r = 10;
-
-with (Math) {
-  a = PI * r * r;
-  x = r * cos(PI);
-  y = r * sin(PI / 2);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;闭包&quot;&gt;闭包&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;闭包就是能够读取其他函数内部变量的函数&lt;/strong&gt;, 本质上是将函数内部和外部联系起来的桥梁。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;function f1(){
-	var n=999;
-	function f2(){
-		n++;
-		alert(n);
-	}
-	return f2;
-}
-var result=f1();
-result();//1000
-result();//1001
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;以上代码通过内部的add在函数f1之外操作内部变量n，这里还体现了一个闭包的特点，可以看到在f1执行一次后n的值是被保存的，这是因为f2第一次在调用时被赋给了一个全局变量，而f2依赖于f1，所以f1的环境也始终被保存在内存中，不会被垃圾回收机制回收，所以&lt;strong&gt;大量使用闭包内存消耗很大，会导致性能下降&lt;/strong&gt;&amp;gt;，第二个要注意地方时&lt;strong&gt;函数内部的值可能会被修改&lt;/strong&gt;。&lt;/p&gt;
-</description>
-        <pubDate>Tue, 07 Nov 2017 19:00:00 +0800</pubDate>
-        <link>http://localhost:4000/lrun1124.github.io/2017/11/07/JavaScript-Note(1)/</link>
-        <guid isPermaLink="true">http://localhost:4000/lrun1124.github.io/2017/11/07/JavaScript-Note(1)/</guid>
         
         <category>JavaScript</category>
         
