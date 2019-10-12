@@ -182,12 +182,12 @@
 <h4 id="5-闭包">5. 闭包</h4>
 <h4 id="6-请简述javascript中的this">6. 请简述<code class="highlighter-rouge">JavaScript</code>中的<code class="highlighter-rouge">this</code>。</h4>
 
-<p>JS 中的<code class="highlighter-rouge">this</code>是一个相对复杂的概念，不是简单几句能解释清楚的。粗略地讲，函数的调用方式决定了<code class="highlighter-rouge">this</code>的值。我阅读了网上很多关于<code class="highlighter-rouge">this</code>的文章，<a href="https://medium.com/@arnav_aggarwal">Arnav Aggrawal</a> 写的比较清楚。<code class="highlighter-rouge">this</code>取值符合以下规则：</p>
+<p>JS 中的<code class="highlighter-rouge">this</code>是一个相对复杂的概念，不是简单几句能解释清楚的。粗略地讲，函数的调用方式决定了<code class="highlighter-rouge">this</code>的值。</p>
 
 <ol>
   <li>在调用函数时使用<code class="highlighter-rouge">new</code>关键字，函数内的<code class="highlighter-rouge">this</code>是一个全新的对象。</li>
   <li>如果<code class="highlighter-rouge">apply</code>、<code class="highlighter-rouge">call</code>或<code class="highlighter-rouge">bind</code>方法用于调用、创建一个函数，函数内的 this 就是作为参数传入这些方法的对象。</li>
-  <li>当函数作为对象里的方法被调用时，函数内的<code class="highlighter-rouge">this</code>是调用该函数的对象。比如当<code class="highlighter-rouge">obj.method()</code>被调用时，函数内的 this 将绑定到<code class="highlighter-rouge">obj</code>对象。</li>
+  <li>当函数作为对象里的方法被调用时，<code class="highlighter-rouge">this</code>指向直接调用者，函数内的<code class="highlighter-rouge">this</code>是调用该函数的对象。比如当<code class="highlighter-rouge">obj.method()</code>被调用时，函数内的 this 将绑定到<code class="highlighter-rouge">obj</code>对象。</li>
   <li>如果调用函数不符合上述规则，那么<code class="highlighter-rouge">this</code>的值指向全局对象（global object）。浏览器环境下<code class="highlighter-rouge">this</code>的值指向<code class="highlighter-rouge">window</code>对象，但是在严格模式下(<code class="highlighter-rouge">'use strict'</code>)，<code class="highlighter-rouge">this</code>的值为<code class="highlighter-rouge">undefined</code>。</li>
   <li>如果符合上述多个规则，则较高的规则（1 号最高，4 号最低）将决定<code class="highlighter-rouge">this</code>的值。</li>
   <li>如果该函数是 ES2015 中的箭头函数，将忽略上面的所有规则，<code class="highlighter-rouge">this</code>被设置为它被创建时的上下文。</li>
