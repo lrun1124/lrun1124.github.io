@@ -10,9 +10,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/lrun1124.github.io/img/favicon.ico">
 
-    <title>JavaScrip Note(2) - Run Note</title>
+    <title>Summary - Run Note</title>
 
-    <link rel="canonical" href="http://localhost:4000/lrun1124.github.io/2017/11/24/JavaScript-Note(2)/">
+    <link rel="canonical" href="http://localhost:4000/lrun1124.github.io/2019/10/07/Summary/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/lrun1124.github.io/css/bootstrap.min.css">
@@ -129,12 +129,12 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/lrun1124.github.io/img/jsbase2/jsbase2-bg.jpg" width="0" height="0"> -->
+<!-- <img src="/lrun1124.github.io/img/ArrayUnique-bg.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/lrun1124.github.io/img/jsbase2/jsbase2-bg.jpg')
+        background-image: url('/lrun1124.github.io/img/ArrayUnique-bg.jpg')
     }
 </style>
 <header class="intro-header" >
@@ -147,12 +147,12 @@
                         <a class="tag" href="/lrun1124.github.io/tags/#JavaScript" title="JavaScript">JavaScript</a>
                         
                     </div>
-                    <h1>JavaScrip Note(2)</h1>
+                    <h1>Summary</h1>
                     
                     
-                    <h2 class="subheading">This, Eval, document, 时间机制，new，JSON，Ajax，延迟加载</h2>
+                    <h2 class="subheading"></h2>
                     
-                    <span class="meta">Posted by Run on November 24, 2017</span>
+                    <span class="meta">Posted by Run on October 7, 2019</span>
                 </div>
             </div>
         </div>
@@ -170,265 +170,99 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h3 id="1">1</h3>
+				<blockquote>
+  <p>“Move on. ”</p>
+</blockquote>
 
-<p>This的理解</p>
+<h3 id="js">JS</h3>
+<h4 id="1-js基本数据类型及存储结构">1. JS基本数据类型及存储结构</h4>
+<h4 id="2-null-undefined区d别">2. null, undefined区d别</h4>
+<h4 id="3-js原型原型链">3. JS原型，原型链</h4>
+<h4 id="4-js作用域作用域链">4. JS作用域，作用域链</h4>
+<h4 id="5-闭包">5. 闭包</h4>
+<h4 id="6-请简述javascript中的this">6. 请简述<code class="highlighter-rouge">JavaScript</code>中的<code class="highlighter-rouge">this</code>。</h4>
 
-<ul>
-  <li>this总是指向函数的直接调用者（而非间接调用者）,即此次调用的所有者</li>
-  <li>如果有new对象，this指向new出来的对象</li>
-</ul>
-
-<h3 id="2">2</h3>
-
-<p>Eval</p>
-
-<ul>
-  <li>Eval将传入的字符串当做JS代码执行, 应避免在不必要的情况下使用
-    <ul>
-      <li>运行Eval存在风险，有可能运行的是恶意代码</li>
-      <li>运行效率差，因为会调用JS解析器</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="3">3</h3>
-
-<p>window对象和document对象</p>
-
-<p>window对象是浏览器打开的窗口，顶层对象，document是window对象的一个属性，HTML文档对象的一个<strong>只读引用</strong></p>
-
-<h3 id="4">4</h3>
-
-<p>IE和firefox事件机制</p>
-
-<p>IE是事件冒泡，firefox同时支持事件冒泡和捕获</p>
-<ul>
-  <li>事件捕获: 越高层的元素越早接收到事件，由上到下</li>
-  <li>事件冒泡: 越低层的元素越早接收到时间，由下到上</li>
-</ul>
-
-<p>阻止冒泡事件的方法</p>
-
-<pre><code class="language-JS">xxx.click = function(e){
-	e.stopPropagation();
-	e.cancelBubble = true;//旧IE需要
-}
-</code></pre>
-<h3 id="5">5</h3>
-
-<p>new的过程</p>
+<p>JS 中的<code class="highlighter-rouge">this</code>是一个相对复杂的概念，不是简单几句能解释清楚的。粗略地讲，函数的调用方式决定了<code class="highlighter-rouge">this</code>的值。我阅读了网上很多关于<code class="highlighter-rouge">this</code>的文章，<a href="https://medium.com/@arnav_aggarwal">Arnav Aggrawal</a> 写的比较清楚。<code class="highlighter-rouge">this</code>取值符合以下规则：</p>
 
 <ol>
-  <li>创建空对象；
-    <ul>
-      <li>var obj = {};</li>
-    </ul>
-  </li>
-  <li>将创建出对象的原型链引用指向所要构造函数的原型；
-    <ul>
-      <li>obj.__proto__ = ClassA.prototype;</li>
-    </ul>
-  </li>
-  <li>调用构造函数，this指向新实例对象：
-    <ul>
-      <li>ClassA.call(obj);　　//{}.构造函数();</li>
-    </ul>
-  </li>
-  <li>将初始化完毕的新对象地址，保存到等号左边的变量中</li>
+  <li>在调用函数时使用<code class="highlighter-rouge">new</code>关键字，函数内的<code class="highlighter-rouge">this</code>是一个全新的对象。</li>
+  <li>如果<code class="highlighter-rouge">apply</code>、<code class="highlighter-rouge">call</code>或<code class="highlighter-rouge">bind</code>方法用于调用、创建一个函数，函数内的 this 就是作为参数传入这些方法的对象。</li>
+  <li>当函数作为对象里的方法被调用时，函数内的<code class="highlighter-rouge">this</code>是调用该函数的对象。比如当<code class="highlighter-rouge">obj.method()</code>被调用时，函数内的 this 将绑定到<code class="highlighter-rouge">obj</code>对象。</li>
+  <li>如果调用函数不符合上述规则，那么<code class="highlighter-rouge">this</code>的值指向全局对象（global object）。浏览器环境下<code class="highlighter-rouge">this</code>的值指向<code class="highlighter-rouge">window</code>对象，但是在严格模式下(<code class="highlighter-rouge">'use strict'</code>)，<code class="highlighter-rouge">this</code>的值为<code class="highlighter-rouge">undefined</code>。</li>
+  <li>如果符合上述多个规则，则较高的规则（1 号最高，4 号最低）将决定<code class="highlighter-rouge">this</code>的值。</li>
+  <li>如果该函数是 ES2015 中的箭头函数，将忽略上面的所有规则，<code class="highlighter-rouge">this</code>被设置为它被创建时的上下文。</li>
 </ol>
 
-<h3 id="6">6</h3>
+<h4 id="7-new的过程">7. New的过程</h4>
+<h4 id="8-不会查找原型的函数">8. 不会查找原型的函数</h4>
+<h4 id="9-for-in和for-of">9. for in和for of</h4>
+<h4 id="10-ajax流程手动写ajax缓存">10. Ajax流程，手动写，Ajax缓存</h4>
+<h4 id="11-延迟加载deferasync动态dom分组加载">11. 延迟加载，defer，async，动态dom，分组加载</h4>
+<h4 id="12-get和post">12. get和post</h4>
+<h4 id="13-同步和异步">13. 同步和异步</h4>
+<h4 id="14-跨域问题">14. 跨域问题</h4>
+<h4 id="15-前端模块化amdcmd">15. 前端模块化，AMD/CMD</h4>
+<h4 id="16-内存泄漏">16. 内存泄漏</h4>
+<h4 id="17---objectis区别">17. ==, ===, Object.is()区别</h4>
+<h4 id="18-前端设计模式单例单体工厂策略装饰者适配器观察者门面">18. 前端设计模式，单例，单体，工厂，策略，装饰者，适配器，观察者，门面</h4>
+<h4 id="19-优雅降级和渐进增强">19. 优雅降级和渐进增强</h4>
+<h4 id="20-node的优缺点">20. Node的优缺点</h4>
+<h4 id="21-gcv8-gc机制">21. GC，v8 GC机制</h4>
+<h4 id="22-cookie和session">22. Cookie和Session</h4>
+<h4 id="23-javascript继承的6种方法">23. javascript继承的6种方法</h4>
+<h4 id="24-mvc和mvvm的理解">24. MVC和MVVM的理解</h4>
+<h4 id="25">25.</h4>
 
-<p>JS中不会查找原型的函数</p>
+<h3 id="html">html</h3>
+<h4 id="1-事件冒泡和捕获">1. 事件冒泡和捕获</h4>
+<h4 id="2-window对象和document对象">2. window对象和document对象</h4>
+<h4 id="3-页面编码和被请求的资源编码如果不一致">3. 页面编码和被请求的资源编码如果不一致</h4>
+<h4 id="4-dom操作">4. DOM操作</h4>
+<h4 id="5-把-script-标签-放在页面的最底部的body封闭之前-和封闭之后有什么区别">5. 把 Script 标签 放在页面的最底部的body封闭之前 和封闭之后有什么区别？</h4>
+<h4 id="6-给一个dom同时绑定两个点击事件一个用捕获一个用冒泡会执行几次事件">6. 给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件？</h4>
+<h4 id="7-http状态码">7. http状态码</h4>
+<h4 id="8-doctype作用">8. Doctype作用</h4>
+<h4 id="9-标准模式与兼容模式有什么区别">9. 标准模式与兼容模式有什么区别</h4>
+<h4 id="10-html5-为什么只需要写-doctype-html">10. HTML5 为什么只需要写 &lt;!DOCTYPE HTML&gt;</h4>
+<h4 id="11-行内元素有哪些块级元素有哪些-空void元素有那些">11. 行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？</h4>
+<h4 id="12-使用link和import区别">12. 使用link和@import区别</h4>
+<h4 id="13-浏览器内核的理解">13. 浏览器内核的理解</h4>
+<h4 id="14-常见的浏览器内核">14. 常见的浏览器内核</h4>
+<h4 id="15-html5有哪些新特性如何处理html5新标签的浏览器兼容问题如何区分-html-和-html5">15. html5有哪些新特性？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？</h4>
+<h4 id="16-xmlsgmlhtmlxhtmlhtml5">16. XML,SGML,HTML,XHTML,HTML5</h4>
+<h4 id="17-html语义化">17. HTML语义化</h4>
+<h4 id="18-cookie-loaclstorage-sessionstorage">18. cookie, loaclStorage, sessionStorage</h4>
+<h4 id="19-浏览器是怎么对html5的离线储存资源进行管理和加载的呢">19. 浏览器是怎么对HTML5的离线储存资源进行管理和加载的呢？</h4>
+<h4 id="20-iframe缺点">20. iframe缺点</h4>
+<h4 id="21-label的作用是什么是怎么用的">21. Label的作用是什么？是怎么用的？</h4>
+<h4 id="22-title与h1的区别b与strong的区别i与em的区别">22. title与h1的区别、b与strong的区别、i与em的区别？</h4>
+<h4 id="23-如何实现浏览器内多个标签页之间的通信">23. 如何实现浏览器内多个标签页之间的通信?</h4>
+<h4 id="24-javascript是采用值传递还是引用传递的并解释一下原理">24. JavaScript是采用值传递还是引用传递的，并解释一下原理</h4>
 
-<p>hasOwnProperty判断对象中是否有指定名称的属性，object.hasOwnProperty(proName)，proName是属性名称的<strong>字符串值</strong></p>
+<h3 id="css">css</h3>
+<h4 id="1-css的盒子模型低版本ie的盒子模型有什么不同的">1. CSS的盒子模型，低版本IE的盒子模型有什么不同的</h4>
+<h4 id="2-css选择器">2. CSS选择器</h4>
+<h4 id="3-display的值及作用">3. display的值及作用</h4>
+<h4 id="4-position属性定位原点">4. position属性（定位原点）</h4>
+<h4 id="5-居中div-水平居中水平垂直居中">5. 居中div, 水平居中，水平垂直居中</h4>
+<h4 id="6-flexbox">6. Flexbox</h4>
+<h4 id="7-用纯css创建三角形">7. 用纯css创建三角形</h4>
+<h4 id="8-清除浮动">8. 清除浮动</h4>
+<h4 id="9-css优化提高性能的方式">9. CSS优化、提高性能的方式</h4>
+<h4 id="10">10.</h4>
 
-<h3 id="7">7</h3>
+<h3 id="性能优化">性能优化</h3>
+<h4 id="1-一个页面从输入-url-到页面加载显示完成这个过程中都发生了什么">1. 一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？</h4>
+<h4 id="2-性能优化策略-核心html层面布局-request-css-服务器端-js">2. 性能优化策略, 核心，html层面布局， request, css, 服务器端, JS</h4>
 
-<p>JSON的了解</p>
+<h3 id="other">other</h3>
+<h4 id="1-对称非对称加密公钥和私钥">1. 对称/非对称加密，公钥和私钥</h4>
+<h4 id="2-xml和json的区别">2. XML和JSON的区别？</h4>
+<h4 id="3-json了解">3. JSON了解</h4>
+<h4 id="4-web安全及防护原理-sql注入-xss-csrf">4. Web安全及防护原理, sql注入, XSS, csrf</h4>
 
-<p>JSON（JavaScript Object Notation）是一种<strong>轻量级的数据交换格式</strong>，是基于JavaScript的一个子集，具有<strong>数据格式简单，易于读写且占用带宽小</strong>的优点。</p>
+<h3 id="code">code</h3>
 
-<p>字符串转对象：</p>
-
-<pre><code class="language-JS">JSON.parse(str);
-str.parseJSON(str);
-eval('(' + str + ')')
-</code></pre>
-
-<p>对象转字符串：</p>
-
-<pre><code class="language-JS">JSON.stringify(obj);
-obj.toJSONString(str);
-</code></pre>
-
-<h3 id="8">8</h3>
-
-<p>Ajax</p>
-
-<p>Asynchronous JavaScript and Xml, 异步传输+JS+xml，异步的含义是在向服务器发送请求后，不必等待响应，可以先做其他的事，等相应返回可以根据设定的callback函数进行操作，于此同时，网页不会发生整页刷新，提高了效率和用户体验。</p>
-
-<p>步骤：</p>
-
-<ol>
-  <li>创建XMLHttpRequest对象</li>
-  <li>设置响应HTTP请求状态变化的函数</li>
-  <li>指定该对象的的方法、URL及验证信息</li>
-  <li>发送HTTP请求</li>
-  <li>获取异步调用返回的数据</li>
-  <li>使用JavaScript和DOM实现局部刷新</li>
-</ol>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;button id="ajaxButton" type ="button"&gt;Make Ajax request&lt;/button&gt;
-
-&lt;script&gt;
-var httpRequest;
-document.getElementbyId('ajaxButton').addEventListener("click", sendRequest);
-
-function sendRequest(){
-	httpRequest = new XMLHttpRequest(); //1
-
-	if(httpRequest){
-		alert('Cannot creat XMLHttpRequest');
-		return;
-	}
-
-	httpRequest.onreadystatechange = stateFunction;//2
-	httpRequest.open('GET', 'test.html');//3
-	httpRequest.send();//4
-}
-
-function stateFunction(){
-	if(httpRequest.readyState === XMLHttpRequet.Done){
-		if(httpRequest.state === 200){
-			alert(httpRequest.responseText);//5
-			//... 6
-		}
-		else{
-			alert('The request has some problem');
-		}
-	}
-}
-&lt;/script&gt;
-</code></pre></div></div>
-<h3 id="9">9</h3>
-
-<p>JS延迟加载方式</p>
-
-<p>JS延迟加载就是在页面加载完成后再加载JS文件，有助于提高页面加载速度，提高用户体验。</p>
-
-<h4 id="使用defer或async属性">使用defer或async属性</h4>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;script src="test1.js" defer="defer"&gt;&lt;/script&gt;
-&lt;script src="test2.js" async&gt;&lt;/script&gt;
-</code></pre></div></div>
-<ul>
-  <li>只适用于外部脚本，缺点是不能保证脚本会按顺序执行</li>
-</ul>
-
-<p>当浏览器碰到 script 脚本的时候：</p>
-
-<script src="script.js"></script>
-
-<p>没有 defer 或 async，浏览器会立即加载并执行指定的脚本，“立即”指的是在渲染该 script 标签之下的文档元素之前，也就是说不等待后续载入的文档元素，读到就加载并执行。</p>
-
-<script async="" src="script.js"></script>
-
-<p>有 async，加载和渲染后续文档元素的过程将和 script.js 的加载与执行并行进行（异步）。</p>
-
-<script defer="" src="myscript.js"></script>
-
-<p>有 defer，加载后续文档元素的过程将和 script.js 的加载并行进行（异步），但是 script.js 的执行要在所有元素解析完成之后，DOMContentLoaded 事件触发之前完成。</p>
-
-<p>然后从实用角度来说呢，首先把所有脚本都丢到 &lt;/body&gt; 之前是最佳实践，因为对于旧浏览器来说这是唯一的优化选择，此法可保证非脚本的其他一切元素能够以最快的速度得到加载和解析</p>
-
-<p><img src="http://lrun1124.github.io/img/jsbase2/defer&amp;async.jpg" /></p>
-
-<h4 id="动态dom操作">动态DOM操作</h4>
-
-<p>即利用动态DOM操作按需插入JS文件</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//延迟1000ms加载new.js
-window.onload = function(){
-	setTimeout(function(){
-		var head = document.getElementByTagName('head')[0];
-		var js = document.createElement('Script');
-		js.type = 'text/javascript';
-		js.src = 'new.js';
-		head.appendChlid(js); 
-	},1000);
-}
-</code></pre></div></div>
-
-<h4 id="分组最后加载js">分组最后加载JS</h4>
-
-<p>JS的引入如果放在head中，则页面加载前JS就会被加载，如果放在body中，则会按顺序加载，所以可以将JS分组，将加载过程中不需要的JS放在页面的底部，&lt;/body&gt;标签之前，然而这种方法偶尔会收到Google页面速度测试工具的“延迟加载javascript”警告，Google提供了一套推荐方案：</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//这些代码应被放置在&lt;/body&gt;标签前(接近HTML文件底部)
-&lt;script type="text/javascript"&gt;
-    function downloadJSAtOnload() {
-        var element = document.createElement("script");
-        element.src = "defer.js";
-        document.body.appendChild(element);
-    }
-    if (window.addEventListener)
-        window.addEventListener("load", downloadJSAtOnload, false);
-    else if (window.attachEvent)
-        window.attachEvent("onload", downloadJSAtOnload);
-    else window.onload = downloadJSAtOnload;
-&lt;/script&gt;
-</code></pre></div></div>
-
-<p>这段代码意思是等到整个文档加载完后，再加载外部文件“defer.js”。</p>
-
-<p>使用此段代码的步骤：</p>
-
-<ol>
-  <li>复制上面代码；</li>
-  <li>粘贴代码放置在&lt;/body&gt;标签前 (靠近HTML文件底部)；</li>
-  <li>修改“defer.js”为外部JS文件名；</li>
-  <li>确保文件路径是正确的。例如：如果仅输入“defer.js”，那么“defer.js”文件一定与HTML文件在同一文件夹下。</li>
-</ol>
-
-<ul>
-  <li>注意：这段代码直到文档加载完才会加载指定的外部js文件。因此，不应该把那些页面正常加载需要依赖的javascript代码放在这里。而应该将JavaScript代码分成两组。<strong>一组是因页面需要而立即加载的javascript代码，另外一组是在页面加载后进行操作的javascript代码(例如添加click事件或其他东西)</strong>。这些需等到页面加载后再执行的JavaScript代码，应放在一个外部文件，然后再引进来。</li>
-</ul>
-
-<h3 id="10">10</h3>
-
-<p>Ajax缓存问题</p>
-
-<p>Ajax能提高页面载入的速度主要的原因是通过Ajax减少了重复数据的载入，也就是说在载入数据的同时将数据缓存到内存中，一旦数据被加载其中，只要我们没有刷新页面，这些数据就会一直被缓存在内存中，当我们提交的URL与历史的URL一致时，就不需要提交给服务器，也就是不需要从服务器上面去获取数据，虽然这样降低了服务器的负载提高了用户的体验，但是我们不能获取最新的数据。为了保证我们读取的信息都是最新的，我们就需要禁止缓存功能。</p>
-
-<p>解决方案有如下几种：</p>
-
-<ol>
-  <li>在ajax发送请求前加上 anyAjaxObj.setRequestHeader(“If-Modified-Since”,”0”)。</li>
-  <li>在ajax发送请求前加上 anyAjaxObj.setRequestHeader(“Cache-Control”,”no-cache”)。</li>
-  <li>在URL后面加上一个随机数： “fresh=” + Math.random();。</li>
-  <li>在URL后面加上时间戳：”nowtime=” + new Date().getTime();。</li>
-</ol>
-
-<h3 id="11">11</h3>
-
-<p>GET和POST的区别，何时使用POST？</p>
-
-<p>GET：一般用于信息获取，使用URL传递参数，对所发送信息的数量也有限制，一般在2000个字符</p>
-
-<p>POST：一般用于修改服务器上的资源，对所发送的信息没有限制。</p>
-
-<p>GET方式需要使用Request.QueryString来取得变量的值，而POST方式通过Request.Form来获取变量的值，</p>
-
-<p>也就是说Get是通过地址栏来传值，而Post是通过提交表单来传值。</p>
-
-<p>然而，在以下情况中，请使用 POST 请求：</p>
-
-<p>无法使用缓存文件（更新服务器上的文件或数据库）</p>
-
-<p>向服务器发送大量数据（POST 没有数据量限制）</p>
-
-<p>发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠</p>
 
 
                 <hr>
@@ -438,18 +272,19 @@ window.onload = function(){
                 </style>
                 <div class="ds-share"
                     style="text-align: right"
-                    data-thread-key="/2017/11/24/JavaScript Note(2)"
-                    data-title="JavaScrip Note(2)"
-                    data-url="http://localhost:4000/lrun1124.github.io/2017/11/24/JavaScript-Note(2)/"
-                    data-images="http://localhost:4000/lrun1124.github.io/img/jsbase2/jsbase2-bg.jpg"
-                    data-content="1
+                    data-thread-key="/2019/10/07/Summary"
+                    data-title="Summary"
+                    data-url="http://localhost:4000/lrun1124.github.io/2019/10/07/Summary/"
+                    data-images="http://localhost:4000/lrun1124.github.io/img/ArrayUnique-bg.jpg"
+                    data-content="
+  “Move on. ”
 
-This的理解
 
-
-  this总是指向函数的直接调用者（而非间接调用者）,即此次调用的所有者
-  如果有new对象，this指向new出来的对象
-... | Run Note " >
+JS
+1. JS基本数据类型及存储结构
+2. null, undefined区d别
+3. JS原型，原型链
+4. JS作... | Run Note " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -469,13 +304,9 @@ This的理解
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/lrun1124.github.io/2017/11/07/JavaScript-Pritice/" data-toggle="tooltip" data-placement="top" title="JavaScrip Practice">&larr; Previous Post</a>
+                        <a href="/lrun1124.github.io/2019/09/04/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" data-toggle="tooltip" data-placement="top" title="性能优化">&larr; Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/lrun1124.github.io/2017/11/29/JavaScript-Note(3)/" data-toggle="tooltip" data-placement="top" title="JavaScrip Note(3)">Next Post &rarr;</a>
-                    </li>
                     
                 </ul>
 
@@ -484,9 +315,9 @@ This的理解
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="/2017/11/24/JavaScript Note(2)"
-                        data-title="JavaScrip Note(2)"
-                        data-url="http://localhost:4000/lrun1124.github.io/2017/11/24/JavaScript-Note(2)/" >
+                        data-thread-key="/2019/10/07/Summary"
+                        data-title="Summary"
+                        data-url="http://localhost:4000/lrun1124.github.io/2019/10/07/Summary/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->

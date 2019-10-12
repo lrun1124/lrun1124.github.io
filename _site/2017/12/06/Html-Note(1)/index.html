@@ -374,7 +374,12 @@ label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用�
 
 <p>如何实现浏览器内多个标签页之间的通信?</p>
 
-<p>调用localstorge、cookies等本地存储方式</p>
+<p>WebSocket、SharedWorker；
+也可以调用localstorge、cookies等本地存储方式；</p>
+
+<p>localstorge另一个浏览上下文里被添加、修改或删除时，它都会触发一个事件，
+我们通过监听事件，控制它的值来进行页面信息通信；
+注意quirks：Safari 在无痕模式下设置localstorge值时会抛出 QuotaExceededError 的异常；</p>
 
 
                 <hr>
@@ -455,7 +460,7 @@ Doctype作用？标准模式与兼容模式各有什么区别?
                             
         				
                             
-                				<a href="/lrun1124.github.io/tags/#JavaScript" title="JavaScript" rel="10">
+                				<a href="/lrun1124.github.io/tags/#JavaScript" title="JavaScript" rel="12">
                                     JavaScript
                                 </a>
                             

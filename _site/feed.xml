@@ -5,9 +5,213 @@
     <description></description>
     <link>http://localhost:4000/lrun1124.github.io/</link>
     <atom:link href="http://localhost:4000/lrun1124.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 05 Sep 2019 11:06:19 +0800</pubDate>
-    <lastBuildDate>Thu, 05 Sep 2019 11:06:19 +0800</lastBuildDate>
+    <pubDate>Sat, 12 Oct 2019 16:27:53 +0800</pubDate>
+    <lastBuildDate>Sat, 12 Oct 2019 16:27:53 +0800</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>Summary</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;“Move on. ”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;js&quot;&gt;JS&lt;/h3&gt;
+&lt;h4 id=&quot;1-js基本数据类型及存储结构&quot;&gt;1. JS基本数据类型及存储结构&lt;/h4&gt;
+&lt;h4 id=&quot;2-null-undefined区d别&quot;&gt;2. null, undefined区d别&lt;/h4&gt;
+&lt;h4 id=&quot;3-js原型原型链&quot;&gt;3. JS原型，原型链&lt;/h4&gt;
+&lt;h4 id=&quot;4-js作用域作用域链&quot;&gt;4. JS作用域，作用域链&lt;/h4&gt;
+&lt;h4 id=&quot;5-闭包&quot;&gt;5. 闭包&lt;/h4&gt;
+&lt;h4 id=&quot;6-请简述javascript中的this&quot;&gt;6. 请简述&lt;code class=&quot;highlighter-rouge&quot;&gt;JavaScript&lt;/code&gt;中的&lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;。&lt;/h4&gt;
+
+&lt;p&gt;JS 中的&lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;是一个相对复杂的概念，不是简单几句能解释清楚的。粗略地讲，函数的调用方式决定了&lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;的值。我阅读了网上很多关于&lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;的文章，&lt;a href=&quot;https://medium.com/@arnav_aggarwal&quot;&gt;Arnav Aggrawal&lt;/a&gt; 写的比较清楚。&lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;取值符合以下规则：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;在调用函数时使用&lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt;关键字，函数内的&lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;是一个全新的对象。&lt;/li&gt;
+  &lt;li&gt;如果&lt;code class=&quot;highlighter-rouge&quot;&gt;apply&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;call&lt;/code&gt;或&lt;code class=&quot;highlighter-rouge&quot;&gt;bind&lt;/code&gt;方法用于调用、创建一个函数，函数内的 this 就是作为参数传入这些方法的对象。&lt;/li&gt;
+  &lt;li&gt;当函数作为对象里的方法被调用时，函数内的&lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;是调用该函数的对象。比如当&lt;code class=&quot;highlighter-rouge&quot;&gt;obj.method()&lt;/code&gt;被调用时，函数内的 this 将绑定到&lt;code class=&quot;highlighter-rouge&quot;&gt;obj&lt;/code&gt;对象。&lt;/li&gt;
+  &lt;li&gt;如果调用函数不符合上述规则，那么&lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;的值指向全局对象（global object）。浏览器环境下&lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;的值指向&lt;code class=&quot;highlighter-rouge&quot;&gt;window&lt;/code&gt;对象，但是在严格模式下(&lt;code class=&quot;highlighter-rouge&quot;&gt;'use strict'&lt;/code&gt;)，&lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;的值为&lt;code class=&quot;highlighter-rouge&quot;&gt;undefined&lt;/code&gt;。&lt;/li&gt;
+  &lt;li&gt;如果符合上述多个规则，则较高的规则（1 号最高，4 号最低）将决定&lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;的值。&lt;/li&gt;
+  &lt;li&gt;如果该函数是 ES2015 中的箭头函数，将忽略上面的所有规则，&lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;被设置为它被创建时的上下文。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;7-new的过程&quot;&gt;7. New的过程&lt;/h4&gt;
+&lt;h4 id=&quot;8-不会查找原型的函数&quot;&gt;8. 不会查找原型的函数&lt;/h4&gt;
+&lt;h4 id=&quot;9-for-in和for-of&quot;&gt;9. for in和for of&lt;/h4&gt;
+&lt;h4 id=&quot;10-ajax流程手动写ajax缓存&quot;&gt;10. Ajax流程，手动写，Ajax缓存&lt;/h4&gt;
+&lt;h4 id=&quot;11-延迟加载deferasync动态dom分组加载&quot;&gt;11. 延迟加载，defer，async，动态dom，分组加载&lt;/h4&gt;
+&lt;h4 id=&quot;12-get和post&quot;&gt;12. get和post&lt;/h4&gt;
+&lt;h4 id=&quot;13-同步和异步&quot;&gt;13. 同步和异步&lt;/h4&gt;
+&lt;h4 id=&quot;14-跨域问题&quot;&gt;14. 跨域问题&lt;/h4&gt;
+&lt;h4 id=&quot;15-前端模块化amdcmd&quot;&gt;15. 前端模块化，AMD/CMD&lt;/h4&gt;
+&lt;h4 id=&quot;16-内存泄漏&quot;&gt;16. 内存泄漏&lt;/h4&gt;
+&lt;h4 id=&quot;17---objectis区别&quot;&gt;17. ==, ===, Object.is()区别&lt;/h4&gt;
+&lt;h4 id=&quot;18-前端设计模式单例单体工厂策略装饰者适配器观察者门面&quot;&gt;18. 前端设计模式，单例，单体，工厂，策略，装饰者，适配器，观察者，门面&lt;/h4&gt;
+&lt;h4 id=&quot;19-优雅降级和渐进增强&quot;&gt;19. 优雅降级和渐进增强&lt;/h4&gt;
+&lt;h4 id=&quot;20-node的优缺点&quot;&gt;20. Node的优缺点&lt;/h4&gt;
+&lt;h4 id=&quot;21-gcv8-gc机制&quot;&gt;21. GC，v8 GC机制&lt;/h4&gt;
+&lt;h4 id=&quot;22-cookie和session&quot;&gt;22. Cookie和Session&lt;/h4&gt;
+&lt;h4 id=&quot;23-javascript继承的6种方法&quot;&gt;23. javascript继承的6种方法&lt;/h4&gt;
+&lt;h4 id=&quot;24-mvc和mvvm的理解&quot;&gt;24. MVC和MVVM的理解&lt;/h4&gt;
+&lt;h4 id=&quot;25&quot;&gt;25.&lt;/h4&gt;
+
+&lt;h3 id=&quot;html&quot;&gt;html&lt;/h3&gt;
+&lt;h4 id=&quot;1-事件冒泡和捕获&quot;&gt;1. 事件冒泡和捕获&lt;/h4&gt;
+&lt;h4 id=&quot;2-window对象和document对象&quot;&gt;2. window对象和document对象&lt;/h4&gt;
+&lt;h4 id=&quot;3-页面编码和被请求的资源编码如果不一致&quot;&gt;3. 页面编码和被请求的资源编码如果不一致&lt;/h4&gt;
+&lt;h4 id=&quot;4-dom操作&quot;&gt;4. DOM操作&lt;/h4&gt;
+&lt;h4 id=&quot;5-把-script-标签-放在页面的最底部的body封闭之前-和封闭之后有什么区别&quot;&gt;5. 把 Script 标签 放在页面的最底部的body封闭之前 和封闭之后有什么区别？&lt;/h4&gt;
+&lt;h4 id=&quot;6-给一个dom同时绑定两个点击事件一个用捕获一个用冒泡会执行几次事件&quot;&gt;6. 给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件？&lt;/h4&gt;
+&lt;h4 id=&quot;7-http状态码&quot;&gt;7. http状态码&lt;/h4&gt;
+&lt;h4 id=&quot;8-doctype作用&quot;&gt;8. Doctype作用&lt;/h4&gt;
+&lt;h4 id=&quot;9-标准模式与兼容模式有什么区别&quot;&gt;9. 标准模式与兼容模式有什么区别&lt;/h4&gt;
+&lt;h4 id=&quot;10-html5-为什么只需要写-doctype-html&quot;&gt;10. HTML5 为什么只需要写 &amp;lt;!DOCTYPE HTML&amp;gt;&lt;/h4&gt;
+&lt;h4 id=&quot;11-行内元素有哪些块级元素有哪些-空void元素有那些&quot;&gt;11. 行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？&lt;/h4&gt;
+&lt;h4 id=&quot;12-使用link和import区别&quot;&gt;12. 使用link和@import区别&lt;/h4&gt;
+&lt;h4 id=&quot;13-浏览器内核的理解&quot;&gt;13. 浏览器内核的理解&lt;/h4&gt;
+&lt;h4 id=&quot;14-常见的浏览器内核&quot;&gt;14. 常见的浏览器内核&lt;/h4&gt;
+&lt;h4 id=&quot;15-html5有哪些新特性如何处理html5新标签的浏览器兼容问题如何区分-html-和-html5&quot;&gt;15. html5有哪些新特性？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？&lt;/h4&gt;
+&lt;h4 id=&quot;16-xmlsgmlhtmlxhtmlhtml5&quot;&gt;16. XML,SGML,HTML,XHTML,HTML5&lt;/h4&gt;
+&lt;h4 id=&quot;17-html语义化&quot;&gt;17. HTML语义化&lt;/h4&gt;
+&lt;h4 id=&quot;18-cookie-loaclstorage-sessionstorage&quot;&gt;18. cookie, loaclStorage, sessionStorage&lt;/h4&gt;
+&lt;h4 id=&quot;19-浏览器是怎么对html5的离线储存资源进行管理和加载的呢&quot;&gt;19. 浏览器是怎么对HTML5的离线储存资源进行管理和加载的呢？&lt;/h4&gt;
+&lt;h4 id=&quot;20-iframe缺点&quot;&gt;20. iframe缺点&lt;/h4&gt;
+&lt;h4 id=&quot;21-label的作用是什么是怎么用的&quot;&gt;21. Label的作用是什么？是怎么用的？&lt;/h4&gt;
+&lt;h4 id=&quot;22-title与h1的区别b与strong的区别i与em的区别&quot;&gt;22. title与h1的区别、b与strong的区别、i与em的区别？&lt;/h4&gt;
+&lt;h4 id=&quot;23-如何实现浏览器内多个标签页之间的通信&quot;&gt;23. 如何实现浏览器内多个标签页之间的通信?&lt;/h4&gt;
+&lt;h4 id=&quot;24-javascript是采用值传递还是引用传递的并解释一下原理&quot;&gt;24. JavaScript是采用值传递还是引用传递的，并解释一下原理&lt;/h4&gt;
+
+&lt;h3 id=&quot;css&quot;&gt;css&lt;/h3&gt;
+&lt;h4 id=&quot;1-css的盒子模型低版本ie的盒子模型有什么不同的&quot;&gt;1. CSS的盒子模型，低版本IE的盒子模型有什么不同的&lt;/h4&gt;
+&lt;h4 id=&quot;2-css选择器&quot;&gt;2. CSS选择器&lt;/h4&gt;
+&lt;h4 id=&quot;3-display的值及作用&quot;&gt;3. display的值及作用&lt;/h4&gt;
+&lt;h4 id=&quot;4-position属性定位原点&quot;&gt;4. position属性（定位原点）&lt;/h4&gt;
+&lt;h4 id=&quot;5-居中div-水平居中水平垂直居中&quot;&gt;5. 居中div, 水平居中，水平垂直居中&lt;/h4&gt;
+&lt;h4 id=&quot;6-flexbox&quot;&gt;6. Flexbox&lt;/h4&gt;
+&lt;h4 id=&quot;7-用纯css创建三角形&quot;&gt;7. 用纯css创建三角形&lt;/h4&gt;
+&lt;h4 id=&quot;8-清除浮动&quot;&gt;8. 清除浮动&lt;/h4&gt;
+&lt;h4 id=&quot;9-css优化提高性能的方式&quot;&gt;9. CSS优化、提高性能的方式&lt;/h4&gt;
+&lt;h4 id=&quot;10&quot;&gt;10.&lt;/h4&gt;
+
+&lt;h3 id=&quot;性能优化&quot;&gt;性能优化&lt;/h3&gt;
+&lt;h4 id=&quot;1-一个页面从输入-url-到页面加载显示完成这个过程中都发生了什么&quot;&gt;1. 一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？&lt;/h4&gt;
+&lt;h4 id=&quot;2-性能优化策略-核心html层面布局-request-css-服务器端-js&quot;&gt;2. 性能优化策略, 核心，html层面布局， request, css, 服务器端, JS&lt;/h4&gt;
+
+&lt;h3 id=&quot;other&quot;&gt;other&lt;/h3&gt;
+&lt;h4 id=&quot;1-对称非对称加密公钥和私钥&quot;&gt;1. 对称/非对称加密，公钥和私钥&lt;/h4&gt;
+&lt;h4 id=&quot;2-xml和json的区别&quot;&gt;2. XML和JSON的区别？&lt;/h4&gt;
+&lt;h4 id=&quot;3-json了解&quot;&gt;3. JSON了解&lt;/h4&gt;
+&lt;h4 id=&quot;4-web安全及防护原理-sql注入-xss-csrf&quot;&gt;4. Web安全及防护原理, sql注入, XSS, csrf&lt;/h4&gt;
+
+&lt;h3 id=&quot;code&quot;&gt;code&lt;/h3&gt;
+
+</description>
+        <pubDate>Mon, 07 Oct 2019 20:00:00 +0800</pubDate>
+        <link>http://localhost:4000/lrun1124.github.io/2019/10/07/Summary/</link>
+        <guid isPermaLink="true">http://localhost:4000/lrun1124.github.io/2019/10/07/Summary/</guid>
+        
+        <category>JavaScript</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>性能优化</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;“Move on. ”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;核心：减少JS下载时间&lt;/p&gt;
+
+&lt;h2 id=&quot;dsn-prefetchpreload-prefetch&quot;&gt;dsn-prefetch，preload, prefetch&lt;/h2&gt;
+
+&lt;p&gt;dsn-prefetch: 提前解析dsn&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;link&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;rel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;dns-prefetch&quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;//example.com&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;preload: 浏览器遇到preload，立刻开始下载js，放在内存里，但并不会执行，只有遇到script标签才会执行&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;link&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;rel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;preload&quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/main.js&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;script&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;prefetch: 浏览器空闲时候加载，比如下一页&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;link&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;rel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;preload&quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/main.js&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;script&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;比较好的架构&quot;&gt;比较好的架构&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;charset=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;utf-8&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Faster&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;dns-prefetch&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;//cdn.com/&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;preload&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;//js.cdn.com/currentPage-part1.js&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;as=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;script&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;preload&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;//js.cdn.com/currentPage-part2.js&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;as=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;script&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;preload&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;//js.cdn.com/currentPage-part3.js&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;as=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;script&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;prefetch&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;//js.cdn.com/prefetch.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;//js.cdn.com/currentPage-part1.js&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defer&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;//js.cdn.com/currentPage-part2.js&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defer&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;//js.cdn.com/currentPage-part3.js&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defer&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;首先，Parser在遇到head中preload时开始下载JS，读到script标签的时候，如果已经下载完了，直接按顺序执行之。如果没下载完，则会等到下载完再执行。这样就可以在刚进入页面时开始非阻塞的下载JS代码了。&lt;/p&gt;
+
+&lt;p&gt;其次，页面会在空闲时，加载prefetch的JS，如果之后页面发生跳转，跳转的目标页面引入了prefetch.js，浏览器会直接从disk缓存中读取执行。&lt;/p&gt;
+
+&lt;p&gt;将script标签依然放在&amp;lt;/body&amp;gt;之前，并增加defer标签，确保老浏览器兼容，并在所有DOM元素解析完成之后执行其中的代码。&lt;/p&gt;
+
+&lt;h2 id=&quot;优化策略&quot;&gt;优化策略&lt;/h2&gt;
+
+&lt;h3 id=&quot;html层面布局&quot;&gt;html层面布局&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;使用dsn-prefetch, dsn缓存减少dsn获取时间&lt;/li&gt;
+  &lt;li&gt;preload, prefetch, async, defer优化js文件加载和执行&lt;/li&gt;
+  &lt;li&gt;模块化JS打包&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;request层面&quot;&gt;request层面&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;减少http请求次数&lt;/li&gt;
+  &lt;li&gt;http Keep-alive 处理好timeout&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;css端&quot;&gt;css端&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;尽量使用class修改，减少js直接修改css&lt;/li&gt;
+  &lt;li&gt;使用transform操作动画&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;服务器端&quot;&gt;服务器端&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;图片服务器，图片压缩，webP，wekpack图片压缩&lt;/li&gt;
+  &lt;li&gt;Ngnix&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;js端&quot;&gt;JS端&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;减少回流代码，减少dom直接操作，读取引起回流属性&lt;/li&gt;
+  &lt;li&gt;用requestAnimationFrame加强网页的流畅性&lt;/li&gt;
+  &lt;li&gt;使用transform操作动画&lt;/li&gt;
+  &lt;li&gt;必要时使用display:none再修改样式&lt;/li&gt;
+  &lt;li&gt;多次append可以先放到一个临时页面再插入页面&lt;/li&gt;
+  &lt;li&gt;localstorge和sessionstorage&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Wed, 04 Sep 2019 20:00:00 +0800</pubDate>
+        <link>http://localhost:4000/lrun1124.github.io/2019/09/04/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</link>
+        <guid isPermaLink="true">http://localhost:4000/lrun1124.github.io/2019/09/04/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</guid>
+        
+        <category>JavaScript</category>
+        
+        
+      </item>
     
       <item>
         <title>V8 GC机制</title>
@@ -944,7 +1148,12 @@ label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用�
 
 &lt;p&gt;如何实现浏览器内多个标签页之间的通信?&lt;/p&gt;
 
-&lt;p&gt;调用localstorge、cookies等本地存储方式&lt;/p&gt;
+&lt;p&gt;WebSocket、SharedWorker；
+也可以调用localstorge、cookies等本地存储方式；&lt;/p&gt;
+
+&lt;p&gt;localstorge另一个浏览上下文里被添加、修改或删除时，它都会触发一个事件，
+我们通过监听事件，控制它的值来进行页面信息通信；
+注意quirks：Safari 在无痕模式下设置localstorge值时会抛出 QuotaExceededError 的异常；&lt;/p&gt;
 </description>
         <pubDate>Wed, 06 Dec 2017 19:00:00 +0800</pubDate>
         <link>http://localhost:4000/lrun1124.github.io/2017/12/06/Html-Note(1)/</link>
@@ -1626,573 +1835,6 @@ Cat.prototype.constructor = Cat; // 需要修复下构造函数
         <pubDate>Mon, 04 Dec 2017 19:00:00 +0800</pubDate>
         <link>http://localhost:4000/lrun1124.github.io/2017/12/04/JaveScript-Note(4)/</link>
         <guid isPermaLink="true">http://localhost:4000/lrun1124.github.io/2017/12/04/JaveScript-Note(4)/</guid>
-        
-        <category>JavaScript</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>JavaScrip Note(3)</title>
-        <description>&lt;h3 id=&quot;1&quot;&gt;1&lt;/h3&gt;
-
-&lt;p&gt;同步与异步&lt;/p&gt;
-
-&lt;p&gt;同步的概念是来自OS中同步的概念：不同的进程为了完成某项任务在执行先后顺序上进行协作，通过唤醒、阻塞等方式调节。&lt;/p&gt;
-
-&lt;p&gt;对于Web而言：&lt;br /&gt;
-同步: 访问服务器，服务器回应，页面刷新，用户操作，整个过程是串行的方式进行的，影响用户操作&lt;br /&gt;
-异步: 访问服务器，用户继续操作，服务器回应，页面更新，用户操作，整个过程不发生整页刷新，不影响用户操作&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;2&quot;&gt;2&lt;/h3&gt;
-
-&lt;p&gt;跨域问题&lt;/p&gt;
-
-&lt;h4 id=&quot;同源策略&quot;&gt;同源策略&lt;/h4&gt;
-
-&lt;p&gt;同源策略/SOP（Same origin policy）是一种约定，由Netscape公司1995年引入浏览器，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，浏览器很容易受到XSS、CSFR等攻击。所谓同源是指”协议+域名+端口”三者相同，即便两个不同的域名指向同一个ip地址，也非同源。&lt;/p&gt;
-
-&lt;h4 id=&quot;jsonp&quot;&gt;JSONP&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;由于同源政策的存在，Ajax直接请求普通文件存在跨域无权限访问的问题，无论是静态页面、动态网页、web服务，只要是跨域请求，一律不准；另一方面，通常为了减轻web服务器的负载，我们把js、css，img等静态资源分离到另一台独立域名的服务器上，在html页面中再通过相应的标签从不同域名下加载静态资源，这些拥有”src”这个属性的标签都拥有跨域的能力，比如&amp;lt;script&amp;gt;、&amp;lt;img&amp;gt;、&amp;lt;iframe&amp;gt;等标签。&lt;/li&gt;
-  &lt;li&gt;JSONP正是利用这一点，web客户端通过与调用脚本一模一样的方式来调用跨域服务器上的资源，服务器端则动态生成JSON，把客户端需要的数据装入进去。&lt;/li&gt;
-  &lt;li&gt;其缺点是只能实现get一种请求。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &amp;lt;script&amp;gt;
- //原生实现
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-
-    // 传参并指定回调执行函数为onBack
-    script.src = 'http://www.domain2.com:8080/login?user=admin&amp;amp;callback=onBack';
-    document.head.appendChild(script);
-
-    // 回调执行函数
-    function onBack(res) {
-        alert(JSON.stringify(res));
-    }
- &amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;postmessage&quot;&gt;postMessage&lt;/h4&gt;
-
-&lt;p&gt;postMessage是HTML5 XMLHttpRequest Level 2中的API，且是为数不多可以跨域操作的window属性之一，它可用于解决以下方面的问题：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;页面和其打开的新窗口的数据传递&lt;/li&gt;
-  &lt;li&gt;多窗口之间消息传递&lt;/li&gt;
-  &lt;li&gt;页面与嵌套的iframe消息传递&lt;/li&gt;
-  &lt;li&gt;上面三个场景的跨域数据传递&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;用法：postMessage(data,origin)方法接受两个参数&lt;/p&gt;
-
-&lt;p&gt;data： html5规范支持任意基本类型或可复制的对象，但部分浏览器只支持字符串，所以传参时最好用JSON.stringify()序列化。&lt;br /&gt;
-origin： 协议+主机+端口号，也可以设置为”*“，表示可以传递给任意窗口，如果要指定和当前窗口同源的话设置为”/”。&lt;/p&gt;
-
-&lt;p&gt;1.）a.html：(http://www.domain1.com/a.html)&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;iframe id=&quot;iframe&quot; src=&quot;http://www.domain2.com/b.html&quot; style=&quot;display:none;&quot;&amp;gt;&amp;lt;/iframe&amp;gt;
-&amp;lt;script&amp;gt;       
-    var iframe = document.getElementById('iframe');
-    iframe.onload = function() {
-        var data = {
-            name: 'aym'
-        };
-        // 向domain2传送跨域数据
-        iframe.contentWindow.postMessage(JSON.stringify(data), 'http://www.domain2.com');
-    };
-
-    // 接受domain2返回数据
-    window.addEventListener('message', function(e) {
-        alert('data from domain2 ---&amp;gt; ' + e.data);
-    }, false);
-&amp;lt;/script
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;2.）b.html：(http://www.domain2.com/b.html)&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;script&amp;gt;
-    // 接收domain1的数据
-    window.addEventListener('message', function(e) {
-        alert('data from domain1 ---&amp;gt; ' + e.data);
-
-        var data = JSON.parse(e.data);
-        if (data) {
-            data.number = 16;
-
-            // 处理后再发回domain1
-            window.parent.postMessage(JSON.stringify(data), 'http://www.domain1.com');
-        }
-    }, false);
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;corscross-orign-resource-share跨域资源共享&quot;&gt;CORS(Cross orign resource share)跨域资源共享&lt;/h4&gt;
-
-&lt;p&gt;服务器端设置Access-Control-Allow-Origin,前端无须设置&lt;/p&gt;
-
-&lt;p&gt;“*”号表示允许任何域向我们的服务端提交请求：Access-Control-Allow-Origin：*&lt;/p&gt;
-
-&lt;p&gt;也可以设置指定的域名，如域名 http://www.test2.com ，那么就允许来自这个域名的请求：Access-Control-Allow-Origin：http://www.test2.com&lt;/p&gt;
-
-&lt;p&gt;若要带cookie请求：前后端都需要设置&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var xhr = new XMLHttpRequest(); // IE8/9需用window.XDomainRequest兼容
-
-// 前端设置是否带cookie
-xhr.withCredentials = true;
-
-xhr.open('post', 'http://www.domain2.com:8080/login', true);
-xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-xhr.send('user=admin');
-
-xhr.onreadystatechange = function() {
-    if (xhr.readyState == 4 &amp;amp;&amp;amp; xhr.status == 200) {
-        alert(xhr.responseText);
-    }
-};
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;3&quot;&gt;3&lt;/h3&gt;
-
-&lt;p&gt;页面编码和被请求的资源编码如果不一致如何处理？&lt;/p&gt;
-
-&lt;p&gt;设置charset&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;script src=&quot;http://www.xxx.com/test.js&quot; charset=&quot;utf-8&quot;&amp;gt;&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;//todo&lt;/p&gt;
-
-&lt;h3 id=&quot;4&quot;&gt;4&lt;/h3&gt;
-
-&lt;p&gt;前端模块化加载&lt;/p&gt;
-
-&lt;p&gt;知识点1：AMD(Asynchronous Module Definition)/CMD(Common Module Definition)/CommonJs是JS模块化开发的标准，目前对应的实现是RequireJs/SeaJs/nodeJs.&lt;/p&gt;
-
-&lt;p&gt;知识点2：CommonJs主要针对服务端，AMD/CMD主要针对浏览器端，所以最容易混淆的是AMD/CMD。（顺便提一下，针对服务器端和针对浏览器端有什么本质的区别呢？服务器端一般采用同步加载文件，也就是说需要某个模块，服务器端便停下来，等待它加载再执行。这里如果有其他后端语言，如java，经验的‘玩家’应该更容易理解。而浏览器端要保证效率，需要采用异步加载，这就需要一个预处理，提前将所需要的模块文件并行加载好。）&lt;/p&gt;
-
-&lt;p&gt;知识点3 : AMD/CMD区别，虽然都是并行加载js文件，但还是有所区别，AMD是预加载，在并行加载js文件同时，还会解析执行该模块（因为还需要执行，所以在加载某个模块前，这个模块的依赖模块需要先加载完成）；而CMD是懒加载，虽然会一开始就并行加载js文件，但是不会执行，而是在需要的时候才执行。&lt;/p&gt;
-
-&lt;p&gt;知识点4：AMD/CMD的优缺点.一个的优点就是另一个的缺点， 可以对照浏览。&lt;/p&gt;
-
-&lt;p&gt;AMD优点：加载快速，尤其遇到多个大文件，因为并行解析，所以同一时间可以解析多个文件。&lt;br /&gt;
-AMD缺点：并行加载，异步处理，加载顺序不一定，可能会造成一些困扰，甚至为程序埋下大坑。&lt;/p&gt;
-
-&lt;p&gt;CMD优点：因为只有在使用的时候才会解析执行js文件，因此，每个JS文件的执行顺序在代码中是有体现的，是可控的。&lt;br /&gt;
-CMD缺点：执行等待时间会叠加。因为每个文件执行时是同步执行（串行执行），因此时间是所有文件解析执行时间之和，尤其在文件较多较大时，这种缺点尤为明显。&lt;/p&gt;
-
-&lt;p&gt;知识点5：如何使用？CommonJs的话，因为nodeJs就是它的实现，所以使用node就行，也不用引入其他包。AMD则是通过&amp;lt;script&amp;gt;标签引入RequireJs，CMD则是引入SeaJs。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; // CMD
- define(function(require, exports, module) {
-     var a = require('./a')
-     a.doSomething()
-     // 此处略去 100 行
-     var b = require('./b') // 依赖可以就近书写
-     b.doSomething()
-     // ...
- })
-
- // AMD 默认推荐
- define(['./a', './b'], function(a, b) { // 依赖必须一开始就写好
-     a.doSomething()
-     // 此处略去 100 行
-     b.doSomething()
-     // ...
- })
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;5&quot;&gt;5&lt;/h3&gt;
-
-&lt;p&gt;DOM操作&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//创建
-createElement() //创建元素
-createDocumentFragment()  //创建DOM片段
-createTextNode() //创建文本节点
-
-//操作
-appendChild() //添加
-removeChild() //删除
-replaceChild() //替换
-insertbefore() //在已有节点前插入新节点
-
-//查找
-getElementsById()
-getElementsByName() //通过元素的Name属性的值(IE容错能力较强，会得到一个数组，其中包括id等于name值的)
-getElementsByTag()
-getElementsByClass()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;6&quot;&gt;6&lt;/h3&gt;
-
-&lt;p&gt;call和apply&lt;/p&gt;
-
-&lt;p&gt;foo.call(this, arg1,arg2,arg3) == foo.apply(this, arguments)==this.foo(arg1, arg2, arg3)&lt;/p&gt;
-
-&lt;h3 id=&quot;7&quot;&gt;7&lt;/h3&gt;
-
-&lt;p&gt;内存泄漏&lt;/p&gt;
-
-&lt;p&gt;内存泄漏时指一块被分配的内存既不能使用也不能回收。在JavaScipt出现主要有两种情况:&lt;/p&gt;
-
-&lt;p&gt;1.循环引用。含有DOM对象的循环引用将导致大部分当前主流浏览器内存泄露。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//a,b循环引用
-var a = new Object;
-var b = new Object;
-a.r = b;
-b.r = a;
-
-//a循环引用自己
-var a = new Object;
-a.r = a;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;2.闭包。&lt;/p&gt;
-
-&lt;p&gt;闭包可以导致内存泄漏是因为内部方法保持一个对外部方法变量的引用，所以尽管方法返回了内部方法还可以继续访问在外部方法中定义的私有变量，所以这些变量被一直保存在内存中。&lt;/p&gt;
-
-&lt;p&gt;3.setTimeout 的第一个参数使用字符串而非函数的话，会引发内存泄漏&lt;/p&gt;
-
-&lt;h3 id=&quot;8&quot;&gt;8&lt;/h3&gt;
-
-&lt;p&gt;如何判断当前脚本运行在浏览器还是node环境中&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;this === window ? 'browser' : 'node'
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;9&quot;&gt;9&lt;/h3&gt;
-
-&lt;p&gt;把 Script 标签 放在页面的最底部的body封闭之前 和封闭之后有什么区别？浏览器会如何解析它们？&lt;/p&gt;
-
-&lt;p&gt;放在body的封闭之前，将会阻塞其他资源的加载，放在body封闭之后，不会影响body内元素的加载&lt;/p&gt;
-
-&lt;h3 id=&quot;10&quot;&gt;10&lt;/h3&gt;
-
-&lt;p&gt;给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件，会先执行冒泡还是捕获？&lt;/p&gt;
-
-&lt;p&gt;绑定几个事件就执行几次，执行优先级:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;父元素的捕获事件&lt;/li&gt;
-  &lt;li&gt;目标元素的顺序事件，无视捕获还是冒泡&lt;/li&gt;
-  &lt;li&gt;父元素的冒泡事件&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;div class='d1'&amp;gt;
-    &amp;lt;div class='d2'&amp;gt;&amp;lt;/div&amp;gt;
-&amp;lt;/div&amp;gt;
-
-&amp;lt;script type='text/javascript'&amp;gt;
-var d1 = document.getElementsByClass('d1');
-var d2 = document.getElementsByClass('d2');
-     
-//父级绑定click事件冒泡
-d1.addEventListener('click', function(){ console.log('parent bubble') }, false);
-
-//子级绑定click事件冒泡
-d2.addEventListener('click', function(){ console.log('child bubble') }, false);
-
-//子级绑定click事件捕获
-d2.addEventListener('click', function(){ console.log('child capture') }, true);
-
-//父级绑定click事件捕获
-d1.addEventListener('click', function(){ console.log('parent capture') }, true);
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;console:&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;parent capture
-child bubble
-child capture
-parent bubble
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;11&quot;&gt;11&lt;/h3&gt;
-
-&lt;p&gt;==, ===, Object.is()区别&lt;/p&gt;
-
-&lt;p&gt;==会进行类型转换，===不会，Object.is 在三等号判等的基础上特别处理了 NaN 、-0 和 +0 ，保证 -0 和 +0 不再相同，但 Object.is(NaN, NaN) 会返回 true.&lt;/p&gt;
-</description>
-        <pubDate>Wed, 29 Nov 2017 19:00:00 +0800</pubDate>
-        <link>http://localhost:4000/lrun1124.github.io/2017/11/29/JavaScript-Note(3)/</link>
-        <guid isPermaLink="true">http://localhost:4000/lrun1124.github.io/2017/11/29/JavaScript-Note(3)/</guid>
-        
-        <category>JavaScript</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>JavaScrip Note(2)</title>
-        <description>&lt;h3 id=&quot;1&quot;&gt;1&lt;/h3&gt;
-
-&lt;p&gt;This的理解&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;this总是指向函数的直接调用者（而非间接调用者）,即此次调用的所有者&lt;/li&gt;
-  &lt;li&gt;如果有new对象，this指向new出来的对象&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;2&quot;&gt;2&lt;/h3&gt;
-
-&lt;p&gt;Eval&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Eval将传入的字符串当做JS代码执行, 应避免在不必要的情况下使用
-    &lt;ul&gt;
-      &lt;li&gt;运行Eval存在风险，有可能运行的是恶意代码&lt;/li&gt;
-      &lt;li&gt;运行效率差，因为会调用JS解析器&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;3&quot;&gt;3&lt;/h3&gt;
-
-&lt;p&gt;window对象和document对象&lt;/p&gt;
-
-&lt;p&gt;window对象是浏览器打开的窗口，顶层对象，document是window对象的一个属性，HTML文档对象的一个&lt;strong&gt;只读引用&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;4&quot;&gt;4&lt;/h3&gt;
-
-&lt;p&gt;IE和firefox事件机制&lt;/p&gt;
-
-&lt;p&gt;IE是事件冒泡，firefox同时支持事件冒泡和捕获&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;事件捕获: 越高层的元素越早接收到事件，由上到下&lt;/li&gt;
-  &lt;li&gt;事件冒泡: 越低层的元素越早接收到时间，由下到上&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;阻止冒泡事件的方法&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;xxx.click = function(e){
-	e.stopPropagation();
-	e.cancelBubble = true;//旧IE需要
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;5&quot;&gt;5&lt;/h3&gt;
-
-&lt;p&gt;new的过程&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;创建空对象；
-    &lt;ul&gt;
-      &lt;li&gt;var obj = {};&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;将创建出对象的原型链引用指向所要构造函数的原型；
-    &lt;ul&gt;
-      &lt;li&gt;obj.__proto__ = ClassA.prototype;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;调用构造函数，this指向新实例对象：
-    &lt;ul&gt;
-      &lt;li&gt;ClassA.call(obj);　　//{}.构造函数();&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;将初始化完毕的新对象地址，保存到等号左边的变量中&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;6&quot;&gt;6&lt;/h3&gt;
-
-&lt;p&gt;JS中不会查找原型的函数&lt;/p&gt;
-
-&lt;p&gt;hasOwnProperty判断对象中是否有指定名称的属性，object.hasOwnProperty(proName)，proName是属性名称的&lt;strong&gt;字符串值&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;7&quot;&gt;7&lt;/h3&gt;
-
-&lt;p&gt;JSON的了解&lt;/p&gt;
-
-&lt;p&gt;JSON（JavaScript Object Notation）是一种&lt;strong&gt;轻量级的数据交换格式&lt;/strong&gt;，是基于JavaScript的一个子集，具有&lt;strong&gt;数据格式简单，易于读写且占用带宽小&lt;/strong&gt;的优点。&lt;/p&gt;
-
-&lt;p&gt;字符串转对象：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;JSON.parse(str);
-str.parseJSON(str);
-eval('(' + str + ')')
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;对象转字符串：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;JSON.stringify(obj);
-obj.toJSONString(str);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;8&quot;&gt;8&lt;/h3&gt;
-
-&lt;p&gt;Ajax&lt;/p&gt;
-
-&lt;p&gt;Asynchronous JavaScript and Xml, 异步传输+JS+xml，异步的含义是在向服务器发送请求后，不必等待响应，可以先做其他的事，等相应返回可以根据设定的callback函数进行操作，于此同时，网页不会发生整页刷新，提高了效率和用户体验。&lt;/p&gt;
-
-&lt;p&gt;步骤：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;创建XMLHttpRequest对象&lt;/li&gt;
-  &lt;li&gt;设置响应HTTP请求状态变化的函数&lt;/li&gt;
-  &lt;li&gt;指定该对象的的方法、URL及验证信息&lt;/li&gt;
-  &lt;li&gt;发送HTTP请求&lt;/li&gt;
-  &lt;li&gt;获取异步调用返回的数据&lt;/li&gt;
-  &lt;li&gt;使用JavaScript和DOM实现局部刷新&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;button id=&quot;ajaxButton&quot; type =&quot;button&quot;&amp;gt;Make Ajax request&amp;lt;/button&amp;gt;
-
-&amp;lt;script&amp;gt;
-var httpRequest;
-document.getElementbyId('ajaxButton').addEventListener(&quot;click&quot;, sendRequest);
-
-function sendRequest(){
-	httpRequest = new XMLHttpRequest(); //1
-
-	if(httpRequest){
-		alert('Cannot creat XMLHttpRequest');
-		return;
-	}
-
-	httpRequest.onreadystatechange = stateFunction;//2
-	httpRequest.open('GET', 'test.html');//3
-	httpRequest.send();//4
-}
-
-function stateFunction(){
-	if(httpRequest.readyState === XMLHttpRequet.Done){
-		if(httpRequest.state === 200){
-			alert(httpRequest.responseText);//5
-			//... 6
-		}
-		else{
-			alert('The request has some problem');
-		}
-	}
-}
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h3 id=&quot;9&quot;&gt;9&lt;/h3&gt;
-
-&lt;p&gt;JS延迟加载方式&lt;/p&gt;
-
-&lt;p&gt;JS延迟加载就是在页面加载完成后再加载JS文件，有助于提高页面加载速度，提高用户体验。&lt;/p&gt;
-
-&lt;h4 id=&quot;使用defer或async属性&quot;&gt;使用defer或async属性&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;script src=&quot;test1.js&quot; defer=&quot;defer&quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;script src=&quot;test2.js&quot; async&amp;gt;&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;只适用于外部脚本，缺点是不能保证脚本会按顺序执行&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;当浏览器碰到 script 脚本的时候：&lt;/p&gt;
-
-&lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
-
-&lt;p&gt;没有 defer 或 async，浏览器会立即加载并执行指定的脚本，“立即”指的是在渲染该 script 标签之下的文档元素之前，也就是说不等待后续载入的文档元素，读到就加载并执行。&lt;/p&gt;
-
-&lt;script async=&quot;&quot; src=&quot;script.js&quot;&gt;&lt;/script&gt;
-
-&lt;p&gt;有 async，加载和渲染后续文档元素的过程将和 script.js 的加载与执行并行进行（异步）。&lt;/p&gt;
-
-&lt;script defer=&quot;&quot; src=&quot;myscript.js&quot;&gt;&lt;/script&gt;
-
-&lt;p&gt;有 defer，加载后续文档元素的过程将和 script.js 的加载并行进行（异步），但是 script.js 的执行要在所有元素解析完成之后，DOMContentLoaded 事件触发之前完成。&lt;/p&gt;
-
-&lt;p&gt;然后从实用角度来说呢，首先把所有脚本都丢到 &amp;lt;/body&amp;gt; 之前是最佳实践，因为对于旧浏览器来说这是唯一的优化选择，此法可保证非脚本的其他一切元素能够以最快的速度得到加载和解析&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/jsbase2/defer&amp;amp;async.jpg&quot; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;动态dom操作&quot;&gt;动态DOM操作&lt;/h4&gt;
-
-&lt;p&gt;即利用动态DOM操作按需插入JS文件&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//延迟1000ms加载new.js
-window.onload = function(){
-	setTimeout(function(){
-		var head = document.getElementByTagName('head')[0];
-		var js = document.createElement('Script');
-		js.type = 'text/javascript';
-		js.src = 'new.js';
-		head.appendChlid(js); 
-	},1000);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;分组最后加载js&quot;&gt;分组最后加载JS&lt;/h4&gt;
-
-&lt;p&gt;JS的引入如果放在head中，则页面加载前JS就会被加载，如果放在body中，则会按顺序加载，所以可以将JS分组，将加载过程中不需要的JS放在页面的底部，&amp;lt;/body&amp;gt;标签之前，然而这种方法偶尔会收到Google页面速度测试工具的“延迟加载javascript”警告，Google提供了一套推荐方案：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//这些代码应被放置在&amp;lt;/body&amp;gt;标签前(接近HTML文件底部)
-&amp;lt;script type=&quot;text/javascript&quot;&amp;gt;
-    function downloadJSAtOnload() {
-        var element = document.createElement(&quot;script&quot;);
-        element.src = &quot;defer.js&quot;;
-        document.body.appendChild(element);
-    }
-    if (window.addEventListener)
-        window.addEventListener(&quot;load&quot;, downloadJSAtOnload, false);
-    else if (window.attachEvent)
-        window.attachEvent(&quot;onload&quot;, downloadJSAtOnload);
-    else window.onload = downloadJSAtOnload;
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;这段代码意思是等到整个文档加载完后，再加载外部文件“defer.js”。&lt;/p&gt;
-
-&lt;p&gt;使用此段代码的步骤：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;复制上面代码；&lt;/li&gt;
-  &lt;li&gt;粘贴代码放置在&amp;lt;/body&amp;gt;标签前 (靠近HTML文件底部)；&lt;/li&gt;
-  &lt;li&gt;修改“defer.js”为外部JS文件名；&lt;/li&gt;
-  &lt;li&gt;确保文件路径是正确的。例如：如果仅输入“defer.js”，那么“defer.js”文件一定与HTML文件在同一文件夹下。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;注意：这段代码直到文档加载完才会加载指定的外部js文件。因此，不应该把那些页面正常加载需要依赖的javascript代码放在这里。而应该将JavaScript代码分成两组。&lt;strong&gt;一组是因页面需要而立即加载的javascript代码，另外一组是在页面加载后进行操作的javascript代码(例如添加click事件或其他东西)&lt;/strong&gt;。这些需等到页面加载后再执行的JavaScript代码，应放在一个外部文件，然后再引进来。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;10&quot;&gt;10&lt;/h3&gt;
-
-&lt;p&gt;Ajax缓存问题&lt;/p&gt;
-
-&lt;p&gt;Ajax能提高页面载入的速度主要的原因是通过Ajax减少了重复数据的载入，也就是说在载入数据的同时将数据缓存到内存中，一旦数据被加载其中，只要我们没有刷新页面，这些数据就会一直被缓存在内存中，当我们提交的URL与历史的URL一致时，就不需要提交给服务器，也就是不需要从服务器上面去获取数据，虽然这样降低了服务器的负载提高了用户的体验，但是我们不能获取最新的数据。为了保证我们读取的信息都是最新的，我们就需要禁止缓存功能。&lt;/p&gt;
-
-&lt;p&gt;解决方案有如下几种：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;在ajax发送请求前加上 anyAjaxObj.setRequestHeader(“If-Modified-Since”,”0”)。&lt;/li&gt;
-  &lt;li&gt;在ajax发送请求前加上 anyAjaxObj.setRequestHeader(“Cache-Control”,”no-cache”)。&lt;/li&gt;
-  &lt;li&gt;在URL后面加上一个随机数： “fresh=” + Math.random();。&lt;/li&gt;
-  &lt;li&gt;在URL后面加上时间戳：”nowtime=” + new Date().getTime();。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;11&quot;&gt;11&lt;/h3&gt;
-
-&lt;p&gt;GET和POST的区别，何时使用POST？&lt;/p&gt;
-
-&lt;p&gt;GET：一般用于信息获取，使用URL传递参数，对所发送信息的数量也有限制，一般在2000个字符&lt;/p&gt;
-
-&lt;p&gt;POST：一般用于修改服务器上的资源，对所发送的信息没有限制。&lt;/p&gt;
-
-&lt;p&gt;GET方式需要使用Request.QueryString来取得变量的值，而POST方式通过Request.Form来获取变量的值，&lt;/p&gt;
-
-&lt;p&gt;也就是说Get是通过地址栏来传值，而Post是通过提交表单来传值。&lt;/p&gt;
-
-&lt;p&gt;然而，在以下情况中，请使用 POST 请求：&lt;/p&gt;
-
-&lt;p&gt;无法使用缓存文件（更新服务器上的文件或数据库）&lt;/p&gt;
-
-&lt;p&gt;向服务器发送大量数据（POST 没有数据量限制）&lt;/p&gt;
-
-&lt;p&gt;发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠&lt;/p&gt;
-</description>
-        <pubDate>Fri, 24 Nov 2017 03:00:00 +0800</pubDate>
-        <link>http://localhost:4000/lrun1124.github.io/2017/11/24/JavaScript-Note(2)/</link>
-        <guid isPermaLink="true">http://localhost:4000/lrun1124.github.io/2017/11/24/JavaScript-Note(2)/</guid>
         
         <category>JavaScript</category>
         
