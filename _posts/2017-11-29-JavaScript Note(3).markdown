@@ -131,6 +131,8 @@ xhr.onreadystatechange = function() {
 };
 ```
 
+跨来源资源共享（CORS） 是推荐的主流方式，JSONP 已被视为一种比较 hack 的方式。
+
 ### 3
 
 页面编码和被请求的资源编码如果不一致如何处理？
