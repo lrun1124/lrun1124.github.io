@@ -2,7 +2,7 @@
 layout:     post
 title:      "Summary"
 subtitle:   ""
-date:       2019-10-07 12:00:00
+date:       2019-10-16 12:00:00
 author:     "Run"
 header-img: "img/ArrayUnique-bg.jpg"
 tags:
@@ -10,6 +10,128 @@ tags:
 ---
 
 > “Move on. ”
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [JS](#js)
+  - [JS基本数据类型及存储结构，内置对象](#js%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1)
+  - [`null`, `undefined`区别, 未声明变量](#null-undefined%E5%8C%BA%E5%88%AB-%E6%9C%AA%E5%A3%B0%E6%98%8E%E5%8F%98%E9%87%8F)
+  - [JS原型，原型链， 原型继承（prototypal inheritance）的工作原理](#js%E5%8E%9F%E5%9E%8B%E5%8E%9F%E5%9E%8B%E9%93%BE-%E5%8E%9F%E5%9E%8B%E7%BB%A7%E6%89%BFprototypal-inheritance%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86)
+  - [JS作用域，作用域链](#js%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE)
+  - [`闭包（closure）`，为什么使用闭包](#%E9%97%AD%E5%8C%85closure%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E9%97%AD%E5%8C%85)
+  - [请简述`JavaScript`中的`this`。](#%E8%AF%B7%E7%AE%80%E8%BF%B0javascript%E4%B8%AD%E7%9A%84this)
+  - [`window`对象和`document`对象](#window%E5%AF%B9%E8%B1%A1%E5%92%8Cdocument%E5%AF%B9%E8%B1%A1)
+  - [IE和firefox事件机制](#ie%E5%92%8Cfirefox%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6)
+  - [`New`的过程](#new%E7%9A%84%E8%BF%87%E7%A8%8B)
+  - [不会查找原型的函数](#%E4%B8%8D%E4%BC%9A%E6%9F%A5%E6%89%BE%E5%8E%9F%E5%9E%8B%E7%9A%84%E5%87%BD%E6%95%B0)
+  - [for in和for of](#for-in%E5%92%8Cfor-of)
+  - [Ajax流程，手动写，Ajax缓存](#ajax%E6%B5%81%E7%A8%8B%E6%89%8B%E5%8A%A8%E5%86%99ajax%E7%BC%93%E5%AD%98)
+  - [延迟加载，defer，async，动态dom，分组加载](#%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BDdeferasync%E5%8A%A8%E6%80%81dom%E5%88%86%E7%BB%84%E5%8A%A0%E8%BD%BD)
+    - [使用defer或async属性](#%E4%BD%BF%E7%94%A8defer%E6%88%96async%E5%B1%9E%E6%80%A7)
+    - [动态DOM操作](#%E5%8A%A8%E6%80%81dom%E6%93%8D%E4%BD%9C)
+    - [分组最后加载JS](#%E5%88%86%E7%BB%84%E6%9C%80%E5%90%8E%E5%8A%A0%E8%BD%BDjs)
+  - [get和post](#get%E5%92%8Cpost)
+  - [同步和异步](#%E5%90%8C%E6%AD%A5%E5%92%8C%E5%BC%82%E6%AD%A5)
+  - [前端模块化，AMD/CMD/CommonJS](#%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96amdcmdcommonjs)
+  - [内存泄漏](#%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F)
+  - [==, ===, Object.is()区别](#--objectis%E5%8C%BA%E5%88%AB)
+  - [给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件？](#%E7%BB%99%E4%B8%80%E4%B8%AAdom%E5%90%8C%E6%97%B6%E7%BB%91%E5%AE%9A%E4%B8%A4%E4%B8%AA%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E4%B8%80%E4%B8%AA%E7%94%A8%E6%8D%95%E8%8E%B7%E4%B8%80%E4%B8%AA%E7%94%A8%E5%86%92%E6%B3%A1%E4%BC%9A%E6%89%A7%E8%A1%8C%E5%87%A0%E6%AC%A1%E4%BA%8B%E4%BB%B6)
+  - [前端设计模式，单例，单体，工厂，策略，装饰者，适配器，观察者，门面](#%E5%89%8D%E7%AB%AF%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%8D%95%E4%BE%8B%E5%8D%95%E4%BD%93%E5%B7%A5%E5%8E%82%E7%AD%96%E7%95%A5%E8%A3%85%E9%A5%B0%E8%80%85%E9%80%82%E9%85%8D%E5%99%A8%E8%A7%82%E5%AF%9F%E8%80%85%E9%97%A8%E9%9D%A2)
+    - [单体模式(Singleton)](#%E5%8D%95%E4%BD%93%E6%A8%A1%E5%BC%8Fsingleton)
+    - [单例模式(Single)](#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8Fsingle)
+    - [工厂模式(Factory)](#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8Ffactory)
+    - [策略模式(Strategy)](#%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8Fstrategy)
+    - [装饰者模式（decrator）](#%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8Fdecrator)
+    - [适配器模式（Adapter）](#%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8Fadapter)
+    - [观察者模式（Observer）](#%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8Fobserver)
+    - [门面模式（facede）](#%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8Ffacede)
+  - [优雅降级和渐进增强](#%E4%BC%98%E9%9B%85%E9%99%8D%E7%BA%A7%E5%92%8C%E6%B8%90%E8%BF%9B%E5%A2%9E%E5%BC%BA)
+  - [Node的优缺点](#node%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9)
+  - [GC机制，v8 GC机制](#gc%E6%9C%BA%E5%88%B6v8-gc%E6%9C%BA%E5%88%B6)
+    - [引用计数](#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0)
+    - [V8机制](#v8%E6%9C%BA%E5%88%B6)
+      - [全停顿](#%E5%85%A8%E5%81%9C%E9%A1%BF)
+      - [新生代](#%E6%96%B0%E7%94%9F%E4%BB%A3)
+      - [老生带](#%E8%80%81%E7%94%9F%E5%B8%A6)
+      - [Incremental Marking（增量标记）](#incremental-marking%E5%A2%9E%E9%87%8F%E6%A0%87%E8%AE%B0)
+  - [Cookie和Session](#cookie%E5%92%8Csession)
+  - [javascript继承的6种方法](#javascript%E7%BB%A7%E6%89%BF%E7%9A%846%E7%A7%8D%E6%96%B9%E6%B3%95)
+  - [一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？](#%E4%B8%80%E4%B8%AA%E9%A1%B5%E9%9D%A2%E4%BB%8E%E8%BE%93%E5%85%A5-url-%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E6%98%BE%E7%A4%BA%E5%AE%8C%E6%88%90%E8%BF%99%E4%B8%AA%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%83%BD%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88)
+  - [JS内核了解](#js%E5%86%85%E6%A0%B8%E4%BA%86%E8%A7%A3)
+  - [XML和JSON](#xml%E5%92%8Cjson)
+  - [MVC和MVVM的理解](#mvc%E5%92%8Cmvvm%E7%9A%84%E7%90%86%E8%A7%A3)
+  - [请解释事件委托（event delegation）](#%E8%AF%B7%E8%A7%A3%E9%87%8A%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98event-delegation)
+  - [forEach循环和.map()循环的主要区别，它们分别在什么情况下使用？](#foreach%E5%BE%AA%E7%8E%AF%E5%92%8Cmap%E5%BE%AA%E7%8E%AF%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8C%BA%E5%88%AB%E5%AE%83%E4%BB%AC%E5%88%86%E5%88%AB%E5%9C%A8%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BD%BF%E7%94%A8)
+  - [宿主对象（host objects）和原生对象（native objects）的区别是什么？](#%E5%AE%BF%E4%B8%BB%E5%AF%B9%E8%B1%A1host-objects%E5%92%8C%E5%8E%9F%E7%94%9F%E5%AF%B9%E8%B1%A1native-objects%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88)
+  - [下列语句有什么区别：function Person(){}、var person = Person()和var person = new Person()？](#%E4%B8%8B%E5%88%97%E8%AF%AD%E5%8F%A5%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%ABfunction-personvar-person--person%E5%92%8Cvar-person--new-person)
+  - [call和.apply](#call%E5%92%8Capply)
+  - [Function.prototype.bind作用](#functionprototypebind%E4%BD%9C%E7%94%A8)
+  - [功能检测（feature detection）、功能推断（feature inference）和使用 UA 字符串之间有什么区别？](#%E5%8A%9F%E8%83%BD%E6%A3%80%E6%B5%8Bfeature-detection%E5%8A%9F%E8%83%BD%E6%8E%A8%E6%96%ADfeature-inference%E5%92%8C%E4%BD%BF%E7%94%A8-ua-%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
+  - [同源策略](#%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5)
+  - [跨域问题](#%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98)
+    - [JSONP](#jsonp)
+    - [postMessage](#postmessage)
+    - [CORS(Cross orign resource share)跨域资源共享](#corscross-orign-resource-share%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB)
+  - [请解释变量提升（hoisting）。](#%E8%AF%B7%E8%A7%A3%E9%87%8A%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87hoisting)
+  - [36. 请描述事件冒泡](#36-%E8%AF%B7%E6%8F%8F%E8%BF%B0%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1)
+  - [37. “attribute” 和 “property” 之间有什么区别？](#37-attribute-%E5%92%8C-property-%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
+  - [为什么扩展 JavaScript 内置对象是不好的做法？](#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%89%A9%E5%B1%95-javascript-%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1%E6%98%AF%E4%B8%8D%E5%A5%BD%E7%9A%84%E5%81%9A%E6%B3%95)
+  - [document 中的`load`事件和`DOMContentLoaded`事件之间的区别是什么？](#document-%E4%B8%AD%E7%9A%84load%E4%BA%8B%E4%BB%B6%E5%92%8Cdomcontentloaded%E4%BA%8B%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88)
+  - [请解释单页应用是什么，如何使其对 SEO 友好。](#%E8%AF%B7%E8%A7%A3%E9%87%8A%E5%8D%95%E9%A1%B5%E5%BA%94%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88%E5%A6%82%E4%BD%95%E4%BD%BF%E5%85%B6%E5%AF%B9-seo-%E5%8F%8B%E5%A5%BD)
+  - [polyfill](#polyfill)
+  - [你使用什么语句遍历对象的属性和数组的元素？](#%E4%BD%A0%E4%BD%BF%E7%94%A8%E4%BB%80%E4%B9%88%E8%AF%AD%E5%8F%A5%E9%81%8D%E5%8E%86%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B1%9E%E6%80%A7%E5%92%8C%E6%95%B0%E7%BB%84%E7%9A%84%E5%85%83%E7%B4%A0)
+  - [什么是事件循环？调用堆栈和任务队列之间有什么区别？](#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E8%B0%83%E7%94%A8%E5%A0%86%E6%A0%88%E5%92%8C%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
+  - [请解释`function foo() {}`和`var foo = function() {}`之间`foo`的用法上的区别。](#%E8%AF%B7%E8%A7%A3%E9%87%8Afunction-foo-%E5%92%8Cvar-foo--function-%E4%B9%8B%E9%97%B4foo%E7%9A%84%E7%94%A8%E6%B3%95%E4%B8%8A%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [使用let、var和const创建变量有什么区别？](#%E4%BD%BF%E7%94%A8letvar%E5%92%8Cconst%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
+  - [构造函数中使用箭头函数有什么好处？](#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%A4%84)
+  - [请给出一个解构（destructuring）对象或数组的例子。](#%E8%AF%B7%E7%BB%99%E5%87%BA%E4%B8%80%E4%B8%AA%E8%A7%A3%E6%9E%84destructuring%E5%AF%B9%E8%B1%A1%E6%88%96%E6%95%B0%E7%BB%84%E7%9A%84%E4%BE%8B%E5%AD%90)
+- [html](#html)
+  - [1. 事件冒泡和捕获](#1-%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E5%92%8C%E6%8D%95%E8%8E%B7)
+  - [2. window对象和document对象](#2-window%E5%AF%B9%E8%B1%A1%E5%92%8Cdocument%E5%AF%B9%E8%B1%A1)
+  - [3. 页面编码和被请求的资源编码如果不一致](#3-%E9%A1%B5%E9%9D%A2%E7%BC%96%E7%A0%81%E5%92%8C%E8%A2%AB%E8%AF%B7%E6%B1%82%E7%9A%84%E8%B5%84%E6%BA%90%E7%BC%96%E7%A0%81%E5%A6%82%E6%9E%9C%E4%B8%8D%E4%B8%80%E8%87%B4)
+  - [4. DOM操作](#4-dom%E6%93%8D%E4%BD%9C)
+  - [5. 把 Script 标签 放在页面的最底部的body封闭之前 和封闭之后有什么区别？](#5-%E6%8A%8A-script-%E6%A0%87%E7%AD%BE-%E6%94%BE%E5%9C%A8%E9%A1%B5%E9%9D%A2%E7%9A%84%E6%9C%80%E5%BA%95%E9%83%A8%E7%9A%84body%E5%B0%81%E9%97%AD%E4%B9%8B%E5%89%8D-%E5%92%8C%E5%B0%81%E9%97%AD%E4%B9%8B%E5%90%8E%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
+  - [7. http状态码](#7-http%E7%8A%B6%E6%80%81%E7%A0%81)
+  - [8. Doctype作用](#8-doctype%E4%BD%9C%E7%94%A8)
+  - [9. 标准模式与兼容模式有什么区别](#9-%E6%A0%87%E5%87%86%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%85%BC%E5%AE%B9%E6%A8%A1%E5%BC%8F%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
+  - [10. HTML5 为什么只需要写 <!DOCTYPE HTML>](#10-html5-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AA%E9%9C%80%E8%A6%81%E5%86%99-doctype-html)
+  - [11. 行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？](#11-%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E6%9C%89%E5%93%AA%E4%BA%9B%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0%E6%9C%89%E5%93%AA%E4%BA%9B-%E7%A9%BAvoid%E5%85%83%E7%B4%A0%E6%9C%89%E9%82%A3%E4%BA%9B)
+  - [12. 使用link和@import区别](#12-%E4%BD%BF%E7%94%A8link%E5%92%8Cimport%E5%8C%BA%E5%88%AB)
+  - [13. 浏览器内核的理解](#13-%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8%E7%9A%84%E7%90%86%E8%A7%A3)
+  - [14. 常见的浏览器内核](#14-%E5%B8%B8%E8%A7%81%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8)
+  - [15. html5有哪些新特性？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？](#15-html5%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E7%89%B9%E6%80%A7%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86html5%E6%96%B0%E6%A0%87%E7%AD%BE%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98%E5%A6%82%E4%BD%95%E5%8C%BA%E5%88%86-html-%E5%92%8C-html5)
+  - [16. XML,SGML,HTML,XHTML,HTML5](#16-xmlsgmlhtmlxhtmlhtml5)
+  - [17. HTML语义化](#17-html%E8%AF%AD%E4%B9%89%E5%8C%96)
+  - [18. cookie, loaclStorage, sessionStorage](#18-cookie-loaclstorage-sessionstorage)
+  - [19. 浏览器是怎么对HTML5的离线储存资源进行管理和加载的呢？](#19-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E6%80%8E%E4%B9%88%E5%AF%B9html5%E7%9A%84%E7%A6%BB%E7%BA%BF%E5%82%A8%E5%AD%98%E8%B5%84%E6%BA%90%E8%BF%9B%E8%A1%8C%E7%AE%A1%E7%90%86%E5%92%8C%E5%8A%A0%E8%BD%BD%E7%9A%84%E5%91%A2)
+  - [20. iframe缺点](#20-iframe%E7%BC%BA%E7%82%B9)
+  - [21. Label的作用是什么？是怎么用的？](#21-label%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88%E6%98%AF%E6%80%8E%E4%B9%88%E7%94%A8%E7%9A%84)
+  - [22. title与h1的区别、b与strong的区别、i与em的区别？](#22-title%E4%B8%8Eh1%E7%9A%84%E5%8C%BA%E5%88%ABb%E4%B8%8Estrong%E7%9A%84%E5%8C%BA%E5%88%ABi%E4%B8%8Eem%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [23. 如何实现浏览器内多个标签页之间的通信?](#23-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E5%A4%9A%E4%B8%AA%E6%A0%87%E7%AD%BE%E9%A1%B5%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1)
+  - [24. JavaScript是采用值传递还是引用传递的，并解释一下原理](#24-javascript%E6%98%AF%E9%87%87%E7%94%A8%E5%80%BC%E4%BC%A0%E9%80%92%E8%BF%98%E6%98%AF%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92%E7%9A%84%E5%B9%B6%E8%A7%A3%E9%87%8A%E4%B8%80%E4%B8%8B%E5%8E%9F%E7%90%86)
+- [css](#css)
+  - [1. CSS的盒子模型，低版本IE的盒子模型有什么不同的](#1-css%E7%9A%84%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E4%BD%8E%E7%89%88%E6%9C%ACie%E7%9A%84%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%E7%9A%84)
+  - [2. CSS选择器](#2-css%E9%80%89%E6%8B%A9%E5%99%A8)
+  - [3. display的值及作用](#3-display%E7%9A%84%E5%80%BC%E5%8F%8A%E4%BD%9C%E7%94%A8)
+  - [4. position属性（定位原点）](#4-position%E5%B1%9E%E6%80%A7%E5%AE%9A%E4%BD%8D%E5%8E%9F%E7%82%B9)
+  - [5. 居中div, 水平居中，水平垂直居中](#5-%E5%B1%85%E4%B8%ADdiv-%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD)
+  - [6. Flexbox](#6-flexbox)
+  - [7. 用纯css创建三角形](#7-%E7%94%A8%E7%BA%AFcss%E5%88%9B%E5%BB%BA%E4%B8%89%E8%A7%92%E5%BD%A2)
+  - [8. 清除浮动](#8-%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8)
+  - [9. CSS优化、提高性能的方式](#9-css%E4%BC%98%E5%8C%96%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD%E7%9A%84%E6%96%B9%E5%BC%8F)
+  - [10.](#10)
+- [性能优化](#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96)
+  - [1. 一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？](#1-%E4%B8%80%E4%B8%AA%E9%A1%B5%E9%9D%A2%E4%BB%8E%E8%BE%93%E5%85%A5-url-%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E6%98%BE%E7%A4%BA%E5%AE%8C%E6%88%90%E8%BF%99%E4%B8%AA%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%83%BD%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88)
+  - [2. 性能优化策略, 核心，html层面布局， request, css, 服务器端, JS](#2-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AD%96%E7%95%A5-%E6%A0%B8%E5%BF%83html%E5%B1%82%E9%9D%A2%E5%B8%83%E5%B1%80-request-css-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF-js)
+- [other](#other)
+  - [1. 对称/非对称加密，公钥和私钥](#1-%E5%AF%B9%E7%A7%B0%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E5%85%AC%E9%92%A5%E5%92%8C%E7%A7%81%E9%92%A5)
+  - [3. JSON了解](#3-json%E4%BA%86%E8%A7%A3)
+  - [4. Web安全及防护原理, sql注入, XSS, csrf](#4-web%E5%AE%89%E5%85%A8%E5%8F%8A%E9%98%B2%E6%8A%A4%E5%8E%9F%E7%90%86-sql%E6%B3%A8%E5%85%A5-xss-csrf)
+  - [code](#code)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## JS
 ### JS基本数据类型及存储结构，内置对象
@@ -137,7 +259,7 @@ object.hasOwnProperty(proName), 判断对象中是否有指定名称的属性
 
 结论：推荐在循环对象属性的时候，使用for...in,在遍历数组的时候的时候使用for...of。
 
-### 10. Ajax流程，手动写，Ajax缓存
+### Ajax流程，手动写，Ajax缓存
 Asynchronous JavaScript and Xml, 异步传输+JS+xml，异步的含义是在向服务器发送请求后，不必等待响应，可以先做其他的事，等相应返回可以根据设定的callback函数进行操作，于此同时，网页不会发生整页刷新，提高了效率和用户体验。
 
 步骤：
@@ -183,11 +305,105 @@ function stateFunction(){
 </script>
 ```
 
-### 11. 延迟加载，defer，async，动态dom，分组加载
-### 12. get和post
-### 13. 同步和异步
-### 14. 跨域问题
-### 15. 前端模块化，AMD/CMD/CommonJS
+### 延迟加载，defer，async，动态dom，分组加载
+
+JS延迟加载就是在页面加载完成后再加载JS文件，有助于提高页面加载速度，提高用户体验。
+
+#### 使用defer或async属性
+
+```
+<script src="test1.js" defer="defer"></script>
+<script src="test2.js" async></script>
+```
+- 只适用于外部脚本，缺点是不能保证脚本会按顺序执行
+
+当浏览器碰到 script 脚本的时候，没有 defer 或 async，浏览器会立即加载并执行指定的脚本，“立即”指的是在渲染该 script 标签之下的文档元素之前，也就是说不等待后续载入的文档元素，读到就加载并执行。
+
+* 有 async，加载和渲染后续文档元素的过程将和 script.js 的加载与执行并行进行（异步）。
+* 有 defer，加载后续文档元素的过程将和 script.js 的加载并行进行（异步），但是 script.js 的执行要在所有元素解析完成之后，DOMContentLoaded 事件触发之前完成。
+
+<img src="http://lrun1124.github.io/img/jsbase2/defer&async.jpg"/>
+
+#### 动态DOM操作
+
+即利用动态DOM操作按需插入JS文件，比如onload后延时插入js
+
+```
+//延迟1000ms加载new.js
+window.onload = function(){
+	setTimeout(function(){
+		var head = document.getElementByTagName('head')[0];
+		var js = document.createElement('Script');
+		js.type = 'text/javascript';
+		js.src = '.../new.js';
+		head.appendChlid(js); 
+	},1000);
+}
+```
+
+#### 分组最后加载JS
+
+JS的引入如果放在head中，则页面加载前JS就会被加载，如果放在body中，则会按顺序加载，所以可以将JS分组，对于加载过程中不需要的JS，可以放在页面的底部，</body>标签之前，然而这种方法偶尔会收到Google页面速度测试工具的“延迟加载javascript”警告，Google提供了一套推荐方案：
+
+```
+//这些代码应被放置在</body>标签前(接近HTML文件底部)
+<script type="text/javascript">
+    function downloadJSAtOnload() {
+        var element = document.createElement("script");
+        element.src = "defer.js";
+        document.body.appendChild(element);
+    }
+    if (window.addEventListener)
+        window.addEventListener("load", downloadJSAtOnload, false);
+    else if (window.attachEvent)
+        window.attachEvent("onload", downloadJSAtOnload);
+    else window.onload = downloadJSAtOnload;
+</script>
+```
+
+这段代码意思是等到整个文档加载完后，再加载外部文件“defer.js”。
+
+使用此段代码的步骤：
+
+1. 复制上面代码；
+1. 粘贴代码放置在</body>标签前 (靠近HTML文件底部)；
+1. 修改“defer.js”为外部JS文件名；
+1. 确保文件路径是正确的。例如：如果仅输入“defer.js”，那么“defer.js”文件一定与HTML文件在同一文件夹下。
+
+注意：这段代码直到文档加载完才会加载指定的外部js文件。因此，不应该把那些页面正常加载需要依赖的javascript代码放在这里。
+
+总结： 
+应该将JavaScript代码分成两组。
+1. 一组是因页面需要而立即加载的javascript代码。放在head中用async/defer
+1. 另外一组是在页面加载后进行操作的javascript代码(例如添加click事件或其他东西)。这些需等到页面加载后再执行的JavaScript代码，应放在一个外部文件，然后再引进来。然后从实用角度来说呢，把这些脚本都丢到 </body> 之前是最佳实践，因为对于旧浏览器来说这是唯一的优化选择，此法可保证非脚本的其他一切元素能够以最快的速度得到加载和解析j
+
+另一方面外部的js一般放到head内，内部的js一般放到body内，这样做的目的有很多
+1. 不阻塞页面的加载(事实上js会被缓存)；
+1. 可以直接在js里操作dom，这时候dom是准备好的，即保证js运行时dom是存在的。
+
+而 CSS 应当写在 head 中，以避免页面元素由于样式缺失造成瞬间的白页或者给用户闪烁感。在head内的js一般要先执行完后，才开始渲染body页面。为了避免head引入的js脚本阻塞流浪器中主解析引擎对dom的解析工作，对dom的渲染，一般原则是，样式在前面，dom文档，脚本在最后面。遵循先解析再渲染再执行script这个顺序。 
+
+//Todo...
+
+### get和post
+GET：一般用于信息获取，使用URL传递参数，对所发送信息的数量也有限制，一般在2000个字符
+POST：一般用于修改服务器上的资源，对所发送的信息没有限制。
+
+GET方式需要使用Request.QueryString来取得变量的值，而POST方式通过Request.Form来获取变量的值，
+也就是说Get是通过地址栏来传值，而Post是通过提交表单来传值。
+
+然而，在以下情况中，请使用 POST 请求：
+1. 无法使用缓存文件（更新服务器上的文件或数据库）
+1. 向服务器发送大量数据（POST 没有数据量限制）
+1. 发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠
+
+### 同步和异步
+
+对于Web而言：<br />
+同步: 访问服务器，服务器回应，页面刷新，用户操作，整个过程是串行的方式进行的，影响用户操作<br />
+异步: 访问服务器，用户继续操作，服务器回应，页面更新，用户操作，整个过程不发生整页刷新，不影响用户操作<br />
+
+### 前端模块化，AMD/CMD/CommonJS
 
 知识点1：AMD(Asynchronous Module Definition)/CMD(Common Module Definition)/CommonJs是JS模块化开发的标准，目前对应的实现是RequireJs/SeaJs/nodeJs.
 
@@ -205,23 +421,460 @@ CMD缺点：执行等待时间会叠加。因为每个文件执行时是同步�
 
 知识点5：如何使用？CommonJs的话，因为nodeJs就是它的实现，所以使用node就行，也不用引入其他包。AMD则是通过\<script>标签引入RequireJs，CMD则是引入SeaJs。
 
-### 16. 内存泄漏
-### 17. ==, ===, Object.is()区别
-### 18. 前端设计模式，单例，单体，工厂，策略，装饰者，适配器，观察者，门面
-### 19. 优雅降级和渐进增强
-### 20. Node的优缺点
-### 21. GC，v8 GC机制
-### 22. Cookie和Session
-### 23. javascript继承的6种方法
-### 24. MVC和MVVM的理解
-### 25. 请解释事件委托（event delegation）
+### 内存泄漏
+
+内存泄漏时指一块被分配的内存既不能使用也不能回收。在JavaScipt出现主要有两种情况:
+
+1.循环引用。含有DOM对象的循环引用将导致大部分当前主流浏览器内存泄露。
+
+```js
+//a,b循环引用
+var a = new Object;
+var b = new Object;
+a.r = b;
+b.r = a;
+
+//a循环引用自己
+var a = new Object;
+a.r = a;
+```
+
+1.闭包。闭包可以导致内存泄漏是因为内部方法保持一个对外部方法变量的引用，所以尽管方法返回了内部方法还可以继续访问在外部方法中定义的私有变量，所以这些变量被一直保存在内存中。
+
+1.setTimeout的第一个参数使用字符串而非函数的话，会引发内存泄漏
+
+### ==, ===, Object.is()区别
+
+==会进行类型转换，===不会，Object.is 在三等号判等的基础上特别处理了 NaN 、-0 和 +0 ，保证 -0 和 +0 不再相同，但 Object.is(NaN, NaN) 会返回 true.
+
+### 给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件？
+绑定几个事件就执行几次，执行优先级:
+
+1. 父元素的捕获事件
+1. 目标元素的顺序事件，无视捕获还是冒泡
+1. 父元素的冒泡事件
+
+也就是说从外层到内层再回到外层
+target.addEventListener(type, listener[, options]);
+```
+<div class='d1'>
+    <div class='d2'></div>
+</div>
+
+<script type='text/javascript'>
+var d1 = document.getElementsByClass('d1');
+var d2 = document.getElementsByClass('d2');
+     
+//父级绑定click事件冒泡
+d1.addEventListener('click', function(){ console.log('parent bubble') }, false);
+
+//子级绑定click事件冒泡
+d2.addEventListener('click', function(){ console.log('child bubble') }, false);
+
+//子级绑定click事件捕获
+d2.addEventListener('click', function(){ console.log('child capture') }, true);
+
+//父级绑定click事件捕获
+d1.addEventListener('click', function(){ console.log('parent capture') }, true);
+</script>
+```
+
+console:
+```
+parent capture
+child bubble
+child capture
+parent bubble
+```
+
+### 前端设计模式，单例，单体，工厂，策略，装饰者，适配器，观察者，门面
+
+#### 单体模式(Singleton)
+
+将一批属性和方法组织在一起的对象，用来划分命名空间。其特点：<br />
+1. 划分命名空间，只暴露一个入口，减少全局变量带来的风险
+2. 利用分支技术来来封装浏览器之间的差异。
+3. 可以把代码组织的更为一体，便于阅读和维护。
+
+```
+var singleton = {
+    attribute: {},
+    method1: function(){},
+    method2: function(){}
+}
+```
+
+#### 单例模式(Single)
+
+单例模式定义了一个对象的创建过程，此对象只有一个单独的实例，并提供一个访问它的全局访问点
+
+```
+var single = (function(){
+    var unique;
+
+    function getInstance(){　　　　// 如果该实例存在，则直接返回，否则就对其实例化
+        if( unique === undefined ){
+            unique = new Construct();
+        }
+        return unique;
+    }
+
+    function Construct(){
+        // ... 生成单例的构造函数的代码
+    }
+
+    return {
+        getInstance : getInstance
+    }
+})();
+```
+
+#### 工厂模式(Factory)
+
+提供一个创建对象的借口，无需指定具体的类，把成员对象的创建工作转交给一个外部对象，<strong>好处在于消除对象之间的耦合(也就是相互影响), 有助于创建模块化的代码</strong>
+
+<strong>简单工厂模式</strong>：使用一个类，通常为单体，来生成实例。典型的实例，xhr工厂。
+
+```
+   var XMLHttpFactory =function(){};　　　　　　//这是一个简单工厂模式
+　　XMLHttpFactory.createXMLHttp =function(){
+　　　 var XMLHttp = null;
+　　　　if (window.XMLHttpRequest){
+　　　　　　XMLHttp = new XMLHttpRequest()
+　　　 }else if (window.ActiveXObject){
+　　　　　　XMLHttp = new ActiveXObject("Microsoft.XMLHTTP")
+　　　　}
+　　return XMLHttp;
+　　}
+　　//XMLHttpFactory.createXMLHttp()这个方法根据当前环境的具体情况返回一个XHR对象。
+　　var AjaxHander =function(){
+　　　　var XMLHttp = XMLHttpFactory.createXMLHttp();
+　　　　...
+　　}
+```
+<strong>复杂工厂模式</strong>：先设计一个抽象类，这个类不能被实例化，只能用来派生子类，最后通过对子类的扩展实现工厂方法
+
+```
+var XMLHttpFactory =function(){};　     //这是一个抽象工厂模式
+
+XMLHttpFactory.prototype = {
+　　//如果真的要调用这个方法会抛出一个错误，它不能被实例化，只能用来派生子类
+　　createFactory:function(){
+  　　throw new Error('This is an abstract class');
+　　}
+}
+
+var XHRHandler =function(){}; //定义一个子类
+
+// 子类继承父类原型方法
+extend( XHRHandler , XMLHttpFactory );
+
+XHRHandler.prototype =new XMLHttpFactory(); //把超类原型引用传递给子类,实现继承
+
+XHRHandler.prototype.constructor = XHRHandler; //重置子类原型的构造器为子类自身
+
+//重新定义createFactory 方法
+XHRHandler.prototype.createFactory =function(){
+　　var XMLHttp =null;
+　　if (window.XMLHttpRequest){
+
+  　　XMLHttp =new XMLHttpRequest();
+
+　　}else if (window.ActiveXObject){
+
+  　　XMLHttp =new ActiveXObject("Microsoft.XMLHTTP")
+　　}
+
+　　return XMLHttp;
+}
+```
+应用场景：
+
+以下几种情景下工厂模式特别有用：
+
+1. 对象的构建十分复杂
+2. 需要依赖具体环境创建不同实例
+3. 处理大量具有相同属性的小对象
+
+优点：
+
+可以实现一些相同的方法，这些相同的方法我们可以放在父类中编写代码，那么需要实现具体的业务逻辑，那么可以放在子类中重写该父类的方法，去实现自己的业务逻辑；
+
+也就是说有两点：　　
+
+1. 弱化对象间的耦合，防止代码的重复。在一个方法中进行类的实例化，可以消除重复性的代码。
+2. 重复性的代码可以放在父类去编写，子类继承于父类的所有成员属性和方法，子类只专注于实现自己的业务逻辑。
+
+缺点：
+
+当工厂增加到一定程度的时候，提升了代码的复杂度，可读性下降。而且没有解决对象的识别问题，即怎么知道一个对象的类型。
+
+#### 策略模式(Strategy)
+
+策略模式指的是定义一些列的算法，把他们一个个封装起来，目的就是将算法的使用与算法的实现分离开来。说白了就是以前要很多判断的写法，现在把判断里面的内容抽离开来，变成一个个小的个体。
+
+代码情景为超市促销，vip为5折，老客户3折，普通顾客没折，计算最后需要支付的金额。
+
+没有使用策略模式的情况：
+```
+function Price(personType, price) {
+    //vip 5 折
+    if (personType == 'vip') {
+        return price * 0.5;
+    } 
+    else if (personType == 'old'){ //老客户 3 折
+        return price * 0.3;
+    } else {
+        return price; //其他都全价
+    }
+}
+```
+不足之处：不好的地方，当我有其他方面的折扣时，又或者我活动的折扣时经常变化的，这样就要不断的修改if..else里面的条件了。而且也违背了设计模式的一个原则：<strong>对修改关闭，对扩展开放的原则</strong>；
+
+使用策略模式之后：
+```
+// 对于vip客户
+function vipCustomer() {
+    this.discount = 0.5;
+}
+ 
+vipCustomer.prototype.getPrice = function(price) {
+　　return price * this.discount;
+}
+// 对于老客户
+function oldCustomer() {
+    this.discount = 0.3;
+}
+ 
+oldCustomer.prototype.getPrice = function(price) {
+    return price * this.discount;
+}
+// 对于普通客户
+function normalCustomer() {
+    this.discount = 1;
+}
+ 
+normalCustomer.prototype.getPrice = function(price) {
+    return price ;
+}
+
+// 上下文，对于客户端的使用
+function Context() {
+    this.name = '';
+    this.strategy = null;
+    this.price = 0;
+}
+ 
+Context.prototype.set = function(name, strategy, price) {
+    this.name = name;
+    this.strategy = strategy;
+    this.price = price;
+}
+Context.prototype.getResult = function() {
+    console.log(this.name + ' 的结账价为: ' + this.strategy.getPrice(this.price));
+}
+
+var context = new Context();
+var vip = new vipCustomer();
+context.set ('vip客户', vip, 200);
+context.getResult();   // vip客户 的结账价为: 100
+
+var old = new oldCustomer();
+context.set ('老客户', old, 200);
+context.getResult();  // 老客户 的结账价为: 60
+
+var Price = new normalCustomer();
+context.set ('普通客户', Price, 200);
+context.getResult();  // 普通客户 的结账价为: 200
+```
+
+#### 装饰者模式（decrator）
+
+动态地给一个对象添加一些新的方法。就扩展功能而言，它比生成子类方式更为灵活。装饰者的运作过程是透明的，这就是说你可以用它包装其他对象，然后继续按之前使用那么对象的方法来使用。
+
+```
+var myText= {};
+myText.Decorations={};
+myText.Core=function(myString){
+    this.show =function(){return myString;}
+}
+//第一次装饰，string后加？
+myText.Decorations.addQuestuibMark =function(myString){
+    this.show =function(){return myString.show()+'?';};
+}
+//第二次装饰，添加标签
+myText.Decorations.makeItalic =function(myString){
+    this.show =function(){return'<li>'+myString.show()+'</li>'};
+}
+//得到myText.Core的实例
+var theString =new myText.Core('this is a sample test String');
+alert(theString.show());　　//output 'this is a sample test String'
+
+//得到？装饰后的String
+theString =new myText.Decorations.addQuestuibMark(theString);
+alert(theString.show());　　//output 'this is a sample test String?'
+
+//得到标签装饰后的String
+theString =new myText.Decorations.makeItalic (theString);
+alert(theString.show());　　//output '<li>this is a sample test String</li>'
+```
+
+从这个示例中可以看出，我们的目的是为了得到装饰过得String，这一切都可以不用事先知道组件对象的接口，也就是说我们只需要调用myString.show()，而其中具体的实现不用关心，甚至可以动态的实现。
+
+在为现有对象增添特性这方面，装饰者模式有极大的灵活性。如果需要为类增加特性或者方法，而从该类派生子类的解决办法并不实际的话，就应该使用装饰者模式。派生子类之所以会不实际最常见的原因是需要添加的特性或方法的数量要求使用大量子类。
+
+#### 适配器模式（Adapter）
+
+将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作，使用这种模式的对象又叫包装器，因为他们是在用一个新的接口包装另一个对象。
+
+```
+//一个参数为两个字符串的接口函数
+var interface = function(str1, str2){
+    ...
+}
+//现在我们想使用上面接口函数，但是参数是一个对象
+var test = {
+    str1 : '1',
+    str2 : '2'
+}
+//适配器函数
+var adapterMethod = function(obj){
+    return interface(obj.str1, obj.str2);
+}
+//调用
+adapterMethod(test);
+```
+
+#### 观察者模式（Observer）
+
+定义对象间的一种一对多的依赖关系，以便当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并自动刷新。典型的是事件监听器绑定。
+
+```
+<div id='test'>test</div>
+<script>
+var fn1 = function(){
+    ...
+}
+var fn2 = function(){
+    ...
+}
+var test = document.getElementsById('test');
+//绑定两个监听click事件
+test.addElementListener('click', fn1, false);
+test.addELementListener('click', fn2, false);
+</script>
+```
+
+#### 门面模式（facede）
+
+子系统中的一组接口提供一个一致的界面，门面模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。实际上就是把一组工具函数包装在一个对象里，对外的门面就是这个对象，<strong>门面模式是几乎所有JavaScript库的核心原则</strong>。
+
+### 优雅降级和渐进增强
+优雅降级：Web站点在所有新式浏览器中都能正常工作的前提下，如果用户使用的是老式浏览器，则代码会针对旧版本的IE进行降级处理了,使之在旧式浏览器上以某种形式降级体验却不至于完全不能用。如：border-shadow
+
+渐进增强：从被所有浏览器支持的基本功能开始，逐步地添加那些只有新版本浏览器才支持的功能,向页面增加不影响基础浏览器的额外样式和功能的。当浏览器支持时，它们会自动地呈现出来并发挥作用。
+如：默认使用flash上传，但如果浏览器支持 HTML5 的文件上传功能，则使用HTML5实现更好的体验；
+### Node的优缺点
+Node的优缺点
+
+（优点) 因为Node是基于事件驱动和无阻塞的，所以非常适合处理并发请求，
+    因此构建在Node上的代理服务器相比其他技术实现（如Ruby）的服务器表现要好得多。
+    此外，与Node代理服务器交互的客户端代码是由javascript语言编写的，
+    因此客户端和服务器端都用同一种语言编写，这是非常美妙的事情。
+
+（缺点）Node是一个相对新的开源项目，所以不太稳定，它总是一直在变，
+    而且缺少足够多的第三方库支持。看起来，就像是Ruby/Rails当年的样子。
+### GC机制，v8 GC机制
+####  引用计数
+
+传统的GC方法，维护对象的引用计数器，引用为0时清除，优点是清除及时，清除时间均匀分布，缺点主要是循环引用问题
+
+#### V8机制
+
+<img src="http://lrun1124.github.io/img/jsgc.png" width="450"/>
+
+遵循的主旨
+* 大部分新生对象倾向于早死；
+* 不死的对象，会活得更久。
+将内存分为新生带和老生带两部分
+
+##### 全停顿
+需要将应用逻辑暂停，执行完垃圾回收后再执行应用逻辑，这种行为称为 「全停顿」（Stop The World）, 原因是为避免应用逻辑与垃圾回收器看到的情况不一致。  
+
+##### 新生代
+
+Scavenge垃圾回收算法进行管理，主要实现是Cheney算法，将内存分为两部分，From和To，新建对象都进入From空间中，当From空间分配到一定程度，扫描一遍，将存活对象对象copy到To空间，清空From空间，然后调换From和To空间，继续进行分配，当一个对象被多次移动后仍然存活，或者如果一个对象被复制到To空间，To空间占用超过阈值（25%），这个对象会被移到老生带
+
+##### 老生带
+
+综合使用Mark-Sweep标记清除和Mark-compact标记整理, Mark-Sweep是当GC触发时，从根节点出发对所有能到达的对象进行遍历，一般是深度优先搜索，对能达到对象进行标记，最后清除掉未被标记的对象，Mark-Sweep会产生碎片内存，Mark-compact是将使用的内存向一侧移动，然后清楚掉内存的边界，由于Mark-compact需要移动对象，所以速度不会很快，V8上尽量才去Mark-Sweep，当内存不足以对新生代晋升过来的对象进行分配时，再进行Mark-compact
+
+##### Incremental Marking（增量标记）
+在新生代中，由于存活对象少，垃圾回收效率高，全停顿时间短，造成的影响小。但是老生代中，存活对象多，垃圾回收时间长，全停顿造成的影响大。为了减少全停顿的时间，V8对标记进行了优化，将一次停顿进行的标记过程，分成了很多小步。每执行完一小步就让应用逻辑执行一会儿，这样交替多次后完成标记。长时间的GC，会导致应用暂停和无响应，将会导致糟糕的用户体验。从2011年起，v8就将「全暂停」标记换成了增量标记。改进后的标记方式，最大停顿时间减少到原来的1/6。
+
+现代V8引擎对垃圾回收进行了很多改进，比如，在Chrome 64和Node.js v10中V8启用了「并行标记」技术，将标记时间缩短了60%~70%。还有「Parallel Scavenger」技术，它将新生代的垃圾回收时间缩短了20%~50%。
+
+### Cookie和Session
+
+Cookie和Session
+
+1. session 在服务器端，cookie 在客户端（浏览器）
+2. session 默认被存在在服务器的一个文件里（不是内存）
+3. session 的运行依赖 session id，而 session id 是存在 cookie 中的，也就是说，如果浏览器禁用了 cookie ，同时 session 也会失效（但是可以通过其它方式实现，比如在 url 中传递 session_id）
+4. session 可以放在 文件、数据库、或内存中都可以。
+5. 用户验证这种场合一般会用 session 因此，维持一个会话的核心就是客户端的唯一标识，即 session id
+6. cookie是不安全的，一些网络攻击如XSS和CSRF可以获取cookie或进行cookie欺骗，所以重要信息放在session里，必要放在cookie里要枷锁
+
+### javascript继承的6种方法
+
+### 一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？
+
+1. 再输入url的时候，浏览器可能会做一些预处理，比如 Chrome 会根据历史统计来预估所输入字符对应的网站，比如输入了「ba」，根据之前的历史发现 90% 的概率会访问「www.baidu.com 」，因此就会在输入回车前就马上开始建立 TCP 链接甚至渲染了，还有很多其它很多优化策略
+1. 浏览器会开启一个线程来处理这个请求，对 URL 分析判断如果是 http 协议就按照 Web 方式来处理;
+1. 浏览器内核中会先查看缓存，然后调用浏览器内核中的对应方法;
+1. 进行DNS解析，使用UDP协议获取网址的IP地址;
+1. 设置 UA 等信息发出第二个GET请求，进行HTTP协议会话，客户端发送报头(请求报头);
+1. 进过运营商路由，主干网传输，进入到相应服务器上的 Web Server，如 Apache、Tomcat、Node.JS 等服务器;
+1. 进入部署好的后端应用，如 PHP、Java、JavaScript、Python 等，找到对应的处理过程;
+1. 处理结束回馈报头，此处如果浏览器访问过，缓存上有对应资源，会与服务器最后修改时间对比，一致则返回http状态码304，表示网页未修改过;
+1. 浏览器开始下载html文档(响应报头，状态码200)，同时使用缓存;
+1. 转交给Renderer进程. 开始渲染
+1. 解析html建立dom树
+1. 解析css构建CSSOM 树（Recaculate Style）
+1. 合并 DOM 树与 CSSOM 树为 Render 树
+1. 布局render树（Layout/reflow），负责各元素尺寸、位置的计算
+1. 绘制render树（paint），绘制页面像素信息
+1. 浏览器会将各层的信息发送给GPU，GPU会将各层复合图层化（composite），显示在屏幕上。
+1. 渲染完毕后就是load事件了，之后就是自己的JS逻辑处理了
+
+### JS内核了解
+//todo
+
+### XML和JSON
+1. 数据体积方面。JSON相对于XML来讲，数据的体积小，传递的速度更快些。
+1. 数据交互方面。JSON与JavaScript的交互更加方便，更容易解析处理，更好的数据交互。
+1. 数据描述方面。JSON对数据的描述性比XML较差。
+1. 传输速度方面。JSON的速度要远远快于XML。
+
+### MVC和MVVM的理解
+
+MVC:View 传送指令到 Controller, Controller 完成业务逻辑后，要求 Model 改变状态, Model 将新的数据发送到 View，用户得到反馈, 所有通信都是单向的。
+
+MVVM： 典型的Angular，它采用双向绑定（data-binding）：View的变动，自动反映在ViewModel，反之亦然。组成部分Model、View、ViewModel
+
+View：UI界面
+
+ViewModel：它是View的抽象，负责View与Model之间信息转换，将View的Command传送到Model；
+
+Model：数据访问层
+### 请解释事件委托（event delegation）
 
 将时间监听添加到父元素，而不是每个子元素单独设置，当事件冒泡到父元素，监听器就会触发，好处：
 
 * 内存占用减少，只需一个父元素监听事件
 * 利于修改和维护，删除/添加的元素无需解绑和修改
 
-### 26. forEach循环和.map()循环的主要区别，它们分别在什么情况下使用？
+### forEach循环和.map()循环的主要区别，它们分别在什么情况下使用？
 
 都是遍历数组，forEach为每个元素执行回调，最终无返回值，map每个元素返回一个新值，最后返回新数组
 
@@ -238,13 +891,13 @@ CMD缺点：执行等待时间会叠加。因为每个文件执行时是同步�
 
 1. 用于函数式编程
 
-### 27. 宿主对象（host objects）和原生对象（native objects）的区别是什么？
+### 宿主对象（host objects）和原生对象（native objects）的区别是什么？
 
 原生对象是由 ECMAScript 规范定义的 JavaScript 内置对象，比如`String`、`Math`、`RegExp`、`Object`、`Function`等等。
 
 宿主对象是由运行时环境（浏览器或 Node）提供，比如`window`、`XMLHTTPRequest`等等。
 
-### 28. 下列语句有什么区别：function Person(){}、var person = Person()和var person = new Person()？
+### 下列语句有什么区别：function Person(){}、var person = Person()和var person = new Person()？
 
 
 这个问题问得很含糊。我猜这是在考察 JavaScript 中的构造函数（constructor）。从技术上讲，`function Person(){}`只是一个普通的函数声明。使用 PascalCase 方式命名函数作为构造函数，是一个惯例。
@@ -253,18 +906,18 @@ CMD缺点：执行等待时间会叠加。因为每个文件执行时是同步�
 
 `var person = new Person()`使用`new`操作符，创建`Person`对象的实例，该实例继承自`Person.prototype`。另外一种方式是使用`Object.create`，例如：`Object.create(Person.prototype)`。
 
-### 29. call和.apply
+### call和.apply
 
 function.call(this, arg1, arg2, arg3) 
 function.apply(this, [arg1, arg2, arg3]) 
 this.function(arg1, arg2, arg3)
 
-### 30. Function.prototype.bind作用
+### Function.prototype.bind作用
 
 > `bind()`方法创建一个新的函数, 当被调用时，将其 this 关键字设置为提供的值，在调用新函数时，在任何提供之前提供一个给定的参数序列。
 
 
-### 31. 功能检测（feature detection）、功能推断（feature inference）和使用 UA 字符串之间有什么区别？
+### 功能检测（feature detection）、功能推断（feature inference）和使用 UA 字符串之间有什么区别？
 
 **功能检测（feature detection）**
 
@@ -296,12 +949,12 @@ if (document.getElementsByTagName) {
 
 这是一个浏览器报告的字符串，它允许网络协议对等方（network protocol peers）识别请求用户代理的应用类型、操作系统、应用供应商和应用版本。它可以通过`navigator.userAgent`访问。 然而，这个字符串很难解析并且很可能存在欺骗性。例如，Chrome 会同时作为 Chrome 和 Safari 进行报告。因此，要检测 Safari，除了检查 Safari 字符串，还要检查是否存在 Chrome 字符串。不要使用这种方式。
 
-### 32. 同源策略
+### 同源策略
 
 同源策略/SOP（Same origin policy）是一种约定，由Netscape公司1995年引入浏览器，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，浏览器很容易受到XSS、CSFR等攻击。所谓同源是指"协议+域名+端口"三者相同，即便两个不同的域名指向同一个ip地址，也非同源。
 
 
-### 33. 跨域问题
+### 跨域问题
 
 #### JSONP
 
@@ -382,7 +1035,7 @@ origin： 协议+主机+端口号，也可以设置为"*"，表示可以传递�
 </script>
 ```
 
-#### 34. CORS(Cross orign resource share)跨域资源共享
+#### CORS(Cross orign resource share)跨域资源共享
 
 服务器端设置Access-Control-Allow-Origin,前端无须设置
 
@@ -409,7 +1062,7 @@ xhr.onreadystatechange = function() {
 };
 ```
 
-### 35. 请解释变量提升（hoisting）。
+### 请解释变量提升（hoisting）。
 
 使用`var`关键字声明或初始化的变量，会将声明语句“提升”到当前作用域的顶部。 但是，只有声明才会触发提升，赋值语句（如果有的话）将保持原样。
 
@@ -464,37 +1117,37 @@ console.log(input.getAttribute('value')); // Hello
 console.log(input.value); // Hello World!
 ```
 
-### 38. 为什么扩展 JavaScript 内置对象是不好的做法？
+### 为什么扩展 JavaScript 内置对象是不好的做法？
 
 扩展 JavaScript 内置（原生）对象意味着将属性或方法添加到其`prototype`中。虽然听起来很不错，但事实上这样做很危险。想象一下，你的代码使用了一些库，它们通过添加相同的 contains 方法来扩展`Array.prototype`，如果这两个方法的行为不相同，那么这些实现将会相互覆盖，你的代码将不能正常运行。
 
 扩展内置对象的唯一使用场景是创建 polyfill，本质上为老版本浏览器缺失的方法提供自己的实现，该方法是由 JavaScript 规范定义的。
 
-### 39. document 中的`load`事件和`DOMContentLoaded`事件之间的区别是什么？
+### document 中的`load`事件和`DOMContentLoaded`事件之间的区别是什么？
 
 1. 当 onload 事件触发时，页面上所有的DOM，样式表，脚本，图片，flash都已经加载完成了。
 
 1. 当 DOMContentLoaded 事件触发时，仅当DOM加载完成，不包括样式表，图片，flash。
 
-### 40. 请解释单页应用是什么，如何使其对 SEO 友好。
+### 请解释单页应用是什么，如何使其对 SEO 友好。
 
 单页面（SPA）应用是服务器端只返回一个html的web，使用客户端渲染，SPA 通过 JavaScript 来动态更新页面，这些 JavaScript 在初始页面加载时已经下载，有些爬虫程序并不会执行JS，所以不利于SEO，可以在服务器端渲染应用，首屏服务器端渲染还可以加快首屏响应速度，或者使用诸如 Prerender 的服务来“在浏览器中呈现的 javascript，保存静态 HTML，并将其返回给爬虫”。
 
-### 41. polyfill
+### polyfill
 
 我们希望浏览器提供一些特性，但是没有，然后我们自己写一段代码来实现他，那这段代码就是补丁
 
-### 42. 你使用什么语句遍历对象的属性和数组的元素？
+### 你使用什么语句遍历对象的属性和数组的元素？
 
 数组用forEach, for of(可break, continue), 对象遍历key用for in，不过会遍历到遍历到它的继承属性，在使用之前，需要加入obj.hasOwnProperty(property)检查
 
 for...of是ES6对于forEach的改善，for of只可以循环可迭代对象的可迭代属性，不可迭代属性在循环中被忽略了（优点1）；可以与break、continue和return配合使用。（优点2）
 
-### 43. 什么是事件循环？调用堆栈和任务队列之间有什么区别？
+### 什么是事件循环？调用堆栈和任务队列之间有什么区别？
 
 事件循环是一个单线程循环，用于监视调用堆栈并检查是否有工作即将在任务队列中完成。如果调用堆栈为空并且任务队列中有回调函数，则将回调函数出队并推送到调用堆栈中执行。
 
-### 44. 请解释`function foo() {}`和`var foo = function() {}`之间`foo`的用法上的区别。
+### 请解释`function foo() {}`和`var foo = function() {}`之间`foo`的用法上的区别。
 
 前者是函数声明，后者是函数表达式。关键的区别在于函数声明会使函数体提升（具有与变量相同的提升行为），但函数表达式的函数体不能。有关变量提升的更多解释，请参阅上面关于变量提升的问题。如果你试图在定义函数表达式之前调用它，你会得到一个`Uncaught TypeError: XXX is not a function`的错误。
 
@@ -516,14 +1169,14 @@ var foo = function() {
 };
 ```
 
-### 45. 使用let、var和const创建变量有什么区别？
+### 使用let、var和const创建变量有什么区别？
 
 1. 用var声明的变量的作用域是它当前的执行上下文，它可以是嵌套的函数（函数作用域），也可以是声明在任何函数外的变量。let和const是块级作用域，意味着它们只能在最近的一组花括号（function、if-else 代码块或 for 循环中）中访问
 1. var会使变量提升，这意味着变量可以在声明之前使用。let和const不会使变量提升，提前使用会报错。
 1. 用var重复声明不会报错，但let和const会。
 1. let和const的区别在于：let允许多次赋值，而const只允许一次。
 
-### 46. 构造函数中使用箭头函数有什么好处？
+### 构造函数中使用箭头函数有什么好处？
 1. 简介
 1. 正常函数的 this 是可以在执行过程中被改变的，而箭头函数的 this 则会一直保持一致。所以在使用箭头函数的时候，你就不需要担心它的上下文被改变了。
 
@@ -559,7 +1212,7 @@ sayNameFromWindow2(); // John
 
 这在 React 的类组件里非常有用。如果你使用普通的函数来定义一个类方法，比如一个点击处理函数，然后你将这个点击处理函数通过 prop 的形式传递给子节点，你将必须在父组件的 `constroctor` 里使用 `fn.bind(this)` 的形式来确保该函数能正常工作。但是如果你使用箭头函数的话，你就不需要手动去绑定 `this` 了，因为箭头函数会自动绑定创建时的 `this`。
 
-### 47. 请给出一个解构（destructuring）对象或数组的例子。
+### 请给出一个解构（destructuring）对象或数组的例子。
 
 解构是 ES6 中新功能，它提供了一种简洁方便的方法来提取对象或数组的值，并将它们放入不同的变量中。
 
@@ -596,13 +1249,12 @@ console.log(p); // 42
 console.log(q); // true
 ```
 
-### html
+## html
 ### 1. 事件冒泡和捕获
 ### 2. window对象和document对象
 ### 3. 页面编码和被请求的资源编码如果不一致
 ### 4. DOM操作
 ### 5. 把 Script 标签 放在页面的最底部的body封闭之前 和封闭之后有什么区别？
-### 6. 给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件？
 ### 7. http状态码
 ### 8. Doctype作用
 ### 9. 标准模式与兼容模式有什么区别
@@ -623,7 +1275,7 @@ console.log(q); // true
 ### 24. JavaScript是采用值传递还是引用传递的，并解释一下原理
 
 
-### css
+## css
 ### 1. CSS的盒子模型，低版本IE的盒子模型有什么不同的
 ### 2. CSS选择器
 ### 3. display的值及作用
@@ -635,13 +1287,55 @@ console.log(q); // true
 ### 9. CSS优化、提高性能的方式
 ### 10. 
 
-### 性能优化
+## 性能优化
 ### 1. 一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？
 ### 2. 性能优化策略, 核心，html层面布局， request, css, 服务器端, JS
 
-### other
+## other
 ### 1. 对称/非对称加密，公钥和私钥
-### 2. XML和JSON的区别？
+基本概念:
+
+1. 对称加密, 最快速、最简单的一种加密方式，加密（encryption）与解密（decryption）用的是同样的密钥（secret key）。
+
+2. 非对称加密， 非对称加密为数据的加密与解密提供了一个非常安全的方法，它使用了一对密钥，公钥（public key）和私钥（private key）
+
+3. 密钥对，在非对称加密技术中，有两种密钥，分为私钥和公钥，私钥是密钥对所有者持有，不可公布，公钥是密钥对持有者公布给他人的。
+
+4. 摘要，对需要传输的文本，做一个HASH计算，一般采用SHA1，SHA2来获得。
+
+5. 签名，使用私钥对需要传输的文本的摘要进行加密，得到的密文即被称为该次传输过程的签名。
+
+6. 签名验证，数据接收端，拿到传输文本，但是需要确认该文本是否就是发送发出的内容，中途是否曾经被篡改。因此拿自己持有的公钥对签名进行解密（密钥对中的一种密钥加密的数据必定能使用另一种密钥解密。），得到了文本的摘要，然后使用与发送方同样的HASH算法计算摘要值，再与解密得到的摘要做对比，发现二者完全一致，则说明文本没有被篡改过。
+
+7. 证书中心（certificate authority，简称CA), CA用自己的私钥，对发送者公钥和一些相关信息一起加密，生成"数字证书"（Digital Certificate），发送时连同签名一起发送
+
+
+对称加密加密与解密使用的是同样的密钥，所以速度快，但由于需要将密钥在网络传输，所以安全性不高。而非对称加密使用了一对密钥，公钥与私钥，所以安全性高，但加密与解密速度慢。解决的办法是将对称加密的密钥使用非对称加密的公钥进行加密，然后发送出去，接收方使用私钥进行解密得到对称加密的密钥，然后双方可以使用对称加密来进行沟通。
+
+以Alice和银行之间的通信为例，这同时也是https协议的简略过程：
+
+1. Alice向Bank请求公钥
+
+2. Bank网站从中选出一组加密算法与HASH算法，并将自己的身份信息以证书的形式发回给Alice的浏览器。证书里面包含了网站地址，加密公钥，以及证书的颁发机构等信息
+
+3. Alice的浏览器获得证书后验证合法性，客户端（浏览器）的"证书管理器"，有"受信任的根证书颁发机构"列表，客户端会根据这张列表，查看解开数字证书的公钥是否在列表之内。
+
+4. 若证书合法，浏览器会生成一串随机数的密码，并用证书中提供的公钥加密，这就是对称加密的秘钥。接下来会进行握手验证，使用约定好的HASH算法加密一段握手消息，并使用生成的随机数对消息进行加密，最后将之前生成的对称加密的秘钥（使用公钥加密过的）+ 加密的握手消息发送给Bank。 若不合法则发出警告。
+
+4. Bank使用私钥解密得到对称秘钥，使用秘钥解密浏览器发来的握手消息，并验证HASH是否与浏览器发来的一致。 然后使用密码加密一段握手消息，发送给浏览器。 
+
+5. 浏览器解密并计算握手消息的HASH，如果与服务端发来的HASH一致，此时握手过程结束，Alice和Bank使用对称秘钥互相传输数据。
+
+<img src="http://lrun1124.github.io/img/jsbase4/Alice&Bank.png"/>
+
+HTTPS一般使用的加密与HASH算法如下：
+
+非对称加密算法：RSA，DSA/DSS
+
+对称加密算法：AES，RC4，3DES 
+
+HASH算法：MD5，SHA1，SHA256
+
 ### 3. JSON了解
 ### 4. Web安全及防护原理, sql注入, XSS, csrf
 
