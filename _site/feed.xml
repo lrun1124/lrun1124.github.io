@@ -5,35 +5,34 @@
     <description></description>
     <link>http://localhost:4000/lrun1124.github.io/</link>
     <atom:link href="http://localhost:4000/lrun1124.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 17 Oct 2019 10:23:44 +0800</pubDate>
-    <lastBuildDate>Thu, 17 Oct 2019 10:23:44 +0800</lastBuildDate>
+    <pubDate>Thu, 17 Oct 2019 12:03:14 +0800</pubDate>
+    <lastBuildDate>Thu, 17 Oct 2019 12:03:14 +0800</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
     
       <item>
         <title>Summary</title>
         <description>&lt;blockquote&gt;
-  &lt;p&gt;“Move on. ”&lt;/p&gt;
-&lt;/blockquote&gt;
-
+  &lt;p&gt;“Move on. ”
 &lt;!-- START doctoc generated TOC please keep comment here to allow auto update --&gt;
 &lt;!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE --&gt;
-&lt;p&gt;&lt;strong&gt;Table of Contents&lt;/strong&gt;  &lt;em&gt;generated with &lt;a href=&quot;https://github.com/thlorenz/doctoc&quot;&gt;DocToc&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;strong&gt;Table of Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;#js&quot;&gt;JS&lt;/a&gt;
     &lt;ul&gt;
       &lt;li&gt;&lt;a href=&quot;#js%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1&quot;&gt;JS基本数据类型及存储结构，内置对象&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#null-undefined%E5%8C%BA%E5%88%AB-%E6%9C%AA%E5%A3%B0%E6%98%8E%E5%8F%98%E9%87%8F&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;undefined&lt;/code&gt;区别, 未声明变量&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#javascript%E6%98%AF%E9%87%87%E7%94%A8%E5%80%BC%E4%BC%A0%E9%80%92%E8%BF%98%E6%98%AF%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92%E7%9A%84%E5%B9%B6%E8%A7%A3%E9%87%8A%E4%B8%80%E4%B8%8B%E5%8E%9F%E7%90%86&quot;&gt;JavaScript是采用值传递还是引用传递的，并解释一下原理&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#js%E5%8E%9F%E5%9E%8B%E5%8E%9F%E5%9E%8B%E9%93%BE-%E5%8E%9F%E5%9E%8B%E7%BB%A7%E6%89%BFprototypal-inheritance%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86&quot;&gt;JS原型，原型链， 原型继承（prototypal inheritance）的工作原理&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#js%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE&quot;&gt;JS作用域，作用域链&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E9%97%AD%E5%8C%85closure%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E9%97%AD%E5%8C%85&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;闭包（closure）&lt;/code&gt;，为什么使用闭包&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E8%AF%B7%E7%AE%80%E8%BF%B0javascript%E4%B8%AD%E7%9A%84this&quot;&gt;请简述&lt;code class=&quot;highlighter-rouge&quot;&gt;JavaScript&lt;/code&gt;中的&lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;。&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#window%E5%AF%B9%E8%B1%A1%E5%92%8Cdocument%E5%AF%B9%E8%B1%A1&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;window&lt;/code&gt;对象和&lt;code class=&quot;highlighter-rouge&quot;&gt;document&lt;/code&gt;对象&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#ie%E5%92%8Cfirefox%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6&quot;&gt;IE和firefox事件机制&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#new%E7%9A%84%E8%BF%87%E7%A8%8B&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;New&lt;/code&gt;的过程&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E4%B8%8D%E4%BC%9A%E6%9F%A5%E6%89%BE%E5%8E%9F%E5%9E%8B%E7%9A%84%E5%87%BD%E6%95%B0&quot;&gt;不会查找原型的函数&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#for-in%E5%92%8Cfor-of&quot;&gt;for in和for of&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#ajax%E6%B5%81%E7%A8%8B%E6%89%8B%E5%8A%A8%E5%86%99ajax%E7%BC%93%E5%AD%98&quot;&gt;Ajax流程，手动写，Ajax缓存&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E6%8A%8A-script-%E6%A0%87%E7%AD%BE-%E6%94%BE%E5%9C%A8%E9%A1%B5%E9%9D%A2%E7%9A%84%E6%9C%80%E5%BA%95%E9%83%A8%E7%9A%84body%E5%B0%81%E9%97%AD%E4%B9%8B%E5%89%8D-%E5%92%8C%E5%B0%81%E9%97%AD%E4%B9%8B%E5%90%8E%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB&quot;&gt;把 Script 标签 放在页面的最底部的body封闭之前 和封闭之后有什么区别？&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BDdeferasync%E5%8A%A8%E6%80%81dom%E5%88%86%E7%BB%84%E5%8A%A0%E8%BD%BD&quot;&gt;延迟加载，defer，async，动态dom，分组加载&lt;/a&gt;
         &lt;ul&gt;
           &lt;li&gt;&lt;a href=&quot;#%E4%BD%BF%E7%94%A8defer%E6%88%96async%E5%B1%9E%E6%80%A7&quot;&gt;使用defer或async属性&lt;/a&gt;&lt;/li&gt;
@@ -46,7 +45,6 @@
       &lt;li&gt;&lt;a href=&quot;#%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96amdcmdcommonjs&quot;&gt;前端模块化，AMD/CMD/CommonJS&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F&quot;&gt;内存泄漏&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#--objectis%E5%8C%BA%E5%88%AB&quot;&gt;==, ===, Object.is()区别&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#%E7%BB%99%E4%B8%80%E4%B8%AAdom%E5%90%8C%E6%97%B6%E7%BB%91%E5%AE%9A%E4%B8%A4%E4%B8%AA%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E4%B8%80%E4%B8%AA%E7%94%A8%E6%8D%95%E8%8E%B7%E4%B8%80%E4%B8%AA%E7%94%A8%E5%86%92%E6%B3%A1%E4%BC%9A%E6%89%A7%E8%A1%8C%E5%87%A0%E6%AC%A1%E4%BA%8B%E4%BB%B6&quot;&gt;给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件？&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E5%89%8D%E7%AB%AF%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%8D%95%E4%BE%8B%E5%8D%95%E4%BD%93%E5%B7%A5%E5%8E%82%E7%AD%96%E7%95%A5%E8%A3%85%E9%A5%B0%E8%80%85%E9%80%82%E9%85%8D%E5%99%A8%E8%A7%82%E5%AF%9F%E8%80%85%E9%97%A8%E9%9D%A2&quot;&gt;前端设计模式，单例，单体，工厂，策略，装饰者，适配器，观察者，门面&lt;/a&gt;
         &lt;ul&gt;
           &lt;li&gt;&lt;a href=&quot;#%E5%8D%95%E4%BD%93%E6%A8%A1%E5%BC%8Fsingleton&quot;&gt;单体模式(Singleton)&lt;/a&gt;&lt;/li&gt;
@@ -75,12 +73,13 @@
         &lt;/ul&gt;
       &lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#cookie%E5%92%8Csession&quot;&gt;Cookie和Session&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#cookie-loaclstorage-sessionstorage&quot;&gt;cookie, loaclStorage, sessionStorage&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#javascript%E7%BB%A7%E6%89%BF%E7%9A%846%E7%A7%8D%E6%96%B9%E6%B3%95&quot;&gt;javascript继承的6种方法&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E4%B8%80%E4%B8%AA%E9%A1%B5%E9%9D%A2%E4%BB%8E%E8%BE%93%E5%85%A5-url-%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E6%98%BE%E7%A4%BA%E5%AE%8C%E6%88%90%E8%BF%99%E4%B8%AA%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%83%BD%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88&quot;&gt;一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E5%B8%B8%E8%A7%81%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8%E6%9C%89%E5%93%AA%E4%BA%9B&quot;&gt;常见的浏览器内核有哪些？&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#js%E5%86%85%E6%A0%B8%E4%BA%86%E8%A7%A3&quot;&gt;JS内核了解&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#xml%E5%92%8Cjson&quot;&gt;XML和JSON&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#mvc%E5%92%8Cmvvm%E7%9A%84%E7%90%86%E8%A7%A3&quot;&gt;MVC和MVVM的理解&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#%E8%AF%B7%E8%A7%A3%E9%87%8A%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98event-delegation&quot;&gt;请解释事件委托（event delegation）&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#foreach%E5%BE%AA%E7%8E%AF%E5%92%8Cmap%E5%BE%AA%E7%8E%AF%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8C%BA%E5%88%AB%E5%AE%83%E4%BB%AC%E5%88%86%E5%88%AB%E5%9C%A8%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BD%BF%E7%94%A8&quot;&gt;forEach循环和.map()循环的主要区别，它们分别在什么情况下使用？&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E5%AE%BF%E4%B8%BB%E5%AF%B9%E8%B1%A1host-objects%E5%92%8C%E5%8E%9F%E7%94%9F%E5%AF%B9%E8%B1%A1native-objects%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88&quot;&gt;宿主对象（host objects）和原生对象（native objects）的区别是什么？&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E4%B8%8B%E5%88%97%E8%AF%AD%E5%8F%A5%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%ABfunction-personvar-person--person%E5%92%8Cvar-person--new-person&quot;&gt;下列语句有什么区别：function Person(){}、var person = Person()和var person = new Person()？&lt;/a&gt;&lt;/li&gt;
@@ -95,11 +94,10 @@
           &lt;li&gt;&lt;a href=&quot;#corscross-orign-resource-share%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB&quot;&gt;CORS(Cross orign resource share)跨域资源共享&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E5%A4%9A%E4%B8%AA%E6%A0%87%E7%AD%BE%E9%A1%B5%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1&quot;&gt;如何实现浏览器内多个标签页之间的通信?&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E8%AF%B7%E8%A7%A3%E9%87%8A%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87hoisting&quot;&gt;请解释变量提升（hoisting）。&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#36-%E8%AF%B7%E6%8F%8F%E8%BF%B0%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1&quot;&gt;36. 请描述事件冒泡&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#37-attribute-%E5%92%8C-property-%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB&quot;&gt;37. “attribute” 和 “property” 之间有什么区别？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#attribute-%E5%92%8C-property-%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB&quot;&gt;“attribute” 和 “property” 之间有什么区别？&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%89%A9%E5%B1%95-javascript-%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1%E6%98%AF%E4%B8%8D%E5%A5%BD%E7%9A%84%E5%81%9A%E6%B3%95&quot;&gt;为什么扩展 JavaScript 内置对象是不好的做法？&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#document-%E4%B8%AD%E7%9A%84load%E4%BA%8B%E4%BB%B6%E5%92%8Cdomcontentloaded%E4%BA%8B%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88&quot;&gt;document 中的&lt;code class=&quot;highlighter-rouge&quot;&gt;load&lt;/code&gt;事件和&lt;code class=&quot;highlighter-rouge&quot;&gt;DOMContentLoaded&lt;/code&gt;事件之间的区别是什么？&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E8%AF%B7%E8%A7%A3%E9%87%8A%E5%8D%95%E9%A1%B5%E5%BA%94%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88%E5%A6%82%E4%BD%95%E4%BD%BF%E5%85%B6%E5%AF%B9-seo-%E5%8F%8B%E5%A5%BD&quot;&gt;请解释单页应用是什么，如何使其对 SEO 友好。&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#polyfill&quot;&gt;polyfill&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E4%BD%A0%E4%BD%BF%E7%94%A8%E4%BB%80%E4%B9%88%E8%AF%AD%E5%8F%A5%E9%81%8D%E5%8E%86%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B1%9E%E6%80%A7%E5%92%8C%E6%95%B0%E7%BB%84%E7%9A%84%E5%85%83%E7%B4%A0&quot;&gt;你使用什么语句遍历对象的属性和数组的元素？&lt;/a&gt;&lt;/li&gt;
@@ -108,33 +106,29 @@
       &lt;li&gt;&lt;a href=&quot;#%E4%BD%BF%E7%94%A8letvar%E5%92%8Cconst%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB&quot;&gt;使用let、var和const创建变量有什么区别？&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%A4%84&quot;&gt;构造函数中使用箭头函数有什么好处？&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E8%AF%B7%E7%BB%99%E5%87%BA%E4%B8%80%E4%B8%AA%E8%A7%A3%E6%9E%84destructuring%E5%AF%B9%E8%B1%A1%E6%88%96%E6%95%B0%E7%BB%84%E7%9A%84%E4%BE%8B%E5%AD%90&quot;&gt;请给出一个解构（destructuring）对象或数组的例子。&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#dom%E6%93%8D%E4%BD%9C&quot;&gt;DOM操作&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#html&quot;&gt;html&lt;/a&gt;
     &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#1-%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E5%92%8C%E6%8D%95%E8%8E%B7&quot;&gt;1. 事件冒泡和捕获&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#2-window%E5%AF%B9%E8%B1%A1%E5%92%8Cdocument%E5%AF%B9%E8%B1%A1&quot;&gt;2. window对象和document对象&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#3-%E9%A1%B5%E9%9D%A2%E7%BC%96%E7%A0%81%E5%92%8C%E8%A2%AB%E8%AF%B7%E6%B1%82%E7%9A%84%E8%B5%84%E6%BA%90%E7%BC%96%E7%A0%81%E5%A6%82%E6%9E%9C%E4%B8%8D%E4%B8%80%E8%87%B4&quot;&gt;3. 页面编码和被请求的资源编码如果不一致&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#4-dom%E6%93%8D%E4%BD%9C&quot;&gt;4. DOM操作&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#5-%E6%8A%8A-script-%E6%A0%87%E7%AD%BE-%E6%94%BE%E5%9C%A8%E9%A1%B5%E9%9D%A2%E7%9A%84%E6%9C%80%E5%BA%95%E9%83%A8%E7%9A%84body%E5%B0%81%E9%97%AD%E4%B9%8B%E5%89%8D-%E5%92%8C%E5%B0%81%E9%97%AD%E4%B9%8B%E5%90%8E%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB&quot;&gt;5. 把 Script 标签 放在页面的最底部的body封闭之前 和封闭之后有什么区别？&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#7-http%E7%8A%B6%E6%80%81%E7%A0%81&quot;&gt;7. http状态码&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#8-doctype%E4%BD%9C%E7%94%A8&quot;&gt;8. Doctype作用&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#9-%E6%A0%87%E5%87%86%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%85%BC%E5%AE%B9%E6%A8%A1%E5%BC%8F%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB&quot;&gt;9. 标准模式与兼容模式有什么区别&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#10-html5-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AA%E9%9C%80%E8%A6%81%E5%86%99-doctype-html&quot;&gt;10. HTML5 为什么只需要写 &amp;lt;!DOCTYPE HTML&amp;gt;&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#11-%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E6%9C%89%E5%93%AA%E4%BA%9B%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0%E6%9C%89%E5%93%AA%E4%BA%9B-%E7%A9%BAvoid%E5%85%83%E7%B4%A0%E6%9C%89%E9%82%A3%E4%BA%9B&quot;&gt;11. 行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#12-%E4%BD%BF%E7%94%A8link%E5%92%8Cimport%E5%8C%BA%E5%88%AB&quot;&gt;12. 使用link和@import区别&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#13-%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8%E7%9A%84%E7%90%86%E8%A7%A3&quot;&gt;13. 浏览器内核的理解&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#14-%E5%B8%B8%E8%A7%81%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8&quot;&gt;14. 常见的浏览器内核&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#15-html5%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E7%89%B9%E6%80%A7%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86html5%E6%96%B0%E6%A0%87%E7%AD%BE%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98%E5%A6%82%E4%BD%95%E5%8C%BA%E5%88%86-html-%E5%92%8C-html5&quot;&gt;15. html5有哪些新特性？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#16-xmlsgmlhtmlxhtmlhtml5&quot;&gt;16. XML,SGML,HTML,XHTML,HTML5&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#17-html%E8%AF%AD%E4%B9%89%E5%8C%96&quot;&gt;17. HTML语义化&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#18-cookie-loaclstorage-sessionstorage&quot;&gt;18. cookie, loaclStorage, sessionStorage&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#19-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E6%80%8E%E4%B9%88%E5%AF%B9html5%E7%9A%84%E7%A6%BB%E7%BA%BF%E5%82%A8%E5%AD%98%E8%B5%84%E6%BA%90%E8%BF%9B%E8%A1%8C%E7%AE%A1%E7%90%86%E5%92%8C%E5%8A%A0%E8%BD%BD%E7%9A%84%E5%91%A2&quot;&gt;19. 浏览器是怎么对HTML5的离线储存资源进行管理和加载的呢？&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#20-iframe%E7%BC%BA%E7%82%B9&quot;&gt;20. iframe缺点&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#21-label%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88%E6%98%AF%E6%80%8E%E4%B9%88%E7%94%A8%E7%9A%84&quot;&gt;21. Label的作用是什么？是怎么用的？&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#22-title%E4%B8%8Eh1%E7%9A%84%E5%8C%BA%E5%88%ABb%E4%B8%8Estrong%E7%9A%84%E5%8C%BA%E5%88%ABi%E4%B8%8Eem%E7%9A%84%E5%8C%BA%E5%88%AB&quot;&gt;22. title与h1的区别、b与strong的区别、i与em的区别？&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#23-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E5%A4%9A%E4%B8%AA%E6%A0%87%E7%AD%BE%E9%A1%B5%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1&quot;&gt;23. 如何实现浏览器内多个标签页之间的通信?&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#24-javascript%E6%98%AF%E9%87%87%E7%94%A8%E5%80%BC%E4%BC%A0%E9%80%92%E8%BF%98%E6%98%AF%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92%E7%9A%84%E5%B9%B6%E8%A7%A3%E9%87%8A%E4%B8%80%E4%B8%8B%E5%8E%9F%E7%90%86&quot;&gt;24. JavaScript是采用值传递还是引用传递的，并解释一下原理&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E8%AF%B7%E6%8F%8F%E8%BF%B0%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1&quot;&gt;请描述事件冒泡&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E8%AF%B7%E8%A7%A3%E9%87%8A%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98event-delegation&quot;&gt;请解释事件委托（event delegation）&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#ie%E5%92%8Cfirefox%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6&quot;&gt;IE和firefox事件机制&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E7%BB%99%E4%B8%80%E4%B8%AAdom%E5%90%8C%E6%97%B6%E7%BB%91%E5%AE%9A%E4%B8%A4%E4%B8%AA%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E4%B8%80%E4%B8%AA%E7%94%A8%E6%8D%95%E8%8E%B7%E4%B8%80%E4%B8%AA%E7%94%A8%E5%86%92%E6%B3%A1%E4%BC%9A%E6%89%A7%E8%A1%8C%E5%87%A0%E6%AC%A1%E4%BA%8B%E4%BB%B6&quot;&gt;给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#window%E5%AF%B9%E8%B1%A1%E5%92%8Cdocument%E5%AF%B9%E8%B1%A1&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;window&lt;/code&gt;对象和&lt;code class=&quot;highlighter-rouge&quot;&gt;document&lt;/code&gt;对象&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#document-%E4%B8%AD%E7%9A%84load%E4%BA%8B%E4%BB%B6%E5%92%8Cdomcontentloaded%E4%BA%8B%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88&quot;&gt;document 中的&lt;code class=&quot;highlighter-rouge&quot;&gt;load&lt;/code&gt;事件和&lt;code class=&quot;highlighter-rouge&quot;&gt;DOMContentLoaded&lt;/code&gt;事件之间的区别是什么？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E9%A1%B5%E9%9D%A2%E7%BC%96%E7%A0%81%E5%92%8C%E8%A2%AB%E8%AF%B7%E6%B1%82%E7%9A%84%E8%B5%84%E6%BA%90%E7%BC%96%E7%A0%81%E5%A6%82%E6%9E%9C%E4%B8%8D%E4%B8%80%E8%87%B4&quot;&gt;页面编码和被请求的资源编码如果不一致&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#http%E7%8A%B6%E6%80%81%E7%A0%81&quot;&gt;http状态码&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#doctype%E4%BD%9C%E7%94%A8-html5-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AA%E9%9C%80%E8%A6%81%E5%86%99-%5Cdoctype-html-%E6%A0%87%E5%87%86%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%85%BC%E5%AE%B9%E6%A8%A1%E5%BC%8F%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Doctype&lt;/code&gt;作用, HTML5 为什么只需要写 &lt;code class=&quot;highlighter-rouge&quot;&gt;\&amp;lt;!DOCTYPE HTML&amp;gt;&lt;/code&gt;, 标准模式与兼容模式有什么区别&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#xmlsgmlhtmlxhtmlhtml5&quot;&gt;XML,SGML,HTML,XHTML,HTML5&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E6%9C%89%E5%93%AA%E4%BA%9B%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0%E6%9C%89%E5%93%AA%E4%BA%9B-%E7%A9%BAvoid%E5%85%83%E7%B4%A0%E6%9C%89%E9%82%A3%E4%BA%9B&quot;&gt;行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E4%BD%BF%E7%94%A8link%E5%92%8Cimport%E5%8C%BA%E5%88%AB&quot;&gt;使用&lt;code class=&quot;highlighter-rouge&quot;&gt;link&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;@import&lt;/code&gt;区别&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#html5%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E7%89%B9%E6%80%A7%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86html5%E6%96%B0%E6%A0%87%E7%AD%BE%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98%E5%A6%82%E4%BD%95%E5%8C%BA%E5%88%86-html-%E5%92%8C-html5&quot;&gt;html5有哪些新特性？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#html%E8%AF%AD%E4%B9%89%E5%8C%96&quot;&gt;HTML语义化&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#title%E4%B8%8Eh1%E7%9A%84%E5%8C%BA%E5%88%ABb%E4%B8%8Estrong%E7%9A%84%E5%8C%BA%E5%88%ABi%E4%B8%8Eem%E7%9A%84%E5%8C%BA%E5%88%AB&quot;&gt;title与h1的区别、b与strong的区别、i与em的区别？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E6%80%8E%E4%B9%88%E5%AF%B9html5%E7%9A%84%E7%A6%BB%E7%BA%BF%E5%82%A8%E5%AD%98%E8%B5%84%E6%BA%90%E8%BF%9B%E8%A1%8C%E7%AE%A1%E7%90%86%E5%92%8C%E5%8A%A0%E8%BD%BD%E7%9A%84%E5%91%A2&quot;&gt;浏览器是怎么对HTML5的离线储存资源进行管理和加载的呢？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#iframe%E7%BC%BA%E7%82%B9&quot;&gt;iframe缺点&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#label%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88%E6%98%AF%E6%80%8E%E4%B9%88%E7%94%A8%E7%9A%84&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Label&lt;/code&gt;的作用是什么？是怎么用的？&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#css&quot;&gt;css&lt;/a&gt;
@@ -162,9 +156,9 @@
       &lt;li&gt;&lt;a href=&quot;#1-%E5%AF%B9%E7%A7%B0%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E5%85%AC%E9%92%A5%E5%92%8C%E7%A7%81%E9%92%A5&quot;&gt;1. 对称/非对称加密，公钥和私钥&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#3-json%E4%BA%86%E8%A7%A3&quot;&gt;3. JSON了解&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#4-web%E5%AE%89%E5%85%A8%E5%8F%8A%E9%98%B2%E6%8A%A4%E5%8E%9F%E7%90%86-sql%E6%B3%A8%E5%85%A5-xss-csrf&quot;&gt;4. Web安全及防护原理, sql注入, XSS, csrf&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#code&quot;&gt;code&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#code&quot;&gt;code&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;!-- END doctoc generated TOC please keep comment here to allow auto update --&gt;
@@ -202,6 +196,8 @@
 &lt;p&gt;null === undefined 为true, null == undefined为false，目前的JS环境中，它们的差别很小，同时存在是因为历史原因，Js初期的设计参考了C等语言，在C中，null可以自动转型为0，由于JS的设计者Brendan Eich认为‘无’的概念最好不是一个对象，并且JS早期缺乏错误处理机制，null自动转型为0可能会造成一些不被察觉的错误，所以设计了undefined&lt;/p&gt;
 
 &lt;p&gt;当你没有提前使用var、let或const声明变量，就为一个变量赋值时，该变量是未声明变量（undeclared variables）。未声明变量会脱离当前作用域，成为全局作用域下定义的变量。在严格模式下，给未声明的变量赋值，会抛出ReferenceError错误。和使用全局变量一样，使用未声明变量也是非常不好的做法，应当尽可能避免。&lt;/p&gt;
+
+&lt;h3 id=&quot;javascript是采用值传递还是引用传递的并解释一下原理&quot;&gt;JavaScript是采用值传递还是引用传递的，并解释一下原理&lt;/h3&gt;
 
 &lt;h3 id=&quot;js原型原型链-原型继承prototypal-inheritance的工作原理&quot;&gt;JS原型，原型链， 原型继承（prototypal inheritance）的工作原理&lt;/h3&gt;
 
@@ -275,25 +271,6 @@ result();//1001
   &lt;li&gt;如果该函数是 ES2015 中的箭头函数，将忽略上面的所有规则，&lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;被设置为它被创建时的上下文。&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&quot;window对象和document对象&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;window&lt;/code&gt;对象和&lt;code class=&quot;highlighter-rouge&quot;&gt;document&lt;/code&gt;对象&lt;/h3&gt;
-
-&lt;p&gt;window对象是浏览器打开的窗口，顶层对象，document是window对象的一个属性，HTML文档对象的一个&lt;strong&gt;只读引用&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;ie和firefox事件机制&quot;&gt;IE和firefox事件机制&lt;/h3&gt;
-
-&lt;p&gt;IE是事件冒泡，firefox同时支持事件冒泡和捕获&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;事件捕获: 越高层的元素越早接收到事件，由上到下&lt;/li&gt;
-  &lt;li&gt;事件冒泡: 越低层的元素越早接收到时间，由下到上&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;阻止冒泡事件的方法&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-JS&quot;&gt;xxx.click = function(e){
-	e.stopPropagation();
-	e.cancelBubble = true;//旧IE需要
-}
-&lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;new的过程&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;New&lt;/code&gt;的过程&lt;/h3&gt;
 
 &lt;ol&gt;
@@ -374,6 +351,8 @@ result();//1001
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/script&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;把-script-标签-放在页面的最底部的body封闭之前-和封闭之后有什么区别&quot;&gt;把 Script 标签 放在页面的最底部的body封闭之前 和封闭之后有什么区别？&lt;/h3&gt;
+&lt;p&gt;放在body的封闭之前，将会阻塞其他资源的加载，放在body封闭之后，不会影响body内元素的加载&lt;/p&gt;
 
 &lt;h3 id=&quot;延迟加载deferasync动态dom分组加载&quot;&gt;延迟加载，defer，async，动态dom，分组加载&lt;/h3&gt;
 
@@ -524,46 +503,6 @@ CMD缺点：执行等待时间会叠加。因为每个文件执行时是同步�
 &lt;h3 id=&quot;--objectis区别&quot;&gt;==, ===, Object.is()区别&lt;/h3&gt;
 
 &lt;p&gt;==会进行类型转换，===不会，Object.is 在三等号判等的基础上特别处理了 NaN 、-0 和 +0 ，保证 -0 和 +0 不再相同，但 Object.is(NaN, NaN) 会返回 true.&lt;/p&gt;
-
-&lt;h3 id=&quot;给一个dom同时绑定两个点击事件一个用捕获一个用冒泡会执行几次事件&quot;&gt;给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件？&lt;/h3&gt;
-&lt;p&gt;绑定几个事件就执行几次，执行优先级:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;父元素的捕获事件&lt;/li&gt;
-  &lt;li&gt;目标元素的顺序事件，无视捕获还是冒泡&lt;/li&gt;
-  &lt;li&gt;父元素的冒泡事件&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;也就是说从外层到内层再回到外层
-target.addEventListener(type, listener[, options]);&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;div class='d1'&amp;gt;
-    &amp;lt;div class='d2'&amp;gt;&amp;lt;/div&amp;gt;
-&amp;lt;/div&amp;gt;
-
-&amp;lt;script type='text/javascript'&amp;gt;
-var d1 = document.getElementsByClass('d1');
-var d2 = document.getElementsByClass('d2');
-     
-//父级绑定click事件冒泡
-d1.addEventListener('click', function(){ console.log('parent bubble') }, false);
-
-//子级绑定click事件冒泡
-d2.addEventListener('click', function(){ console.log('child bubble') }, false);
-
-//子级绑定click事件捕获
-d2.addEventListener('click', function(){ console.log('child capture') }, true);
-
-//父级绑定click事件捕获
-d1.addEventListener('click', function(){ console.log('parent capture') }, true);
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;console:&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;parent capture
-child bubble
-child capture
-parent bubble
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;前端设计模式单例单体工厂策略装饰者适配器观察者门面&quot;&gt;前端设计模式，单例，单体，工厂，策略，装饰者，适配器，观察者，门面&lt;/h3&gt;
 
@@ -893,8 +832,6 @@ test.addELementListener('click', fn2, false);
 
 &lt;h3 id=&quot;cookie和session&quot;&gt;Cookie和Session&lt;/h3&gt;
 
-&lt;p&gt;Cookie和Session&lt;/p&gt;
-
 &lt;ol&gt;
   &lt;li&gt;session 在服务器端，cookie 在客户端（浏览器）&lt;/li&gt;
   &lt;li&gt;session 默认被存在在服务器的一个文件里（不是内存）&lt;/li&gt;
@@ -902,6 +839,15 @@ test.addELementListener('click', fn2, false);
   &lt;li&gt;session 可以放在 文件、数据库、或内存中都可以。&lt;/li&gt;
   &lt;li&gt;用户验证这种场合一般会用 session 因此，维持一个会话的核心就是客户端的唯一标识，即 session id&lt;/li&gt;
   &lt;li&gt;cookie是不安全的，一些网络攻击如XSS和CSRF可以获取cookie或进行cookie欺骗，所以重要信息放在session里，必要放在cookie里要枷锁&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;cookie-loaclstorage-sessionstorage&quot;&gt;cookie, loaclStorage, sessionStorage&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;cookie: 可设置失效时间，默认是浏览器关闭后，大小4K左右，每次都会携带在HTTP头中，这也是大小限制的原因，如果使用cookie保存过多数据会带来性能问题，主要用于保存密码等信息&lt;/li&gt;
+  &lt;li&gt;localStorage: 除非主动删除，否则永久保留，一般5M左右，仅在浏览器保存，不参与通信&lt;/li&gt;
+  &lt;li&gt;sessionStorage: 仅在当前会话下有效，刷新不删除，关闭页面或浏览器清除，一般5M左右，仅在浏览器保存，不参与通信&lt;/li&gt;
+  &lt;li&gt;另外sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；localStorage 在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的。&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h3 id=&quot;javascript继承的6种方法&quot;&gt;javascript继承的6种方法&lt;/h3&gt;
@@ -928,6 +874,13 @@ test.addELementListener('click', fn2, false);
   &lt;li&gt;渲染完毕后就是load事件了，之后就是自己的JS逻辑处理了&lt;/li&gt;
 &lt;/ol&gt;
 
+&lt;h3 id=&quot;常见的浏览器内核有哪些&quot;&gt;常见的浏览器内核有哪些？&lt;/h3&gt;
+
+&lt;p&gt;Trident内核：IE,MaxThon,TT,The World,360,搜狗浏览器等。[又称MSHTML]&lt;br /&gt;
+  Gecko内核：Netscape6及以上版本，FF,MozillaSuite/SeaMonkey等&lt;br /&gt;
+  Presto内核：Opera7及以上。      [Opera内核原为：Presto，现为：Blink;]&lt;br /&gt;
+  Webkit内核：Safari,Chrome等。   [ Chrome的：Blink（WebKit的分支）]&lt;/p&gt;
+
 &lt;h3 id=&quot;js内核了解&quot;&gt;JS内核了解&lt;/h3&gt;
 &lt;p&gt;//todo&lt;/p&gt;
 
@@ -950,14 +903,6 @@ test.addELementListener('click', fn2, false);
 &lt;p&gt;ViewModel：它是View的抽象，负责View与Model之间信息转换，将View的Command传送到Model；&lt;/p&gt;
 
 &lt;p&gt;Model：数据访问层&lt;/p&gt;
-&lt;h3 id=&quot;请解释事件委托event-delegation&quot;&gt;请解释事件委托（event delegation）&lt;/h3&gt;
-
-&lt;p&gt;将时间监听添加到父元素，而不是每个子元素单独设置，当事件冒泡到父元素，监听器就会触发，好处：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;内存占用减少，只需一个父元素监听事件&lt;/li&gt;
-  &lt;li&gt;利于修改和维护，删除/添加的元素无需解绑和修改&lt;/li&gt;
-&lt;/ul&gt;
 
 &lt;h3 id=&quot;foreach循环和map循环的主要区别它们分别在什么情况下使用&quot;&gt;forEach循环和.map()循环的主要区别，它们分别在什么情况下使用？&lt;/h3&gt;
 
@@ -1149,6 +1094,12 @@ xhr.onreadystatechange = function() {
     }
 };
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;如何实现浏览器内多个标签页之间的通信&quot;&gt;如何实现浏览器内多个标签页之间的通信?&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;WebSocket、SharedWorker；&lt;/li&gt;
+  &lt;li&gt;也可以调用localstorge、cookies等本地存储方式；localstorge另一个浏览上下文里被添加、修改或删除时，它都会触发一个事件，我们通过监听事件，控制它的值来进行页面信息通信；&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;h3 id=&quot;请解释变量提升hoisting&quot;&gt;请解释变量提升（hoisting）。&lt;/h3&gt;
 
@@ -1183,10 +1134,8 @@ xhr.onreadystatechange = function() {
 &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// [Function: bar]&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h3 id=&quot;36-请描述事件冒泡&quot;&gt;36. 请描述事件冒泡&lt;/h3&gt;
-&lt;p&gt;当一个事件在 DOM 元素上触发时，如果有事件监听器，它将尝试处理该事件，然后事件冒泡到其父级元素，并发生同样的事情。最后直到事件到达祖先元素。事件冒泡是实现事件委托的原理（event delegation）。&lt;/p&gt;
 
-&lt;h3 id=&quot;37-attribute-和-property-之间有什么区别&quot;&gt;37. “attribute” 和 “property” 之间有什么区别？&lt;/h3&gt;
+&lt;h3 id=&quot;attribute-和-property-之间有什么区别&quot;&gt;“attribute” 和 “property” 之间有什么区别？&lt;/h3&gt;
 
 &lt;p&gt;“Attribute” 是在 HTML 中定义的，而 “property” 是在 DOM 上定义的。为了说明区别，假设我们在 HTML 中有一个文本框：&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;input type=&quot;text&quot; value=&quot;Hello&quot;&amp;gt;&lt;/code&gt;。&lt;/p&gt;
 
@@ -1206,17 +1155,6 @@ xhr.onreadystatechange = function() {
 &lt;p&gt;扩展 JavaScript 内置（原生）对象意味着将属性或方法添加到其&lt;code class=&quot;highlighter-rouge&quot;&gt;prototype&lt;/code&gt;中。虽然听起来很不错，但事实上这样做很危险。想象一下，你的代码使用了一些库，它们通过添加相同的 contains 方法来扩展&lt;code class=&quot;highlighter-rouge&quot;&gt;Array.prototype&lt;/code&gt;，如果这两个方法的行为不相同，那么这些实现将会相互覆盖，你的代码将不能正常运行。&lt;/p&gt;
 
 &lt;p&gt;扩展内置对象的唯一使用场景是创建 polyfill，本质上为老版本浏览器缺失的方法提供自己的实现，该方法是由 JavaScript 规范定义的。&lt;/p&gt;
-
-&lt;h3 id=&quot;document-中的load事件和domcontentloaded事件之间的区别是什么&quot;&gt;document 中的&lt;code class=&quot;highlighter-rouge&quot;&gt;load&lt;/code&gt;事件和&lt;code class=&quot;highlighter-rouge&quot;&gt;DOMContentLoaded&lt;/code&gt;事件之间的区别是什么？&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;当 onload 事件触发时，页面上所有的DOM，样式表，脚本，图片，flash都已经加载完成了。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;当 DOMContentLoaded 事件触发时，仅当DOM加载完成，不包括样式表，图片，flash。&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
 
 &lt;h3 id=&quot;请解释单页应用是什么如何使其对-seo-友好&quot;&gt;请解释单页应用是什么，如何使其对 SEO 友好。&lt;/h3&gt;
 
@@ -1335,31 +1273,239 @@ xhr.onreadystatechange = function() {
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 42&lt;/span&gt;
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// true&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;dom操作&quot;&gt;DOM操作&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//创建
+createElement() //创建元素
+createDocumentFragment()  //创建DOM片段
+createTextNode() //创建文本节点
+
+//操作
+appendChild() //添加
+removeChild() //删除
+replaceChild() //替换
+insertbefore() //在已有节点前插入新节点
+
+//查找
+getElementsById()
+getElementsByName() //通过元素的Name属性的值(IE容错能力较强，会得到一个数组，其中包括id等于name值的)
+getElementsByTag()
+getElementsByClass()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;html&quot;&gt;html&lt;/h2&gt;
-&lt;h3 id=&quot;1-事件冒泡和捕获&quot;&gt;1. 事件冒泡和捕获&lt;/h3&gt;
-&lt;h3 id=&quot;2-window对象和document对象&quot;&gt;2. window对象和document对象&lt;/h3&gt;
-&lt;h3 id=&quot;3-页面编码和被请求的资源编码如果不一致&quot;&gt;3. 页面编码和被请求的资源编码如果不一致&lt;/h3&gt;
-&lt;h3 id=&quot;4-dom操作&quot;&gt;4. DOM操作&lt;/h3&gt;
-&lt;h3 id=&quot;5-把-script-标签-放在页面的最底部的body封闭之前-和封闭之后有什么区别&quot;&gt;5. 把 Script 标签 放在页面的最底部的body封闭之前 和封闭之后有什么区别？&lt;/h3&gt;
-&lt;h3 id=&quot;7-http状态码&quot;&gt;7. http状态码&lt;/h3&gt;
-&lt;h3 id=&quot;8-doctype作用&quot;&gt;8. Doctype作用&lt;/h3&gt;
-&lt;h3 id=&quot;9-标准模式与兼容模式有什么区别&quot;&gt;9. 标准模式与兼容模式有什么区别&lt;/h3&gt;
-&lt;h3 id=&quot;10-html5-为什么只需要写-doctype-html&quot;&gt;10. HTML5 为什么只需要写 &amp;lt;!DOCTYPE HTML&amp;gt;&lt;/h3&gt;
-&lt;h3 id=&quot;11-行内元素有哪些块级元素有哪些-空void元素有那些&quot;&gt;11. 行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？&lt;/h3&gt;
-&lt;h3 id=&quot;12-使用link和import区别&quot;&gt;12. 使用link和@import区别&lt;/h3&gt;
-&lt;h3 id=&quot;13-浏览器内核的理解&quot;&gt;13. 浏览器内核的理解&lt;/h3&gt;
-&lt;h3 id=&quot;14-常见的浏览器内核&quot;&gt;14. 常见的浏览器内核&lt;/h3&gt;
-&lt;h3 id=&quot;15-html5有哪些新特性如何处理html5新标签的浏览器兼容问题如何区分-html-和-html5&quot;&gt;15. html5有哪些新特性？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？&lt;/h3&gt;
-&lt;h3 id=&quot;16-xmlsgmlhtmlxhtmlhtml5&quot;&gt;16. XML,SGML,HTML,XHTML,HTML5&lt;/h3&gt;
-&lt;h3 id=&quot;17-html语义化&quot;&gt;17. HTML语义化&lt;/h3&gt;
-&lt;h3 id=&quot;18-cookie-loaclstorage-sessionstorage&quot;&gt;18. cookie, loaclStorage, sessionStorage&lt;/h3&gt;
-&lt;h3 id=&quot;19-浏览器是怎么对html5的离线储存资源进行管理和加载的呢&quot;&gt;19. 浏览器是怎么对HTML5的离线储存资源进行管理和加载的呢？&lt;/h3&gt;
-&lt;h3 id=&quot;20-iframe缺点&quot;&gt;20. iframe缺点&lt;/h3&gt;
-&lt;h3 id=&quot;21-label的作用是什么是怎么用的&quot;&gt;21. Label的作用是什么？是怎么用的？&lt;/h3&gt;
-&lt;h3 id=&quot;22-title与h1的区别b与strong的区别i与em的区别&quot;&gt;22. title与h1的区别、b与strong的区别、i与em的区别？&lt;/h3&gt;
-&lt;h3 id=&quot;23-如何实现浏览器内多个标签页之间的通信&quot;&gt;23. 如何实现浏览器内多个标签页之间的通信?&lt;/h3&gt;
-&lt;h3 id=&quot;24-javascript是采用值传递还是引用传递的并解释一下原理&quot;&gt;24. JavaScript是采用值传递还是引用传递的，并解释一下原理&lt;/h3&gt;
+
+&lt;h3 id=&quot;请描述事件冒泡&quot;&gt;请描述事件冒泡&lt;/h3&gt;
+&lt;p&gt;当一个事件在 DOM 元素上触发时，如果有事件监听器，它将尝试处理该事件，然后事件冒泡到其父级元素，并发生同样的事情。最后直到事件到达祖先元素。事件冒泡是实现事件委托的原理（event delegation）。&lt;/p&gt;
+
+&lt;h3 id=&quot;请解释事件委托event-delegation&quot;&gt;请解释事件委托（event delegation）&lt;/h3&gt;
+
+&lt;p&gt;将时间监听添加到父元素，而不是每个子元素单独设置，当事件冒泡到父元素，监听器就会触发，好处：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;内存占用减少，只需一个父元素监听事件&lt;/li&gt;
+  &lt;li&gt;利于修改和维护，删除/添加的元素无需解绑和修改&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;ie和firefox事件机制&quot;&gt;IE和firefox事件机制&lt;/h3&gt;
+
+&lt;p&gt;IE是事件冒泡，firefox同时支持事件冒泡和捕获&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;事件捕获: 越高层的元素越早接收到事件，由上到下&lt;/li&gt;
+  &lt;li&gt;事件冒泡: 越低层的元素越早接收到时间，由下到上&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;阻止冒泡事件的方法&lt;/p&gt;
+&lt;h3 id=&quot;给一个dom同时绑定两个点击事件一个用捕获一个用冒泡会执行几次事件&quot;&gt;给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件？&lt;/h3&gt;
+&lt;p&gt;绑定几个事件就执行几次，执行优先级:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;父元素的捕获事件&lt;/li&gt;
+  &lt;li&gt;目标元素的顺序事件，无视捕获还是冒泡&lt;/li&gt;
+  &lt;li&gt;父元素的冒泡事件&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;也就是说从外层到内层再回到外层
+target.addEventListener(type, listener[, options]);&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'d1'&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'d2'&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'text/javascript'&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementsByClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'d1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementsByClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'d2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+     
+&lt;span class=&quot;c1&quot;&gt;//父级绑定click事件冒泡&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;d1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'click'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'parent bubble'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;//子级绑定click事件冒泡&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;d2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'click'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'child bubble'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;//子级绑定click事件捕获&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;d2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'click'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'child capture'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;//父级绑定click事件捕获&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;d1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'click'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'parent capture'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;console:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;parent capture
+child bubble
+child capture
+parent bubble
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;window对象和document对象&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;window&lt;/code&gt;对象和&lt;code class=&quot;highlighter-rouge&quot;&gt;document&lt;/code&gt;对象&lt;/h3&gt;
+
+&lt;p&gt;window对象是浏览器打开的窗口，顶层对象，document是window对象的一个属性，HTML文档对象的一个&lt;strong&gt;只读引用&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;xxx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;click&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stopPropagation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cancelBubble&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//旧IE需要&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;document-中的load事件和domcontentloaded事件之间的区别是什么&quot;&gt;document 中的&lt;code class=&quot;highlighter-rouge&quot;&gt;load&lt;/code&gt;事件和&lt;code class=&quot;highlighter-rouge&quot;&gt;DOMContentLoaded&lt;/code&gt;事件之间的区别是什么？&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;当 onload 事件触发时，页面上所有的DOM，样式表，脚本，图片，flash都已经加载完成了。&lt;/li&gt;
+  &lt;li&gt;当 DOMContentLoaded 事件触发时，仅当DOM加载完成，不包括样式表，图片，flash。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;页面编码和被请求的资源编码如果不一致&quot;&gt;页面编码和被请求的资源编码如果不一致&lt;/h3&gt;
+&lt;p&gt;设置charset&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.xxx.com/test.js&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;charset=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;utf-8&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;http状态码&quot;&gt;http状态码&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;100  Continue   继续，一般在发送post请求时，已发送了http header之后服务端将返回此信息，表示确认，之后发送具体参数信息
+200  OK         正常返回信息
+201  Created    请求成功并且服务器创建了新的资源
+202  Accepted   服务器已接受请求，但尚未处理
+301  Moved Permanently  请求的网页已永久移动到新位置。
+302  Found       临时性重定向。
+303  See Other   临时性重定向，且总是使用 GET 请求新的 URI。
+304  Not Modified 自从上次请求后，请求的网页未修改过。
+400  Bad Request  服务器无法理解请求的格式，客户端不应当尝试再次使用相同的内容发起请求。
+401  Unauthorized 请求未授权。
+403  Forbidden   禁止访问。
+404  Not Found   找不到如何与 URI 相匹配的资源。
+500  Internal Server Error  最常见的服务器端错误。
+503  Service Unavailable 服务器端暂时无法处理请求（可能是过载或维护）。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;doctype作用-html5-为什么只需要写-doctype-html-标准模式与兼容模式有什么区别&quot;&gt;Doctype作用, HTML5 为什么只需要写 &amp;lt;!DOCTYPE HTML&amp;gt;, 标准模式与兼容模式有什么区别&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;&amp;lt;!DOCTYPE&amp;gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;声明位于位于HTML文档中的第一行，处于 \&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;&lt;/code&gt; 标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。&lt;/li&gt;
+  &lt;li&gt;标准模式的排版 和JS运作模式都是以该浏览器支持的最高标准运行。在兼容模式中，页面以宽松的向后兼容的方式显示,模拟老式浏览器的行为以防止站点无法工作。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;HTML5 不基于 SGML，因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为（让浏览器按照它们应该的方式来运行)HTML4.01基于SGML,所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型。&lt;/p&gt;
+
+&lt;h3 id=&quot;xmlsgmlhtmlxhtmlhtml5&quot;&gt;XML,SGML,HTML,XHTML,HTML5&lt;/h3&gt;
+
+&lt;p&gt;他们都是ML，都是标记语言（Markup Language），所以不同就是前面的部分了。&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;SGML(Standard Generalized Markup Language)，即标准通用标记语言, 是一种古老，复杂的标准&lt;/li&gt;
+  &lt;li&gt;HTML(HyperText Markup Language)，超文本标记语言，是语法较为松散的、不严格的Web语言，SGML的子集，其中的HTML5已经不是SGML的子集了&lt;/li&gt;
+  &lt;li&gt;XML（eXtensible Markup Language），可扩展标记语言，主要用于存储数据和结构，可扩展，SGML的子集&lt;/li&gt;
+  &lt;li&gt;XHTML（eXtensible HyperText Markup Language），可扩展超文本标记语言，基于XML，作用与HTML类似，但语法更严格。所有标签必须闭合，每一个属性都必须使用引号包住，所有&amp;lt;和&amp;amp;特殊符号用编码表示。&amp;lt;br&amp;gt;要写成&amp;lt;br /&amp;gt;，不能写为&amp;lt;BR /&amp;gt;（同hr）；使用了&amp;lt;p&amp;gt;之后必须有一个&amp;lt;/p&amp;gt;以结束段落。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;行内元素有哪些块级元素有哪些-空void元素有那些&quot;&gt;行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？&lt;/h3&gt;
+&lt;p&gt;CSS规范规定，每个元素都有display属性，确定该元素的类型，每个元素都有默认的display值，如div的display默认值为“block”，则为“块级”元素；span默认display属性值为“inline”，是“行内”元素。&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;行内元素有：a b span img input select strong（强调的语义）&lt;/li&gt;
+  &lt;li&gt;块级元素有：div ul ol li dl dt dd h1 h2 h3 h4…p&lt;/li&gt;
+  &lt;li&gt;常见的空元素：&amp;lt;br&amp;gt; &amp;lt;hr&amp;gt; &amp;lt;img&amp;gt; &amp;lt;input&amp;gt; &amp;lt;link&amp;gt; &amp;lt;meta&amp;gt;, 不常用的是：&amp;lt;area&amp;gt; &amp;lt;base&amp;gt; &amp;lt;col&amp;gt; &amp;lt;command&amp;gt; &amp;lt;embed&amp;gt; &amp;lt;keygen&amp;gt; &amp;lt;param&amp;gt; &amp;lt;source&amp;gt; &amp;lt;track&amp;gt; &amp;lt;wbr&amp;gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;使用link和import区别&quot;&gt;使用&lt;code class=&quot;highlighter-rouge&quot;&gt;link&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;@import&lt;/code&gt;区别&lt;/h3&gt;
+&lt;p&gt;页面导入样式时，使用link和@import有什么区别？
+强烈建议使用link标签，慎用@import方式。这样可以避免考虑@import的语法规则和注意事项，避免产生资源文件下载顺序混乱和http请求过多的烦恼。&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;link属于HTML标签，而@import是CSS提供的;&lt;/li&gt;
+  &lt;li&gt;页面被加载的时，link会同时被加载，@import引入的 CSS 将在页面加载完毕后被加载。;&lt;/li&gt;
+  &lt;li&gt;import只在IE5以上才能识别，而link是HTML标签，无兼容问题;&lt;/li&gt;
+  &lt;li&gt;link方式的样式的权重 高于@import的权重&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;html5有哪些新特性如何处理html5新标签的浏览器兼容问题如何区分-html-和-html5&quot;&gt;html5有哪些新特性？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存储，多任务等功能的增加。
+    &lt;ol&gt;
+      &lt;li&gt;绘画 canvas;&lt;/li&gt;
+      &lt;li&gt;用于媒介回放的 video 和 audio 元素;&lt;/li&gt;
+      &lt;li&gt;本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失;&lt;/li&gt;
+      &lt;li&gt;用来保存当前会话信息的sessionStorage，数据在浏览器关闭后自动删除;&lt;/li&gt;
+      &lt;li&gt;语意化更好的内容元素，比如 article、footer、header、nav、section;&lt;/li&gt;
+      &lt;li&gt;表单控件，calendar、date、time、email、url、search;&lt;/li&gt;
+      &lt;li&gt;新的技术webworker, websocket, Geolocation;&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;移除的元素：&lt;br /&gt;
+    &lt;ol&gt;
+      &lt;li&gt;纯表现的元素：basefont，big，center，font, s，strike，tt，u;&lt;br /&gt;&lt;/li&gt;
+      &lt;li&gt;对可用性产生负面影响的元素：frame，frameset，noframes；&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;支持HTML5新标签：
+    &lt;ol&gt;
+      &lt;li&gt;IE8/IE7/IE6支持通过document.createElement方法产生的标签，可以利用这一特性让这些浏览器支持HTML5新标签，浏览器支持新标签后，还需要添加标签默认的样式。&lt;/li&gt;
+      &lt;li&gt;也可以直接使用成熟的框架、比如html5shim;&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;如何区分HTML5： DOCTYPE声明\新增的结构元素\功能元素&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;html语义化&quot;&gt;HTML语义化&lt;/h3&gt;
+&lt;p&gt;用正确的标签做正确的事情。
+优点：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;html语义化让页面的内容结构化，结构更清晰，便于对浏览器、搜索引擎解析;&lt;/li&gt;
+  &lt;li&gt;即使在没有样式CSS情况下也以一种文档格式显示，并且是容易阅读的;&lt;/li&gt;
+  &lt;li&gt;搜索引擎的爬虫也依赖于HTML标记来确定上下文和各个关键字的权重，利于SEO;&lt;/li&gt;
+  &lt;li&gt;使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;title与h1的区别b与strong的区别i与em的区别&quot;&gt;title与h1的区别、b与strong的区别、i与em的区别？&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;title属性没有明确意义只表示是个标题，H1则表示层次明确的标题，对页面信息的抓取也有很大的影响；&lt;/li&gt;
+  &lt;li&gt;strong是标明重点内容，有语气加强的含义，使用阅读设备阅读网络时：&amp;lt;strong&amp;gt;会重读，而&amp;lt;B&amp;gt;是展示强调内容。&lt;/li&gt;
+  &lt;li&gt;i内容展示为斜体，em表示强调的文本；
+  Physical Style Elements – 自然样式标签, 重在视觉作用&lt;br /&gt;
+  b, i, u, s, pre&lt;br /&gt;
+  Semantic Style Elements – 语义样式标签, 重在含义&lt;br /&gt;
+  strong, em, ins, del, code&lt;br /&gt;
+  应该准确使用语义样式标签, 但不能滥用, 如果不能确定时首选使用自然样式标签。&lt;br /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;浏览器是怎么对html5的离线储存资源进行管理和加载的呢&quot;&gt;浏览器是怎么对HTML5的离线储存资源进行管理和加载的呢？&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;在线的情况下，浏览器发现html头部有&lt;code class=&quot;highlighter-rouge&quot;&gt;manifest&lt;/code&gt;属性，它会请求manifest文件，如果是第一次访问app，那么浏览器就会根据manifest文件的内容下载相应的资源并且进行离线存储。如果已经访问过app并且资源已经离线存储了，那么浏览器就会使用离线的资源加载页面，然后浏览器会对比新的manifest文件与旧的manifest文件，如果文件没有发生改变，就不做任何操作，如果文件改变了，那么就会重新下载文件中的资源并进行离线存储。&lt;/li&gt;
+  &lt;li&gt;离线的情况下，浏览器就直接使用离线存储的资源。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;iframe缺点&quot;&gt;iframe缺点&lt;/h3&gt;
+&lt;p&gt;iframe缺点：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;iframe会阻塞主页面的&lt;code class=&quot;highlighter-rouge&quot;&gt;Onload&lt;/code&gt;事件；&lt;/li&gt;
+  &lt;li&gt;搜索引擎的检索程序无法解读这种页面，不利于SEO;&lt;/li&gt;
+  &lt;li&gt;iframe和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;使用iframe之前需要考虑这两个缺点。如果需要使用iframe，最好是通过javascript动态给iframe添加src属性值，这样可以绕开以上两个问题。&lt;/p&gt;
+&lt;h3 id=&quot;label的作用是什么是怎么用的&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Label&lt;/code&gt;的作用是什么？是怎么用的？&lt;/h3&gt;
+
+&lt;p&gt;&amp;lt;label&amp;gt; 标签为 input 元素定义标注（标记）, 提供焦点绑定。
+label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用户改进了可用性。如果在 label 元素内点击文本，就会触发此控件。就是说，当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。用for属性绑定id。&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;form&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;label&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;for=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;male&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Male&lt;span class=&quot;nt&quot;&gt;&amp;lt;/label&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;radio&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sex&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;male&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;br&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;label&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;for=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;female&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Female&lt;span class=&quot;nt&quot;&gt;&amp;lt;/label&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;radio&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sex&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;female&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/form&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;css&quot;&gt;css&lt;/h2&gt;
 &lt;h3 id=&quot;1-css的盒子模型低版本ie的盒子模型有什么不同的&quot;&gt;1. CSS的盒子模型，低版本IE的盒子模型有什么不同的&lt;/h3&gt;
@@ -1443,7 +1589,7 @@ xhr.onreadystatechange = function() {
 &lt;h3 id=&quot;3-json了解&quot;&gt;3. JSON了解&lt;/h3&gt;
 &lt;h3 id=&quot;4-web安全及防护原理-sql注入-xss-csrf&quot;&gt;4. Web安全及防护原理, sql注入, XSS, csrf&lt;/h3&gt;
 
-&lt;h3 id=&quot;code&quot;&gt;code&lt;/h3&gt;
+&lt;h2 id=&quot;code&quot;&gt;code&lt;/h2&gt;
 
 </description>
         <pubDate>Wed, 16 Oct 2019 20:00:00 +0800</pubDate>

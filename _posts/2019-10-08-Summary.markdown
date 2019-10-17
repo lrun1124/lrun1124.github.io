@@ -10,24 +10,23 @@ tags:
 ---
 
 > “Move on. ”
-
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+**Table of Contents** 
 
 - [JS](#js)
   - [JS基本数据类型及存储结构，内置对象](#js%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1)
   - [`null`, `undefined`区别, 未声明变量](#null-undefined%E5%8C%BA%E5%88%AB-%E6%9C%AA%E5%A3%B0%E6%98%8E%E5%8F%98%E9%87%8F)
+  - [JavaScript是采用值传递还是引用传递的，并解释一下原理](#javascript%E6%98%AF%E9%87%87%E7%94%A8%E5%80%BC%E4%BC%A0%E9%80%92%E8%BF%98%E6%98%AF%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92%E7%9A%84%E5%B9%B6%E8%A7%A3%E9%87%8A%E4%B8%80%E4%B8%8B%E5%8E%9F%E7%90%86)
   - [JS原型，原型链， 原型继承（prototypal inheritance）的工作原理](#js%E5%8E%9F%E5%9E%8B%E5%8E%9F%E5%9E%8B%E9%93%BE-%E5%8E%9F%E5%9E%8B%E7%BB%A7%E6%89%BFprototypal-inheritance%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86)
   - [JS作用域，作用域链](#js%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE)
   - [`闭包（closure）`，为什么使用闭包](#%E9%97%AD%E5%8C%85closure%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E9%97%AD%E5%8C%85)
   - [请简述`JavaScript`中的`this`。](#%E8%AF%B7%E7%AE%80%E8%BF%B0javascript%E4%B8%AD%E7%9A%84this)
-  - [`window`对象和`document`对象](#window%E5%AF%B9%E8%B1%A1%E5%92%8Cdocument%E5%AF%B9%E8%B1%A1)
-  - [IE和firefox事件机制](#ie%E5%92%8Cfirefox%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6)
   - [`New`的过程](#new%E7%9A%84%E8%BF%87%E7%A8%8B)
   - [不会查找原型的函数](#%E4%B8%8D%E4%BC%9A%E6%9F%A5%E6%89%BE%E5%8E%9F%E5%9E%8B%E7%9A%84%E5%87%BD%E6%95%B0)
   - [for in和for of](#for-in%E5%92%8Cfor-of)
   - [Ajax流程，手动写，Ajax缓存](#ajax%E6%B5%81%E7%A8%8B%E6%89%8B%E5%8A%A8%E5%86%99ajax%E7%BC%93%E5%AD%98)
+  - [把 Script 标签 放在页面的最底部的body封闭之前 和封闭之后有什么区别？](#%E6%8A%8A-script-%E6%A0%87%E7%AD%BE-%E6%94%BE%E5%9C%A8%E9%A1%B5%E9%9D%A2%E7%9A%84%E6%9C%80%E5%BA%95%E9%83%A8%E7%9A%84body%E5%B0%81%E9%97%AD%E4%B9%8B%E5%89%8D-%E5%92%8C%E5%B0%81%E9%97%AD%E4%B9%8B%E5%90%8E%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
   - [延迟加载，defer，async，动态dom，分组加载](#%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BDdeferasync%E5%8A%A8%E6%80%81dom%E5%88%86%E7%BB%84%E5%8A%A0%E8%BD%BD)
     - [使用defer或async属性](#%E4%BD%BF%E7%94%A8defer%E6%88%96async%E5%B1%9E%E6%80%A7)
     - [动态DOM操作](#%E5%8A%A8%E6%80%81dom%E6%93%8D%E4%BD%9C)
@@ -37,7 +36,6 @@ tags:
   - [前端模块化，AMD/CMD/CommonJS](#%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96amdcmdcommonjs)
   - [内存泄漏](#%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F)
   - [==, ===, Object.is()区别](#--objectis%E5%8C%BA%E5%88%AB)
-  - [给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件？](#%E7%BB%99%E4%B8%80%E4%B8%AAdom%E5%90%8C%E6%97%B6%E7%BB%91%E5%AE%9A%E4%B8%A4%E4%B8%AA%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E4%B8%80%E4%B8%AA%E7%94%A8%E6%8D%95%E8%8E%B7%E4%B8%80%E4%B8%AA%E7%94%A8%E5%86%92%E6%B3%A1%E4%BC%9A%E6%89%A7%E8%A1%8C%E5%87%A0%E6%AC%A1%E4%BA%8B%E4%BB%B6)
   - [前端设计模式，单例，单体，工厂，策略，装饰者，适配器，观察者，门面](#%E5%89%8D%E7%AB%AF%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%8D%95%E4%BE%8B%E5%8D%95%E4%BD%93%E5%B7%A5%E5%8E%82%E7%AD%96%E7%95%A5%E8%A3%85%E9%A5%B0%E8%80%85%E9%80%82%E9%85%8D%E5%99%A8%E8%A7%82%E5%AF%9F%E8%80%85%E9%97%A8%E9%9D%A2)
     - [单体模式(Singleton)](#%E5%8D%95%E4%BD%93%E6%A8%A1%E5%BC%8Fsingleton)
     - [单例模式(Single)](#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8Fsingle)
@@ -57,12 +55,13 @@ tags:
       - [老生带](#%E8%80%81%E7%94%9F%E5%B8%A6)
       - [Incremental Marking（增量标记）](#incremental-marking%E5%A2%9E%E9%87%8F%E6%A0%87%E8%AE%B0)
   - [Cookie和Session](#cookie%E5%92%8Csession)
+  - [cookie, loaclStorage, sessionStorage](#cookie-loaclstorage-sessionstorage)
   - [javascript继承的6种方法](#javascript%E7%BB%A7%E6%89%BF%E7%9A%846%E7%A7%8D%E6%96%B9%E6%B3%95)
   - [一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？](#%E4%B8%80%E4%B8%AA%E9%A1%B5%E9%9D%A2%E4%BB%8E%E8%BE%93%E5%85%A5-url-%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E6%98%BE%E7%A4%BA%E5%AE%8C%E6%88%90%E8%BF%99%E4%B8%AA%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%83%BD%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88)
+  - [常见的浏览器内核有哪些？](#%E5%B8%B8%E8%A7%81%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8%E6%9C%89%E5%93%AA%E4%BA%9B)
   - [JS内核了解](#js%E5%86%85%E6%A0%B8%E4%BA%86%E8%A7%A3)
   - [XML和JSON](#xml%E5%92%8Cjson)
   - [MVC和MVVM的理解](#mvc%E5%92%8Cmvvm%E7%9A%84%E7%90%86%E8%A7%A3)
-  - [请解释事件委托（event delegation）](#%E8%AF%B7%E8%A7%A3%E9%87%8A%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98event-delegation)
   - [forEach循环和.map()循环的主要区别，它们分别在什么情况下使用？](#foreach%E5%BE%AA%E7%8E%AF%E5%92%8Cmap%E5%BE%AA%E7%8E%AF%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8C%BA%E5%88%AB%E5%AE%83%E4%BB%AC%E5%88%86%E5%88%AB%E5%9C%A8%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BD%BF%E7%94%A8)
   - [宿主对象（host objects）和原生对象（native objects）的区别是什么？](#%E5%AE%BF%E4%B8%BB%E5%AF%B9%E8%B1%A1host-objects%E5%92%8C%E5%8E%9F%E7%94%9F%E5%AF%B9%E8%B1%A1native-objects%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88)
   - [下列语句有什么区别：function Person(){}、var person = Person()和var person = new Person()？](#%E4%B8%8B%E5%88%97%E8%AF%AD%E5%8F%A5%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%ABfunction-personvar-person--person%E5%92%8Cvar-person--new-person)
@@ -74,11 +73,10 @@ tags:
     - [JSONP](#jsonp)
     - [postMessage](#postmessage)
     - [CORS(Cross orign resource share)跨域资源共享](#corscross-orign-resource-share%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB)
+  - [如何实现浏览器内多个标签页之间的通信?](#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E5%A4%9A%E4%B8%AA%E6%A0%87%E7%AD%BE%E9%A1%B5%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1)
   - [请解释变量提升（hoisting）。](#%E8%AF%B7%E8%A7%A3%E9%87%8A%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87hoisting)
-  - [36. 请描述事件冒泡](#36-%E8%AF%B7%E6%8F%8F%E8%BF%B0%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1)
-  - [37. “attribute” 和 “property” 之间有什么区别？](#37-attribute-%E5%92%8C-property-%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
+  - [“attribute” 和 “property” 之间有什么区别？](#attribute-%E5%92%8C-property-%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
   - [为什么扩展 JavaScript 内置对象是不好的做法？](#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%89%A9%E5%B1%95-javascript-%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1%E6%98%AF%E4%B8%8D%E5%A5%BD%E7%9A%84%E5%81%9A%E6%B3%95)
-  - [document 中的`load`事件和`DOMContentLoaded`事件之间的区别是什么？](#document-%E4%B8%AD%E7%9A%84load%E4%BA%8B%E4%BB%B6%E5%92%8Cdomcontentloaded%E4%BA%8B%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88)
   - [请解释单页应用是什么，如何使其对 SEO 友好。](#%E8%AF%B7%E8%A7%A3%E9%87%8A%E5%8D%95%E9%A1%B5%E5%BA%94%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88%E5%A6%82%E4%BD%95%E4%BD%BF%E5%85%B6%E5%AF%B9-seo-%E5%8F%8B%E5%A5%BD)
   - [polyfill](#polyfill)
   - [你使用什么语句遍历对象的属性和数组的元素？](#%E4%BD%A0%E4%BD%BF%E7%94%A8%E4%BB%80%E4%B9%88%E8%AF%AD%E5%8F%A5%E9%81%8D%E5%8E%86%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B1%9E%E6%80%A7%E5%92%8C%E6%95%B0%E7%BB%84%E7%9A%84%E5%85%83%E7%B4%A0)
@@ -87,30 +85,26 @@ tags:
   - [使用let、var和const创建变量有什么区别？](#%E4%BD%BF%E7%94%A8letvar%E5%92%8Cconst%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
   - [构造函数中使用箭头函数有什么好处？](#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%A4%84)
   - [请给出一个解构（destructuring）对象或数组的例子。](#%E8%AF%B7%E7%BB%99%E5%87%BA%E4%B8%80%E4%B8%AA%E8%A7%A3%E6%9E%84destructuring%E5%AF%B9%E8%B1%A1%E6%88%96%E6%95%B0%E7%BB%84%E7%9A%84%E4%BE%8B%E5%AD%90)
+  - [DOM操作](#dom%E6%93%8D%E4%BD%9C)
 - [html](#html)
-  - [1. 事件冒泡和捕获](#1-%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E5%92%8C%E6%8D%95%E8%8E%B7)
-  - [2. window对象和document对象](#2-window%E5%AF%B9%E8%B1%A1%E5%92%8Cdocument%E5%AF%B9%E8%B1%A1)
-  - [3. 页面编码和被请求的资源编码如果不一致](#3-%E9%A1%B5%E9%9D%A2%E7%BC%96%E7%A0%81%E5%92%8C%E8%A2%AB%E8%AF%B7%E6%B1%82%E7%9A%84%E8%B5%84%E6%BA%90%E7%BC%96%E7%A0%81%E5%A6%82%E6%9E%9C%E4%B8%8D%E4%B8%80%E8%87%B4)
-  - [4. DOM操作](#4-dom%E6%93%8D%E4%BD%9C)
-  - [5. 把 Script 标签 放在页面的最底部的body封闭之前 和封闭之后有什么区别？](#5-%E6%8A%8A-script-%E6%A0%87%E7%AD%BE-%E6%94%BE%E5%9C%A8%E9%A1%B5%E9%9D%A2%E7%9A%84%E6%9C%80%E5%BA%95%E9%83%A8%E7%9A%84body%E5%B0%81%E9%97%AD%E4%B9%8B%E5%89%8D-%E5%92%8C%E5%B0%81%E9%97%AD%E4%B9%8B%E5%90%8E%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
-  - [7. http状态码](#7-http%E7%8A%B6%E6%80%81%E7%A0%81)
-  - [8. Doctype作用](#8-doctype%E4%BD%9C%E7%94%A8)
-  - [9. 标准模式与兼容模式有什么区别](#9-%E6%A0%87%E5%87%86%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%85%BC%E5%AE%B9%E6%A8%A1%E5%BC%8F%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
-  - [10. HTML5 为什么只需要写 <!DOCTYPE HTML>](#10-html5-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AA%E9%9C%80%E8%A6%81%E5%86%99-doctype-html)
-  - [11. 行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？](#11-%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E6%9C%89%E5%93%AA%E4%BA%9B%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0%E6%9C%89%E5%93%AA%E4%BA%9B-%E7%A9%BAvoid%E5%85%83%E7%B4%A0%E6%9C%89%E9%82%A3%E4%BA%9B)
-  - [12. 使用link和@import区别](#12-%E4%BD%BF%E7%94%A8link%E5%92%8Cimport%E5%8C%BA%E5%88%AB)
-  - [13. 浏览器内核的理解](#13-%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8%E7%9A%84%E7%90%86%E8%A7%A3)
-  - [14. 常见的浏览器内核](#14-%E5%B8%B8%E8%A7%81%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8)
-  - [15. html5有哪些新特性？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？](#15-html5%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E7%89%B9%E6%80%A7%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86html5%E6%96%B0%E6%A0%87%E7%AD%BE%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98%E5%A6%82%E4%BD%95%E5%8C%BA%E5%88%86-html-%E5%92%8C-html5)
-  - [16. XML,SGML,HTML,XHTML,HTML5](#16-xmlsgmlhtmlxhtmlhtml5)
-  - [17. HTML语义化](#17-html%E8%AF%AD%E4%B9%89%E5%8C%96)
-  - [18. cookie, loaclStorage, sessionStorage](#18-cookie-loaclstorage-sessionstorage)
-  - [19. 浏览器是怎么对HTML5的离线储存资源进行管理和加载的呢？](#19-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E6%80%8E%E4%B9%88%E5%AF%B9html5%E7%9A%84%E7%A6%BB%E7%BA%BF%E5%82%A8%E5%AD%98%E8%B5%84%E6%BA%90%E8%BF%9B%E8%A1%8C%E7%AE%A1%E7%90%86%E5%92%8C%E5%8A%A0%E8%BD%BD%E7%9A%84%E5%91%A2)
-  - [20. iframe缺点](#20-iframe%E7%BC%BA%E7%82%B9)
-  - [21. Label的作用是什么？是怎么用的？](#21-label%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88%E6%98%AF%E6%80%8E%E4%B9%88%E7%94%A8%E7%9A%84)
-  - [22. title与h1的区别、b与strong的区别、i与em的区别？](#22-title%E4%B8%8Eh1%E7%9A%84%E5%8C%BA%E5%88%ABb%E4%B8%8Estrong%E7%9A%84%E5%8C%BA%E5%88%ABi%E4%B8%8Eem%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [23. 如何实现浏览器内多个标签页之间的通信?](#23-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E5%A4%9A%E4%B8%AA%E6%A0%87%E7%AD%BE%E9%A1%B5%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1)
-  - [24. JavaScript是采用值传递还是引用传递的，并解释一下原理](#24-javascript%E6%98%AF%E9%87%87%E7%94%A8%E5%80%BC%E4%BC%A0%E9%80%92%E8%BF%98%E6%98%AF%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92%E7%9A%84%E5%B9%B6%E8%A7%A3%E9%87%8A%E4%B8%80%E4%B8%8B%E5%8E%9F%E7%90%86)
+  - [请描述事件冒泡](#%E8%AF%B7%E6%8F%8F%E8%BF%B0%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1)
+  - [请解释事件委托（event delegation）](#%E8%AF%B7%E8%A7%A3%E9%87%8A%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98event-delegation)
+  - [IE和firefox事件机制](#ie%E5%92%8Cfirefox%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6)
+  - [给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件？](#%E7%BB%99%E4%B8%80%E4%B8%AAdom%E5%90%8C%E6%97%B6%E7%BB%91%E5%AE%9A%E4%B8%A4%E4%B8%AA%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E4%B8%80%E4%B8%AA%E7%94%A8%E6%8D%95%E8%8E%B7%E4%B8%80%E4%B8%AA%E7%94%A8%E5%86%92%E6%B3%A1%E4%BC%9A%E6%89%A7%E8%A1%8C%E5%87%A0%E6%AC%A1%E4%BA%8B%E4%BB%B6)
+  - [`window`对象和`document`对象](#window%E5%AF%B9%E8%B1%A1%E5%92%8Cdocument%E5%AF%B9%E8%B1%A1)
+  - [document 中的`load`事件和`DOMContentLoaded`事件之间的区别是什么？](#document-%E4%B8%AD%E7%9A%84load%E4%BA%8B%E4%BB%B6%E5%92%8Cdomcontentloaded%E4%BA%8B%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88)
+  - [页面编码和被请求的资源编码如果不一致](#%E9%A1%B5%E9%9D%A2%E7%BC%96%E7%A0%81%E5%92%8C%E8%A2%AB%E8%AF%B7%E6%B1%82%E7%9A%84%E8%B5%84%E6%BA%90%E7%BC%96%E7%A0%81%E5%A6%82%E6%9E%9C%E4%B8%8D%E4%B8%80%E8%87%B4)
+  - [http状态码](#http%E7%8A%B6%E6%80%81%E7%A0%81)
+  - [`Doctype`作用, HTML5 为什么只需要写 `\<!DOCTYPE HTML>`, 标准模式与兼容模式有什么区别](#doctype%E4%BD%9C%E7%94%A8-html5-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AA%E9%9C%80%E8%A6%81%E5%86%99-%5Cdoctype-html-%E6%A0%87%E5%87%86%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%85%BC%E5%AE%B9%E6%A8%A1%E5%BC%8F%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
+  - [XML,SGML,HTML,XHTML,HTML5](#xmlsgmlhtmlxhtmlhtml5)
+  - [行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？](#%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E6%9C%89%E5%93%AA%E4%BA%9B%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0%E6%9C%89%E5%93%AA%E4%BA%9B-%E7%A9%BAvoid%E5%85%83%E7%B4%A0%E6%9C%89%E9%82%A3%E4%BA%9B)
+  - [使用`link`和`@import`区别](#%E4%BD%BF%E7%94%A8link%E5%92%8Cimport%E5%8C%BA%E5%88%AB)
+  - [html5有哪些新特性？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？](#html5%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E7%89%B9%E6%80%A7%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86html5%E6%96%B0%E6%A0%87%E7%AD%BE%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98%E5%A6%82%E4%BD%95%E5%8C%BA%E5%88%86-html-%E5%92%8C-html5)
+  - [HTML语义化](#html%E8%AF%AD%E4%B9%89%E5%8C%96)
+  - [title与h1的区别、b与strong的区别、i与em的区别？](#title%E4%B8%8Eh1%E7%9A%84%E5%8C%BA%E5%88%ABb%E4%B8%8Estrong%E7%9A%84%E5%8C%BA%E5%88%ABi%E4%B8%8Eem%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [浏览器是怎么对HTML5的离线储存资源进行管理和加载的呢？](#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E6%80%8E%E4%B9%88%E5%AF%B9html5%E7%9A%84%E7%A6%BB%E7%BA%BF%E5%82%A8%E5%AD%98%E8%B5%84%E6%BA%90%E8%BF%9B%E8%A1%8C%E7%AE%A1%E7%90%86%E5%92%8C%E5%8A%A0%E8%BD%BD%E7%9A%84%E5%91%A2)
+  - [iframe缺点](#iframe%E7%BC%BA%E7%82%B9)
+  - [`Label`的作用是什么？是怎么用的？](#label%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88%E6%98%AF%E6%80%8E%E4%B9%88%E7%94%A8%E7%9A%84)
 - [css](#css)
   - [1. CSS的盒子模型，低版本IE的盒子模型有什么不同的](#1-css%E7%9A%84%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E4%BD%8E%E7%89%88%E6%9C%ACie%E7%9A%84%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%E7%9A%84)
   - [2. CSS选择器](#2-css%E9%80%89%E6%8B%A9%E5%99%A8)
@@ -129,7 +123,7 @@ tags:
   - [1. 对称/非对称加密，公钥和私钥](#1-%E5%AF%B9%E7%A7%B0%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E5%85%AC%E9%92%A5%E5%92%8C%E7%A7%81%E9%92%A5)
   - [3. JSON了解](#3-json%E4%BA%86%E8%A7%A3)
   - [4. Web安全及防护原理, sql注入, XSS, csrf](#4-web%E5%AE%89%E5%85%A8%E5%8F%8A%E9%98%B2%E6%8A%A4%E5%8E%9F%E7%90%86-sql%E6%B3%A8%E5%85%A5-xss-csrf)
-  - [code](#code)
+- [code](#code)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -158,6 +152,8 @@ undefined表示一个变量声明了，但还没有初始化， typeof(undefined
 null === undefined 为true, null == undefined为false，目前的JS环境中，它们的差别很小，同时存在是因为历史原因，Js初期的设计参考了C等语言，在C中，null可以自动转型为0，由于JS的设计者Brendan Eich认为‘无’的概念最好不是一个对象，并且JS早期缺乏错误处理机制，null自动转型为0可能会造成一些不被察觉的错误，所以设计了undefined
 
 当你没有提前使用var、let或const声明变量，就为一个变量赋值时，该变量是未声明变量（undeclared variables）。未声明变量会脱离当前作用域，成为全局作用域下定义的变量。在严格模式下，给未声明的变量赋值，会抛出ReferenceError错误。和使用全局变量一样，使用未声明变量也是非常不好的做法，应当尽可能避免。
+
+### JavaScript是采用值传递还是引用传递的，并解释一下原理
 
 ### JS原型，原型链， 原型继承（prototypal inheritance）的工作原理
 
@@ -220,24 +216,6 @@ JS 中的`this`是一个相对复杂的概念，不是简单几句能解释清�
 1. 如果符合上述多个规则，则较高的规则（1 号最高，4 号最低）将决定`this`的值。
 1. 如果该函数是 ES2015 中的箭头函数，将忽略上面的所有规则，`this`被设置为它被创建时的上下文。
 
-### `window`对象和`document`对象
-
-window对象是浏览器打开的窗口，顶层对象，document是window对象的一个属性，HTML文档对象的一个<strong>只读引用</strong>
-
-### IE和firefox事件机制
-
-IE是事件冒泡，firefox同时支持事件冒泡和捕获
-* 事件捕获: 越高层的元素越早接收到事件，由上到下
-* 事件冒泡: 越低层的元素越早接收到时间，由下到上
-
-阻止冒泡事件的方法
-
-```JS
-xxx.click = function(e){
-	e.stopPropagation();
-	e.cancelBubble = true;//旧IE需要
-}
-```
 ### `New`的过程
 
 1. 创建空对象；
@@ -304,6 +282,8 @@ function stateFunction(){
 }
 </script>
 ```
+### 把 Script 标签 放在页面的最底部的body封闭之前 和封闭之后有什么区别？
+放在body的封闭之前，将会阻塞其他资源的加载，放在body封闭之后，不会影响body内元素的加载
 
 ### 延迟加载，defer，async，动态dom，分组加载
 
@@ -446,46 +426,6 @@ a.r = a;
 ### ==, ===, Object.is()区别
 
 ==会进行类型转换，===不会，Object.is 在三等号判等的基础上特别处理了 NaN 、-0 和 +0 ，保证 -0 和 +0 不再相同，但 Object.is(NaN, NaN) 会返回 true.
-
-### 给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件？
-绑定几个事件就执行几次，执行优先级:
-
-1. 父元素的捕获事件
-1. 目标元素的顺序事件，无视捕获还是冒泡
-1. 父元素的冒泡事件
-
-也就是说从外层到内层再回到外层
-target.addEventListener(type, listener[, options]);
-```
-<div class='d1'>
-    <div class='d2'></div>
-</div>
-
-<script type='text/javascript'>
-var d1 = document.getElementsByClass('d1');
-var d2 = document.getElementsByClass('d2');
-     
-//父级绑定click事件冒泡
-d1.addEventListener('click', function(){ console.log('parent bubble') }, false);
-
-//子级绑定click事件冒泡
-d2.addEventListener('click', function(){ console.log('child bubble') }, false);
-
-//子级绑定click事件捕获
-d2.addEventListener('click', function(){ console.log('child capture') }, true);
-
-//父级绑定click事件捕获
-d1.addEventListener('click', function(){ console.log('parent capture') }, true);
-</script>
-```
-
-console:
-```
-parent capture
-child bubble
-child capture
-parent bubble
-```
 
 ### 前端设计模式，单例，单体，工厂，策略，装饰者，适配器，观察者，门面
 
@@ -816,14 +756,19 @@ Scavenge垃圾回收算法进行管理，主要实现是Cheney算法，将内存
 
 ### Cookie和Session
 
-Cookie和Session
-
 1. session 在服务器端，cookie 在客户端（浏览器）
 2. session 默认被存在在服务器的一个文件里（不是内存）
 3. session 的运行依赖 session id，而 session id 是存在 cookie 中的，也就是说，如果浏览器禁用了 cookie ，同时 session 也会失效（但是可以通过其它方式实现，比如在 url 中传递 session_id）
 4. session 可以放在 文件、数据库、或内存中都可以。
 5. 用户验证这种场合一般会用 session 因此，维持一个会话的核心就是客户端的唯一标识，即 session id
 6. cookie是不安全的，一些网络攻击如XSS和CSRF可以获取cookie或进行cookie欺骗，所以重要信息放在session里，必要放在cookie里要枷锁
+
+### cookie, loaclStorage, sessionStorage
+
+1. cookie: 可设置失效时间，默认是浏览器关闭后，大小4K左右，每次都会携带在HTTP头中，这也是大小限制的原因，如果使用cookie保存过多数据会带来性能问题，主要用于保存密码等信息
+1. localStorage: 除非主动删除，否则永久保留，一般5M左右，仅在浏览器保存，不参与通信
+1. sessionStorage: 仅在当前会话下有效，刷新不删除，关闭页面或浏览器清除，一般5M左右，仅在浏览器保存，不参与通信
+1. 另外sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；localStorage 在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的。
 
 ### javascript继承的6种方法
 
@@ -847,6 +792,14 @@ Cookie和Session
 1. 浏览器会将各层的信息发送给GPU，GPU会将各层复合图层化（composite），显示在屏幕上。
 1. 渲染完毕后就是load事件了，之后就是自己的JS逻辑处理了
 
+
+### 常见的浏览器内核有哪些？
+
+  Trident内核：IE,MaxThon,TT,The World,360,搜狗浏览器等。[又称MSHTML]<br>
+  Gecko内核：Netscape6及以上版本，FF,MozillaSuite/SeaMonkey等<br>
+  Presto内核：Opera7及以上。      [Opera内核原为：Presto，现为：Blink;]<br>
+  Webkit内核：Safari,Chrome等。   [ Chrome的：Blink（WebKit的分支）]
+
 ### JS内核了解
 //todo
 
@@ -867,12 +820,6 @@ View：UI界面
 ViewModel：它是View的抽象，负责View与Model之间信息转换，将View的Command传送到Model；
 
 Model：数据访问层
-### 请解释事件委托（event delegation）
-
-将时间监听添加到父元素，而不是每个子元素单独设置，当事件冒泡到父元素，监听器就会触发，好处：
-
-* 内存占用减少，只需一个父元素监听事件
-* 利于修改和维护，删除/添加的元素无需解绑和修改
 
 ### forEach循环和.map()循环的主要区别，它们分别在什么情况下使用？
 
@@ -1061,6 +1008,10 @@ xhr.onreadystatechange = function() {
     }
 };
 ```
+### 如何实现浏览器内多个标签页之间的通信?
+
+1. WebSocket、SharedWorker；
+1. 也可以调用localstorge、cookies等本地存储方式；localstorge另一个浏览上下文里被添加、修改或删除时，它都会触发一个事件，我们通过监听事件，控制它的值来进行页面信息通信；
 
 ### 请解释变量提升（hoisting）。
 
@@ -1097,10 +1048,8 @@ var bar = function() {
 };
 console.log(bar); // [Function: bar]
 ```
-### 36. 请描述事件冒泡
-当一个事件在 DOM 元素上触发时，如果有事件监听器，它将尝试处理该事件，然后事件冒泡到其父级元素，并发生同样的事情。最后直到事件到达祖先元素。事件冒泡是实现事件委托的原理（event delegation）。
 
-### 37. “attribute” 和 “property” 之间有什么区别？
+### “attribute” 和 “property” 之间有什么区别？
 
 “Attribute” 是在 HTML 中定义的，而 “property” 是在 DOM 上定义的。为了说明区别，假设我们在 HTML 中有一个文本框：`<input type="text" value="Hello">`。
 
@@ -1122,12 +1071,6 @@ console.log(input.value); // Hello World!
 扩展 JavaScript 内置（原生）对象意味着将属性或方法添加到其`prototype`中。虽然听起来很不错，但事实上这样做很危险。想象一下，你的代码使用了一些库，它们通过添加相同的 contains 方法来扩展`Array.prototype`，如果这两个方法的行为不相同，那么这些实现将会相互覆盖，你的代码将不能正常运行。
 
 扩展内置对象的唯一使用场景是创建 polyfill，本质上为老版本浏览器缺失的方法提供自己的实现，该方法是由 JavaScript 规范定义的。
-
-### document 中的`load`事件和`DOMContentLoaded`事件之间的区别是什么？
-
-1. 当 onload 事件触发时，页面上所有的DOM，样式表，脚本，图片，flash都已经加载完成了。
-
-1. 当 DOMContentLoaded 事件触发时，仅当DOM加载完成，不包括样式表，图片，flash。
 
 ### 请解释单页应用是什么，如何使其对 SEO 友好。
 
@@ -1248,32 +1191,214 @@ const { p, q } = o;
 console.log(p); // 42
 console.log(q); // true
 ```
+### DOM操作
+```
+//创建
+createElement() //创建元素
+createDocumentFragment()  //创建DOM片段
+createTextNode() //创建文本节点
+
+//操作
+appendChild() //添加
+removeChild() //删除
+replaceChild() //替换
+insertbefore() //在已有节点前插入新节点
+
+//查找
+getElementsById()
+getElementsByName() //通过元素的Name属性的值(IE容错能力较强，会得到一个数组，其中包括id等于name值的)
+getElementsByTag()
+getElementsByClass()
+```
 
 ## html
-### 1. 事件冒泡和捕获
-### 2. window对象和document对象
-### 3. 页面编码和被请求的资源编码如果不一致
-### 4. DOM操作
-### 5. 把 Script 标签 放在页面的最底部的body封闭之前 和封闭之后有什么区别？
-### 7. http状态码
-### 8. Doctype作用
-### 9. 标准模式与兼容模式有什么区别
-### 10. HTML5 为什么只需要写 <!DOCTYPE HTML>
-### 11. 行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？
-### 12. 使用link和@import区别
-### 13. 浏览器内核的理解
-### 14. 常见的浏览器内核
-### 15. html5有哪些新特性？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？
-### 16. XML,SGML,HTML,XHTML,HTML5
-### 17. HTML语义化
-### 18. cookie, loaclStorage, sessionStorage
-### 19. 浏览器是怎么对HTML5的离线储存资源进行管理和加载的呢？
-### 20. iframe缺点
-### 21. Label的作用是什么？是怎么用的？
-### 22. title与h1的区别、b与strong的区别、i与em的区别？
-### 23. 如何实现浏览器内多个标签页之间的通信?
-### 24. JavaScript是采用值传递还是引用传递的，并解释一下原理
 
+### 请描述事件冒泡
+当一个事件在 DOM 元素上触发时，如果有事件监听器，它将尝试处理该事件，然后事件冒泡到其父级元素，并发生同样的事情。最后直到事件到达祖先元素。事件冒泡是实现事件委托的原理（event delegation）。
+
+### 请解释事件委托（event delegation）
+
+将时间监听添加到父元素，而不是每个子元素单独设置，当事件冒泡到父元素，监听器就会触发，好处：
+
+* 内存占用减少，只需一个父元素监听事件
+* 利于修改和维护，删除/添加的元素无需解绑和修改
+
+### IE和firefox事件机制
+
+IE是事件冒泡，firefox同时支持事件冒泡和捕获
+* 事件捕获: 越高层的元素越早接收到事件，由上到下
+* 事件冒泡: 越低层的元素越早接收到时间，由下到上
+
+阻止冒泡事件的方法
+### 给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件？
+绑定几个事件就执行几次，执行优先级:
+
+1. 父元素的捕获事件
+1. 目标元素的顺序事件，无视捕获还是冒泡
+1. 父元素的冒泡事件
+
+也就是说从外层到内层再回到外层
+target.addEventListener(type, listener[, options]);
+```html
+<div class='d1'>
+    <div class='d2'></div>
+</div>
+
+<script type='text/javascript'>
+var d1 = document.getElementsByClass('d1');
+var d2 = document.getElementsByClass('d2');
+     
+//父级绑定click事件冒泡
+d1.addEventListener('click', function(){ console.log('parent bubble') }, false);
+
+//子级绑定click事件冒泡
+d2.addEventListener('click', function(){ console.log('child bubble') }, false);
+
+//子级绑定click事件捕获
+d2.addEventListener('click', function(){ console.log('child capture') }, true);
+
+//父级绑定click事件捕获
+d1.addEventListener('click', function(){ console.log('parent capture') }, true);
+</script>
+```
+
+console:
+```
+parent capture
+child bubble
+child capture
+parent bubble
+```
+### `window`对象和`document`对象
+
+window对象是浏览器打开的窗口，顶层对象，document是window对象的一个属性，HTML文档对象的一个<strong>只读引用</strong>
+
+```js
+xxx.click = function(e){
+	e.stopPropagation();
+	e.cancelBubble = true;//旧IE需要
+}
+```
+### document 中的`load`事件和`DOMContentLoaded`事件之间的区别是什么？
+
+1. 当 onload 事件触发时，页面上所有的DOM，样式表，脚本，图片，flash都已经加载完成了。
+1. 当 DOMContentLoaded 事件触发时，仅当DOM加载完成，不包括样式表，图片，flash。
+
+### 页面编码和被请求的资源编码如果不一致
+设置charset
+```html
+<script src="http://www.xxx.com/test.js" charset="utf-8"></script>
+```
+
+### http状态码
+```
+100  Continue   继续，一般在发送post请求时，已发送了http header之后服务端将返回此信息，表示确认，之后发送具体参数信息
+200  OK         正常返回信息
+201  Created    请求成功并且服务器创建了新的资源
+202  Accepted   服务器已接受请求，但尚未处理
+301  Moved Permanently  请求的网页已永久移动到新位置。
+302  Found       临时性重定向。
+303  See Other   临时性重定向，且总是使用 GET 请求新的 URI。
+304  Not Modified 自从上次请求后，请求的网页未修改过。
+400  Bad Request  服务器无法理解请求的格式，客户端不应当尝试再次使用相同的内容发起请求。
+401  Unauthorized 请求未授权。
+403  Forbidden   禁止访问。
+404  Not Found   找不到如何与 URI 相匹配的资源。
+500  Internal Server Error  最常见的服务器端错误。
+503  Service Unavailable 服务器端暂时无法处理请求（可能是过载或维护）。
+```
+
+### Doctype作用, HTML5 为什么只需要写 \<!DOCTYPE HTML>, 标准模式与兼容模式有什么区别
+1. \<!DOCTYPE>`声明位于位于HTML文档中的第一行，处于 \<html>` 标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。
+1. 标准模式的排版 和JS运作模式都是以该浏览器支持的最高标准运行。在兼容模式中，页面以宽松的向后兼容的方式显示,模拟老式浏览器的行为以防止站点无法工作。
+
+HTML5 不基于 SGML，因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为（让浏览器按照它们应该的方式来运行)HTML4.01基于SGML,所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型。
+
+### XML,SGML,HTML,XHTML,HTML5
+
+他们都是ML，都是标记语言（Markup Language），所以不同就是前面的部分了。
+1. SGML(Standard Generalized Markup Language)，即标准通用标记语言, 是一种古老，复杂的标准
+1. HTML(HyperText Markup Language)，超文本标记语言，是语法较为松散的、不严格的Web语言，SGML的子集，其中的HTML5已经不是SGML的子集了
+1. XML（eXtensible Markup Language），可扩展标记语言，主要用于存储数据和结构，可扩展，SGML的子集
+1. XHTML（eXtensible HyperText Markup Language），可扩展超文本标记语言，基于XML，作用与HTML类似，但语法更严格。所有标签必须闭合，每一个属性都必须使用引号包住，所有<和&特殊符号用编码表示。\<br>要写成\<br />，不能写为\<BR />（同hr）；使用了\<p>之后必须有一个\</p>以结束段落。
+
+### 行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？
+CSS规范规定，每个元素都有display属性，确定该元素的类型，每个元素都有默认的display值，如div的display默认值为“block”，则为“块级”元素；span默认display属性值为“inline”，是“行内”元素。
+1. 行内元素有：a b span img input select strong（强调的语义）
+1. 块级元素有：div ul ol li dl dt dd h1 h2 h3 h4…p
+1. 常见的空元素：\<br> \<hr> \<img> \<input> \<link> \<meta>, 不常用的是：\<area> \<base> \<col> \<command> \<embed> \<keygen> \<param> \<source> \<track> \<wbr>
+
+### 使用`link`和`@import`区别
+页面导入样式时，使用link和@import有什么区别？
+强烈建议使用link标签，慎用@import方式。这样可以避免考虑@import的语法规则和注意事项，避免产生资源文件下载顺序混乱和http请求过多的烦恼。
+1. link属于HTML标签，而@import是CSS提供的;
+1. 页面被加载的时，link会同时被加载，@import引入的 CSS 将在页面加载完毕后被加载。;
+1. import只在IE5以上才能识别，而link是HTML标签，无兼容问题;
+1. link方式的样式的权重 高于@import的权重
+
+### html5有哪些新特性？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？
+* HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存储，多任务等功能的增加。
+1. 绘画 canvas;
+2. 用于媒介回放的 video 和 audio 元素;
+3. 本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失;
+4. 用来保存当前会话信息的sessionStorage，数据在浏览器关闭后自动删除;
+5. 语意化更好的内容元素，比如 article、footer、header、nav、section;
+6. 表单控件，calendar、date、time、email、url、search;
+7. 新的技术webworker, websocket, Geolocation;
+
+* 移除的元素：<br>
+1. 纯表现的元素：basefont，big，center，font, s，strike，tt，u;<br>
+2. 对可用性产生负面影响的元素：frame，frameset，noframes；
+
+* 支持HTML5新标签：
+1. IE8/IE7/IE6支持通过document.createElement方法产生的标签，可以利用这一特性让这些浏览器支持HTML5新标签，浏览器支持新标签后，还需要添加标签默认的样式。
+2. 也可以直接使用成熟的框架、比如html5shim;
+
+* 如何区分HTML5： DOCTYPE声明\新增的结构元素\功能元素
+
+### HTML语义化
+用正确的标签做正确的事情。
+优点：
+1. html语义化让页面的内容结构化，结构更清晰，便于对浏览器、搜索引擎解析;
+2. 即使在没有样式CSS情况下也以一种文档格式显示，并且是容易阅读的;
+3. 搜索引擎的爬虫也依赖于HTML标记来确定上下文和各个关键字的权重，利于SEO;
+4. 使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。
+
+### title与h1的区别、b与strong的区别、i与em的区别？
+1. title属性没有明确意义只表示是个标题，H1则表示层次明确的标题，对页面信息的抓取也有很大的影响；
+1. strong是标明重点内容，有语气加强的含义，使用阅读设备阅读网络时：\<strong>会重读，而\<B>是展示强调内容。
+1. i内容展示为斜体，em表示强调的文本；
+  Physical Style Elements -- 自然样式标签, 重在视觉作用<br>
+  b, i, u, s, pre<br>
+  Semantic Style Elements -- 语义样式标签, 重在含义<br>
+  strong, em, ins, del, code<br>
+  应该准确使用语义样式标签, 但不能滥用, 如果不能确定时首选使用自然样式标签。<br>
+
+### 浏览器是怎么对HTML5的离线储存资源进行管理和加载的呢？
+
+1. 在线的情况下，浏览器发现html头部有`manifest`属性，它会请求manifest文件，如果是第一次访问app，那么浏览器就会根据manifest文件的内容下载相应的资源并且进行离线存储。如果已经访问过app并且资源已经离线存储了，那么浏览器就会使用离线的资源加载页面，然后浏览器会对比新的manifest文件与旧的manifest文件，如果文件没有发生改变，就不做任何操作，如果文件改变了，那么就会重新下载文件中的资源并进行离线存储。
+1. 离线的情况下，浏览器就直接使用离线存储的资源。
+
+### iframe缺点
+iframe缺点：
+1. iframe会阻塞主页面的`Onload`事件；
+2. 搜索引擎的检索程序无法解读这种页面，不利于SEO;
+3. iframe和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载。
+
+使用iframe之前需要考虑这两个缺点。如果需要使用iframe，最好是通过javascript动态给iframe添加src属性值，这样可以绕开以上两个问题。
+### `Label`的作用是什么？是怎么用的？
+
+\<label> 标签为 input 元素定义标注（标记）, 提供焦点绑定。
+label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用户改进了可用性。如果在 label 元素内点击文本，就会触发此控件。就是说，当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。用for属性绑定id。
+```html
+<form>
+<label for="male">Male</label>
+<input type="radio" name="sex" id="male" />
+<br />
+<label for="female">Female</label>
+<input type="radio" name="sex" id="female" />
+</form>
+```
 
 ## css
 ### 1. CSS的盒子模型，低版本IE的盒子模型有什么不同的
@@ -1339,6 +1464,6 @@ HASH算法：MD5，SHA1，SHA256
 ### 3. JSON了解
 ### 4. Web安全及防护原理, sql注入, XSS, csrf
 
-### code
+## code
 
 
