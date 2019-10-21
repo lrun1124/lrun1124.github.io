@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/lrun1124.github.io/</link>
     <atom:link href="http://localhost:4000/lrun1124.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 21 Oct 2019 12:04:20 +0800</pubDate>
-    <lastBuildDate>Mon, 21 Oct 2019 12:04:20 +0800</lastBuildDate>
+    <pubDate>Mon, 21 Oct 2019 15:54:16 +0800</pubDate>
+    <lastBuildDate>Mon, 21 Oct 2019 15:54:16 +0800</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
     
       <item>
@@ -2031,6 +2031,122 @@ label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用�
 
 &lt;h2 id=&quot;安全&quot;&gt;安全&lt;/h2&gt;
 &lt;h3 id=&quot;web安全及防护原理-sql注入-xss-csrf&quot;&gt;Web安全及防护原理, sql注入, XSS, csrf&lt;/h3&gt;
+
+&lt;h4 id=&quot;sql注入&quot;&gt;SQL注入&lt;/h4&gt;
+
+&lt;p&gt;通过把SQL插入Web表单欺骗服务器执行恶意SQL, SQL 注入漏洞属于后端的范畴，但前端也可做体验上的优化&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;不要相信用户输入，利用正则等方式对输入的合法性进行判断，格式，长度，特殊字符等。&lt;/li&gt;
+  &lt;li&gt;不要使用动态拼装SQL，使用参数化的SQL或存储过程进行数据库操作&lt;/li&gt;
+  &lt;li&gt;不要使用管理员权限连接数据库，应为每个应用分配单独的权限有限的数据库连接&lt;/li&gt;
+  &lt;li&gt;不要明文存放敏感信息，加密或Hash&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;xsscross-site-scripting&quot;&gt;XSS(cross-site scripting)&lt;/h4&gt;
+
+&lt;p&gt;攻击者向Web页面中恶意插入html标签或Js代码，比如攻击者在页面中插入一个看似安全的链接，用户点击后窃取cookie和用户输入信息；或者攻击者在论坛中加一个恶意表单，当用户提交表单的时候，却把信息传送到攻击者的服务器中，而不是用户原本以为的信任站点。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;存储区：恶意代码存放的位置。&lt;/li&gt;
+  &lt;li&gt;插入点：由谁取得恶意代码，并插入到网页上。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/summary/xss_type.png&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;存储型 XSS&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;攻击者将恶意代码提交到目标网站的数据库中。&lt;/li&gt;
+  &lt;li&gt;用户打开目标网站时，网站服务端将恶意代码从数据库取出，拼接在 HTML 中返回给浏览器。&lt;/li&gt;
+  &lt;li&gt;用户浏览器接收到响应后解析执行，混在其中的恶意代码也被执行。&lt;/li&gt;
+  &lt;li&gt;恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;这种攻击常见于带有用户保存数据的网站功能，如论坛发帖、商品评论、用户私信等。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;反射型 XSS&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;攻击者构造出特殊的 URL，其中包含恶意代码。&lt;/li&gt;
+  &lt;li&gt;用户打开带有恶意代码的 URL 时，网站服务端将恶意代码从 URL 中取出，拼接在 HTML 中返回给浏览器。&lt;/li&gt;
+  &lt;li&gt;用户浏览器接收到响应后解析执行，混在其中的恶意代码也被执行。&lt;/li&gt;
+  &lt;li&gt;恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作。
+反射型 XSS 跟存储型 XSS 的区别是：存储型 XSS 的恶意代码存在数据库里，反射型 XSS 的恶意代码存在 URL 里。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;反射型 XSS 漏洞常见于通过 URL 传递参数的功能，如网站搜索、跳转等。&lt;/p&gt;
+
+&lt;p&gt;由于需要用户主动打开恶意的 URL 才能生效，攻击者往往会结合多种手段诱导用户点击。&lt;/p&gt;
+
+&lt;p&gt;POST 的内容也可以触发反射型 XSS，只不过其触发条件比较苛刻（需要构造表单提交页面，并引导用户点击），所以非常少见。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;DOM 型 XSS&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;攻击者构造出特殊的 URL，其中包含恶意代码。&lt;/li&gt;
+  &lt;li&gt;用户打开带有恶意代码的 URL。&lt;/li&gt;
+  &lt;li&gt;用户浏览器接收到响应后解析执行，前端 JavaScript 取出 URL 中的恶意代码并执行。&lt;/li&gt;
+  &lt;li&gt;恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;DOM 型 XSS 跟前两种 XSS 的区别：DOM 型 XSS 攻击中，取出和执行恶意代码由浏览器端完成，属于前端 JavaScript 自身的安全漏洞，而其他两种 XSS 都属于服务端的安全漏洞。&lt;/p&gt;
+
+&lt;p&gt;策略:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;用户输入合法性检测， 内容长度控制等&lt;/li&gt;
+  &lt;li&gt;避免拼接 HTML。前端采用拼接 HTML 的方法比较危险，如果框架允许，使用 createElement、setAttribute 之类的方法实现。或者采用比较成熟的渲染框架，如 Vue/React 等。&lt;/li&gt;
+  &lt;li&gt;利用模板引擎转义。 如果拼接 HTML 是必要的，就需要采用合适的转义库，对 HTML 模板各处插入点进行充分的转义。比如Java，常用的转义库为 org.owasp.encoder，JS使用doT.js、ejs、FreeMarker&lt;/li&gt;
+  &lt;li&gt;HTTP-only Cookie: 禁止 JavaScript 读取某些敏感 Cookie，验证码：防止脚本冒充用户提交危险操作&lt;/li&gt;
+  &lt;li&gt;使用XSS扫描工具，checkmarx等&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;csrfcross-site-request-forgery跨站请求伪造&quot;&gt;CSRF（Cross-site request forgery），跨站请求伪造&lt;/h4&gt;
+
+&lt;p&gt;攻击者盗用了你的身份，以你的名义发送恶意请求。CSRF能够做的事情包括：以你名义发送邮件，发消息，盗取你的账号，甚至于购买商品，虚拟货币转账…造成的问题包括：个人隐私泄露以及财产安全&lt;/p&gt;
+
+&lt;p&gt;要完成一次CSRF攻击，受害者必须依次完成两个步骤：&lt;br /&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;登录受信任网站A，并在本地生成Cookie。&lt;/li&gt;
+  &lt;li&gt;在不登出A的情况下，访问危险网站B。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;流程：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;受害者登录 a.com，并保留了登录凭证（Cookie）&lt;/li&gt;
+  &lt;li&gt;攻击者引诱受害者访问了 b.com&lt;/li&gt;
+  &lt;li&gt;b.com 向 a.com 发送了一个请求：a.com/act=xx（浏览器会默认携带 a.com 的 Cookie）&lt;/li&gt;
+  &lt;li&gt;a.com 接收到请求后，对请求进行验证，并确认是受害者的凭证，误以为是受害者自己发送的请求&lt;/li&gt;
+  &lt;li&gt;a.com 以受害者的名义执行了 act=xx&lt;/li&gt;
+  &lt;li&gt;攻击完成，攻击者在受害者不知情的情况下，冒充受害者，让 a.com 执行了自己定义的操作&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;防御：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;CSRF自动防御策略：同源检测（Origin 和 Referer 验证）。&lt;/li&gt;
+  &lt;li&gt;CSRF主动防御措施：Token验证 或者 双重Cookie验证 以及配合Samesite Cookie。&lt;/li&gt;
+  &lt;li&gt;保证页面的幂等性，后端接口不要在GET页面中做用户操作。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;input_path_not_canonicalized&quot;&gt;Input_Path_Not_Canonicalized&lt;/h4&gt;
+&lt;h4 id=&quot;absolute_path_traversal&quot;&gt;Absolute_Path_Traversal&lt;/h4&gt;
+&lt;p&gt;Absolute_Path_Traversal : When the web server returns information about errors in a web application, it is much easier for the attacker to guess the correct locations.&lt;/p&gt;
+
+&lt;p&gt;The following URLs may be vulnerable to this attack:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http://testsite.com/get.asp?f=test
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;An attacker can execute this attack like this:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http://testsite.com/get.asp?f=/etc/passwd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h4 id=&quot;ssrf&quot;&gt;SSRF&lt;/h4&gt;
 
 &lt;h3 id=&quot;对称非对称加密公钥和私钥&quot;&gt;对称/非对称加密，公钥和私钥&lt;/h3&gt;
 &lt;p&gt;基本概念:&lt;/p&gt;
