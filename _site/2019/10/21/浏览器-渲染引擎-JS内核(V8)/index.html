@@ -10,9 +10,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/lrun1124.github.io/img/favicon.ico">
 
-    <title>浏览器，渲染引擎，JS内核（V8) - Run Note</title>
+    <title>浏览器，渲染引擎，JS内核(V8) - Run Note</title>
 
-    <link rel="canonical" href="http://localhost:4000/lrun1124.github.io/2019/10/21/%E6%B5%8F%E8%A7%88%E5%99%A8-%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E-JS%E5%86%85%E6%A0%B8-V8)/">
+    <link rel="canonical" href="http://localhost:4000/lrun1124.github.io/2019/10/21/%E6%B5%8F%E8%A7%88%E5%99%A8-%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E-JS%E5%86%85%E6%A0%B8(V8)/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/lrun1124.github.io/css/bootstrap.min.css">
@@ -147,7 +147,7 @@
                         <a class="tag" href="/lrun1124.github.io/tags/#JavaScript" title="JavaScript">JavaScript</a>
                         
                     </div>
-                    <h1>浏览器，渲染引擎，JS内核（V8)</h1>
+                    <h1>浏览器，渲染引擎，JS内核(V8)</h1>
                     
                     
                     <h2 class="subheading"></h2>
@@ -171,8 +171,36 @@
                 post-container">
 
 				<blockquote>
-  <p>“Move on. ”</p>
+  <p>“Move on. ”
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<strong>Table of Contents</strong></p>
 </blockquote>
+
+<ul>
+  <li><a href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8%E6%9C%89%E5%93%AA%E4%BA%9B">常见的浏览器内核有哪些？</a></li>
+  <li><a href="#js%E5%86%85%E6%A0%B8v8">JS内核（V8）</a>
+    <ul>
+      <li><a href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9E%B6%E6%9E%84">浏览器架构</a></li>
+      <li><a href="#%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E-render-engine">渲染引擎 Render engine</a></li>
+      <li><a href="#%E6%B5%81%E7%A8%8B">流程</a></li>
+      <li><a href="#%E6%B8%B2%E6%9F%93%E8%BF%9B%E7%A8%8B%E5%A4%84%E7%90%86htmlwebkit%E4%B8%BA%E4%BE%8B">渲染进程处理html（webkit为例）</a></li>
+      <li><a href="#dom-tree">DOM Tree</a></li>
+      <li><a href="#cssom-tree">CSSOM Tree</a></li>
+      <li><a href="#render-tree">Render Tree</a></li>
+      <li><a href="#%E9%87%8D%E7%BB%98repaint-%E5%9B%9E%E6%B5%81reflow">重绘repaint， 回流reflow</a>
+        <ul>
+          <li><a href="#%E5%90%88%E6%88%90composite">合成composite</a></li>
+          <li><a href="#js%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6">JS事件机制</a></li>
+          <li><a href="#eventloop-%E5%AE%8F%E4%BB%BB%E5%8A%A1macrotask%E5%92%8C%E5%BE%AE%E4%BB%BB%E5%8A%A1microtask">Eventloop, 宏任务macrotask和微任务microtask</a></li>
+          <li><a href="#%E7%A1%AC%E4%BB%B6%E5%8A%A0%E9%80%9F">硬件加速</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 <h2 id="常见的浏览器内核有哪些">常见的浏览器内核有哪些？</h2>
 
@@ -185,7 +213,7 @@
 
 <h3 id="浏览器架构">浏览器架构</h3>
 
-<p><img src="http://lrun1124.github.io/img/browser/structure.png" /></p>
+<p><img src="http://lrun1124.github.io/img/browser/structure.png" width="500px" /></p>
 
 <ol>
   <li>User Interface 用户界面 - 包括地址栏、前进/后退按钮、书签菜单等。除了浏览器主窗口显示的您请求的页面外，其他显示的各个部分都属于用户界面。</li>
@@ -236,7 +264,7 @@ JS引擎线程与worker线程间通过特定的方式通信（postMessage API，
 
 <h3 id="流程">流程</h3>
 
-<p><img src="http://lrun1124.github.io/img/browser/browser_workflow.png" /></p>
+<p><img src="http://lrun1124.github.io/img/browser/browser_workflow.png" width="400px" /></p>
 
 <ol>
   <li>browser进程收到用户请求，首先需要获取页面内容（譬如通过网络下载资源），随后将该任务通过RendererHost接口传递给Render进程</li>
@@ -286,7 +314,7 @@ JS引擎线程与worker线程间通过特定的方式通信（postMessage API，
 
 <h3 id="dom-tree">DOM Tree</h3>
 
-<p><img src="http://lrun1124.github.io/img/browser/domtree.png" /></p>
+<p><img src="http://lrun1124.github.io/img/browser/domtree.png" width="600px" /></p>
 
 <p>浏览器构建 DOM 树可以简单的总结为以下几步：</p>
 <ol>
@@ -303,12 +331,12 @@ JS引擎线程与worker线程间通过特定的方式通信（postMessage API，
 <p>用户代理（即浏览器）本身有一套内置样式表，所以我们最终的 CSSOM 树其实是用户代理样式与页面所有样式的重新计算。
 所以在 Chrome 浏览器开发者工具的 Timeline 面板下，CSSOM 树的构建对应的是 Recalculate Style 阶段
 与 DOM 树的构建过程相似，CSSOM 的构建也要经历以下过程
-<img src="http://lrun1124.github.io/img/browser/cssom1.png" />
-<img src="http://lrun1124.github.io/img/browser/cssom2.png" /></p>
+<img src="http://lrun1124.github.io/img/browser/cssom1.png" width="600px" />
+<img src="http://lrun1124.github.io/img/browser/cssom2.png" width="600px" /></p>
 
 <h3 id="render-tree">Render Tree</h3>
 
-<p><img src="http://lrun1124.github.io/img/browser/rendertree.png" /></p>
+<p><img src="http://lrun1124.github.io/img/browser/rendertree.png" width="600px" /></p>
 
 <p>DOM 树与 CSSOM 树融合成渲染树
 渲染树只包括渲染页面需要的节点
@@ -348,7 +376,7 @@ JS引擎线程与worker线程间通过特定的方式通信（postMessage API，
 
 <p>由于reflow和repaint都是非常消耗性能的，我们的浏览器为此做了一些优化。浏览器会将reflow和repaint的操作积攒一批，然后做一次reflow。但是有些时候，你的代码会强制浏览器做多次reflow。例如：display:none 会触发 reflow，而 visibility:hidden 只会触发 repaint，因为没有发现位置变化</p>
 
-<p><img src="http://lrun1124.github.io/img/browser/overflow_code.png" /></p>
+<p><img src="http://lrun1124.github.io/img/browser/overflow_code.png" width="400px" /></p>
 
 <p>以上第三行代码，需要浏览器reflow后；再获取值，所以会导致浏览器多做一次reflow。</p>
 
@@ -356,15 +384,15 @@ JS引擎线程与worker线程间通过特定的方式通信（postMessage API，
 
 <p>在reflow和repaint之后，浏览器会将多个复合层传入GPU；进行合成工作，那么合成是如何工作的呢？</p>
 
-<p><img src="http://lrun1124.github.io/img/browser/composite_css.png" /></p>
+<p><img src="http://lrun1124.github.io/img/browser/composite_css.png" width="250px" /></p>
 
 <p>假设我们的页面中有A和B两个元素，它们有absolute和z-index属性；浏览器会重绘它们，然后将图像发送给GPU；然后GPU将会把多个图像合成，该元素变成一个复合图层，就是传说中的硬件加速技术，之后展示在屏幕上。</p>
 
-<p><img src="http://lrun1124.github.io/img/browser/composite_pic.png" /></p>
+<p><img src="http://lrun1124.github.io/img/browser/composite_pic.png" width="600px" /></p>
 
 <h4 id="js事件机制">JS事件机制</h4>
 
-<p><img src="http://lrun1124.github.io/img/browser/jsevent.png" /></p>
+<p><img src="http://lrun1124.github.io/img/browser/jsevent.png" width="400px" /></p>
 
 <p>JS分为同步任务和异步任务，同步任务都在主线程上执行，主线程运行时会产生执行栈，
 栈中的代码调用某些api时，它们会在事件队列中添加各种事件（当满足触发条件后，如ajax请求完毕）</p>
@@ -402,23 +430,23 @@ JS引擎线程与worker线程间通过特定的方式通信（postMessage API，
 
 <p>microtask：Promise，process.nextTick等</p>
 
-<p><img src="http://lrun1124.github.io/img/browser/eventloop3.png" /></p>
+<p><img src="http://lrun1124.github.io/img/browser/eventloop3.png" width="300px" /></p>
 
 <p>补充：在node环境下，process.nextTick的优先级高于Promise__，也就是可以简单理解为：在宏任务结束后会先执行微任务队列中的nextTickQueue部分，然后才会执行微任务中的Promise部分。</p>
 
 <p>例子：</p>
 
-<p><img src="http://lrun1124.github.io/img/browser/eventloop1.png" /></p>
+<p><img src="http://lrun1124.github.io/img/browser/eventloop1.png" width="400px" /></p>
 
 <p>执行结果</p>
 
-<p><img src="http://lrun1124.github.io/img/browser/eventloop2.png" /></p>
+<p><img src="http://lrun1124.github.io/img/browser/eventloop2.png" width="300px" /></p>
 
 <h4 id="硬件加速">硬件加速</h4>
 
 <p>可以Chrome源码调试 -&gt;More Tools -&gt;Rendering -&gt;Layer borders中看到，黄色的就是复合图层信息</p>
 
-<p><img src="http://lrun1124.github.io/img/browser/hardwareAcceleration.png" /></p>
+<p><img src="http://lrun1124.github.io/img/browser/hardwareAcceleration.png" width="600px" /></p>
 
 <p>硬件加速技术是指：使用 GPU 的硬件能力为帮助渲染网页，在为 GPU 的作用主要是用来绘制 3D 图形并且性能特别好。对于 GPU 绘图而言，当网页分层之后，部分区域的更新可能只在网页的一层或者几层，而不需要将整个网页都重新绘制。 通过重新绘制网页的一个或者几个层，并将它们和其他之前绘制完的层合成起来，既能使用 GPU 的能力，又能减少重绘的开销。一般一个元素开启硬件加速后会变成复合图层，可以独立于普通文档流中，改动后可以避免整个页面重绘，提升性能</p>
 
@@ -457,17 +485,22 @@ JS引擎线程与worker线程间通过特定的方式通信（postMessage API，
                 </style>
                 <div class="ds-share"
                     style="text-align: right"
-                    data-thread-key="/2019/10/21/浏览器，渲染引擎，JS内核（V8)"
-                    data-title="浏览器，渲染引擎，JS内核（V8)"
-                    data-url="http://localhost:4000/lrun1124.github.io/2019/10/21/%E6%B5%8F%E8%A7%88%E5%99%A8-%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E-JS%E5%86%85%E6%A0%B8-V8)/"
+                    data-thread-key="/2019/10/21/浏览器，渲染引擎，JS内核(V8)"
+                    data-title="浏览器，渲染引擎，JS内核(V8)"
+                    data-url="http://localhost:4000/lrun1124.github.io/2019/10/21/%E6%B5%8F%E8%A7%88%E5%99%A8-%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E-JS%E5%86%85%E6%A0%B8(V8)/"
                     data-images="http://localhost:4000/lrun1124.github.io/img/ArrayUnique-bg.jpg"
                     data-content="
   “Move on. ”
 
 
-常见的浏览器内核有哪些？
+Table of Contents
 
-Trident内核：IE,MaxThon,TT,The World,360,搜狗浏览器等。[... | Run Note " >
+
+
+  常见的浏览器内核有哪些？
+  JS内核（V8）
+    
+      浏览... | Run Note " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -498,9 +531,9 @@ Trident内核：IE,MaxThon,TT,The World,360,搜狗浏览器等。[... | Run Note
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="/2019/10/21/浏览器，渲染引擎，JS内核（V8)"
-                        data-title="浏览器，渲染引擎，JS内核（V8)"
-                        data-url="http://localhost:4000/lrun1124.github.io/2019/10/21/%E6%B5%8F%E8%A7%88%E5%99%A8-%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E-JS%E5%86%85%E6%A0%B8-V8)/" >
+                        data-thread-key="/2019/10/21/浏览器，渲染引擎，JS内核(V8)"
+                        data-title="浏览器，渲染引擎，JS内核(V8)"
+                        data-url="http://localhost:4000/lrun1124.github.io/2019/10/21/%E6%B5%8F%E8%A7%88%E5%99%A8-%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E-JS%E5%86%85%E6%A0%B8(V8)/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
