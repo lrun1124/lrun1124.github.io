@@ -174,16 +174,16 @@
   <p>“Move on. ”</p>
 </blockquote>
 
-<h3 id="常见的浏览器内核有哪些">常见的浏览器内核有哪些？</h3>
+<h2 id="常见的浏览器内核有哪些">常见的浏览器内核有哪些？</h2>
 
 <p>Trident内核：IE,MaxThon,TT,The World,360,搜狗浏览器等。[又称MSHTML]<br />
   Gecko内核：Netscape6及以上版本，FF,MozillaSuite/SeaMonkey等<br />
   Presto内核：Opera7及以上。      [Opera内核原为：Presto，现为：Blink;]<br />
   Webkit内核：Safari,Chrome等。   [ Chrome的：Blink（WebKit的分支）]</p>
 
-<h3 id="js内核v8">JS内核（V8）</h3>
+<h2 id="js内核v8">JS内核（V8）</h2>
 
-<h4 id="浏览器架构">浏览器架构</h4>
+<h3 id="浏览器架构">浏览器架构</h3>
 
 <p><img src="http://lrun1124.github.io/img/browser/structure.png" /></p>
 
@@ -197,7 +197,7 @@
   <li>数据存储。这是持久层。浏览器需要在硬盘上保存各种数据，例如 Cookie。新的 HTML 规范 (HTML5) 定义了“网络数据库”，这是一个完整（但是轻便）的浏览器内数据库。</li>
 </ol>
 
-<h4 id="渲染引擎-render-engine">渲染引擎 Render engine</h4>
+<h3 id="渲染引擎-render-engine">渲染引擎 Render engine</h3>
 <ol>
   <li>GUI渲染线程 (GUI render thread) : 负责渲染浏览器界面，解析HTML，CSS，构建DOM树和RenderObject树，布局和绘制等。当界面需要重绘（Repaint）或由于某种操作引发回流(reflow)时，该线程就会执行</li>
   <li>JS引擎线程(V8)（JS thread） : 也称为JS内核，负责处理Javascript脚本程序。（例如V8引擎）JS引擎线程负责解析Javascript脚本，运行代码。JS引擎一直等待着任务队列中任务的到来，然后加以处理，一个Tab页（renderer进程）中无论什么时候都只有一个JS线程在运行JS程序</li>
@@ -234,7 +234,7 @@ JS引擎线程与worker线程间通过特定的方式通信（postMessage API，
 
 <p>看到这里，应该就很容易明白了，本质上就是进程和线程的区别。SharedWorker由独立的进程管理，WebWorker只是属于render进程下的一个线程</p>
 
-<h4 id="流程">流程</h4>
+<h3 id="流程">流程</h3>
 
 <p><img src="http://lrun1124.github.io/img/browser/browser_workflow.png" /></p>
 
@@ -246,7 +246,7 @@ JS引擎线程与worker线程间通过特定的方式通信（postMessage API，
   <li>Browser进程接收到结果并将结果绘制出来</li>
 </ol>
 
-<h4 id="渲染进程处理htmlwebkit为例">渲染进程处理html（webkit为例）</h4>
+<h3 id="渲染进程处理htmlwebkit为例">渲染进程处理html（webkit为例）</h3>
 
 <p><img src="http://lrun1124.github.io/img/browser/webkit_workflow.png" /></p>
 
@@ -284,7 +284,7 @@ JS引擎线程与worker线程间通过特定的方式通信（postMessage API，
 
 <p>解析的过程可以分成两个子过程：词法分析和语法分析。</p>
 
-<h4 id="dom-tree">DOM Tree</h4>
+<h3 id="dom-tree">DOM Tree</h3>
 
 <p><img src="http://lrun1124.github.io/img/browser/domtree.png" /></p>
 
@@ -296,7 +296,7 @@ JS引擎线程与worker线程间通过特定的方式通信（postMessage API，
   <li>构建 DOM 树（Nodes -&gt;DOM Tree）—— 最重要的工作是建立起每个结点的父子兄弟关系</li>
 </ol>
 
-<h4 id="cssom-tree">CSSOM Tree</h4>
+<h3 id="cssom-tree">CSSOM Tree</h3>
 
 <p>CSSOM 树的构建其实是一个 样式的重新计算 的过程，为什么是重新计算呢？</p>
 
@@ -306,13 +306,147 @@ JS引擎线程与worker线程间通过特定的方式通信（postMessage API，
 <img src="http://lrun1124.github.io/img/browser/cssom1.png" />
 <img src="http://lrun1124.github.io/img/browser/cssom2.png" /></p>
 
-<h4 id="render-tree">Render Tree</h4>
+<h3 id="render-tree">Render Tree</h3>
 
 <p><img src="http://lrun1124.github.io/img/browser/rendertree.png" /></p>
 
 <p>DOM 树与 CSSOM 树融合成渲染树
 渲染树只包括渲染页面需要的节点
 排除 &lt;script&gt; &lt;meta&gt; 等功能化、非视觉节点排除 display: none 的节点</p>
+
+<h3 id="重绘repaint-回流reflow">重绘repaint， 回流reflow</h3>
+
+<p>repaint是某个dom元素进行重绘，reflow是整个页面进行重排，也就是对页面所有的dom元素渲染。 </p>
+
+<p>repaint的触发： </p>
+<ol>
+  <li>不涉及任何dom元素的排版问题的变动为repaint，例如元素的color、text-align等改变。 </li>
+  <li>color的修改，text-align的修改，a：hover也会造成重绘，伪类引起的颜色等变化不会导致页面的回流，仅仅会触发重绘。 </li>
+</ol>
+
+<p>reflow的触发： </p>
+<ol>
+  <li>width、height、border、margin、padding的修改 </li>
+  <li>通过hover造成元素表现的改动，如display:none会导致回流 </li>
+  <li>appendChild等dom元素操作。 </li>
+  <li>font类style 的修改。 </li>
+  <li>background的修改，现在经过浏览器厂家的优化，部分background的修改只会触发repaint。</li>
+</ol>
+
+<ul>
+  <li>如何尽量避免回流reflow：
+    <ol>
+      <li>尽可能在dom末稍通过修改class来修改元素的style属性，尽可能减少受影响的dom元素。</li>
+      <li>避免设置多项内联样式，使用常用的class方式进行设置样式，以避免设置样式时访问dom的低效率。</li>
+      <li>设置动画元素position属性为fixed或absolute：由于当前元素从dom流中独立出来，因此受影响的只有当前元素。</li>
+      <li>牺牲平滑度满足性能：动画精度太强，会造成更多的repaint/reflow，牺牲精度，能满足性能的损耗，获取性能和平滑度的平衡。</li>
+      <li>避免使用table进行布局，table每个元素的大小以及内容的改变，都会导致整个table进行重新计算，造成大幅度的repaint或者reflow。改用div则可以针对性的repaint和避免不必要的reflow。</li>
+      <li>避免在css中使用运算式</li>
+    </ol>
+  </li>
+</ul>
+
+<p>由于reflow和repaint都是非常消耗性能的，我们的浏览器为此做了一些优化。浏览器会将reflow和repaint的操作积攒一批，然后做一次reflow。但是有些时候，你的代码会强制浏览器做多次reflow。例如：display:none 会触发 reflow，而 visibility:hidden 只会触发 repaint，因为没有发现位置变化</p>
+
+<p><img src="http://lrun1124.github.io/img/browser/overflow_code.png" /></p>
+
+<p>以上第三行代码，需要浏览器reflow后；再获取值，所以会导致浏览器多做一次reflow。</p>
+
+<h4 id="合成composite">合成composite</h4>
+
+<p>在reflow和repaint之后，浏览器会将多个复合层传入GPU；进行合成工作，那么合成是如何工作的呢？</p>
+
+<p><img src="http://lrun1124.github.io/img/browser/composite_css.png" /></p>
+
+<p>假设我们的页面中有A和B两个元素，它们有absolute和z-index属性；浏览器会重绘它们，然后将图像发送给GPU；然后GPU将会把多个图像合成，该元素变成一个复合图层，就是传说中的硬件加速技术，之后展示在屏幕上。</p>
+
+<p><img src="http://lrun1124.github.io/img/browser/composite_pic.png" /></p>
+
+<h4 id="js事件机制">JS事件机制</h4>
+
+<p><img src="http://lrun1124.github.io/img/browser/jsevent.png" /></p>
+
+<p>JS分为同步任务和异步任务，同步任务都在主线程上执行，主线程运行时会产生执行栈，
+栈中的代码调用某些api时，它们会在事件队列中添加各种事件（当满足触发条件后，如ajax请求完毕）</p>
+
+<p>主线程之外，事件触发线程管理着一个任务队列，只要异步任务有了运行结果，就在任务队列之中放置一个事件。
+一旦执行栈中的所有同步任务执行完毕（此时JS引擎空闲），系统就会读取任务队列，将可运行的异步任务添加到可执行栈中，开始执行。如此循环, 注意，总是要等待栈中的代码执行完毕后才会去读取事件队列中的事件</p>
+
+<p>setTimeout(function(){console.log(‘hello!’);},0);console.log(‘begin’);这段代码的效果是最快的时间内将回调函数推入事件队列中，等待主线程执行</p>
+
+<p>而且setInterval有一些比较致命的问题就是：累计效应（上面提到的），如果setInterval代码在（setInterval）再次添加到队列之前还没有完成执行，JS高程中有提到，JS引擎会对setInterval进行优化，如果当前事件队列中有setInterval的回调，不会重复添加</p>
+
+<h4 id="eventloop-宏任务macrotask和微任务microtask">Eventloop, 宏任务macrotask和微任务microtask</h4>
+
+<p>macrotask（又称之为宏任务），可以理解是每次执行栈执行的代码就是一个宏任务（包括每次从事件队列中获取一个事件回调并放到执行栈中执行），每一个task会从头到尾将这个任务执行完毕，不会执行其它任务，浏览器为了能够使得JS内部task与DOM任务能够有序的执行，会在一个task执行结束后，在下一个 task 执行开始前，对页面进行重新渲染（<code class="highlighter-rouge">task-&gt;渲染-&gt;task-&gt;...</code>）</p>
+
+<p>microtask（又称为微任务），可以理解是在当前 task 执行结束后立即执行的任务也就是说，在当前task任务后，下一个task之前，在渲染之前执行，所以它的响应速度相比setTimeout（setTimeout是task）会更快，因为无需等渲染，也就是说，在某一个macrotask执行完后，就会将在它执行期间产生的所有microtask都执行完毕（在渲染前）</p>
+
+<ul>
+  <li>流程：</li>
+</ul>
+
+<ol>
+  <li>执行一个宏任务（栈中没有就从事件队列中获取）</li>
+  <li>执行过程中如果遇到微任务，就将它添加到微任务的任务队列中</li>
+  <li>宏任务执行完毕后，立即执行当前微任务队列中的所有微任务（依次执行）</li>
+  <li>当前宏任务执行完毕，开始检查渲染，然后GUI线程接管渲染</li>
+  <li>渲染完毕后，JS线程继续接管，开始下一个宏任务（从事件队列中获取）</li>
+</ol>
+
+<ul>
+  <li>分别很么样的场景会形成macrotask和microtask呢？</li>
+</ul>
+
+<p>macrotask：主代码块，setTimeout，setInterval等（可以看到，事件队列中的每一个事件都是一个macrotask）</p>
+
+<p>microtask：Promise，process.nextTick等</p>
+
+<p><img src="http://lrun1124.github.io/img/browser/eventloop3.png" /></p>
+
+<p>补充：在node环境下，process.nextTick的优先级高于Promise__，也就是可以简单理解为：在宏任务结束后会先执行微任务队列中的nextTickQueue部分，然后才会执行微任务中的Promise部分。</p>
+
+<p>例子：</p>
+
+<p><img src="http://lrun1124.github.io/img/browser/eventloop1.png" /></p>
+
+<p>执行结果</p>
+
+<p><img src="http://lrun1124.github.io/img/browser/eventloop2.png" /></p>
+
+<h4 id="硬件加速">硬件加速</h4>
+
+<p>可以Chrome源码调试 -&gt;More Tools -&gt;Rendering -&gt;Layer borders中看到，黄色的就是复合图层信息</p>
+
+<p><img src="http://lrun1124.github.io/img/browser/hardwareAcceleration.png" /></p>
+
+<p>硬件加速技术是指：使用 GPU 的硬件能力为帮助渲染网页，在为 GPU 的作用主要是用来绘制 3D 图形并且性能特别好。对于 GPU 绘图而言，当网页分层之后，部分区域的更新可能只在网页的一层或者几层，而不需要将整个网页都重新绘制。 通过重新绘制网页的一个或者几个层，并将它们和其他之前绘制完的层合成起来，既能使用 GPU 的能力，又能减少重绘的开销。一般一个元素开启硬件加速后会变成复合图层，可以独立于普通文档流中，改动后可以避免整个页面重绘，提升性能</p>
+
+<p>可以通过硬件加速的方式，声明一个新的复合图层，它会单独分配资源（当然也会脱离普通文档流，这样一来，不管这个复合图层中怎么变化，也不会影响默认复合层里的回流重绘），可以简单理解下：GPU中，各个复合图层是单独绘制的，所以互不影响，这也是为什么某些场景硬件加速效果一级棒</p>
+
+<p>最常用的方式：translate3d、translateZ、opacity属性/过渡动画（需要动画执行的过程中才会创建合成层，动画没有开始或结束后元素还会回到之前的状态）、will-chang属性（这个比较偏僻），一般配合opacity与translate使用（而且经测试，除了上述可以引发硬件加速的属性外，其它属性并不会变成复合层）</p>
+
+<p><img src="http://lrun1124.github.io/img/browser/animation.png" /></p>
+
+<p>在这个例子中，对于动画的每一帧；浏览器会计算元素的几何形状，渲染新状态的图像；并把它们发送给GPU。（你没看错，position也会引起浏览器重排的）尽管浏览器做了优化，在repaint时，只会repaint部分区域；但是我们的动画仍然不够流畅。</p>
+
+<p>因为重排和重绘发生在动画的每一帧，一个有效避免reflow和repaint的方式是我们仅仅画两个图像；一个是a元素，一个是b元素及整个页面；我们将这两张图片发送给GPU，然后动画发生的时候；只做两张图片相对对方的平移。也就是说，仅仅合成缓存的图片将会很快；这也是GPU的优势——它能非常快地以亚像素精度地合成图片，并给动画带来平滑的曲线。</p>
+
+<p>为了仅发生composite，我们做动画的css property必须满足以下三个条件：</p>
+
+<ol>
+  <li>不影响文档流。</li>
+  <li>不依赖文档流。</li>
+  <li>不会造成重绘。</li>
+</ol>
+
+<p>满足以上以上条件的css property只有transform和opacity。你可能以为position也满足以上条件，但事实不是这样，举个例子left属性可以使用百分比的值，依赖于它的offset parent。还有em、vh等其他单位也依赖于他们的环境。我们使用translate来代替left，浏览器在动画执行之前就知道动画如何开始和结束，因为浏览器没有看到需要reflow和repaint的操作；浏览器就会画两张图像作为复合层，并将它们传入GPU。</p>
+
+<p>这样做有两个优势：</p>
+<ol>
+  <li>动画将会非常流畅</li>
+  <li>动画不在绑定到CPU，即使js执行大量的工作；动画依然流畅。</li>
+</ol>
 
 
 
