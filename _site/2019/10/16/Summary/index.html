@@ -1047,13 +1047,6 @@ CMD缺点：执行等待时间会叠加。因为每个文件执行时是同步�
   <li>渲染完毕后就是load事件了，之后就是自己的JS逻辑处理了</li>
 </ol>
 
-<h3 id="常见的浏览器内核有哪些">常见的浏览器内核有哪些？</h3>
-
-<p>Trident内核：IE,MaxThon,TT,The World,360,搜狗浏览器等。[又称MSHTML]<br />
-  Gecko内核：Netscape6及以上版本，FF,MozillaSuite/SeaMonkey等<br />
-  Presto内核：Opera7及以上。      [Opera内核原为：Presto，现为：Blink;]<br />
-  Webkit内核：Safari,Chrome等。   [ Chrome的：Blink（WebKit的分支）]</p>
-
 <h3 id="json的了解">JSON的了解</h3>
 
 <p>JSON（JavaScript Object Notation）是一种<strong>轻量级的数据交换格式</strong>，是基于JavaScript的一个子集，具有<strong>数据格式简单，易于读写且占用带宽小</strong>的优点。</p>
@@ -1478,8 +1471,6 @@ getElementsByName() //通过元素的Name属性的值(IE容错能力较强，会
 getElementsByTag()
 getElementsByClass()
 </code></pre></div></div>
-<h3 id="js内核了解">JS内核了解</h3>
-<p>//todo</p>
 
 <h2 id="html">HTML</h2>
 
@@ -2185,11 +2176,51 @@ label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用�
 对于水平方向的margin和padding，也是参照父元素的宽度</p>
 
 <h2 id="性能优化">性能优化</h2>
-<h3 id="一个页面从输入-url-到页面加载显示完成这个过程中都发生了什么-1">一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？</h3>
-<h3 id="性能优化策略-核心html层面布局-request-css-服务器端-js">性能优化策略, 核心，html层面布局， request, css, 服务器端, JS</h3>
+
+<h3 id="性能优化策略">性能优化策略</h3>
+<h4 id="服务器端">服务器端</h4>
+<ol>
+  <li>图片服务器，图片压缩，webP，wekpack图片压缩</li>
+  <li>Ngnix</li>
+</ol>
+
+<h4 id="request层面">request层面</h4>
+<ol>
+  <li>减少http请求次数</li>
+  <li>http Keep-alive 处理好timeout</li>
+  <li>cookie隔离</li>
+</ol>
+
+<h4 id="html层面布局">html层面布局</h4>
+<ol>
+  <li>使用dsn-prefetch, dsn缓存减少dsn获取时间</li>
+  <li>preload, prefetch, async, defer优化js文件加载和执行</li>
+  <li>模块化JS打包</li>
+</ol>
+
+<h4 id="js端">JS端</h4>
+<ol>
+  <li>减少回流代码，减少dom直接操作，读取引起回流属性</li>
+  <li>用requestAnimationFrame加强网页的流畅性</li>
+  <li>使用transform操作动画</li>
+  <li>必要时使用display:none再修改样式</li>
+  <li>多次append可以先放到一个临时页面再插入页面</li>
+  <li>localstorge和sessionstorage</li>
+</ol>
+
+<h4 id="css端">css端</h4>
+<ol>
+  <li>尽量使用class修改，减少js直接修改css</li>
+  <li>使用transform操作动画</li>
+  <li>避免使用通配符，不使用标签名或类名修饰ID规则</li>
+  <li>尽量选择最具体的方式，利用关键选择器</li>
+  <li>使用transform操作动画</li>
+</ol>
+
+<h2 id="浏览器渲染引擎js内核v8">浏览器，渲染引擎，JS内核（V8）</h2>
 
 <h2 id="安全">安全</h2>
-<h3 id="web安全及防护原理-sql注入-xss-csrf">Web安全及防护原理, sql注入, XSS, csrf</h3>
+<h3 id="web安全及防护原理-sql注入-xss-csrf">Web安全及防护原理, sql注入, XSS, CSRF</h3>
 
 <h4 id="sql注入">SQL注入</h4>
 
@@ -2391,6 +2422,10 @@ Table of Contents
                     </li>
                     
                     
+                    <li class="next">
+                        <a href="/lrun1124.github.io/2019/10/21/%E6%B5%8F%E8%A7%88%E5%99%A8-%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E-JS%E5%86%85%E6%A0%B8-V8)/" data-toggle="tooltip" data-placement="top" title="浏览器，渲染引擎，JS内核（V8)">Next Post &rarr;</a>
+                    </li>
+                    
                 </ul>
 
 
@@ -2426,7 +2461,7 @@ Table of Contents
                             
         				
                             
-                				<a href="/lrun1124.github.io/tags/#JavaScript" title="JavaScript" rel="12">
+                				<a href="/lrun1124.github.io/tags/#JavaScript" title="JavaScript" rel="13">
                                     JavaScript
                                 </a>
                             

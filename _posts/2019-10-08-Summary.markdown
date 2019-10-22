@@ -800,14 +800,6 @@ Scavenge垃圾回收算法进行管理，主要实现是Cheney算法，将内存
 1. 浏览器会将各层的信息发送给GPU，GPU会将各层复合图层化（composite），显示在屏幕上。
 1. 渲染完毕后就是load事件了，之后就是自己的JS逻辑处理了
 
-
-### 常见的浏览器内核有哪些？
-
-  Trident内核：IE,MaxThon,TT,The World,360,搜狗浏览器等。[又称MSHTML]<br>
-  Gecko内核：Netscape6及以上版本，FF,MozillaSuite/SeaMonkey等<br>
-  Presto内核：Opera7及以上。      [Opera内核原为：Presto，现为：Blink;]<br>
-  Webkit内核：Safari,Chrome等。   [ Chrome的：Blink（WebKit的分支）]
-
 ### JSON的了解
 
 JSON（JavaScript Object Notation）是一种<strong>轻量级的数据交换格式</strong>，是基于JavaScript的一个子集，具有<strong>数据格式简单，易于读写且占用带宽小</strong>的优点。
@@ -1235,8 +1227,6 @@ getElementsByName() //通过元素的Name属性的值(IE容错能力较强，会
 getElementsByTag()
 getElementsByClass()
 ```
-### JS内核了解
-//todo
 
 ## HTML
 
@@ -1905,11 +1895,41 @@ body,ul,li,a,p,div{padding:0px; margin:0px; font-size:14px;}
 对于水平方向的margin和padding，也是参照父元素的宽度
 
 ## 性能优化
-### 一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？
-### 性能优化策略, 核心，html层面布局， request, css, 服务器端, JS
+
+### 性能优化策略
+#### 服务器端
+1. 图片服务器，图片压缩，webP，wekpack图片压缩
+1. Ngnix
+
+#### request层面
+1. 减少http请求次数
+1. http Keep-alive 处理好timeout
+1. cookie隔离
+
+#### html层面布局
+1. 使用dsn-prefetch, dsn缓存减少dsn获取时间
+1. preload, prefetch, async, defer优化js文件加载和执行
+1. 模块化JS打包
+
+#### JS端
+1. 减少回流代码，减少dom直接操作，读取引起回流属性
+1. 用requestAnimationFrame加强网页的流畅性
+1. 使用transform操作动画
+1. 必要时使用display:none再修改样式
+1. 多次append可以先放到一个临时页面再插入页面
+1. localstorge和sessionstorage
+
+#### css端
+1. 尽量使用class修改，减少js直接修改css
+1. 使用transform操作动画
+1. 避免使用通配符，不使用标签名或类名修饰ID规则
+1. 尽量选择最具体的方式，利用关键选择器
+1. 使用transform操作动画
+
+## 浏览器，渲染引擎，JS内核（V8）
 
 ## 安全
-### Web安全及防护原理, sql注入, XSS, csrf
+### Web安全及防护原理, sql注入, XSS, CSRF
 
 #### SQL注入
 
