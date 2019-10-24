@@ -2,18 +2,50 @@
 layout:     post
 title:      "性能优化"
 subtitle:   ""
-date:       2019-09-04 12:00:00
+date:       2019-09-06 12:00:00
 author:     "Run"
 header-img: "img/ArrayUnique-bg.jpg"
 tags:
-    - JavaScript
+    - Summary
 ---
 
 > “Move on. ”
 
+## 性能优化
+
+### 总结
+
+#### 服务器端
+1. 图片服务器，图片压缩，webP，wekpack图片压缩
+1. Ngnix
+
+#### request层面
+1. 减少http请求次数
+1. http Keep-alive 处理好timeout
+1. cookie隔离
+
+#### html层面布局
+1. 使用dsn-prefetch, dsn缓存减少dsn获取时间
+1. preload, prefetch, async, defer优化js文件加载和执行
+1. 模块化JS打包
+
+#### JS端
+1. 减少回流代码，减少dom直接操作，读取引起回流属性
+1. 用requestAnimationFrame加强网页的流畅性
+1. 使用transform操作动画
+1. 必要时使用display:none再修改样式
+1. 多次append可以先放到一个临时页面再插入页面
+1. localstorge和sessionstorage
+
+#### css端
+1. 尽量使用class修改，减少js直接修改css
+1. 使用transform操作动画
+1. 避免使用通配符，不使用标签名或类名修饰ID规则
+1. 尽量选择最具体的方式，利用关键选择器
+1. 使用transform操作动画
 核心：减少JS下载时间
 
-## dsn-prefetch，preload, prefetch
+#### dsn-prefetch，preload, prefetch
 
 dsn-prefetch: 提前解析dsn
 
@@ -33,7 +65,7 @@ prefetch: 浏览器空闲时候加载，比如下一页
 ```
 
 ## 比较好的架构
-```
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,32 +92,3 @@ prefetch: 浏览器空闲时候加载，比如下一页
 其次，页面会在空闲时，加载prefetch的JS，如果之后页面发生跳转，跳转的目标页面引入了prefetch.js，浏览器会直接从disk缓存中读取执行。
 
 将script标签依然放在</body>之前，并增加defer标签，确保老浏览器兼容，并在所有DOM元素解析完成之后执行其中的代码。
-
-
-## 优化策略
-
-### html层面布局
-
-1. 使用dsn-prefetch, dsn缓存减少dsn获取时间
-2. preload, prefetch, async, defer优化js文件加载和执行
-3. 模块化JS打包
-
-### request层面
-1. 减少http请求次数
-2. http Keep-alive 处理好timeout
-
-### css端
-1. 尽量使用class修改，减少js直接修改css
-2. 使用transform操作动画
-
-### 服务器端
-1. 图片服务器，图片压缩，webP，wekpack图片压缩
-2. Ngnix
-
-### JS端
-1. 减少回流代码，减少dom直接操作，读取引起回流属性
-2. 用requestAnimationFrame加强网页的流畅性
-3. 使用transform操作动画
-4. 必要时使用display:none再修改样式
-5. 多次append可以先放到一个临时页面再插入页面
-6. localstorge和sessionstorage

@@ -1,12 +1,12 @@
 ---
 layout:     post
-title:      "N Sum problem"
+title:      "实现call,apply,bind"
 subtitle:   ""
 date:       2019-09-02 11:00:00
 author:     "Run"
 header-img: "img/ArrayUnique-bg.jpg"
 tags:
-    - JavaScript
+    - code
 ---
 
 > “Move on. ”

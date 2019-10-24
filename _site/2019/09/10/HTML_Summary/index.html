@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/lrun1124.github.io/img/favicon.ico">
+
+    <title>HTML Summary - Run Note</title>
+
+    <link rel="canonical" href="http://localhost:4000/lrun1124.github.io/2019/09/10/HTML_Summary/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/lrun1124.github.io/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/lrun1124.github.io/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/lrun1124.github.io/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/lrun1124.github.io/">Run Note</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/lrun1124.github.io/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/lrun1124.github.io/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/lrun1124.github.io/portfolio/">Portfolio</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/lrun1124.github.io/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/lrun1124.github.io/img/ArrayUnique-bg.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/lrun1124.github.io/img/ArrayUnique-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/lrun1124.github.io/tags/#Summary" title="Summary">Summary</a>
+                        
+                    </div>
+                    <h1>HTML Summary</h1>
+                    
+                    
+                    <h2 class="subheading"></h2>
+                    
+                    <span class="meta">Posted by Run on September 10, 2019</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<blockquote>
+  <p>“Move on. ”
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<strong>Table of Contents</strong></p>
+</blockquote>
+
+<ul>
+  <li><a href="#html">HTML</a>
+    <ul>
+      <li><a href="#%E8%AF%B7%E6%8F%8F%E8%BF%B0%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1">请描述事件冒泡</a></li>
+      <li><a href="#%E8%AF%B7%E8%A7%A3%E9%87%8A%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98event-delegation">请解释事件委托（event delegation）</a></li>
+      <li><a href="#ie%E5%92%8Cfirefox%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6">IE和firefox事件机制</a></li>
+      <li><a href="#%E7%BB%99%E4%B8%80%E4%B8%AAdom%E5%90%8C%E6%97%B6%E7%BB%91%E5%AE%9A%E4%B8%A4%E4%B8%AA%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E4%B8%80%E4%B8%AA%E7%94%A8%E6%8D%95%E8%8E%B7%E4%B8%80%E4%B8%AA%E7%94%A8%E5%86%92%E6%B3%A1%E4%BC%9A%E6%89%A7%E8%A1%8C%E5%87%A0%E6%AC%A1%E4%BA%8B%E4%BB%B6">给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件？</a></li>
+      <li><a href="#window%E5%AF%B9%E8%B1%A1%E5%92%8Cdocument%E5%AF%B9%E8%B1%A1"><code class="highlighter-rouge">window</code>对象和<code class="highlighter-rouge">document</code>对象</a></li>
+      <li><a href="#document-%E4%B8%AD%E7%9A%84load%E4%BA%8B%E4%BB%B6%E5%92%8Cdomcontentloaded%E4%BA%8B%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88">document 中的<code class="highlighter-rouge">load</code>事件和<code class="highlighter-rouge">DOMContentLoaded</code>事件之间的区别是什么？</a></li>
+      <li><a href="#%E9%A1%B5%E9%9D%A2%E7%BC%96%E7%A0%81%E5%92%8C%E8%A2%AB%E8%AF%B7%E6%B1%82%E7%9A%84%E8%B5%84%E6%BA%90%E7%BC%96%E7%A0%81%E5%A6%82%E6%9E%9C%E4%B8%8D%E4%B8%80%E8%87%B4">页面编码和被请求的资源编码如果不一致</a></li>
+      <li><a href="#http%E7%8A%B6%E6%80%81%E7%A0%81">http状态码</a></li>
+      <li><a href="#doctype%E4%BD%9C%E7%94%A8-html5-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AA%E9%9C%80%E8%A6%81%E5%86%99-%5Cdoctype-html-%E6%A0%87%E5%87%86%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%85%BC%E5%AE%B9%E6%A8%A1%E5%BC%8F%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB">Doctype作用, HTML5 为什么只需要写 &lt;!DOCTYPE HTML&gt;, 标准模式与兼容模式有什么区别</a></li>
+      <li><a href="#xmlsgmlhtmlxhtmlhtml5">XML,SGML,HTML,XHTML,HTML5</a></li>
+      <li><a href="#%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E6%9C%89%E5%93%AA%E4%BA%9B%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0%E6%9C%89%E5%93%AA%E4%BA%9B-%E7%A9%BAvoid%E5%85%83%E7%B4%A0%E6%9C%89%E9%82%A3%E4%BA%9B">行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？</a></li>
+      <li><a href="#%E4%BD%BF%E7%94%A8link%E5%92%8Cimport%E5%8C%BA%E5%88%AB">使用<code class="highlighter-rouge">link</code>和<code class="highlighter-rouge">@import</code>区别</a></li>
+      <li><a href="#html5%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E7%89%B9%E6%80%A7%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86html5%E6%96%B0%E6%A0%87%E7%AD%BE%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98%E5%A6%82%E4%BD%95%E5%8C%BA%E5%88%86-html-%E5%92%8C-html5">html5有哪些新特性？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？</a></li>
+      <li><a href="#html%E8%AF%AD%E4%B9%89%E5%8C%96">HTML语义化</a></li>
+      <li><a href="#title%E4%B8%8Eh1%E7%9A%84%E5%8C%BA%E5%88%ABb%E4%B8%8Estrong%E7%9A%84%E5%8C%BA%E5%88%ABi%E4%B8%8Eem%E7%9A%84%E5%8C%BA%E5%88%AB">title与h1的区别、b与strong的区别、i与em的区别？</a></li>
+      <li><a href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E6%80%8E%E4%B9%88%E5%AF%B9html5%E7%9A%84%E7%A6%BB%E7%BA%BF%E5%82%A8%E5%AD%98%E8%B5%84%E6%BA%90%E8%BF%9B%E8%A1%8C%E7%AE%A1%E7%90%86%E5%92%8C%E5%8A%A0%E8%BD%BD%E7%9A%84%E5%91%A2">浏览器是怎么对HTML5的离线储存资源进行管理和加载的呢？</a></li>
+      <li><a href="#html5%E7%9A%84%E7%A6%BB%E7%BA%BF%E5%82%A8%E5%AD%98%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E8%83%BD%E4%B8%8D%E8%83%BD%E8%A7%A3%E9%87%8A%E4%B8%80%E4%B8%8B">HTML5的离线储存怎么使用，工作原理能不能解释一下？</a></li>
+      <li><a href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E5%A4%9A%E4%B8%AA%E6%A0%87%E7%AD%BE%E9%A1%B5%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1">如何实现浏览器内多个标签页之间的通信?</a></li>
+      <li><a href="#iframe%E7%BC%BA%E7%82%B9">iframe缺点</a></li>
+      <li><a href="#label%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88%E6%98%AF%E6%80%8E%E4%B9%88%E7%94%A8%E7%9A%84"><code class="highlighter-rouge">Label</code>的作用是什么？是怎么用的？</a></li>
+      <li><a href="#websocket%E5%A6%82%E4%BD%95%E5%85%BC%E5%AE%B9%E4%BD%8E%E6%B5%8F%E8%A7%88%E5%99%A8">webSocket如何兼容低浏览器？</a></li>
+      <li><a href="#%E9%A1%B5%E9%9D%A2%E5%8F%AF%E8%A7%81%E6%80%A7page-visibility-api-%E5%8F%AF%E4%BB%A5%E6%9C%89%E5%93%AA%E4%BA%9B%E7%94%A8%E9%80%94">页面可见性（Page Visibility API） 可以有哪些用途？</a></li>
+      <li><a href="#cookie%E9%9A%94%E7%A6%BB">Cookie隔离</a></li>
+      <li><a href="#dom%E6%93%8D%E4%BD%9C">DOM操作</a></li>
+    </ul>
+  </li>
+</ul>
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="html">HTML</h2>
+
+<h3 id="请描述事件冒泡">请描述事件冒泡</h3>
+<p>当一个事件在 DOM 元素上触发时，如果有事件监听器，它将尝试处理该事件，然后事件冒泡到其父级元素，并发生同样的事情。最后直到事件到达祖先元素。事件冒泡是实现事件委托的原理（event delegation）。</p>
+
+<h3 id="请解释事件委托event-delegation">请解释事件委托（event delegation）</h3>
+
+<p>将时间监听添加到父元素，而不是每个子元素单独设置，当事件冒泡到父元素，监听器就会触发，好处：</p>
+
+<ul>
+  <li>内存占用减少，只需一个父元素监听事件</li>
+  <li>利于修改和维护，删除/添加的元素无需解绑和修改</li>
+</ul>
+
+<h3 id="ie和firefox事件机制">IE和firefox事件机制</h3>
+
+<p>IE是事件冒泡，firefox同时支持事件冒泡和捕获</p>
+<ul>
+  <li>事件捕获: 越高层的元素越早接收到事件，由上到下</li>
+  <li>事件冒泡: 越低层的元素越早接收到时间，由下到上</li>
+</ul>
+
+<p>阻止冒泡事件的方法</p>
+<h3 id="给一个dom同时绑定两个点击事件一个用捕获一个用冒泡会执行几次事件">给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件？</h3>
+<p>绑定几个事件就执行几次，执行优先级:</p>
+
+<ol>
+  <li>父元素的捕获事件</li>
+  <li>目标元素的顺序事件，无视捕获还是冒泡</li>
+  <li>父元素的冒泡事件</li>
+</ol>
+
+<p>也就是说从外层到内层再回到外层
+target.addEventListener(type, listener[, options]);</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">'d1'</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">'d2'</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">'text/javascript'</span><span class="nt">&gt;</span>
+<span class="kd">var</span> <span class="nx">d1</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByClass</span><span class="p">(</span><span class="s1">'d1'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">d2</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByClass</span><span class="p">(</span><span class="s1">'d2'</span><span class="p">);</span>
+     
+<span class="c1">//父级绑定click事件冒泡</span>
+<span class="nx">d1</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'parent bubble'</span><span class="p">)</span> <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+
+<span class="c1">//子级绑定click事件冒泡</span>
+<span class="nx">d2</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'child bubble'</span><span class="p">)</span> <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+
+<span class="c1">//子级绑定click事件捕获</span>
+<span class="nx">d2</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'child capture'</span><span class="p">)</span> <span class="p">},</span> <span class="kc">true</span><span class="p">);</span>
+
+<span class="c1">//父级绑定click事件捕获</span>
+<span class="nx">d1</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'parent capture'</span><span class="p">)</span> <span class="p">},</span> <span class="kc">true</span><span class="p">);</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p>console:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>parent capture
+child bubble
+child capture
+parent bubble
+</code></pre></div></div>
+<h3 id="window对象和document对象"><code class="highlighter-rouge">window</code>对象和<code class="highlighter-rouge">document</code>对象</h3>
+
+<p>window对象是浏览器打开的窗口，顶层对象，document是window对象的一个属性，HTML文档对象的一个<strong>只读引用</strong></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">xxx</span><span class="p">.</span><span class="nx">click</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+	<span class="nx">e</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
+	<span class="nx">e</span><span class="p">.</span><span class="nx">cancelBubble</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span><span class="c1">//旧IE需要</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h3 id="document-中的load事件和domcontentloaded事件之间的区别是什么">document 中的<code class="highlighter-rouge">load</code>事件和<code class="highlighter-rouge">DOMContentLoaded</code>事件之间的区别是什么？</h3>
+
+<ol>
+  <li>当 onload 事件触发时，页面上所有的DOM，样式表，脚本，图片，flash都已经加载完成了。</li>
+  <li>当 DOMContentLoaded 事件触发时，仅当DOM加载完成，不包括样式表，图片，flash。</li>
+</ol>
+
+<h3 id="页面编码和被请求的资源编码如果不一致">页面编码和被请求的资源编码如果不一致</h3>
+<p>设置charset</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://www.xxx.com/test.js"</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<h3 id="http状态码">http状态码</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>100  Continue   继续，一般在发送post请求时，已发送了http header之后服务端将返回此信息，表示确认，之后发送具体参数信息
+200  OK         正常返回信息
+201  Created    请求成功并且服务器创建了新的资源
+202  Accepted   服务器已接受请求，但尚未处理
+301  Moved Permanently  请求的网页已永久移动到新位置。
+302  Found       临时性重定向。
+303  See Other   临时性重定向，且总是使用 GET 请求新的 URI。
+304  Not Modified 自从上次请求后，请求的网页未修改过。
+400  Bad Request  服务器无法理解请求的格式，客户端不应当尝试再次使用相同的内容发起请求。
+401  Unauthorized 请求未授权。
+403  Forbidden   禁止访问。
+404  Not Found   找不到如何与 URI 相匹配的资源。
+500  Internal Server Error  最常见的服务器端错误。
+503  Service Unavailable 服务器端暂时无法处理请求（可能是过载或维护）。
+</code></pre></div></div>
+
+<h3 id="doctype作用-html5-为什么只需要写-doctype-html-标准模式与兼容模式有什么区别">Doctype作用, HTML5 为什么只需要写 &lt;!DOCTYPE HTML&gt;, 标准模式与兼容模式有什么区别</h3>
+<ol>
+  <li>&lt;!DOCTYPE&gt;<code class="highlighter-rouge">声明位于位于HTML文档中的第一行，处于 \<span class="nt">&lt;html&gt;</span></code> 标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。</li>
+  <li>标准模式的排版 和JS运作模式都是以该浏览器支持的最高标准运行。在兼容模式中，页面以宽松的向后兼容的方式显示,模拟老式浏览器的行为以防止站点无法工作。</li>
+</ol>
+
+<p>HTML5 不基于 SGML，因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为（让浏览器按照它们应该的方式来运行)HTML4.01基于SGML,所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型。</p>
+
+<h3 id="xmlsgmlhtmlxhtmlhtml5">XML,SGML,HTML,XHTML,HTML5</h3>
+
+<p>他们都是ML，都是标记语言（Markup Language），所以不同就是前面的部分了。</p>
+<ol>
+  <li>SGML(Standard Generalized Markup Language)，即标准通用标记语言, 是一种古老，复杂的标准</li>
+  <li>HTML(HyperText Markup Language)，超文本标记语言，是语法较为松散的、不严格的Web语言，SGML的子集，其中的HTML5已经不是SGML的子集了</li>
+  <li>XML（eXtensible Markup Language），可扩展标记语言，主要用于存储数据和结构，可扩展，SGML的子集</li>
+  <li>XHTML（eXtensible HyperText Markup Language），可扩展超文本标记语言，基于XML，作用与HTML类似，但语法更严格。所有标签必须闭合，每一个属性都必须使用引号包住，所有&lt;和&amp;特殊符号用编码表示。&lt;br&gt;要写成&lt;br /&gt;，不能写为&lt;BR /&gt;（同hr）；使用了&lt;p&gt;之后必须有一个&lt;/p&gt;以结束段落。</li>
+</ol>
+
+<h3 id="行内元素有哪些块级元素有哪些-空void元素有那些">行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？</h3>
+<p>CSS规范规定，每个元素都有display属性，确定该元素的类型，每个元素都有默认的display值，如div的display默认值为“block”，则为“块级”元素；span默认display属性值为“inline”，是“行内”元素。</p>
+<ol>
+  <li>行内元素有：a b span img input select strong（强调的语义）</li>
+  <li>块级元素有：div ul ol li dl dt dd h1 h2 h3 h4…p</li>
+  <li>常见的空元素：&lt;br&gt; &lt;hr&gt; &lt;img&gt; &lt;input&gt; &lt;link&gt; &lt;meta&gt;, 不常用的是：&lt;area&gt; &lt;base&gt; &lt;col&gt; &lt;command&gt; &lt;embed&gt; &lt;keygen&gt; &lt;param&gt; &lt;source&gt; &lt;track&gt; &lt;wbr&gt;</li>
+</ol>
+
+<h3 id="使用link和import区别">使用<code class="highlighter-rouge">link</code>和<code class="highlighter-rouge">@import</code>区别</h3>
+<p>页面导入样式时，使用link和@import有什么区别？
+强烈建议使用link标签，慎用@import方式。这样可以避免考虑@import的语法规则和注意事项，避免产生资源文件下载顺序混乱和http请求过多的烦恼。</p>
+<ol>
+  <li>link属于HTML标签，而@import是CSS提供的;</li>
+  <li>页面被加载的时，link会同时被加载，@import引入的 CSS 将在页面加载完毕后被加载。;</li>
+  <li>import只在IE5以上才能识别，而link是HTML标签，无兼容问题;</li>
+  <li>link方式的样式的权重 高于@import的权重</li>
+</ol>
+
+<h3 id="html5有哪些新特性如何处理html5新标签的浏览器兼容问题如何区分-html-和-html5">html5有哪些新特性？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？</h3>
+<ul>
+  <li>HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存储，多任务等功能的增加。
+    <ol>
+      <li>绘画 canvas;</li>
+      <li>用于媒介回放的 video 和 audio 元素;</li>
+      <li>本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失;</li>
+      <li>用来保存当前会话信息的sessionStorage，数据在浏览器关闭后自动删除;</li>
+      <li>语意化更好的内容元素，比如 article、footer、header、nav、section;</li>
+      <li>表单控件，calendar、date、time、email、url、search;</li>
+      <li>新的技术webworker, websocket, Geolocation;</li>
+    </ol>
+  </li>
+  <li>移除的元素：<br />
+    <ol>
+      <li>纯表现的元素：basefont，big，center，font, s，strike，tt，u;<br /></li>
+      <li>对可用性产生负面影响的元素：frame，frameset，noframes；</li>
+    </ol>
+  </li>
+  <li>支持HTML5新标签：
+    <ol>
+      <li>IE8/IE7/IE6支持通过document.createElement方法产生的标签，可以利用这一特性让这些浏览器支持HTML5新标签，浏览器支持新标签后，还需要添加标签默认的样式。</li>
+      <li>也可以直接使用成熟的框架、比如html5shim;</li>
+    </ol>
+  </li>
+  <li>如何区分HTML5： DOCTYPE声明\新增的结构元素\功能元素</li>
+</ul>
+
+<h3 id="html语义化">HTML语义化</h3>
+<p>用正确的标签做正确的事情。
+优点：</p>
+<ol>
+  <li>html语义化让页面的内容结构化，结构更清晰，便于对浏览器、搜索引擎解析;</li>
+  <li>即使在没有样式CSS情况下也以一种文档格式显示，并且是容易阅读的;</li>
+  <li>搜索引擎的爬虫也依赖于HTML标记来确定上下文和各个关键字的权重，利于SEO;</li>
+  <li>使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。</li>
+</ol>
+
+<h3 id="title与h1的区别b与strong的区别i与em的区别">title与h1的区别、b与strong的区别、i与em的区别？</h3>
+<ol>
+  <li>title属性没有明确意义只表示是个标题，H1则表示层次明确的标题，对页面信息的抓取也有很大的影响；</li>
+  <li>strong是标明重点内容，有语气加强的含义，使用阅读设备阅读网络时：&lt;strong&gt;会重读，而&lt;B&gt;是展示强调内容。</li>
+  <li>i内容展示为斜体，em表示强调的文本；
+  Physical Style Elements – 自然样式标签, 重在视觉作用<br />
+  b, i, u, s, pre<br />
+  Semantic Style Elements – 语义样式标签, 重在含义<br />
+  strong, em, ins, del, code<br />
+  应该准确使用语义样式标签, 但不能滥用, 如果不能确定时首选使用自然样式标签。<br /></li>
+</ol>
+
+<h3 id="浏览器是怎么对html5的离线储存资源进行管理和加载的呢">浏览器是怎么对HTML5的离线储存资源进行管理和加载的呢？</h3>
+
+<ol>
+  <li>在线的情况下，浏览器发现html头部有<code class="highlighter-rouge">manifest</code>属性，它会请求manifest文件，如果是第一次访问app，那么浏览器就会根据manifest文件的内容下载相应的资源并且进行离线存储。如果已经访问过app并且资源已经离线存储了，那么浏览器就会使用离线的资源加载页面，然后浏览器会对比新的manifest文件与旧的manifest文件，如果文件没有发生改变，就不做任何操作，如果文件改变了，那么就会重新下载文件中的资源并进行离线存储。</li>
+  <li>离线的情况下，浏览器就直接使用离线存储的资源。</li>
+</ol>
+
+<h3 id="html5的离线储存怎么使用工作原理能不能解释一下">HTML5的离线储存怎么使用，工作原理能不能解释一下？</h3>
+<p>在用户没有与因特网连接时，可以正常访问站点或应用，在用户与因特网连接时，更新用户机器上的缓存文件。</p>
+
+<p>原理：HTML5的离线存储是基于一个新建的.appcache文件的缓存机制(不是存储技术)，通过这个文件上的解析清单离线存储资源，这些资源就会像cookie一样被存储了下来。之后当网络在处于离线状态下时，浏览器会通过被离线存储的数据进行页面展示。</p>
+
+<p>如何使用：</p>
+<ol>
+  <li>页面头部像下面一样加入一个manifest的属性；</li>
+  <li>在cache.manifest文件的编写离线存储的资源；
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  	CACHE MANIFEST
+  	#v0.11
+  	CACHE:
+  	js/app.js
+  	css/style.css
+  	NETWORK:
+  	resourse/logo.png
+  	FALLBACK:
+  	/ /offline.html
+</code></pre></div>    </div>
+  </li>
+  <li>在离线状态时，操作window.applicationCache进行需求实现。</li>
+</ol>
+
+<h3 id="如何实现浏览器内多个标签页之间的通信">如何实现浏览器内多个标签页之间的通信?</h3>
+
+<ol>
+  <li>WebSocket、SharedWorker</li>
+  <li>也可以调用localstorge、cookies等本地存储方式；localstorge另一个浏览上下文里被添加、修改或删除时，它都会触发一个事件，我们通过监听事件，控制它的值来进行页面信息通信；</li>
+</ol>
+
+<h3 id="iframe缺点">iframe缺点</h3>
+<p>iframe缺点：</p>
+<ol>
+  <li>iframe会阻塞主页面的<code class="highlighter-rouge">Onload</code>事件；</li>
+  <li>搜索引擎的检索程序无法解读这种页面，不利于SEO;</li>
+  <li>iframe和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载。</li>
+</ol>
+
+<p>使用iframe之前需要考虑这两个缺点。如果需要使用iframe，最好是通过javascript动态给iframe添加src属性值，这样可以绕开以上两个问题。</p>
+
+<h3 id="label的作用是什么是怎么用的"><code class="highlighter-rouge">Label</code>的作用是什么？是怎么用的？</h3>
+<p>&lt;label&gt; 标签为 input 元素定义标注（标记）, 提供焦点绑定。
+label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用户改进了可用性。如果在 label 元素内点击文本，就会触发此控件。就是说，当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。用for属性绑定id。</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;form&gt;</span>
+<span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"male"</span><span class="nt">&gt;</span>Male<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"sex"</span> <span class="na">id=</span><span class="s">"male"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;br</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"female"</span><span class="nt">&gt;</span>Female<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"sex"</span> <span class="na">id=</span><span class="s">"female"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</code></pre></div></div>
+<h3 id="websocket如何兼容低浏览器">webSocket如何兼容低浏览器？</h3>
+<ol>
+  <li>Adobe Flash Socket</li>
+  <li>ActiveX HTMLFile (IE)</li>
+  <li>基于 multipart 编码发送 XHR</li>
+  <li>基于长轮询的 XHR</li>
+</ol>
+
+<h3 id="页面可见性page-visibility-api-可以有哪些用途">页面可见性（Page Visibility API） 可以有哪些用途？</h3>
+<p>页面可见性： 就是对于用户来说，页面是显示还是隐藏, 所谓显示的页面，就是我们正在看的页面；隐藏的页面，就是我们没有看的页面。 因为，我们一次可以打开好多标签页面来回切换着，始终只有一个页面在我们眼前，其他页面就是隐藏的，还有一种就是，把浏览器最小化，所有的页面就都不可见了。</p>
+
+<p>API 很简单，document.hidden 就返回一个布尔值，如果是true, 表示页面可见，false 则表示，页面隐藏。不同页面之间来回切换，触发visibilitychange事件。 还有一个document.visibilityState, 表示页面所处的状态，取值：visible, hidden 等四个。</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"visibilitychange"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="k">if</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">hidden</span><span class="p">){</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">title</span> <span class="o">=</span><span class="s2">"hidden"</span><span class="p">;</span>
+    <span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">title</span> <span class="o">=</span> <span class="s2">"visibile"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>我们打开这个页面，然后再打开另一个页面，来回点击这两个页面，当我们看到这个页面时，标题显示visiable ,当我们看另一个页面时，标题显示hidden;</p>
+
+<p>作用：动画，视频，音频都可以在页面显示时打开，在页面隐藏时关闭。</p>
+
+<h3 id="cookie隔离">Cookie隔离</h3>
+
+<p>cookie隔离技术和传统的多域名拆分请求，提高浏览器并发请求数有点类似，均是采用多域名来处理请求。</p>
+
+<p>传统做法是将css，js，图片等静态文件放在多个域名下面请求，这样就可以跨过浏览器对统一主机名并发连接数的限制，提高整体并发请求量。</p>
+
+<p>cookie隔离技术则是通过使用多个非主要域名来请求静态文件，如果静态文件都放在主域名下，那静态文件请求的时候带有的cookie的数据提交给server是非常浪费的，还不如隔离开。</p>
+
+<p>因为cookie有域的限制，因此不能跨域提交请求，故使用非主要域名的时候，请求头中就不会带有cookie数据，这样可以降低请求头的大小，降低请求时间，从而达到降低整体请求延时的目的。同时这种方式不会将cookie传入webserver，也减少了webserver对cookie的处理分析环节，提高了webserver的http请求的解析速度。</p>
+
+<h3 id="dom操作">DOM操作</h3>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//创建</span>
+<span class="nx">createElement</span><span class="p">()</span> <span class="c1">//创建元素</span>
+<span class="nx">createDocumentFragment</span><span class="p">()</span>  <span class="c1">//创建DOM片段</span>
+<span class="nx">createTextNode</span><span class="p">()</span> <span class="c1">//创建文本节点</span>
+
+<span class="c1">//操作</span>
+<span class="nx">appendChild</span><span class="p">()</span> <span class="c1">//添加</span>
+<span class="nx">removeChild</span><span class="p">()</span> <span class="c1">//删除</span>
+<span class="nx">replaceChild</span><span class="p">()</span> <span class="c1">//替换</span>
+<span class="nx">insertbefore</span><span class="p">()</span> <span class="c1">//在已有节点前插入新节点</span>
+
+<span class="c1">//查找</span>
+<span class="nx">getElementsById</span><span class="p">()</span>
+<span class="nx">getElementsByName</span><span class="p">()</span> <span class="c1">//通过元素的Name属性的值(IE容错能力较强，会得到一个数组，其中包括id等于name值的)</span>
+<span class="nx">getElementsByTag</span><span class="p">()</span>
+<span class="nx">getElementsByClass</span><span class="p">()</span>
+</code></pre></div></div>
+<h3 id="如何在页面上实现一个圆形的可点击区域">如何在页面上实现一个圆形的可点击区域？</h3>
+
+<p>三种解决方案： html标签、css实现、 纯js实现</p>
+
+<ol>
+  <li>map+area或者svg</li>
+</ol>
+
+<p>定义一个客户端图像映射。图像映射（image-map）指带有可点击区域的一幅图像。</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"task6.jpg"</span> <span class="na">width=</span><span class="s">"1366"</span> <span class="na">height=</span><span class="s">"768"</span> <span class="na">border=</span><span class="s">"0"</span> <span class="na">usemap=</span><span class="s">"#Map"</span> <span class="nt">/&gt;</span>  
+    <span class="nt">&lt;map</span> <span class="na">name=</span><span class="s">"Map"</span> <span class="na">id=</span><span class="s">"Map"</span><span class="nt">&gt;</span>  
+        <span class="nt">&lt;area</span> <span class="na">shape=</span><span class="s">"circle"</span> <span class="na">coords=</span><span class="s">"100,100,50"</span> <span class="na">href=</span><span class="s">"https://www.baidu.com"</span> <span class="na">target=</span><span class="s">"_blank"</span> <span class="nt">/&gt;</span>  
+    <span class="nt">&lt;/map&gt;</span> 
+</code></pre></div></div>
+<ol>
+  <li>css, border-radius
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;style&gt;</span>  
+ <span class="nc">.disc</span><span class="p">{</span>  
+     <span class="nl">width</span><span class="p">:</span><span class="m">100px</span><span class="p">;</span>  
+     <span class="nl">height</span><span class="p">:</span><span class="m">100px</span><span class="p">;</span>  
+     <span class="nl">background-color</span><span class="p">:</span><span class="no">dimgray</span><span class="p">;</span>  
+     <span class="nl">border-radius</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>  
+     <span class="nl">cursor</span><span class="p">:</span> <span class="nb">pointer</span><span class="p">;</span>  
+     <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>  
+     <span class="nl">left</span><span class="p">:</span><span class="m">50px</span><span class="p">;</span>  
+     <span class="nl">top</span><span class="p">:</span><span class="m">50px</span><span class="p">;</span>    
+     <span class="nl">line-height</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>  
+     <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>  
+     <span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>  
+ <span class="p">}</span>  
+ <span class="nt">&lt;/style&gt;</span>
+
+ <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"disc"</span><span class="nt">&gt;</span>点击区域<span class="nt">&lt;/div&gt;</span>  
+</code></pre></div>    </div>
+  </li>
+  <li>纯js实现, 需要求一个点在不在圆上简单算法、获取鼠标坐标
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;script&gt;</span>
+     <span class="nb">document</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+         <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>  <span class="c1">//圆的半径</span>
+         <span class="kd">var</span> <span class="nx">x1</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>  <span class="nx">y1</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>  
+         <span class="kd">var</span> <span class="nx">x2</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">clientX</span><span class="p">,</span>
+             <span class="nx">y2</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">clientY</span><span class="p">;</span>
+         <span class="kd">var</span> <span class="nx">len</span><span class="o">=</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="nx">x2</span><span class="o">-</span><span class="nx">x1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="nx">y2</span><span class="o">-</span><span class="nx">y1</span><span class="p">,</span><span class="mi">2</span><span class="p">)));</span>  
+         <span class="k">if</span><span class="p">(</span><span class="nx">len</span><span class="o">&lt;=</span><span class="mi">50</span><span class="p">){</span>
+             <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Inner"</span><span class="p">);</span>
+         <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+             <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Outer"</span><span class="p">);</span>
+         <span class="p">}</span>
+     <span class="p">}</span>
+ <span class="nt">&lt;/script&gt;</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="网页验证码是干嘛的是为了解决什么安全问题">网页验证码是干嘛的，是为了解决什么安全问题</h3>
+<ol>
+  <li>防止XSS</li>
+  <li>防止暴力破解</li>
+  <li>防止脚本刷票，论坛灌水等</li>
+</ol>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="/2019/09/10/HTML_Summary"
+                    data-title="HTML Summary"
+                    data-url="http://localhost:4000/lrun1124.github.io/2019/09/10/HTML_Summary/"
+                    data-images="http://localhost:4000/lrun1124.github.io/img/ArrayUnique-bg.jpg"
+                    data-content="
+  “Move on. ”
+
+
+Table of Contents
+
+
+
+  HTML
+    
+      请描述事件冒泡
+      请解释事件委托... | Run Note " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/lrun1124.github.io/2019/09/08/JS_Summary/" data-toggle="tooltip" data-placement="top" title="JS Summary">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/lrun1124.github.io/2019/09/15/CSS_Summary/" data-toggle="tooltip" data-placement="top" title="CSS Summary">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="/2019/09/10/HTML_Summary"
+                        data-title="HTML Summary"
+                        data-url="http://localhost:4000/lrun1124.github.io/2019/09/10/HTML_Summary/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+        				
+                            
+                				<a href="/lrun1124.github.io/tags/#JavaScript" title="JavaScript" rel="7">
+                                    JavaScript
+                                </a>
+                            
+        				
+                            
+                				<a href="/lrun1124.github.io/tags/#code" title="code" rel="4">
+                                    code
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/lrun1124.github.io/tags/#Summary" title="Summary" rel="6">
+                                    Summary
+                                </a>
+                            
+        				
+        			</div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="#">Foo</a></li>
+                    
+                        <li><a href="#">Bar</a></li>
+                    
+                        <li><a href="#">Example Friends</a></li>
+                    
+                        <li><a href="#">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'run';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    
+                    <li>
+                        <a target="_blank" href="http://weibo.com/lrun">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+
+
+                    
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/lrun">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/lrun1124">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Run Note 2019
+<!--                     <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe> -->
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="backtop">
+        <a href="#">TOP</a>
+    </div> 
+</footer>
+
+<!-- jQuery -->
+<script src="/lrun1124.github.io/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/lrun1124.github.io/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/lrun1124.github.io/js/hux-blog.min.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

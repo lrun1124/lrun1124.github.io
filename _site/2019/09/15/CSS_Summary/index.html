@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/lrun1124.github.io/img/favicon.ico">
+
+    <title>CSS Summary - Run Note</title>
+
+    <link rel="canonical" href="http://localhost:4000/lrun1124.github.io/2019/09/15/CSS_Summary/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/lrun1124.github.io/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/lrun1124.github.io/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/lrun1124.github.io/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/lrun1124.github.io/">Run Note</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/lrun1124.github.io/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/lrun1124.github.io/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/lrun1124.github.io/portfolio/">Portfolio</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/lrun1124.github.io/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/lrun1124.github.io/img/ArrayUnique-bg.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/lrun1124.github.io/img/ArrayUnique-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/lrun1124.github.io/tags/#Summary" title="Summary">Summary</a>
+                        
+                    </div>
+                    <h1>CSS Summary</h1>
+                    
+                    
+                    <h2 class="subheading"></h2>
+                    
+                    <span class="meta">Posted by Run on September 15, 2019</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<blockquote>
+  <p>“Move on. ”
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<strong>Table of Contents</strong></p>
+</blockquote>
+
+<ul>
+  <li><a href="#css">CSS</a>
+    <ul>
+      <li><a href="#%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B">盒子模型</a></li>
+      <li><a href="#css%E9%80%89%E6%8B%A9%E5%99%A8">CSS选择器</a></li>
+      <li><a href="#display%E7%9A%84%E5%80%BC%E5%8F%8A%E4%BD%9C%E7%94%A8">display的值及作用</a></li>
+      <li><a href="#position%E5%B1%9E%E6%80%A7%E5%AE%9A%E4%BD%8D%E5%8E%9F%E7%82%B9">position属性（定位原点）</a></li>
+      <li><a href="#%E5%B1%85%E4%B8%ADdiv">居中div</a>
+        <ul>
+          <li><a href="#%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD">水平居中</a></li>
+          <li><a href="#%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD">水平垂直居中</a></li>
+          <li><a href="#flexbox%E5%BC%B9%E6%80%A7%E7%9B%92%E5%B8%83%E5%B1%80%E6%A8%A1%E5%9E%8B">Flexbox（弹性盒布局模型)</a></li>
+        </ul>
+      </li>
+      <li><a href="#%E7%94%A8%E7%BA%AFcss%E5%88%9B%E5%BB%BA%E4%B8%89%E8%A7%92%E5%BD%A2">用纯css创建三角形</a></li>
+      <li><a href="#%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8">清除浮动</a>
+        <ul>
+          <li><a href="#%E5%88%A9%E7%94%A8clear%E5%B1%9E%E6%80%A7">利用clear属性</a></li>
+          <li><a href="#%E8%A7%A6%E5%8F%91%E6%B5%AE%E5%8A%A8%E5%85%83%E7%B4%A0%E7%88%B6%E5%85%83%E7%B4%A0%E7%9A%84bfc">触发浮动元素父元素的BFC</a></li>
+          <li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
+        </ul>
+      </li>
+      <li><a href="#css%E4%BC%98%E5%8C%96%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD%E7%9A%84%E6%96%B9%E5%BC%8F">CSS优化、提高性能的方式</a></li>
+      <li><a href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E8%A7%A3%E6%9E%90%E9%80%89%E6%8B%A9%E5%99%A8%E8%BF%87%E7%A8%8B">浏览器解析选择器过程</a></li>
+      <li><a href="#%E5%85%A8%E5%B1%8F%E6%BB%9A%E5%8A%A8%E5%8E%9F%E7%90%86">全屏滚动原理</a></li>
+      <li><a href="#%E4%BC%AA%E7%B1%BB%E5%92%8C%E4%BC%AA%E5%85%83%E7%B4%A0">伪类和伪元素</a></li>
+      <li><a href="#%E5%85%83%E7%B4%A0%E7%AB%96%E5%90%91%E7%9A%84%E7%99%BE%E5%88%86%E6%AF%94">元素竖向的百分比</a></li>
+    </ul>
+  </li>
+</ul>
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="css">CSS</h2>
+<h3 id="盒子模型">盒子模型</h3>
+
+<p>W3C标准盒子模型，content(内容)，padding(内边距)，border(边框)，margin(外边距)组成</p>
+
+<p>以margin：10px； border：2px； padding：5px； width：200px；height：100px 为例</p>
+
+<p>则整个盒子模型的宽是：10px<em>2 + 2px</em>2 + 5px*2 + 200px = 234px</p>
+
+<p>则整个盒子模型的高是：10px<em>2 + 2px</em>2 + 5px*2 + 100px = 134px</p>
+
+<p><img src="http://lrun1124.github.io/img/cssbase1/boxModelW3C.jpg" /></p>
+
+<ul>
+  <li>CSS的盒子模型，低版本IE的盒子模型有什么不同的？</li>
+</ul>
+
+<p>旧IE，主要是指IE5和（IE6的怪异模式），content部分的width和height是把padding和border也算了进去</p>
+
+<p>整个盒子模型的宽是： margin*2 + width（严格来说是：margin-left + width + margin-right</p>
+
+<p>整个盒子模型的高是： margin*2 + height（严格来说是：margin-left + height + margin-right）</p>
+
+<p><img src="http://lrun1124.github.io/img/cssbase1/boxModelOldIE.jpg" /></p>
+
+<p>不同：IE的content部分把 border 和 padding计算了进去</p>
+
+<h3 id="css选择器">CSS选择器</h3>
+
+<ol>
+  <li>id选择器（# myid）</li>
+  <li>类选择器（.myclassname）</li>
+  <li>标签选择器（div, h1, p）</li>
+  <li>相邻选择器（h1 + p）</li>
+  <li>子选择器（ul &gt; li）</li>
+  <li>后代选择器（li a）</li>
+  <li>通配符选择器（ * ）</li>
+  <li>属性选择器（a[rel = “external”]）</li>
+  <li>伪类选择器（a:hover, li:nth-child）</li>
+</ol>
+
+<h3 id="display的值及作用">display的值及作用</h3>
+
+<ol>
+  <li>block       	块类型。默认宽度为父元素宽度，可设置宽高，换行显示。</li>
+  <li>none        	缺省值。象行内元素类型一样显示。</li>
+  <li>inline      	行内元素类型。默认宽度为内容宽度，不可设置宽高，同行显示。</li>
+  <li>inline-block  默认宽度为内容宽度，可以设置宽高，同行显示。</li>
+  <li>list-item   	象块类型元素一样显示，并添加样式列表标记。</li>
+  <li>table       	此元素会作为块级表格来显示。</li>
+  <li>inherit     	规定应该从父元素继承 display 属性的值。</li>
+</ol>
+
+<h3 id="position属性定位原点">position属性（定位原点）</h3>
+
+<ol>
+  <li>absolute 生成绝对定位的元素，相对于值不为static的第一个父元素进行定位。</li>
+  <li>fixed （老IE不支持）生成绝对定位的元素，相对于浏览器窗口进行定位。</li>
+  <li>relative 生成相对定位的元素，相对于其正常位置进行定位。</li>
+  <li>static 默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right z-index 声明）。</li>
+  <li>inherit 规定从父元素继承 position 属性的值。</li>
+</ol>
+
+<h3 id="居中div">居中div</h3>
+
+<h4 id="水平居中">水平居中</h4>
+
+<ul>
+  <li>给div设置一个width，然后设置margin:0 auto;</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">div</span> <span class="p">{</span>
+	<span class="nl">width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
+	<span class="nl">margin</span><span class="p">:</span> <span class="m">0</span> <span class="nb">auto</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>让绝对定位的div居中</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">div</span> <span class="p">{</span>
+	<span class="py">positive</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+	<span class="nl">width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
+	<span class="nl">height</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
+	<span class="nl">margin</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span>
+	<span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+	<span class="nl">bottom</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+	<span class="nl">left</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+	<span class="nl">right</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="水平垂直居中">水平垂直居中</h4>
+
+<ul>
+  <li>若已知容器的宽300px,高400px,则先用top和left将容器左上角定位到中心点位置，再通过设置margin移动div中心点到居中的位置</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">div</span> <span class="p">{</span>
+	<span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>	<span class="c">/* 相对定位或绝对定位均可 */</span>
+	<span class="nl">width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
+	<span class="nl">height</span><span class="p">:</span> <span class="m">400px</span><span class="p">;</span>
+	<span class="nl">top</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+	<span class="nl">left</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+	<span class="nl">margin</span><span class="p">:</span> <span class="m">-200px</span> <span class="m">0</span> <span class="m">0</span> <span class="m">-150px</span><span class="p">;</span>	<span class="c">/* 外边距为自身宽高的一半的负数 */</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>未知容器宽高，使用transform属性，定义2D转换</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">div</span> <span class="p">{</span>
+	<span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>	<span class="c">/* 相对定位或绝对定位均可 */</span>
+	<span class="nl">top</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+	<span class="nl">left</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+	<span class="nl">transform</span><span class="p">:</span> <span class="n">translate</span><span class="p">(</span><span class="m">-50%</span><span class="p">,</span> <span class="m">-50%</span><span class="p">);</span>	<span class="c">/* 通过translate定义2D转换 */</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>flex布局</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nc">.container</span> <span class="p">{</span>
+ 	<span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+ 	<span class="nl">align-items</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span> 		<span class="c">/* 垂直居中 */</span>
+ 	<span class="nl">justify-content</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>	<span class="c">/* 水平居中 */</span>
+
+ <span class="p">}</span>
+ <span class="nc">.container</span> <span class="nt">div</span> <span class="p">{</span>
+ 	<span class="nl">width</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+ 	<span class="nl">height</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+ 	<span class="nl">background-color</span><span class="p">:</span> <span class="no">pink</span><span class="p">;</span>		<span class="c">/* 方便看效果 */</span>
+ <span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="flexbox弹性盒布局模型">Flexbox（弹性盒布局模型)</h4>
+
+<p>一个用于页面布局的全新CSS3功能，Flexbox可以把列表放在同一个方向（从上到下排列，从左到右），并让列表能延伸到占用可用的空间。</p>
+
+<p>较为复杂的布局还可以通过嵌套一个伸缩容器（flex container）来实现。
+采用Flex布局的元素，称为Flex容器（flex container），简称”容器”。
+它的所有子元素自动成为容器成员，称为Flex项目（flex item），简称”项目”。
+常规布局是基于块和内联流方向，而Flex布局是基于flex-flow流可以很方便的用来做居中，能对不同屏幕大小自适应。
+在布局上有了比以前更加灵活的空间</p>
+
+<p>如何兼容低版本浏览器：手动实现响应式，为低版本浏览器些resize函数，根据浏览器窗口大小使用不同样式</p>
+
+<h3 id="用纯css创建三角形">用纯css创建三角形</h3>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">//</span><span class="err">设置内容高宽为</span><span class="nt">0</span><span class="err">，利用下边框</span><span class="nt">border</span>
+<span class="nt">div</span> <span class="p">{</span>
+	<span class="nl">width</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>	<span class="err">//若不为0则为梯形</span>
+	<span class="nl">height</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+	<span class="nl">border-width</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>
+	<span class="nl">border-style</span><span class="p">:</span> <span class="nb">solid</span><span class="p">;</span>
+	<span class="nl">border-color</span><span class="p">:</span> <span class="nb">transparent</span> <span class="nb">transparent</span> <span class="no">red</span> <span class="nb">transparent</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="清除浮动">清除浮动</h3>
+
+<p>当容器的高度为auto时，若容器内部含有浮动元素，则容器的高度不能自动伸长，使得内容溢出到容器外部从而影响页面布局</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">//</span><span class="err">会产生浮动问题的代码</span>
+<span class="nc">.news</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="no">gray</span><span class="p">;</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="nb">solid</span> <span class="m">1px</span> <span class="no">black</span><span class="p">;</span>
+  <span class="p">}</span>
+
+<span class="nc">.news</span> <span class="nt">img</span> <span class="p">{</span>
+  <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span>
+  <span class="p">}</span>
+
+<span class="nc">.news</span> <span class="nt">p</span> <span class="p">{</span>
+  <span class="nl">float</span><span class="p">:</span> <span class="nb">right</span><span class="p">;</span>
+  <span class="p">}</span>
+
+<span class="o">&lt;</span><span class="nt">div</span> <span class="nt">class</span><span class="o">=</span><span class="s1">"news"</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nt">img</span> <span class="nt">src</span><span class="o">=</span><span class="s1">"news-pic.jpg"</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span><span class="nt">some</span> <span class="nt">text</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+</code></pre></div></div>
+<p>清除浮动的方法可以分为两大类：</p>
+
+<h4 id="利用clear属性">利用clear属性</h4>
+
+<p>1.使用带clear属性的空元素</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">//</span><span class="err">会产生浮动问题的代码</span>
+<span class="nc">.news</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="no">gray</span><span class="p">;</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="nb">solid</span> <span class="m">1px</span> <span class="no">black</span><span class="p">;</span>
+  <span class="p">}</span>
+
+<span class="nc">.news</span> <span class="nt">img</span> <span class="p">{</span>
+  <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span>
+ <span class="p">}</span>
+
+<span class="nc">.news</span> <span class="nt">p</span> <span class="p">{</span>
+  <span class="nl">float</span><span class="p">:</span> <span class="nb">right</span><span class="p">;</span>
+ <span class="p">}</span>
+
+<span class="nc">.clear</span> <span class="p">{</span>
+    <span class="nl">clear</span><span class="p">:</span> <span class="nb">both</span><span class="p">;</span>
+ <span class="p">}</span>
+
+<span class="o">&lt;</span><span class="nt">div</span> <span class="nt">class</span><span class="o">=</span><span class="s1">"news"</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nt">img</span> <span class="nt">src</span><span class="o">=</span><span class="s1">"news-pic.jpg"</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span><span class="nt">some</span> <span class="nt">text</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nt">div</span> <span class="nt">class</span><span class="o">=</span><span class="s1">"clear"</span><span class="o">&gt;&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>2.若浮动元素后面有元素，给浮动元素后面的元素加clear属性</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.news</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="no">gray</span><span class="p">;</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="nb">solid</span> <span class="m">1px</span> <span class="no">black</span><span class="p">;</span>
+  <span class="p">}</span>
+
+<span class="nc">.news</span> <span class="nt">img</span> <span class="p">{</span>
+  <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span>
+ <span class="p">}</span>
+
+<span class="nc">.news</span> <span class="nt">p</span> <span class="p">{</span>
+  <span class="nl">float</span><span class="p">:</span> <span class="nb">right</span><span class="p">;</span>
+ <span class="p">}</span>
+
+<span class="nc">.content</span> <span class="p">{</span>
+	<span class="nl">clear</span><span class="p">:</span> <span class="nb">both</span><span class="p">;</span>
+ <span class="p">}</span>
+
+<span class="o">&lt;</span><span class="nt">div</span> <span class="nt">class</span><span class="o">=</span><span class="s1">"news"</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nt">img</span> <span class="nt">src</span><span class="o">=</span><span class="s1">"news-pic.jpg"</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span><span class="nt">some</span> <span class="nt">text</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nt">div</span> <span class="nt">class</span><span class="o">=</span><span class="s1">"content"</span><span class="o">&gt;&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>3.使用CSS的:after伪元素</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">//</span><span class="err">通过</span><span class="nt">CSS</span><span class="err">伪元素在容器的内部元素最后添加了一个看不见的空格</span><span class="s1">"020"</span><span class="err">或点</span><span class="s1">"."</span><span class="err">，并且赋予</span><span class="nt">clear</span><span class="err">属性来清除浮动。需要注意的是为了</span><span class="nt">IE6</span><span class="err">和</span><span class="nt">IE7</span><span class="err">浏览器，要给</span><span class="nt">clearfix</span><span class="err">这个</span><span class="nt">class</span><span class="err">添加一条</span><span class="nt">zoom</span><span class="nd">:1</span><span class="o">;</span><span class="err">触发</span><span class="nt">haslayout</span>
+<span class="nc">.news</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="no">gray</span><span class="p">;</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="nb">solid</span> <span class="m">1px</span> <span class="no">black</span><span class="p">;</span>
+  <span class="p">}</span>
+
+<span class="nc">.news</span> <span class="nt">img</span> <span class="p">{</span>
+  <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span>
+  <span class="p">}</span>
+
+<span class="nc">.news</span> <span class="nt">p</span> <span class="p">{</span>
+  <span class="nl">float</span><span class="p">:</span> <span class="nb">right</span><span class="p">;</span>
+  <span class="p">}</span>
+
+<span class="nc">.clearfix</span><span class="nd">::after</span><span class="p">{</span>
+  <span class="nl">content</span><span class="p">:</span> <span class="s1">"020"</span><span class="p">;</span> 
+  <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span> 
+  <span class="nl">height</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span> 
+  <span class="nl">clear</span><span class="p">:</span> <span class="nb">both</span><span class="p">;</span> 
+  <span class="nl">visibility</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>  
+  <span class="p">}</span>
+
+<span class="nc">.clearfix</span> <span class="p">{</span>
+  <span class="c">/* 触发 hasLayout */</span> 
+  <span class="py">zoom</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span> 
+  <span class="p">}</span>
+
+<span class="o">&lt;</span><span class="nt">div</span> <span class="nt">class</span><span class="o">=</span><span class="s1">"news clearfix"</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nt">img</span> <span class="nt">src</span><span class="o">=</span><span class="s1">"news-pic.jpg"</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span><span class="nt">some</span> <span class="nt">text</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<h4 id="触发浮动元素父元素的bfc">触发浮动元素父元素的BFC</h4>
+
+<p>(Block Formatting Contexts, 块级格式化上下文)，使该父元素可以包含浮动元素</p>
+
+<p>1.给浮动元素的容器添加overflow:hidden;或overflow:auto</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.news</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="no">gray</span><span class="p">;</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="nb">solid</span> <span class="m">1px</span> <span class="no">black</span><span class="p">;</span>
+  <span class="nl">overflow</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.news</span> <span class="nt">img</span> <span class="p">{</span>
+  <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.news</span> <span class="nt">p</span> <span class="p">{</span>
+  <span class="nl">float</span><span class="p">:</span> <span class="nb">right</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.clear</span> <span class="p">{</span>
+	<span class="nl">clear</span><span class="p">:</span> <span class="nb">both</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="o">&lt;</span><span class="nt">div</span> <span class="nt">class</span><span class="o">=</span><span class="s1">"news"</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nt">img</span> <span class="nt">src</span><span class="o">=</span><span class="s1">"news-pic.jpg"</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span><span class="nt">some</span> <span class="nt">text</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nt">div</span> <span class="nt">class</span><span class="o">=</span><span class="s1">"clear"</span><span class="o">&gt;&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>2.给浮动的元素的容器添加浮动</p>
+
+<p>但是这样会使其整体浮动，影响布局，不推荐使用</p>
+
+<ul>
+  <li>总结</li>
+</ul>
+
+<p>在网页主要布局时使用:after伪元素方法并作为主要清理浮动方式；在小模块如ul里使用overflow:hidden;（留意可能产生的隐藏溢出元素问题）；如果本身就是浮动元素则可自动清除内部浮动，无需格外处理；正文中使用邻接元素清理之前的浮动。</p>
+
+<p>最后可以使用相对完美的:after伪元素方法清理浮动，文档结构更加清晰。</p>
+
+<h3 id="zoom1的清除浮动原理">zoom:1的清除浮动原理?</h3>
+<p>触发hasLayout，Zoom属性是IE浏览器的专有属性，它可以设置或检索对象的缩放比例当设置了zoom的值之后，所设置的元素就会就会扩大或者缩小，高度宽度就会重新计算了，</p>
+
+<h3 id="css优先级算法如何计算">CSS优先级算法如何计算？</h3>
+<ul>
+  <li>优先级就近原则，同权重情况下样式定义最近者为准;</li>
+  <li>载入样式以最后载入的定位为准;</li>
+</ul>
+
+<p>优先级为:</p>
+<ol>
+  <li>同权重: 内联样式表（标签内部）&gt; 嵌入样式表（当前文件中）&gt; 外部样式表（外部文件中）。</li>
+  <li>!important &gt;  id &gt; class &gt; tag</li>
+  <li>!important 比 内联优先级高</li>
+</ol>
+
+<h3 id="css定义的权重">CSS定义的权重</h3>
+<p>标签的权重为1，class的权重为10，id的权重为100，以下例子是演示各种定义的权重值：</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c">/*权重为1*/</span>
+  <span class="nt">div</span><span class="p">{</span>
+  <span class="p">}</span>
+  <span class="c">/*权重为10*/</span>
+  <span class="nc">.class1</span><span class="p">{</span>
+  <span class="p">}</span>
+  <span class="c">/*权重为100*/</span>
+  <span class="nf">#id1</span><span class="p">{</span>
+  <span class="p">}</span>
+  <span class="c">/*权重为100+1=101*/</span>
+  <span class="nf">#id1</span> <span class="nt">div</span><span class="p">{</span>
+  <span class="p">}</span>
+  <span class="c">/*权重为10+1=11*/</span>
+  <span class="nc">.class1</span> <span class="nt">div</span><span class="p">{</span>
+  <span class="p">}</span>
+  <span class="c">/*权重为10+10+1=21*/</span>
+  <span class="nc">.class1</span> <span class="nc">.class2</span> <span class="nt">div</span><span class="p">{</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+<p>如果权重相同，则最后定义的样式会起作用，但是应该避免这种情况出现</p>
+
+<h3 id="css优化提高性能的方式">CSS优化、提高性能的方式</h3>
+<p><br /></p>
+<ul>
+  <li>选择器效率优化</li>
+</ul>
+
+<p>读取选择器的原则是从右到左。因此，我们书写的右边的最后一个选择器，被称作关键选择器，对于效率有决定性影响。</p>
+
+<ol>
+  <li>避免使用通配符</li>
+  <li>不使用标签名或类名修饰ID规则：如果规则使用ID选择器作为关键选择器，不要给规则添加标签名。因为ID本身就是唯一的，添加标签名会不必要地降低匹配效率。</li>
+  <li>不使用标签名修饰类：相较于标签，类更具独特性。</li>
+  <li>尽量选择最具体的方式：造成低效的最简单粗暴的原因就是在标签上使用太多规则。给元素添加类可以更快细分到类方式，可以减少规则去匹配标签的时间。</li>
+  <li>关于后代选择器和子选择器：避免使用后代选择器，非要用的话建议用子选择器代替，但子选择器也要慎用，标签规则永远不要包含子选择器。</li>
+  <li>利用可继承性：没必要在一般内容上声明样式。</li>
+  <li>提取项目的通用公有样式，增强可复用性；</li>
+  <li>按模块编写组件；增强项目的协同开发性、可维护性和可扩展性；</li>
+  <li>使用预处理工具或构建工具（gulp对css进行语法检查、自动补前缀、打包压缩、自动优雅降级）。</li>
+</ol>
+
+<h3 id="浏览器解析选择器过程">浏览器解析选择器过程</h3>
+
+<p>样式系统从关键选择器开始，然后向左移查找规则选择器的祖先元素，只要选择器的子树一直在工作，样式系统就会持续左移，直到和规则匹配，或者是因为不匹配而放弃该规则。</p>
+
+<h3 id="全屏滚动原理">全屏滚动原理</h3>
+
+<ol>
+  <li>计算当前浏览器屏幕高度(document.body.clientHeight)，每次翻页显示的内容高度即为屏幕高度</li>
+  <li>对鼠标滚轮事件进行监听，注意滚轮事件的浏览器兼容问题。</li>
+  <li>加入时间控制，如果不加滚动会过于灵敏，一次翻好几屏</li>
+</ol>
+
+<p>参考代码：</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//html
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"wrap"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"main"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"page1"</span> <span class="na">class=</span><span class="s">"page"</span><span class="nt">&gt;&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"page2"</span> <span class="na">class=</span><span class="s">"page"</span><span class="nt">&gt;&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"page3"</span> <span class="na">class=</span><span class="s">"page"</span><span class="nt">&gt;&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"page4"</span> <span class="na">class=</span><span class="s">"page"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">//</span><span class="nt">css</span>
+<span class="o">&lt;</span><span class="nt">style</span> <span class="nt">type</span><span class="o">=</span><span class="s1">"text/css"</span><span class="o">&gt;</span>
+<span class="nt">html</span><span class="o">,</span><span class="nt">body</span><span class="p">{</span>
+    <span class="nl">height</span><span class="p">:</span><span class="m">100%</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">body</span><span class="o">,</span><span class="nt">ul</span><span class="o">,</span><span class="nt">li</span><span class="o">,</span><span class="nt">a</span><span class="o">,</span><span class="nt">p</span><span class="o">,</span><span class="nt">div</span><span class="p">{</span><span class="nl">padding</span><span class="p">:</span><span class="m">0px</span><span class="p">;</span> <span class="nl">margin</span><span class="p">:</span><span class="m">0px</span><span class="p">;</span> <span class="nl">font-size</span><span class="p">:</span><span class="m">14px</span><span class="p">;}</span>
+<span class="nf">#wrap</span><span class="p">{</span>
+    <span class="nl">overflow</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
+    <span class="nl">width</span><span class="p">:</span><span class="m">100%</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nf">#main</span><span class="p">{</span>
+    <span class="nl">height</span><span class="p">:</span><span class="m">2944px</span><span class="p">;</span>
+    <span class="nl">top</span><span class="p">:</span><span class="m">0</span><span class="p">;</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.page</span><span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span><span class="m">100%</span><span class="p">;</span>
+    <span class="nl">margin</span><span class="p">:</span><span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nf">#page1</span><span class="p">{</span>
+    <span class="nl">background</span><span class="p">:</span><span class="m">#E4E6CE</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nf">#page2</span><span class="p">{</span>
+    <span class="nl">background</span><span class="p">:</span><span class="m">#6CE26C</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nf">#page3</span><span class="p">{</span>
+    <span class="nl">background</span><span class="p">:</span><span class="m">#BF4938</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nf">#page4</span><span class="p">{</span>
+    <span class="nl">background</span><span class="p">:</span><span class="m">#2932E1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="o">&lt;/</span><span class="nt">style</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//js
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+    <span class="kd">var</span> <span class="nx">wrap</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"wrap"</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">main</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"main"</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">hei</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">clientHeight</span><span class="p">;</span>
+    <span class="nx">wrap</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">hei</span> <span class="o">+</span> <span class="s2">"px"</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">"div"</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">obj</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">obj</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">className</span> <span class="o">==</span> <span class="s1">'page'</span><span class="p">){</span>
+             <span class="nx">obj</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">style</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">hei</span> <span class="o">+</span> <span class="s2">"px"</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">//如果不加时间控制，滚动会过度灵敏，一次翻好几屏</span>
+    <span class="kd">var</span> <span class="nx">startTime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">//翻屏起始时间  </span>
+        <span class="nx">endTime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>  
+        <span class="nx">now</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>     
+    <span class="c1">//浏览器兼容      </span>
+    <span class="k">if</span> <span class="p">((</span><span class="nb">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">"firefox"</span><span class="p">)</span><span class="o">!=-</span><span class="mi">1</span><span class="p">)){</span>   
+        <span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"DOMMouseScroll"</span><span class="p">,</span><span class="nx">scrollFun</span><span class="p">,</span><span class="kc">false</span><span class="p">);</span>        
+    <span class="p">}</span>  
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">)</span> <span class="p">{</span>  
+        <span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"mousewheel"</span><span class="p">,</span><span class="nx">scrollFun</span><span class="p">,</span><span class="kc">false</span><span class="p">);</span>  
+    <span class="p">}</span>  
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">attachEvent</span><span class="p">)</span> <span class="p">{</span>  
+        <span class="nb">document</span><span class="p">.</span><span class="nx">attachEvent</span><span class="p">(</span><span class="s2">"onmousewheel"</span><span class="p">,</span><span class="nx">scrollFun</span><span class="p">);</span>   
+    <span class="p">}</span>  
+    <span class="k">else</span><span class="p">{</span>  
+        <span class="nb">document</span><span class="p">.</span><span class="nx">onmousewheel</span> <span class="o">=</span> <span class="nx">scrollFun</span><span class="p">;</span>  
+    <span class="p">}</span>  
+
+    <span class="c1">//滚动事件处理函数</span>
+    <span class="kd">function</span> <span class="nx">scrollFun</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+        <span class="nx">startTime</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">();</span>  
+        <span class="kd">var</span> <span class="nx">delta</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">detail</span> <span class="o">||</span> <span class="p">(</span><span class="o">-</span><span class="nx">event</span><span class="p">.</span><span class="nx">wheelDelta</span><span class="p">);</span>  
+        <span class="c1">//mousewheel事件中的 “event.wheelDelta” 属性值：返回的如果是正值说明滚轮是向上滚动</span>
+        <span class="c1">//DOMMouseScroll事件中的 “event.detail” 属性值：返回的如果是负值说明滚轮是向上滚动</span>
+        <span class="k">if</span> <span class="p">((</span><span class="nx">endTime</span> <span class="o">-</span> <span class="nx">startTime</span><span class="p">)</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">1000</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">delta</span><span class="o">&gt;</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="nx">offsetTop</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="p">(</span><span class="nx">hei</span><span class="o">*</span><span class="mi">3</span><span class="p">)){</span>
+                <span class="c1">//向下滚动</span>
+                <span class="nx">now</span> <span class="o">=</span> <span class="nx">now</span> <span class="o">-</span> <span class="nx">hei</span><span class="p">;</span>
+                <span class="nx">toPage</span><span class="p">(</span><span class="nx">now</span><span class="p">);</span>
+        <span class="p">}</span> 
+            <span class="k">if</span><span class="p">(</span><span class="nx">delta</span><span class="o">&lt;</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="nx">offsetTop</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
+                <span class="c1">//向上滚动</span>
+                    <span class="nx">now</span> <span class="o">=</span> <span class="nx">now</span> <span class="o">+</span> <span class="nx">hei</span><span class="p">;</span>
+                    <span class="nx">toPage</span><span class="p">(</span><span class="nx">now</span><span class="p">);</span>
+            <span class="p">}</span>
+             <span class="nx">endTime</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">();</span>  
+        <span class="p">}</span>
+           <span class="k">else</span><span class="p">{</span>  
+                <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>    
+            <span class="p">}</span>    
+    <span class="p">}</span>
+     <span class="kd">function</span> <span class="nx">toPage</span><span class="p">(</span><span class="nx">now</span><span class="p">){</span>        
+         <span class="nx">$</span><span class="p">(</span><span class="s2">"#main"</span><span class="p">).</span><span class="nx">animate</span><span class="p">({</span><span class="na">top</span><span class="p">:(</span><span class="nx">now</span><span class="o">+</span><span class="s1">'px'</span><span class="p">)},</span><span class="mi">1000</span><span class="p">);</span>     <span class="c1">//jquery实现动画效果</span>
+         <span class="c1">//setTimeout("main.style.top = now + 'px'",1000);     javascript 实现动画效果</span>
+    <span class="p">}</span>   
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<h3 id="伪类和伪元素">伪类和伪元素</h3>
+
+<p>定义：</p>
+<ul>
+  <li>CSS 伪类用于向某些选择器添加特殊的效果。</li>
+  <li>CSS 伪元素用于将特殊的效果添加到某些选择器。</li>
+</ul>
+
+<p><img src="http://lrun1124.github.io/img/cssbase1/cssbase-class.jpg" />
+<img src="http://lrun1124.github.io/img/cssbase1/cssbase-element.jpg" /></p>
+
+<p>伪类的效果可以通过添加一个实际的类来达到，而伪元素的效果则需要通过添加一个实际的元素才能达到，这也是为什么他们一个称为伪类，一个称为伪元素的原因。伪元素和伪类之所以这么容易混淆，是因为他们的效果类似而且写法相仿，但实际上 css3 为了区分两者，已经明确规定了伪类用一个冒号来表示，而伪元素则用两个冒号来表示。</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">:Pseudo-classes</span>
+<span class="nd">::Pseudo-elements</span>
+</code></pre></div></div>
+
+<p>但因为兼容性的问题，所以现在大部分还是统一的单冒号，但是抛开兼容性的问题，在书写时应该尽可能养成好习惯，区分两者。</p>
+
+<h3 id="css3新增伪类和伪元素有那些">CSS3新增伪类和伪元素有那些？</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>::after			在元素之前添加内容,也可以用来做清除浮动。
+::before			在元素之后添加内容
+:enabled  		
+:disabled 		控制表单控件的禁用状态。
+:checked        单选框或复选框被选中。
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>p:first-of-type	选择属于其父元素的首个 &lt;p&gt; 元素的每个 &lt;p&gt; 元素。
+p:last-of-type	选择属于其父元素的最后 &lt;p&gt; 元素的每个 &lt;p&gt; 元素。
+p:only-of-type	选择属于其父元素唯一的 &lt;p&gt; 元素的每个 &lt;p&gt; 元素。
+p:only-child		选择属于其父元素的唯一子元素的每个 &lt;p&gt; 元素。
+p:nth-child(2)	选择属于其父元素的第二个子元素的每个 &lt;p&gt; 元素。
+</code></pre></div></div>
+<h3 id="元素竖向的百分比">元素竖向的百分比</h3>
+
+<p>对于竖直方向的margin和padding，参照父元素的宽度。
+对于水平方向的margin和padding，也是参照父元素的宽度</p>
+
+<h3 id="经常遇到的浏览器的兼容性有哪些原因解决方法是什么常用hack的技巧-">经常遇到的浏览器的兼容性有哪些？原因，解决方法是什么，常用hack的技巧 ？</h3>
+<ol>
+  <li>png24位的图片在iE6浏览器上出现背景，解决方案是做成PNG8.</li>
+  <li>浏览器默认的margin和padding不同。解决方案是加一个全局的*{margin:0;padding:0;}来统一</li>
+  <li>IE下,可以使用获取常规属性的方法来获取自定义属性,也可以使用getAttribute()获取自定义属性;Firefox下,只能使用getAttribute()获取自定义属性。解决方法:统一通过getAttribute()获取自定义属性。</li>
+  <li>Chrome 中文界面下默认会将小于 12px 的文本强制按照 12px 显示, 可通过加入 CSS 属性 -webkit-text-size-adjust: none;</li>
+  <li>超链接访问过后hover样式就不出现了 被点击访问过的超链接样式不在具有hover和active了解决方法是改变CSS属性的排列顺序L-V-H-A :  a:link {} a:visited {} a:hover {} a:active {}</li>
+</ol>
+
+<h3 id="li与li之间有看不见的空白间隔是什么原因引起的有什么解决办法">li与li之间有看不见的空白间隔是什么原因引起的？有什么解决办法？</h3>
+<p>原因：</p>
+
+<p>浏览器会把inline元素间的空白字符（空格、换行、Tab等）渲染成一个空格。而为了美观。我们通常是一个&lt;li&gt;放在一行，这导致&lt;li&gt;换行后产生换行字符，它变成一个空格，占用了一个字符的宽度。</p>
+
+<p>解决：</p>
+
+<ol>
+  <li>为&lt;li&gt;设置float: left。不足：有些容器是不能设置浮动，如左右切换的焦点图等。</li>
+  <li>将所有&lt;li&gt;写在同一行。不足：代码不美观。</li>
+  <li>将&lt;ul&gt;内的字符尺寸直接设为0，即font-size: 0。不足：&lt;ul&gt;中的其他字符尺寸也被设为0，需要额外重新设定其他字符尺寸，且在Safari浏览器依然会出现空白间隔。</li>
+  <li>消除&lt;ul&gt;的字符间隔<code class="highlighter-rouge">letter-spacing</code>: -8px，而这也设置了&lt;li&gt;内的字符间隔，因此需要将&lt;li&gt;内的字符间隔设为默认<code class="highlighter-rouge">letter-spacing</code>: normal。</li>
+</ol>
+
+<h3 id="displayinline-block-什么时候会显示间隙携程">display:inline-block 什么时候会显示间隙？(携程)</h3>
+<ol>
+  <li>将html标签要display:inline-block 的元素写在一行。缺点：代码可读性差。</li>
+  <li>给父元素设置font-size:0,缺点是子元素如果里面有文字，文字会消失不见，所以又要给子元素设置font-size:0,增加了代码量。</li>
+  <li>给元素设置float:left,缺点高度塌陷，要清楚浮动。</li>
+  <li>设置子元素的margin-left为负值，但是元素之间的间隙大小是根据上下文的字体大小确定的，而每个浏览器的换行空隙大小不同，如果font-szie：16px,chrome空隙为8px,火狐空隙为4px.所以这个方法不通用。</li>
+  <li>设置父元素 <code class="highlighter-rouge">display:table;word-spacing:-1em;</code>目前这个方法可以完美解决，且兼容其他浏览器。</li>
+</ol>
+
+<h3 id="为什么要初始化css样式">为什么要初始化CSS样式。</h3>
+
+<p>因为浏览器的兼容问题，不同浏览器对有些标签的默认值是不同的，如果没对CSS初始化往往会出现浏览器之间的页面显示差异。当然，初始化样式会对SEO有一定的影响，但鱼和熊掌不可兼得，但力求影响最小的情况下初始化。</p>
+
+<p>最简单的初始化方法： * {padding: 0; margin: 0;} （强烈不建议）</p>
+
+<p>淘宝的样式初始化代码：</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nt">body</span><span class="o">,</span> <span class="nt">h1</span><span class="o">,</span> <span class="nt">h2</span><span class="o">,</span> <span class="nt">h3</span><span class="o">,</span> <span class="nt">h4</span><span class="o">,</span> <span class="nt">h5</span><span class="o">,</span> <span class="nt">h6</span><span class="o">,</span> <span class="nt">hr</span><span class="o">,</span> <span class="nt">p</span><span class="o">,</span> <span class="nt">blockquote</span><span class="o">,</span> <span class="nt">dl</span><span class="o">,</span> <span class="nt">dt</span><span class="o">,</span> <span class="nt">dd</span><span class="o">,</span> <span class="nt">ul</span><span class="o">,</span> <span class="nt">ol</span><span class="o">,</span> <span class="nt">li</span><span class="o">,</span> <span class="nt">pre</span><span class="o">,</span> <span class="nt">form</span><span class="o">,</span> <span class="nt">fieldset</span><span class="o">,</span> <span class="nt">legend</span><span class="o">,</span> <span class="nt">button</span><span class="o">,</span> <span class="nt">input</span><span class="o">,</span> <span class="nt">textarea</span><span class="o">,</span> <span class="nt">th</span><span class="o">,</span> <span class="nt">td</span> <span class="p">{</span> <span class="nl">margin</span><span class="p">:</span><span class="m">0</span><span class="p">;</span> <span class="nl">padding</span><span class="p">:</span><span class="m">0</span><span class="p">;</span> <span class="p">}</span>
+  <span class="nt">body</span><span class="o">,</span> <span class="nt">button</span><span class="o">,</span> <span class="nt">input</span><span class="o">,</span> <span class="nt">select</span><span class="o">,</span> <span class="nt">textarea</span> <span class="p">{</span> <span class="nl">font</span><span class="p">:</span><span class="m">12px</span><span class="p">/</span><span class="m">1.5</span><span class="n">tahoma</span><span class="p">,</span> <span class="n">arial</span><span class="p">,</span> <span class="err">\</span><span class="m">5</span><span class="n">b8b</span><span class="err">\</span><span class="m">4</span><span class="n">f53</span><span class="p">;</span> <span class="p">}</span>
+  <span class="nt">h1</span><span class="o">,</span> <span class="nt">h2</span><span class="o">,</span> <span class="nt">h3</span><span class="o">,</span> <span class="nt">h4</span><span class="o">,</span> <span class="nt">h5</span><span class="o">,</span> <span class="nt">h6</span><span class="p">{</span> <span class="nl">font-size</span><span class="p">:</span><span class="m">100%</span><span class="p">;</span> <span class="p">}</span>
+  <span class="nt">address</span><span class="o">,</span> <span class="nt">cite</span><span class="o">,</span> <span class="nt">dfn</span><span class="o">,</span> <span class="nt">em</span><span class="o">,</span> <span class="nt">var</span> <span class="p">{</span> <span class="nl">font-style</span><span class="p">:</span><span class="nb">normal</span><span class="p">;</span> <span class="p">}</span>
+  <span class="nt">code</span><span class="o">,</span> <span class="nt">kbd</span><span class="o">,</span> <span class="nt">pre</span><span class="o">,</span> <span class="nt">samp</span> <span class="p">{</span> <span class="nl">font-family</span><span class="p">:</span><span class="n">couriernew</span><span class="p">,</span> <span class="n">courier</span><span class="p">,</span> <span class="nb">monospace</span><span class="p">;</span> <span class="p">}</span>
+  <span class="nt">small</span><span class="p">{</span> <span class="nl">font-size</span><span class="p">:</span><span class="m">12px</span><span class="p">;</span> <span class="p">}</span>
+  <span class="nt">ul</span><span class="o">,</span> <span class="nt">ol</span> <span class="p">{</span> <span class="nl">list-style</span><span class="p">:</span><span class="nb">none</span><span class="p">;</span> <span class="p">}</span>
+  <span class="nt">a</span> <span class="p">{</span> <span class="nl">text-decoration</span><span class="p">:</span><span class="nb">none</span><span class="p">;</span> <span class="p">}</span>
+  <span class="nt">a</span><span class="nd">:hover</span> <span class="p">{</span> <span class="nl">text-decoration</span><span class="p">:</span><span class="nb">underline</span><span class="p">;</span> <span class="p">}</span>
+  <span class="nt">sup</span> <span class="p">{</span> <span class="nl">vertical-align</span><span class="p">:</span><span class="nb">text-top</span><span class="p">;</span> <span class="p">}</span>
+  <span class="nt">sub</span><span class="p">{</span> <span class="nl">vertical-align</span><span class="p">:</span><span class="nb">text-bottom</span><span class="p">;</span> <span class="p">}</span>
+  <span class="nt">legend</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span><span class="m">#000</span><span class="p">;</span> <span class="p">}</span>
+  <span class="nt">fieldset</span><span class="o">,</span> <span class="nt">img</span> <span class="p">{</span> <span class="nl">border</span><span class="p">:</span><span class="m">0</span><span class="p">;</span> <span class="p">}</span>
+  <span class="nt">button</span><span class="o">,</span> <span class="nt">input</span><span class="o">,</span> <span class="nt">select</span><span class="o">,</span> <span class="nt">textarea</span> <span class="p">{</span> <span class="nl">font-size</span><span class="p">:</span><span class="m">100%</span><span class="p">;</span> <span class="p">}</span>
+  <span class="nt">table</span> <span class="p">{</span> <span class="nl">border-collapse</span><span class="p">:</span><span class="nb">collapse</span><span class="p">;</span> <span class="nl">border-spacing</span><span class="p">:</span><span class="m">0</span><span class="p">;</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="absolute的containing-block容器块计算方式跟正常流有什么不同">absolute的containing block(容器块)计算方式跟正常流有什么不同？</h3>
+<p>无论属于哪种，都要先找到其祖先元素中最近的 position 值不为 static 的元素，然后再判断：</p>
+<ol>
+  <li>若此元素为 inline 元素，则 containing block 为能够包含这个元素生成的第一个和最后一个 inline box 的 padding box (除 margin, border 外的区域) 的最小矩形；</li>
+  <li>否则,则由这个祖先元素的 padding box 构成。
+如果都找不到，则为 initial containing block。</li>
+</ol>
+
+<p>补充：</p>
+<ol>
+  <li>static(默认的)/relative：简单说就是它的父元素的内容框（即去掉padding的部分）</li>
+  <li>absolute: 向上找最近的定位为absolute/relative的元素</li>
+  <li>fixed: 它的containing block一律为根元素(html/body)，根元素也是initial containing block</li>
+</ol>
+
+<h3 id="position跟displaymargin-collapseoverflowfloat这些特性相互叠加后会怎么样">position跟display、margin collapse、overflow、float这些特性相互叠加后会怎么样？</h3>
+
+<p>如果元素的display为none,那么元素不被渲染,position,float不起作用,如果元素拥有position:absolute;或者position:fixed;属性那么元素将为绝对定位,float不起作用.如果元素float属性不是none,元素会脱离文档流,根据float属性值来显示.有浮动,绝对定位,inline-block属性的元素,margin不会和垂直方向上的其他元素margin折叠.</p>
+
+<h3 id="对bfc规范块级格式化上下文block-formatting-context的理解">对BFC规范(块级格式化上下文：block formatting context)的理解？</h3>
+<p>W3C CSS 2.1 规范中的一个概念,它是一个独立容器，决定了元素如何对其内容进行定位,以及与其他元素的关系和相互作用。
+一个页面是由很多个 Box 组成的,元素的类型和 display 属性,决定了这个 Box 的类型。不同类型的 Box,会参与不同的 Formatting Context（决定如何渲染文档的容器）,因此Box内的元素会以不同的方式渲染,也就是说BFC内部的元素和外部的元素不会互相影响。</p>
+
+<p>BFC 的一个作用：使 BFC 内部的浮动元素不会到处乱跑。</p>
+
+<h3 id="absolute的containing-block容器块计算方式跟正常流有什么不同-1">absolute的containing block(容器块)计算方式跟正常流有什么不同？</h3>
+<ol>
+  <li>static(默认的)/relative：简单说就是它的父元素的内容框（即去掉padding的部分）</li>
+  <li>absolute: 向上找最近的定位为absolute/relative的元素</li>
+  <li>fixed: 它的containing block一律为根元素(html/body)，根元素也是initial containing block</li>
+</ol>
+
+<h3 id="什么是外边距合并">什么是外边距合并？</h3>
+<p>外边距合并指的是，当两个垂直外边距相遇时，它们将形成一个外边距。
+合并后的外边距的高度等于两个发生合并的外边距的高度中的较大者。</p>
+
+<p><img src="http://lrun1124.github.io/img/css_summary/margin_merge.png" /></p>
+
+<p>外边距合并初看上去可能有点奇怪，但是实际上，它是有意义的。以由几个段落组成的典型文本页面为例。第一个段落上面的空间等于段落的上外边距。如果没有外边距合并，后续所有段落之间的外边距都将是相邻上外边距和下外边距的和。这意味着段落之间的空间是页面顶部的两倍。如果发生外边距合并，段落之间的上外边距和下外边距就合并在一起，这样各处的距离就一致了。</p>
+
+<h3 id="移动端的布局用过媒体查询吗">移动端的布局用过媒体查询吗？</h3>
+<p>Media Queries能在不同的条件下使用不同的样式，使页面在不同在终端设备下达到不同的渲染效果。
+比如<code class="highlighter-rouge">max-width</code>是媒体特性中最常用的一个特性，其意思是指媒体类型小于或等于指定的宽度时，样式生效。如：</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@media</span> <span class="n">screen</span> <span class="n">and</span> <span class="p">(</span><span class="n">max-width</span><span class="p">:</span><span class="m">480px</span><span class="p">){</span>
+ <span class="nc">.ads</span> <span class="p">{</span>
+   <span class="nl">display</span><span class="p">:</span><span class="nb">none</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="margin和padding分别适合什么场景使用">margin和padding分别适合什么场景使用？</h3>
+
+<ol>
+  <li>margin是用来隔开元素与元素的间距；padding是用来隔开元素与内容的间隔。</li>
+  <li>margin用于布局分开元素使元素与元素互不相干；</li>
+  <li>padding用于元素与内容之间的间隔，让内容（文字）与（包裹）元素之间有一段</li>
+</ol>
+
+<h3 id="如何修改chrome记住密码后自动填充表单的黄色背景-">如何修改chrome记住密码后自动填充表单的黄色背景 ？</h3>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nt">input</span><span class="nd">:-webkit-autofill</span><span class="o">,</span> <span class="nt">textarea</span><span class="nd">:-webkit-autofill</span><span class="o">,</span> <span class="nt">select</span><span class="nd">:-webkit-autofill</span> <span class="p">{</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="m">250</span><span class="p">,</span> <span class="m">255</span><span class="p">,</span> <span class="m">189</span><span class="p">);</span> <span class="c">/* #FAFFBD; */</span>
+    <span class="nl">background-image</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+    <span class="nl">color</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="你对line-height是如何理解的">你对line-height是如何理解的？</h3>
+<p>设置元素浮动后，该元素的display值是多少?自动变成了 display:block</p>
+
+<h3 id="设置元素浮动后该元素的display值是多少">设置元素浮动后，该元素的display值是多少？</h3>
+<p>自动变成了 display:block</p>
+
+<h3 id="怎么让chrome支持小于12px-的文字">怎么让Chrome支持小于12px 的文字？</h3>
+<ol>
+  <li>用图片：如果是内容固定不变情况下，使用将小于12px文字内容切出做图片，这样不影响兼容也不影响美观。</li>
+  <li>继续使用小于12px字体大小样式设置：如果不考虑chrome可以不用考虑兼容，同时在设置小于12px对象设置-web,kit-text-size-adjust:none，做到最大兼容考虑。</li>
+  <li>使用12px及12px以上字体大小：为了兼容各大主流浏览器，建议设计美工图时候设置大于或等于12px的字体大小，如果是接单的这个时候就需要给客户讲解小于12px浏览器不兼容等事宜。</li>
+</ol>
+
+<h3 id="让页面里的字体变清晰变细用css怎么做">让页面里的字体变清晰，变细用CSS怎么做？</h3>
+<p>CSS3属性<code class="highlighter-rouge">-webkit-font-smoothing</code>字体抗锯齿渲染, 对字体进行抗锯齿渲染可以使字体看起来会更清晰舒服。</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">-webkit-font-smoothing</span><span class="o">:</span> <span class="nt">antialiased</span><span class="o">;</span>
+</code></pre></div></div>
+
+<h3 id="如果需要手动写动画你认为最小时间间隔是多久为什么阿里">如果需要手动写动画，你认为最小时间间隔是多久，为什么？（阿里）</h3>
+<p>多数显示器默认频率是60Hz，即1秒刷新60次，所以理论上最小间隔为1/60＊1000ms ＝ 16.7ms</p>
+
+<h3 id="overflow-scroll时不能平滑滚动的问题怎么处理">overflow: scroll时不能平滑滚动的问题怎么处理？</h3>
+<p>如果你对某个div或模块使用了overflow: scroll属性，在iOS系统的手机上浏览时，则会出现明显的卡顿现象。
+以下代码可解决这种卡顿的问题：<code class="highlighter-rouge">-webkit-overflow-scrolling: touch</code>;，是因为这行代码启用了硬件加速特性，所以滑动很流畅。</p>
+
+<p>实际上，Safari真的用了原生控件来实现，对于有-webkit-overflow-scrolling的网页，会创建一个UIScrollView，提供子layer给渲染模块使用。</p>
+
+<h3 id="有一个高度自适应的div里面有两个div一个高度100px希望另一个填满剩下的高度">有一个高度自适应的div，里面有两个div，一个高度100px，希望另一个填满剩下的高度。</h3>
+
+<h3 id="pngjpggif-这些图片格式解释一下分别什么时候用有没有了解过webp">png、jpg、gif 这些图片格式解释一下，分别什么时候用。有没有了解过webp？</h3>
+
+<h3 id="什么是css-预处理器--后处理器">什么是CSS 预处理器 / 后处理器？</h3>
+
+<ul>
+  <li>
+    <p>预处理器例如：LESS、Sass、Stylus，用来预编译Sass或less，增强了css代码的复用性，
+还有层级、mixin、变量、循环、函数等，具有很方便的UI组件模块化开发能力，极大的提高工作效率。</p>
+  </li>
+  <li>
+    <p>后处理器例如：PostCSS，通常被视为在完成的样式表中根据CSS规范处理CSS，让其更有效；目前最常做的
+是给CSS属性添加浏览器私有前缀，实现跨浏览器兼容性的问题。</p>
+  </li>
+</ul>
+
+<h3 id="rem布局的优缺点">rem布局的优缺点</h3>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="/2019/09/15/CSS_Summary"
+                    data-title="CSS Summary"
+                    data-url="http://localhost:4000/lrun1124.github.io/2019/09/15/CSS_Summary/"
+                    data-images="http://localhost:4000/lrun1124.github.io/img/ArrayUnique-bg.jpg"
+                    data-content="
+  “Move on. ”
+
+
+Table of Contents
+
+
+
+  CSS
+    
+      盒子模型
+      CSS选择器
+    ... | Run Note " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/lrun1124.github.io/2019/09/10/HTML_Summary/" data-toggle="tooltip" data-placement="top" title="HTML Summary">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/lrun1124.github.io/2019/10/08/Security_Summary/" data-toggle="tooltip" data-placement="top" title="Security Summary">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="/2019/09/15/CSS_Summary"
+                        data-title="CSS Summary"
+                        data-url="http://localhost:4000/lrun1124.github.io/2019/09/15/CSS_Summary/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+        				
+                            
+                				<a href="/lrun1124.github.io/tags/#JavaScript" title="JavaScript" rel="7">
+                                    JavaScript
+                                </a>
+                            
+        				
+                            
+                				<a href="/lrun1124.github.io/tags/#code" title="code" rel="4">
+                                    code
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/lrun1124.github.io/tags/#Summary" title="Summary" rel="6">
+                                    Summary
+                                </a>
+                            
+        				
+        			</div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="#">Foo</a></li>
+                    
+                        <li><a href="#">Bar</a></li>
+                    
+                        <li><a href="#">Example Friends</a></li>
+                    
+                        <li><a href="#">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'run';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    
+                    <li>
+                        <a target="_blank" href="http://weibo.com/lrun">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+
+
+                    
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/lrun">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/lrun1124">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Run Note 2019
+<!--                     <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe> -->
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="backtop">
+        <a href="#">TOP</a>
+    </div> 
+</footer>
+
+<!-- jQuery -->
+<script src="/lrun1124.github.io/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/lrun1124.github.io/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/lrun1124.github.io/js/hux-blog.min.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

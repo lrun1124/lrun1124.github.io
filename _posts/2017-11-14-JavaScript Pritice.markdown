@@ -6,7 +6,7 @@ date:       2017-11-07 11:00:00
 author:     "Run"
 header-img: "img/jspractice/jspractice-bg.jpg"
 tags:
-    - JavaScript
+    - code
 ---
 
 ## 1
@@ -61,5 +61,3 @@ function arrayRandom(arr){
 let arr = [1,2,3,4,5,6,7,8,9,10];
 console.log(arrayRandom(arr));
 ```
-
-## 3
