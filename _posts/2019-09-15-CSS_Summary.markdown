@@ -692,6 +692,49 @@ CSS3属性`-webkit-font-smoothing`字体抗锯齿渲染, 对字体进行抗锯�
 实际上，Safari真的用了原生控件来实现，对于有-webkit-overflow-scrolling的网页，会创建一个UIScrollView，提供子layer给渲染模块使用。
 
 ### 有一个高度自适应的div，里面有两个div，一个高度100px，希望另一个填满剩下的高度。
+```html
+<body>
+     <div class="box">
+         <div class="a"></div>
+         <div class="b"></div>
+     </div>
+</body>
+```
+- flex
+该方法主要部分就是使用了flex:1属性来实现box2的自动伸缩
+```css
+  .box {
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+      }
+  .a {height:100px;background:green;}
+  .b {background:blue;flex:1}
+```
+
+- css计算
+```css
+  .box {
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .a {height:100px;background:green;}
+  .b {background:blue; height: calc(100vh - 100px);}
+```
+
+- absolute
+外容器：position:relative。高度固定为100px的盒子使用相对定位，高度要求自适应的盒子使用绝对定位，再设定它的top：100px;left:0;bottom:0;
+```css
+  .box { height: 400px; position: relative; }
+  .a { height: 100px; background: green; }
+  .b { background: blue; width: 100%; position: absolute; top: 100px ; left: 0 ; bottom: 0;}
+```
+
+- js解法
+
+获取外层盒子和固定高度盒子的高度值，将其相减，结果就是自适应盒子的高度。
 
 ### png、jpg、gif 这些图片格式解释一下，分别什么时候用。有没有了解过webp？
 
@@ -702,5 +745,42 @@ CSS3属性`-webkit-font-smoothing`字体抗锯齿渲染, 对字体进行抗锯�
 
 - 后处理器例如：PostCSS，通常被视为在完成的样式表中根据CSS规范处理CSS，让其更有效；目前最常做的
   是给CSS属性添加浏览器私有前缀，实现跨浏览器兼容性的问题。
-  
+
 ### rem布局的优缺点
+ - rem作用于非根元素时，相对于根元素字体大小；rem作用于根元素字体大小时，相对于其出初始字体大小 -MDN
+rem布局的本质是等比缩放，一般是基于宽度。
+
+优点： rem是相对于根元素,这样就意味着,我们只需要在根元素确定一个px字号,则可以来算出元素的宽高, 适合做web app, 能等比例适配所有屏幕，提高体验
+
+缺点： 目前ie不支持，对pc页面来讲使用次数不多，数据处理复杂
+
+### JS获取css属性
+1. 使用style属性,这种方法的前提是必须之前已经显示的在css中声明过height,才能取得正确的值。
+```js
+document.getElementById("id").style.height
+```
+2. window.getComputedStyle(a, null) 第一个参数为目标元素，第二个参数为伪类
+```js
+var a = document.getElementById('mstr259')
+window.getComputedStyle(a).height
+```
+3. 只有IE和Opera支持使用 `CurrentStyle`获取的元素计算后的样式。
+
+下面这个函数，能够获取一个元素的任意 CSS 属性值，考虑了浏览器兼容性。
+```js
+function getStyle(element, attr) {
+  if(element.currentStyle) {
+    return element.currentStyle[attr];
+  } else {
+    return getComputedStyle(element, false)[attr];
+  }
+}
+```
+
+### height, clientHeight, offsetHeigh
+* height：指元素内容的高度，jQuery中的height()方法返回的就是这个高度。
+* clientHeight：内容高度+padding高度，jQuery中的innerHeight()方法返回的就是这个高度。
+* offsetHeight：内容高度+padding高度+边框宽度，jQuery中的outerHeight()方法返回的就是这个高度。
+* width：指元素内容的宽度，jQuery中的width()方法返回的就是这个宽度。
+* clientWidth：内容高度+padding宽度，jQuery中的innerWidtht()方法返回的就是这个宽度。
+* offsetWidth：内容高度+padding高度+边框宽度，jQuery中的outerWidth()方法返回的就是这个宽度。
