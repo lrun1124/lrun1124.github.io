@@ -331,6 +331,14 @@
 
 <p><strong>闭包就是能够读取其他函数内部变量的函数</strong>, 即使被外部函数返回，依然可以访问到外部（封闭）函数作用域的函数。本质上是将函数内部和外部联系起来的桥梁。</p>
 
+<p>闭包的特性：</p>
+
+<ol>
+  <li>函数内再嵌套函数</li>
+  <li>内部函数可以引用外层的参数和变量</li>
+  <li>参数和变量不会被垃圾回收机制回收</li>
+</ol>
+
 <pre><code class="language-JS">function f1(){
 	var n=999;
 	function f2(){
@@ -446,6 +454,15 @@ result();//1001
 <span class="p">}</span>
 <span class="nt">&lt;/script&gt;</span>
 </code></pre></div></div>
+
+<p>ajax缓存</p>
+
+<ol>
+  <li>在ajax发送请求前加上 anyAjaxObj.setRequestHeader(“If-Modified-Since”,”0”)。</li>
+  <li>在ajax发送请求前加上 anyAjaxObj.setRequestHeader(“Cache-Control”,”no-cache”)。</li>
+  <li>在URL后面加上一个随机数： “fresh=” + Math.random();。</li>
+</ol>
+
 <h3 id="把-script-标签-放在页面的最底部的body封闭之前-和封闭之后有什么区别">把 Script 标签 放在页面的最底部的body封闭之前 和封闭之后有什么区别？</h3>
 <p>放在body的封闭之前，将会阻塞其他资源的加载，放在body封闭之后，不会影响body内元素的加载</p>
 
@@ -914,6 +931,29 @@ CMD缺点：执行等待时间会叠加。因为每个文件执行时是同步�
   <li>另外sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；localStorage 在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的。</li>
 </ol>
 
+<h3 id="javascript如何实现继承">Javascript如何实现继承？</h3>
+<ol>
+  <li>构造继承</li>
+  <li>原型继承</li>
+  <li>实例继承</li>
+  <li>拷贝继承</li>
+</ol>
+
+<p>原型prototype机制或apply和call方法去实现较简单，建议使用构造函数与原型混合方式。</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 	<span class="kd">function</span> <span class="nx">Parent</span><span class="p">(){</span>
+ 		<span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'wang'</span><span class="p">;</span>
+ 	<span class="p">}</span>
+
+ 	<span class="kd">function</span> <span class="nx">Child</span><span class="p">(){</span>
+ 		<span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="mi">28</span><span class="p">;</span>
+ 	<span class="p">}</span>
+ 	<span class="nx">Child</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Parent</span><span class="p">();</span><span class="c1">//继承了Parent，通过原型</span>
+
+ 	<span class="kd">var</span> <span class="nx">demo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Child</span><span class="p">();</span>
+ 	<span class="nx">alert</span><span class="p">(</span><span class="nx">demo</span><span class="p">.</span><span class="nx">age</span><span class="p">);</span>
+ 	<span class="nx">alert</span><span class="p">(</span><span class="nx">demo</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span><span class="c1">//得到被继承的属性</span>
+</code></pre></div></div>
+
 <h3 id="javascript继承的6种方法">javascript继承的6种方法</h3>
 
 <h3 id="一个页面从输入-url-到页面加载显示完成这个过程中都发生了什么">一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？</h3>
@@ -1339,6 +1379,151 @@ origin： 协议+主机+端口号，也可以设置为”*“，表示可以传�
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">q</span><span class="p">);</span> <span class="c1">// true</span>
 </code></pre></div></div>
 
+<h3 id="写一个通用的事件侦听器函数">写一个通用的事件侦听器函数。</h3>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// event(事件)工具集，来源：github.com/markyun</span>
+ 	<span class="nx">my</span><span class="p">.</span><span class="nx">Event</span> <span class="o">=</span> <span class="p">{</span>
+ 		<span class="c1">// 页面加载完成后</span>
+ 		<span class="na">readyEvent</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
+ 			<span class="k">if</span> <span class="p">(</span><span class="nx">fn</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+ 				<span class="nx">fn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">;</span>
+ 			<span class="p">}</span>
+ 			<span class="kd">var</span> <span class="nx">oldonload</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">onload</span><span class="p">;</span>
+ 			<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">!=</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span>
+ 				<span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="nx">fn</span><span class="p">;</span>
+ 			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+ 				<span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+ 					<span class="nx">oldonload</span><span class="p">();</span>
+ 					<span class="nx">fn</span><span class="p">();</span>
+ 				<span class="p">};</span>
+ 			<span class="p">}</span>
+ 		<span class="p">},</span>
+ 		<span class="c1">// 视能力分别使用dom0||dom2||IE方式 来绑定事件</span>
+ 		<span class="c1">// 参数： 操作的元素,事件名称 ,事件处理程序</span>
+ 		<span class="na">addEvent</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">handler</span><span class="p">)</span> <span class="p">{</span>
+ 			<span class="k">if</span> <span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">)</span> <span class="p">{</span>
+ 				<span class="c1">//事件类型、需要执行的函数、是否捕捉</span>
+ 				<span class="nx">element</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">handler</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+ 			<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">attachEvent</span><span class="p">)</span> <span class="p">{</span>
+ 				<span class="nx">element</span><span class="p">.</span><span class="nx">attachEvent</span><span class="p">(</span><span class="s1">'on'</span> <span class="o">+</span> <span class="nx">type</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+ 					<span class="nx">handler</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+ 				<span class="p">});</span>
+ 			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+ 				<span class="nx">element</span><span class="p">[</span><span class="s1">'on'</span> <span class="o">+</span> <span class="nx">type</span><span class="p">]</span> <span class="o">=</span> <span class="nx">handler</span><span class="p">;</span>
+ 			<span class="p">}</span>
+ 		<span class="p">},</span>
+ 		<span class="c1">// 移除事件</span>
+ 		<span class="na">removeEvent</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">handler</span><span class="p">)</span> <span class="p">{</span>
+ 			<span class="k">if</span> <span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">)</span> <span class="p">{</span>
+ 				<span class="nx">element</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">handler</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+ 			<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">datachEvent</span><span class="p">)</span> <span class="p">{</span>
+ 				<span class="nx">element</span><span class="p">.</span><span class="nx">detachEvent</span><span class="p">(</span><span class="s1">'on'</span> <span class="o">+</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">handler</span><span class="p">);</span>
+ 			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+ 				<span class="nx">element</span><span class="p">[</span><span class="s1">'on'</span> <span class="o">+</span> <span class="nx">type</span><span class="p">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+ 			<span class="p">}</span>
+ 		<span class="p">},</span>
+ 		<span class="c1">// 阻止事件 (主要是事件冒泡，因为IE不支持事件捕获)</span>
+ 		<span class="na">stopPropagation</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ev</span><span class="p">)</span> <span class="p">{</span>
+ 			<span class="k">if</span> <span class="p">(</span><span class="nx">ev</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">)</span> <span class="p">{</span>
+ 				<span class="nx">ev</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
+ 			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+ 				<span class="nx">ev</span><span class="p">.</span><span class="nx">cancelBubble</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+ 			<span class="p">}</span>
+ 		<span class="p">},</span>
+ 		<span class="c1">// 取消事件的默认行为</span>
+ 		<span class="na">preventDefault</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+ 			<span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">)</span> <span class="p">{</span>
+ 				<span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+ 			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+ 				<span class="nx">event</span><span class="p">.</span><span class="nx">returnValue</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+ 			<span class="p">}</span>
+ 		<span class="p">},</span>
+ 		<span class="c1">// 获取事件目标</span>
+ 		<span class="na">getTarget</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+ 			<span class="k">return</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span> <span class="o">||</span> <span class="nx">event</span><span class="p">.</span><span class="nx">srcElement</span><span class="p">;</span>
+ 		<span class="p">},</span>
+ 		<span class="c1">// 获取event对象的引用，取到事件的所有信息，确保随时能使用event；</span>
+ 		<span class="na">getEvent</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+ 			<span class="kd">var</span> <span class="nx">ev</span> <span class="o">=</span> <span class="nx">e</span> <span class="o">||</span> <span class="nb">window</span><span class="p">.</span><span class="nx">event</span><span class="p">;</span>
+ 			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">ev</span><span class="p">)</span> <span class="p">{</span>
+ 				<span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getEvent</span><span class="p">.</span><span class="nx">caller</span><span class="p">;</span>
+ 				<span class="k">while</span> <span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
+ 					<span class="nx">ev</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="kr">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+ 					<span class="k">if</span> <span class="p">(</span><span class="nx">ev</span> <span class="o">&amp;&amp;</span> <span class="nx">Event</span> <span class="o">==</span> <span class="nx">ev</span><span class="p">.</span><span class="kd">constructor</span><span class="p">)</span> <span class="p">{</span>
+ 						<span class="k">break</span><span class="p">;</span>
+ 					<span class="p">}</span>
+ 					<span class="nx">c</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">caller</span><span class="p">;</span>
+ 				<span class="p">}</span>
+ 			<span class="p">}</span>
+ 			<span class="k">return</span> <span class="nx">ev</span><span class="p">;</span>
+ 		<span class="p">}</span>
+ 	<span class="p">};</span>
+</code></pre></div></div>
+
+<h3 id="防抖debounce和节流throttle">防抖(debounce)和节流(throttle）</h3>
+
+<h4 id="防抖">防抖</h4>
+<p>对于短时间内连续触发的事件，防抖的含义就是让某个时间期限内，事件处理函数只执行一次。
+比如延迟200ms，如果在200ms内没有再次触发滚动事件，那么就执行函数，如果在200ms内再次触发滚动事件，那么当前的计时取消，重新开始计时</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">debounce</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">delay</span><span class="p">){</span>
+    <span class="kd">let</span> <span class="nx">timer</span> <span class="o">=</span> <span class="kc">null</span> <span class="c1">//借助闭包</span>
+    <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">timer</span><span class="p">){</span>
+            <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">timer</span><span class="p">)</span> 
+        <span class="p">}</span>
+        <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">delay</span><span class="p">)</span> <span class="c1">// 简化写法</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// 然后是旧代码</span>
+<span class="kd">function</span> <span class="nx">showTop</span>  <span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">scrollTop</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">scrollTop</span> <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">scrollTop</span><span class="p">;</span>
+<span class="err">　　</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'滚动条位置：'</span> <span class="o">+</span> <span class="nx">scrollTop</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">onscroll</span> <span class="o">=</span> <span class="nx">debounce</span><span class="p">(</span><span class="nx">showTop</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span> <span class="c1">// 为了方便观察效果我们取个大点的间断值，实际使用根据需要来配置</span>
+</code></pre></div></div>
+
+<h4 id="节流">节流</h4>
+<p>如果短时间内大量触发同一事件，那么在函数执行一次之后，该函数在指定的时间期限内不再工作，直至过了这段时间才重新生效。</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">throttle</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span><span class="nx">delay</span><span class="p">){</span>
+    <span class="kd">let</span> <span class="nx">valid</span> <span class="o">=</span> <span class="kc">true</span>
+    <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+       <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">valid</span><span class="p">){</span>
+           <span class="c1">//休息时间 暂不接客</span>
+           <span class="k">return</span> <span class="kc">false</span> 
+       <span class="p">}</span>
+       <span class="c1">// 工作时间，执行函数并且在间隔期内把状态位设为无效</span>
+        <span class="nx">valid</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">fn</span><span class="p">()</span>
+            <span class="nx">valid</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">},</span> <span class="nx">delay</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 以下照旧</span>
+<span class="kd">function</span> <span class="nx">showTop</span>  <span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">scrollTop</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">scrollTop</span> <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">scrollTop</span><span class="p">;</span>
+<span class="err">　　</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'滚动条位置：'</span> <span class="o">+</span> <span class="nx">scrollTop</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">onscroll</span> <span class="o">=</span> <span class="nx">throttle</span><span class="p">(</span><span class="nx">showTop</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+</code></pre></div></div>
+<p>总结</p>
+<ol>
+  <li>防抖是保证最后执行一次</li>
+  <li>节流是保证周期性执行</li>
+</ol>
+
+<p>防抖场景</p>
+<ol>
+  <li>window触发resize的时候，不断的调整浏览器窗口大小会不断的触发这个事件，用防抖来让其只触发一次</li>
+  <li>input用户输入触发搜索</li>
+</ol>
+
+<p>节流场景</p>
+<ol>
+  <li>监听滚动事件，比如是否滑到底部自动加载更多，用节流来判断</li>
+</ol>
+
+
 
                 <hr>
 
@@ -1442,7 +1627,7 @@ Table of Contents
                             
         				
                             
-                				<a href="/lrun1124.github.io/tags/#Summary" title="Summary" rel="6">
+                				<a href="/lrun1124.github.io/tags/#Summary" title="Summary" rel="7">
                                     Summary
                                 </a>
                             

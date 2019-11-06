@@ -138,6 +138,12 @@ JS的作用域和Java,C++之类语言最大的区别就在于它的函数作用�
 
 <strong>闭包就是能够读取其他函数内部变量的函数</strong>, 即使被外部函数返回，依然可以访问到外部（封闭）函数作用域的函数。本质上是将函数内部和外部联系起来的桥梁。
 
+ 闭包的特性：
+
+ 1. 函数内再嵌套函数
+ 1. 内部函数可以引用外层的参数和变量
+ 1. 参数和变量不会被垃圾回收机制回收
+
 ```JS
 function f1(){
 	var n=999;
@@ -236,6 +242,13 @@ function stateFunction(){
 }
 </script>
 ```
+
+ajax缓存
+
+1. 在ajax发送请求前加上 anyAjaxObj.setRequestHeader("If-Modified-Since","0")。
+1. 在ajax发送请求前加上 anyAjaxObj.setRequestHeader("Cache-Control","no-cache")。
+1. 在URL后面加上一个随机数： "fresh=" + Math.random();。
+
 ### 把 Script 标签 放在页面的最底部的body封闭之前 和封闭之后有什么区别？
 放在body的封闭之前，将会阻塞其他资源的加载，放在body封闭之后，不会影响body内元素的加载
 
@@ -695,6 +708,28 @@ Node的优缺点
 1. sessionStorage: 仅在当前会话下有效，刷新不删除，关闭页面或浏览器清除，一般5M左右，仅在浏览器保存，不参与通信
 1. 另外sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；localStorage 在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的。
 
+### Javascript如何实现继承？
+1. 构造继承
+1. 原型继承
+1. 实例继承
+1. 拷贝继承
+
+原型prototype机制或apply和call方法去实现较简单，建议使用构造函数与原型混合方式。
+ ```js
+ 	function Parent(){
+ 		this.name = 'wang';
+ 	}
+
+ 	function Child(){
+ 		this.age = 28;
+ 	}
+ 	Child.prototype = new Parent();//继承了Parent，通过原型
+
+ 	var demo = new Child();
+ 	alert(demo.age);
+ 	alert(demo.name);//得到被继承的属性
+```
+
 ### javascript继承的6种方法
 
 ### 一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？
@@ -1121,3 +1156,152 @@ const { p, q } = o;
 console.log(p); // 42
 console.log(q); // true
 ```
+
+### 写一个通用的事件侦听器函数。
+```js
+// event(事件)工具集，来源：github.com/markyun
+ 	my.Event = {
+ 		// 页面加载完成后
+ 		readyEvent : function(fn) {
+ 			if (fn == null) {
+ 				fn = document;
+ 			}
+ 			var oldonload = window.onload;
+ 			if (typeof window.onload != 'function') {
+ 				window.onload = fn;
+ 			} else {
+ 				window.onload = function() {
+ 					oldonload();
+ 					fn();
+ 				};
+ 			}
+ 		},
+ 		// 视能力分别使用dom0||dom2||IE方式 来绑定事件
+ 		// 参数： 操作的元素,事件名称 ,事件处理程序
+ 		addEvent : function(element, type, handler) {
+ 			if (element.addEventListener) {
+ 				//事件类型、需要执行的函数、是否捕捉
+ 				element.addEventListener(type, handler, false);
+ 			} else if (element.attachEvent) {
+ 				element.attachEvent('on' + type, function() {
+ 					handler.call(element);
+ 				});
+ 			} else {
+ 				element['on' + type] = handler;
+ 			}
+ 		},
+ 		// 移除事件
+ 		removeEvent : function(element, type, handler) {
+ 			if (element.removeEventListener) {
+ 				element.removeEventListener(type, handler, false);
+ 			} else if (element.datachEvent) {
+ 				element.detachEvent('on' + type, handler);
+ 			} else {
+ 				element['on' + type] = null;
+ 			}
+ 		},
+ 		// 阻止事件 (主要是事件冒泡，因为IE不支持事件捕获)
+ 		stopPropagation : function(ev) {
+ 			if (ev.stopPropagation) {
+ 				ev.stopPropagation();
+ 			} else {
+ 				ev.cancelBubble = true;
+ 			}
+ 		},
+ 		// 取消事件的默认行为
+ 		preventDefault : function(event) {
+ 			if (event.preventDefault) {
+ 				event.preventDefault();
+ 			} else {
+ 				event.returnValue = false;
+ 			}
+ 		},
+ 		// 获取事件目标
+ 		getTarget : function(event) {
+ 			return event.target || event.srcElement;
+ 		},
+ 		// 获取event对象的引用，取到事件的所有信息，确保随时能使用event；
+ 		getEvent : function(e) {
+ 			var ev = e || window.event;
+ 			if (!ev) {
+ 				var c = this.getEvent.caller;
+ 				while (c) {
+ 					ev = c.arguments[0];
+ 					if (ev && Event == ev.constructor) {
+ 						break;
+ 					}
+ 					c = c.caller;
+ 				}
+ 			}
+ 			return ev;
+ 		}
+ 	};
+```
+
+### 防抖(debounce)和节流(throttle）
+
+#### 防抖
+对于短时间内连续触发的事件，防抖的含义就是让某个时间期限内，事件处理函数只执行一次。
+比如延迟200ms，如果在200ms内没有再次触发滚动事件，那么就执行函数，如果在200ms内再次触发滚动事件，那么当前的计时取消，重新开始计时
+```js
+function debounce(fn, delay){
+    let timer = null //借助闭包
+    return function() {
+        if(timer){
+            clearTimeout(timer) 
+        }
+        timer = setTimeout(fn, delay) // 简化写法
+    }
+}
+// 然后是旧代码
+function showTop  () {
+    var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+　　console.log('滚动条位置：' + scrollTop);
+}
+window.onscroll = debounce(showTop,1000) // 为了方便观察效果我们取个大点的间断值，实际使用根据需要来配置
+```
+
+#### 节流
+如果短时间内大量触发同一事件，那么在函数执行一次之后，该函数在指定的时间期限内不再工作，直至过了这段时间才重新生效。
+```js
+function throttle(fn,delay){
+    let valid = true
+    return function() {
+       if(!valid){
+           //休息时间 暂不接客
+           return false 
+       }
+       // 工作时间，执行函数并且在间隔期内把状态位设为无效
+        valid = false
+        setTimeout(() => {
+            fn()
+            valid = true;
+        }, delay)
+    }
+}
+
+// 以下照旧
+function showTop  () {
+    var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+　　console.log('滚动条位置：' + scrollTop);
+}
+window.onscroll = throttle(showTop,1000)
+```
+总结
+1. 防抖是保证最后执行一次
+2. 节流是保证周期性执行
+
+防抖场景
+1. window触发resize的时候，不断的调整浏览器窗口大小会不断的触发这个事件，用防抖来让其只触发一次
+2. input用户输入触发搜索
+
+节流场景
+1. 监听滚动事件，比如是否滑到底部自动加载更多，用节流来判断
+
+
+
+
+
+
+
+
