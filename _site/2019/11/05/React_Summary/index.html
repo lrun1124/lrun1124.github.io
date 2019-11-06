@@ -179,7 +179,7 @@
 
 <p><img src="http://lrun1124.github.io/img/react_summary/lifeCycle.png" width="700px" /></p>
 
-<h4 id="实例化">实例化</h4>
+<h4 id="mounting">Mounting</h4>
 <h5 id="constructor">constructor</h5>
 <p>super(props)用来调用基类的构造方法( constructor() ), 通常，在 React 中，在构造函数中只做两件事：</p>
 <ul>
@@ -211,7 +211,7 @@
   <li>发请求获取初始数据</li>
 </ol>
 
-<h4 id="运行">运行</h4>
+<h4 id="updating">Updating</h4>
 <p>react组件更新机制。setState引起的state更新或父组件重新render引起的props更新，更新后的state和props相对之前无论是否有变化，都将引起子组件的重新render。</p>
 
 <h5 id="componentwillreceiveprops">componentWillReceiveProps</h5>
@@ -229,54 +229,90 @@
 <h5 id="componentdidupdate">componentDidUpdate</h5>
 <p>更新(dom已经更新)后会被立即调用。首次渲染不会执行此方法。当组件更新后，可以在此处对 DOM 进行操作。如果你对更新前后的 props 进行了比较，也可以选择在此处进行网络请求，componentDidUpdate() 中直接调用 setState()，但请注意它必须被包裹在一个条件语件里，正如上述的例子那样进行处理，否则会导致死循环。它还会导致额外的重新渲染，虽然用户不可见，但会影响组件性能。</p>
 
-<h4 id="卸载">卸载</h4>
+<h4 id="unmounting">Unmounting</h4>
 <h5 id="componentwillunmount">componentWillUnmount</h5>
 <p>在组件卸载及销毁之前直接调用。在这里可以释放资源, 比如清除定时器, removeEventListener，这里边setState是无效的, 不应该调用</p>
+
+<h4 id="react-v163">React v16.3</h4>
+<p>React v16.3 deprecate了一组生命周期API，除了shouldComponentUpdate之外，render之前的所有生命周期函数全灭。包括：</p>
+
+<ul>
+  <li>componentWillReceiveProps</li>
+  <li>componentWillMount</li>
+  <li>componentWillUpdate</li>
+</ul>
+
+<h5 id="getderivedstatefromprops的帮助来实现">getDerivedStateFromProps的帮助来实现</h5>
+<p>以前需要利用被deprecate的所有生命周期函数才能实现的功能，都可以通过getDerivedStateFromProps的帮助来实现。这个getDerivedStateFromProps是一个静态函数，所以函数体内不能访问this，简单说，就是应该一个纯函数。每当父组件引发当前组件的渲染过程时，getDerivedStateFromProps会被调用，这样我们有一个机会可以根据新的props和之前的state来调整新的state。</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">static</span> <span class="nx">getDerivedStateFromProps</span><span class="p">(</span><span class="nx">nextProps</span><span class="p">,</span> <span class="nx">prevState</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">//根据nextProps和prevState计算出预期的状态改变，返回结果会被送给setState</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h5 id="getsnapshotbeforeupdate">getSnapshotBeforeUpdate</h5>
+<p>这函数会在render之后执行，而执行之时DOM元素还没有被更新，给了一个机会去获取DOM信息， 这个snapshot会作为componentDidUpdate的第三个参数传入。</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">getSnapshotBeforeUpdate</span><span class="p">(</span><span class="nx">prevProps</span><span class="p">,</span> <span class="nx">prevState</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'#enter getSnapshotBeforeUpdate'</span><span class="p">);</span>
+    <span class="k">return</span> <span class="s1">'foo'</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">componentDidUpdate</span><span class="p">(</span><span class="nx">prevProps</span><span class="p">,</span> <span class="nx">prevState</span><span class="p">,</span> <span class="nx">snapshot</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'#enter componentDidUpdate snapshot = '</span><span class="p">,</span> <span class="nx">snapshot</span><span class="p">);</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+<p>所以新的流程如下：</p>
+
+<p><img src="http://lrun1124.github.io/img/react_summary/lifeCycle_new.jpeg" width="700px" /></p>
+
+<p>可以注意到，说getDerivedStateFromProps取代componentWillReceiveProps是不准确的，因为componentWillReceiveProps只在Updating过程中才被调用，而且只在因为父组件引发的Updating过程中才被调用。</p>
+
+<p>此外，从上面这个也看得出来，同样是Updating过程，如果是因为自身setState引发或者forceUpdate引发，而不是不由父组件引发，那么getDerivedStateFromProps也不会被调用。React v16.4修正了这一点。自身setState引发也会调用。</p>
 
 <h3 id="并不是父子关系的组件如何实现相互的数据通信">并不是父子关系的组件，如何实现相互的数据通信？</h3>
 <ol>
   <li>父子组件之间的通信，一般是通过props来。简单来说，就是通过一个将需要通信的变量a定义在父组件中，然后通过props来传递给子组件，如果子组件要更改这个变量，那么父组件就需要定义setA方法，然后也通过props传递给子组件，这样就完成了父子组件之间的通信。</li>
-  <li>
-    <p>如果两个组件离得近的话，我们可以在两个组件外层嵌套一个父组件，通过父组件共享变量进行通信。这样的话就可以采用上面那个方法来实现了。
-下面是一个todo list的例子：
-todo list包含一个输入组件和一个列表组件，这两个组件需要通信就需要在外层包裹一个TodoComponent，然后维护一个list列表，输入组件调用changeList方法添加事项，列表组件通过this.state.list的变化来重新渲染列表。
-```js
-export default class TodoComponent extends React.Component{
- constructor(props){
-     super(props);
-     this.state={
-         list:[]
-     };</p>
-
-    <p>}
- changeList(last){
-     this.setState({
-         list: […this.state.list, last]</p>
-
-    <p>})
- }
- handleRemove(index){
-     //console.log(this.state.list.splice(index,1));
-     this.state.list.splice(index,1);
-     this.setState({
-         list:this.state.list
-     })
- }</p>
-
-    <p>render(){
-     return(
-         &lt;div&gt;
-             &lt;Inputcomponent changeList={(last)=&gt;this.changeList(last)} list={this.state.list}/&gt;
-             &lt;Listcomponent list={this.state.list} handleRemove={(index)=&gt;this.handleRemove(index)}/&gt;
-         &lt;/div&gt;</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> )  }
-</code></pre></div>    </div>
-  </li>
+  <li>如果两个组件离得近的话，我们可以在两个组件外层嵌套一个父组件，通过父组件共享变量进行通信。这样的话就可以采用上面那个方法来实现了。</li>
 </ol>
 
-<p>}
-```</p>
+<p>下面是一个todo list的例子：
+todo list包含一个输入组件和一个列表组件，这两个组件需要通信就需要在外层包裹一个TodoComponent，然后维护一个list列表，输入组件调用changeList方法添加事项，列表组件通过this.state.list的变化来重新渲染列表。</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">TodoComponent</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span><span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">){</span>
+        <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="o">=</span><span class="p">{</span>
+            <span class="na">list</span><span class="p">:[]</span>
+        <span class="p">};</span>
+
+
+    <span class="p">}</span>
+    <span class="nx">changeList</span><span class="p">(</span><span class="nx">last</span><span class="p">){</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
+            <span class="na">list</span><span class="p">:</span> <span class="p">[...</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">list</span><span class="p">,</span> <span class="nx">last</span><span class="p">]</span>
+
+    <span class="p">})</span>
+    <span class="p">}</span>
+    <span class="nx">handleRemove</span><span class="p">(</span><span class="nx">index</span><span class="p">){</span>
+        <span class="c1">//console.log(this.state.list.splice(index,1));</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
+            <span class="na">list</span><span class="p">:</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">list</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
+
+
+    <span class="nx">render</span><span class="p">(){</span>
+        <span class="k">return</span><span class="p">(</span>
+            <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="nx">Inputcomponent</span> <span class="nx">changeList</span><span class="o">=</span><span class="p">{(</span><span class="nx">last</span><span class="p">)</span><span class="o">=&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">changeList</span><span class="p">(</span><span class="nx">last</span><span class="p">)}</span> <span class="nx">list</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">list</span><span class="p">}</span><span class="sr">/</span><span class="err">&gt;
+</span>                <span class="o">&lt;</span><span class="nx">Listcomponent</span> <span class="nx">list</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">list</span><span class="p">}</span> <span class="nx">handleRemove</span><span class="o">=</span><span class="p">{(</span><span class="nx">index</span><span class="p">)</span><span class="o">=&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">handleRemove</span><span class="p">(</span><span class="nx">index</span><span class="p">)}</span><span class="sr">/</span><span class="err">&gt;
+</span>            <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>
+        <span class="p">)</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
 
 <h3 id="高阶组件hochigher-order-component">高阶组件HoC（Higher-Order Component）</h3>
 <p>高阶组件就是一个 React 组件包裹着另外一个 React 组件</p>
@@ -303,7 +339,7 @@ React 生命周期
 
 
 
-实... | Run Note " >
+M... | Run Note " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>

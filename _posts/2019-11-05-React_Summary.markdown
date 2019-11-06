@@ -18,7 +18,7 @@ tags:
 
 <img src="http://lrun1124.github.io/img/react_summary/lifeCycle.png" width = "700px"/>
 
-#### 实例化
+#### Mounting
 ##### constructor
 super(props)用来调用基类的构造方法( constructor() ), 通常，在 React 中，在构造函数中只做两件事：
  - 通过给 this.state 赋值对象来初始化内部 state。
@@ -46,7 +46,7 @@ componentDidMount() 会在组件挂载后（插入 DOM 树中）立即调用。�
 2. 操作dom
 3. 发请求获取初始数据
 
-#### 运行
+#### Updating
 react组件更新机制。setState引起的state更新或父组件重新render引起的props更新，更新后的state和props相对之前无论是否有变化，都将引起子组件的重新render。
 
 ##### componentWillReceiveProps
@@ -64,13 +64,51 @@ react组件更新机制。setState引起的state更新或父组件重新render�
 ##### componentDidUpdate
 更新(dom已经更新)后会被立即调用。首次渲染不会执行此方法。当组件更新后，可以在此处对 DOM 进行操作。如果你对更新前后的 props 进行了比较，也可以选择在此处进行网络请求，componentDidUpdate() 中直接调用 setState()，但请注意它必须被包裹在一个条件语件里，正如上述的例子那样进行处理，否则会导致死循环。它还会导致额外的重新渲染，虽然用户不可见，但会影响组件性能。
 
-#### 卸载
+#### Unmounting
 ##### componentWillUnmount
 在组件卸载及销毁之前直接调用。在这里可以释放资源, 比如清除定时器, removeEventListener，这里边setState是无效的, 不应该调用
+
+#### React v16.3
+React v16.3 deprecate了一组生命周期API，除了shouldComponentUpdate之外，render之前的所有生命周期函数全灭。包括：
+
+- componentWillReceiveProps
+- componentWillMount
+- componentWillUpdate
+
+##### getDerivedStateFromProps的帮助来实现
+以前需要利用被deprecate的所有生命周期函数才能实现的功能，都可以通过getDerivedStateFromProps的帮助来实现。这个getDerivedStateFromProps是一个静态函数，所以函数体内不能访问this，简单说，就是应该一个纯函数。每当父组件引发当前组件的渲染过程时，getDerivedStateFromProps会被调用，这样我们有一个机会可以根据新的props和之前的state来调整新的state。
+
+```js
+static getDerivedStateFromProps(nextProps, prevState) {
+  //根据nextProps和prevState计算出预期的状态改变，返回结果会被送给setState
+}
+```
+##### getSnapshotBeforeUpdate
+这函数会在render之后执行，而执行之时DOM元素还没有被更新，给了一个机会去获取DOM信息， 这个snapshot会作为componentDidUpdate的第三个参数传入。
+```js
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log('#enter getSnapshotBeforeUpdate');
+    return 'foo';
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('#enter componentDidUpdate snapshot = ', snapshot);
+  }
+```
+
+所以新的流程如下：
+
+<img src="http://lrun1124.github.io/img/react_summary/lifeCycle_new.jpeg" width = "700px"/>
+
+可以注意到，说getDerivedStateFromProps取代componentWillReceiveProps是不准确的，因为componentWillReceiveProps只在Updating过程中才被调用，而且只在因为父组件引发的Updating过程中才被调用。
+
+此外，从上面这个也看得出来，同样是Updating过程，如果是因为自身setState引发或者forceUpdate引发，而不是不由父组件引发，那么getDerivedStateFromProps也不会被调用。React v16.4修正了这一点。自身setState引发也会调用。
+
 
 ### 并不是父子关系的组件，如何实现相互的数据通信？
 1. 父子组件之间的通信，一般是通过props来。简单来说，就是通过一个将需要通信的变量a定义在父组件中，然后通过props来传递给子组件，如果子组件要更改这个变量，那么父组件就需要定义setA方法，然后也通过props传递给子组件，这样就完成了父子组件之间的通信。
 1. 如果两个组件离得近的话，我们可以在两个组件外层嵌套一个父组件，通过父组件共享变量进行通信。这样的话就可以采用上面那个方法来实现了。
+
 下面是一个todo list的例子：
 todo list包含一个输入组件和一个列表组件，这两个组件需要通信就需要在外层包裹一个TodoComponent，然后维护一个list列表，输入组件调用changeList方法添加事项，列表组件通过this.state.list的变化来重新渲染列表。
 ```js
