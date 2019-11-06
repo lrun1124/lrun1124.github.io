@@ -16,7 +16,7 @@ tags:
 
 ### React 生命周期
 
-<img src="http://lrun1124.github.io/img/react_summary/lifeCycle.webp" width = "700px"/>
+<img src="http://lrun1124.github.io/img/react_summary/lifeCycle.png" width = "700px"/>
 
 #### 实例化
 ##### constructor
@@ -46,7 +46,7 @@ componentDidMount() 会在组件挂载后（插入 DOM 树中）立即调用。�
 2. 操作dom
 3. 发请求获取初始数据
 
-#### 运行时
+#### 运行
 react组件更新机制。setState引起的state更新或父组件重新render引起的props更新，更新后的state和props相对之前无论是否有变化，都将引起子组件的重新render。
 
 ##### componentWillReceiveProps
