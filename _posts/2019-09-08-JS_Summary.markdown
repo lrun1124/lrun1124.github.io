@@ -705,7 +705,13 @@ Node的优缺点
 
 1. cookie: 可设置失效时间，默认是浏览器关闭后，大小4K左右，每次都会携带在HTTP头中，这也是大小限制的原因，如果使用cookie保存过多数据会带来性能问题，主要用于保存密码等信息
 1. localStorage: 除非主动删除，否则永久保留，一般5M左右，仅在浏览器保存，不参与通信
-1. sessionStorage: 仅在当前会话下有效，刷新不删除，关闭页面或浏览器清除，一般5M左右，仅在浏览器保存，不参与通信
+```js
+localStorage.setItem('myCat', 'Tom');
+localStorage.getItem('myCat')
+localStorage.removeItem('myCat');
+localStorage.clear();
+```
+1. sessionStorage: 仅在当前会话下有效，刷新不删除，关闭页面或浏览器清除，一般5M左右，仅在浏览器保存，不参与通信，语法和localStorage一样
 1. 另外sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；localStorage 在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的。
 
 ### Javascript如何实现继承？
@@ -1082,7 +1088,7 @@ var foo = function() {
 1. 用var声明的变量的作用域是它当前的执行上下文，它可以是嵌套的函数（函数作用域），也可以是声明在任何函数外的变量。let和const是块级作用域，意味着它们只能在最近的一组花括号（function、if-else 代码块或 for 循环中）中访问
 1. var会使变量提升，这意味着变量可以在声明之前使用。let和const不会使变量提升，提前使用会报错。
 1. 用var重复声明不会报错，但let和const会。
-1. let和const的区别在于：let允许多次赋值，而const只允许一次。
+1. let和const的区别在于：let允许多次赋值，而const只允许一次。当const变量是基础类型时，改变值会报错，但是为对象其对象的内容是可以改变的，因为const指向对象的地址没有变
 
 ### 构造函数中使用箭头函数有什么好处？
 1. 简介
@@ -1298,7 +1304,7 @@ window.onscroll = throttle(showTop,1000)
 节流场景
 1. 监听滚动事件，比如是否滑到底部自动加载更多，用节流来判断
 
-
+## ES6
 
 
 

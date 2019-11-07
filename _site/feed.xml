@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/lrun1124.github.io/</link>
     <atom:link href="http://localhost:4000/lrun1124.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 06 Nov 2019 14:13:06 +0800</pubDate>
-    <lastBuildDate>Wed, 06 Nov 2019 14:13:06 +0800</lastBuildDate>
+    <pubDate>Wed, 06 Nov 2019 18:43:19 +0800</pubDate>
+    <lastBuildDate>Wed, 06 Nov 2019 18:43:19 +0800</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
     
       <item>
@@ -154,6 +154,16 @@ todo list包含一个输入组件和一个列表组件，这两个组件需要�
 
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;应该在react生命周期的什么阶段发出ajax请求为什么&quot;&gt;应该在React生命周期的什么阶段发出ajax请求，为什么？&lt;/h3&gt;
+&lt;p&gt;AJAX请求应在 componentDidMount函数 进行请求。&lt;/p&gt;
+
+&lt;h3 id=&quot;实现组件有哪些方式&quot;&gt;实现组件有哪些方式？&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;React.createClass 使用API来定义组件&lt;/li&gt;
+  &lt;li&gt;React ES6 class component 用 ES6 的class 来定义组件&lt;/li&gt;
+  &lt;li&gt;Functional stateless component 通过函数定义无状态组件&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;h3 id=&quot;高阶组件hochigher-order-component&quot;&gt;高阶组件HoC（Higher-Order Component）&lt;/h3&gt;
 &lt;p&gt;高阶组件就是一个 React 组件包裹着另外一个 React 组件&lt;/p&gt;
@@ -1512,6 +1522,55 @@ rem布局的本质是等比缩放，一般是基于宽度。&lt;/li&gt;
   &lt;li&gt;clientWidth：内容高度+padding宽度，jQuery中的innerWidtht()方法返回的就是这个宽度。&lt;/li&gt;
   &lt;li&gt;offsetWidth：内容高度+padding高度+边框宽度，jQuery中的outerWidth()方法返回的就是这个宽度。&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h3 id=&quot;css实现单多行文本溢出显示&quot;&gt;css实现单/多行文本溢出显示&lt;/h3&gt;
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;单行&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;overflow&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;hidden&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;text-overflow&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:ellipsis&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;white-space&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;nowrap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;多行&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-webkit-box&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-webkit-box-orient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;vertical&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-webkit-line-clamp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;overflow&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;hidden&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;让图文不可复制&quot;&gt;让图文不可复制&lt;/h3&gt;
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;-webkit-user-select&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;nt&quot;&gt;-ms-user-select&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-moz-user-select&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-khtml-user-select&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;user-select&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;有些网页为了尊重原创复制的文本都会被加上一段来源说明是如何做到的呢&quot;&gt;有些网页为了尊重原创，复制的文本都会被加上一段来源说明，是如何做到的呢？&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;答案区域监听copy事件，并阻止这个事件的默认行为。&lt;/li&gt;
+  &lt;li&gt;获取选中的内容（window.getSelection()）加上版权信息，&lt;/li&gt;
+  &lt;li&gt;然后设置到剪切板（clipboarddata.setData()）&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;经测测试，在chrome上window.clipboardData是undefined&lt;/li&gt;
+  &lt;li&gt;出于安全考虑，clipboardData.getData(“text”, text)也不可用&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;addLink&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;preventDefault&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//经测测试，在chrome上window.clipboardData是undefined&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//出于安全考虑，clipboardData.getData(&quot;text&quot;, text)也不可用&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pagelink&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;nRead more: '&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;copytext&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;  &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getSelection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pagelink&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;clipdata&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clipboardData&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clipboardData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clipdata&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;clipdata&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Text'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;copytext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'copy'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;addLink&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
 </description>
         <pubDate>Sun, 15 Sep 2019 10:00:00 +0800</pubDate>
         <link>http://localhost:4000/lrun1124.github.io/2019/09/15/CSS_Summary/</link>
@@ -1585,8 +1644,7 @@ rem布局的本质是等比缩放，一般是基于宽度。&lt;/li&gt;
   &lt;li&gt;事件冒泡: 越低层的元素越早接收到时间，由下到上&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;阻止冒泡事件的方法&lt;/p&gt;
-&lt;h3 id=&quot;给一个dom同时绑定两个点击事件一个用捕获一个用冒泡会执行几次事件&quot;&gt;给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件？&lt;/h3&gt;
+&lt;h3 id=&quot;给一个dom同时绑定两个点击事件一个用捕获一个用冒泡会执行几次事件事件的各个阶段&quot;&gt;给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件？（事件的各个阶段）&lt;/h3&gt;
 &lt;p&gt;绑定几个事件就执行几次，执行优先级:&lt;/p&gt;
 
 &lt;ol&gt;
@@ -1921,6 +1979,50 @@ label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用�
   &lt;li&gt;防止暴力破解&lt;/li&gt;
   &lt;li&gt;防止脚本刷票，论坛灌水等&lt;/li&gt;
 &lt;/ol&gt;
+
+&lt;h3 id=&quot;documenwrite和-innerhtml的区别&quot;&gt;documen.write和 innerHTML的区别&lt;/h3&gt;
+&lt;p&gt;document.write只能重绘整个页面, innerHTML可以重绘页面的一部分&lt;/p&gt;
+
+&lt;h3 id=&quot;列举ie与其他浏览器不一样的特性&quot;&gt;列举IE与其他浏览器不一样的特性？&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;IE不支持事件捕获&lt;/li&gt;
+  &lt;li&gt;IE使用attachEvent而不是addEventListener&lt;/li&gt;
+  &lt;li&gt;组织冒泡，IE需要设置 cancelBubble 为 true，其他需要调用stopPropagation()；&lt;/li&gt;
+  &lt;li&gt;旧版IE盒子模型不同，content的计算包括了padding和border&lt;/li&gt;
+  &lt;li&gt;获取css属性，IE使用currentStyle，其他使用getComputedStyle&lt;/li&gt;
+  &lt;li&gt;清除浮动要加上zoom:1;触发haslayout&lt;/li&gt;
+  &lt;li&gt;png24位的图片在IE6浏览器上出现背景，解决方案是做成PNG8.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;web应用从服务器主动推送data到客户端有那些方式&quot;&gt;WEB应用从服务器主动推送Data到客户端有那些方式&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;html5提供的Websocket&lt;/li&gt;
+  &lt;li&gt;不可见的iframe&lt;/li&gt;
+  &lt;li&gt;WebSocket通过Flash&lt;/li&gt;
+  &lt;li&gt;XHR长时间连接&lt;/li&gt;
+  &lt;li&gt;XHR Multipart Streaming&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;第一次访问页面中时弹出引导用户关闭引导之后再次进入页面时不希望出现引导如何实现&quot;&gt;第一次访问页面中时弹出引导，用户关闭引导，之后再次进入页面时不希望出现引导，如何实现？&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;localStorage&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;dsn-prefetchpreload-prefetch&quot;&gt;dsn-prefetch，preload, prefetch&lt;/h4&gt;
+
+&lt;p&gt;dsn-prefetch: 提前解析dsn&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;link&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;rel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;dns-prefetch&quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;//example.com&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;preload: 浏览器遇到preload，立刻开始下载js，放在内存里，但并不会执行，只有遇到script标签才会执行&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;link&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;rel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;preload&quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/main.js&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;script&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;prefetch: 浏览器空闲时候加载，比如下一页&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;link&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;rel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;preload&quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/main.js&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;script&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Tue, 10 Sep 2019 10:00:00 +0800</pubDate>
         <link>http://localhost:4000/lrun1124.github.io/2019/09/10/HTML_Summary/</link>
@@ -2689,8 +2791,14 @@ CMD缺点：执行等待时间会叠加。因为每个文件执行时是同步�
 
 &lt;ol&gt;
   &lt;li&gt;cookie: 可设置失效时间，默认是浏览器关闭后，大小4K左右，每次都会携带在HTTP头中，这也是大小限制的原因，如果使用cookie保存过多数据会带来性能问题，主要用于保存密码等信息&lt;/li&gt;
-  &lt;li&gt;localStorage: 除非主动删除，否则永久保留，一般5M左右，仅在浏览器保存，不参与通信&lt;/li&gt;
-  &lt;li&gt;sessionStorage: 仅在当前会话下有效，刷新不删除，关闭页面或浏览器清除，一般5M左右，仅在浏览器保存，不参与通信&lt;/li&gt;
+  &lt;li&gt;localStorage: 除非主动删除，否则永久保留，一般5M左右，仅在浏览器保存，不参与通信
+    &lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;localStorage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'myCat'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;localStorage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'myCat'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;localStorage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;removeItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'myCat'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;localStorage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;sessionStorage: 仅在当前会话下有效，刷新不删除，关闭页面或浏览器清除，一般5M左右，仅在浏览器保存，不参与通信，语法和localStorage一样&lt;/li&gt;
   &lt;li&gt;另外sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；localStorage 在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的。&lt;/li&gt;
 &lt;/ol&gt;
 
@@ -3068,7 +3176,7 @@ origin： 协议+主机+端口号，也可以设置为”*“，表示可以传�
   &lt;li&gt;用var声明的变量的作用域是它当前的执行上下文，它可以是嵌套的函数（函数作用域），也可以是声明在任何函数外的变量。let和const是块级作用域，意味着它们只能在最近的一组花括号（function、if-else 代码块或 for 循环中）中访问&lt;/li&gt;
   &lt;li&gt;var会使变量提升，这意味着变量可以在声明之前使用。let和const不会使变量提升，提前使用会报错。&lt;/li&gt;
   &lt;li&gt;用var重复声明不会报错，但let和const会。&lt;/li&gt;
-  &lt;li&gt;let和const的区别在于：let允许多次赋值，而const只允许一次。&lt;/li&gt;
+  &lt;li&gt;let和const的区别在于：let允许多次赋值，而const只允许一次。当const变量是基础类型时，改变值会报错，但是为对象其对象的内容是可以改变的，因为const指向对象的地址没有变&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h3 id=&quot;构造函数中使用箭头函数有什么好处&quot;&gt;构造函数中使用箭头函数有什么好处？&lt;/h3&gt;
@@ -3286,6 +3394,8 @@ origin： 协议+主机+端口号，也可以设置为”*“，表示可以传�
   &lt;li&gt;监听滚动事件，比如是否滑到底部自动加载更多，用节流来判断&lt;/li&gt;
 &lt;/ol&gt;
 
+&lt;h2 id=&quot;es6&quot;&gt;ES6&lt;/h2&gt;
+
 </description>
         <pubDate>Sun, 08 Sep 2019 09:00:00 +0800</pubDate>
         <link>http://localhost:4000/lrun1124.github.io/2019/09/08/JS_Summary/</link>
@@ -3317,6 +3427,7 @@ origin： 协议+主机+端口号，也可以设置为”*“，表示可以传�
   &lt;li&gt;减少http请求次数&lt;/li&gt;
   &lt;li&gt;http Keep-alive 处理好timeout&lt;/li&gt;
   &lt;li&gt;cookie隔离&lt;/li&gt;
+  &lt;li&gt;前端用变量保存AJAX请求结果，每次操作本地变量，不用请求，减少请求次数&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h4 id=&quot;html层面布局&quot;&gt;html层面布局&lt;/h4&gt;
@@ -3334,6 +3445,7 @@ origin： 协议+主机+端口号，也可以设置为”*“，表示可以传�
   &lt;li&gt;必要时使用display:none再修改样式&lt;/li&gt;
   &lt;li&gt;多次append可以先放到一个临时页面再插入页面&lt;/li&gt;
   &lt;li&gt;localstorge和sessionstorage&lt;/li&gt;
+  &lt;li&gt;用innerHTML代替DOM操作，减少DOM操作次数，优化javascript性能。&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h4 id=&quot;css端&quot;&gt;css端&lt;/h4&gt;
@@ -3342,25 +3454,17 @@ origin： 协议+主机+端口号，也可以设置为”*“，表示可以传�
   &lt;li&gt;使用transform操作动画&lt;/li&gt;
   &lt;li&gt;避免使用通配符，不使用标签名或类名修饰ID规则&lt;/li&gt;
   &lt;li&gt;尽量选择最具体的方式，利用关键选择器&lt;/li&gt;
-  &lt;li&gt;使用transform操作动画
-核心：减少JS下载时间&lt;/li&gt;
+  &lt;li&gt;使用transform操作动画&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h4 id=&quot;dsn-prefetchpreload-prefetch&quot;&gt;dsn-prefetch，preload, prefetch&lt;/h4&gt;
-
-&lt;p&gt;dsn-prefetch: 提前解析dsn&lt;/p&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;link&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;rel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;dns-prefetch&quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;//example.com&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;preload: 浏览器遇到preload，立刻开始下载js，放在内存里，但并不会执行，只有遇到script标签才会执行&lt;/p&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;link&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;rel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;preload&quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/main.js&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;script&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;prefetch: 浏览器空闲时候加载，比如下一页&lt;/p&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;link&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;rel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;preload&quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/main.js&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;script&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h4 id=&quot;other&quot;&gt;other&lt;/h4&gt;
+&lt;ol&gt;
+  &lt;li&gt;尽量避免使用iframe，阻塞onload，不利于seo，共享连接池影响页面的并行加载，如果需要使用iframe，最好是通过javascript，动态给iframe添加src属性值&lt;/li&gt;
+  &lt;li&gt;禁止使用gif图片实现loading效果（降低CPU消耗，提升渲染性能）；&lt;/li&gt;
+  &lt;li&gt;使用CSS3代码代替JS动画（尽可能避免重绘重排以及回流）；&lt;/li&gt;
+  &lt;li&gt;对于一些小图标，可以使用base64位编码，以减少网络请求。但不建议大图使用，比较耗费CPU；&lt;/li&gt;
+  &lt;li&gt;避免在页面的主体布局中使用table，table要等其中的内容完全下载之后才会显示出来，显示比div+css布局慢。对普通的网站有一个统一的思路，就是尽量向前端优化、减少数据库操作、减少磁盘IO。&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;h2 id=&quot;比较好的架构&quot;&gt;比较好的架构&lt;/h2&gt;
 &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;

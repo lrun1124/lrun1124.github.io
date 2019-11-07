@@ -58,8 +58,7 @@ IE是事件冒泡，firefox同时支持事件冒泡和捕获
 * 事件捕获: 越高层的元素越早接收到事件，由上到下
 * 事件冒泡: 越低层的元素越早接收到时间，由下到上
 
-阻止冒泡事件的方法
-### 给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件？
+### 给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件？（事件的各个阶段）
 绑定几个事件就执行几次，执行优先级:
 
 1. 父元素的捕获事件
@@ -363,3 +362,44 @@ getElementsByClass()
 1. 防止XSS
 1. 防止暴力破解
 1. 防止脚本刷票，论坛灌水等
+
+### documen.write和 innerHTML的区别
+document.write只能重绘整个页面, innerHTML可以重绘页面的一部分
+
+### 列举IE与其他浏览器不一样的特性？
+1. IE不支持事件捕获
+1. IE使用attachEvent而不是addEventListener
+1. 组织冒泡，IE需要设置 cancelBubble 为 true，其他需要调用stopPropagation()；
+1. 旧版IE盒子模型不同，content的计算包括了padding和border
+1. 获取css属性，IE使用currentStyle，其他使用getComputedStyle
+1. 清除浮动要加上zoom:1;触发haslayout
+1. png24位的图片在IE6浏览器上出现背景，解决方案是做成PNG8.
+
+### WEB应用从服务器主动推送Data到客户端有那些方式
+1. html5提供的Websocket
+1. 不可见的iframe
+1. WebSocket通过Flash
+1. XHR长时间连接
+1. XHR Multipart Streaming
+
+### 第一次访问页面中时弹出引导，用户关闭引导，之后再次进入页面时不希望出现引导，如何实现？
+1. localStorage
+
+#### dsn-prefetch，preload, prefetch
+
+dsn-prefetch: 提前解析dsn
+
+```js
+<link rel="dns-prefetch" href="//example.com">
+```
+
+preload: 浏览器遇到preload，立刻开始下载js，放在内存里，但并不会执行，只有遇到script标签才会执行
+
+```js
+<link rel="preload" href="/main.js" as="script">
+```
+prefetch: 浏览器空闲时候加载，比如下一页
+
+```js
+<link rel="preload" href="/main.js" as="script">
+```

@@ -23,6 +23,7 @@ tags:
 1. 减少http请求次数
 1. http Keep-alive 处理好timeout
 1. cookie隔离
+1. 前端用变量保存AJAX请求结果，每次操作本地变量，不用请求，减少请求次数
 
 #### html层面布局
 1. 使用dsn-prefetch, dsn缓存减少dsn获取时间
@@ -36,6 +37,7 @@ tags:
 1. 必要时使用display:none再修改样式
 1. 多次append可以先放到一个临时页面再插入页面
 1. localstorge和sessionstorage
+1. 用innerHTML代替DOM操作，减少DOM操作次数，优化javascript性能。
 
 #### css端
 1. 尽量使用class修改，减少js直接修改css
@@ -43,26 +45,13 @@ tags:
 1. 避免使用通配符，不使用标签名或类名修饰ID规则
 1. 尽量选择最具体的方式，利用关键选择器
 1. 使用transform操作动画
-核心：减少JS下载时间
 
-#### dsn-prefetch，preload, prefetch
-
-dsn-prefetch: 提前解析dsn
-
-```js
-<link rel="dns-prefetch" href="//example.com">
-```
-
-preload: 浏览器遇到preload，立刻开始下载js，放在内存里，但并不会执行，只有遇到script标签才会执行
-
-```js
-<link rel="preload" href="/main.js" as="script">
-```
-prefetch: 浏览器空闲时候加载，比如下一页
-
-```js
-<link rel="preload" href="/main.js" as="script">
-```
+#### other
+1. 尽量避免使用iframe，阻塞onload，不利于seo，共享连接池影响页面的并行加载，如果需要使用iframe，最好是通过javascript，动态给iframe添加src属性值
+1. 禁止使用gif图片实现loading效果（降低CPU消耗，提升渲染性能）；
+1. 使用CSS3代码代替JS动画（尽可能避免重绘重排以及回流）；
+1. 对于一些小图标，可以使用base64位编码，以减少网络请求。但不建议大图使用，比较耗费CPU；
+1. 避免在页面的主体布局中使用table，table要等其中的内容完全下载之后才会显示出来，显示比div+css布局慢。对普通的网站有一个统一的思路，就是尽量向前端优化、减少数据库操作、减少磁盘IO。
 
 ## 比较好的架构
 ```html

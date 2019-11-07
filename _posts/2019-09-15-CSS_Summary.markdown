@@ -789,3 +789,54 @@ function getStyle(element, attr) {
 * width：指元素内容的宽度，jQuery中的width()方法返回的就是这个宽度。
 * clientWidth：内容高度+padding宽度，jQuery中的innerWidtht()方法返回的就是这个宽度。
 * offsetWidth：内容高度+padding高度+边框宽度，jQuery中的outerWidth()方法返回的就是这个宽度。
+
+### css实现单/多行文本溢出显示
+```css
+//单行
+overflow: hidden;
+text-overflow:ellipsis;
+white-space: nowrap;
+
+//多行
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 3;
+overflow: hidden;
+```
+
+### 让图文不可复制
+```css
+-webkit-user-select: none; 
+-ms-user-select: none;
+-moz-user-select: none;
+-khtml-user-select: none;
+user-select: none;
+```
+
+### 有些网页为了尊重原创，复制的文本都会被加上一段来源说明，是如何做到的呢？
+1. 答案区域监听copy事件，并阻止这个事件的默认行为。
+1. 获取选中的内容（window.getSelection()）加上版权信息，
+1. 然后设置到剪切板（clipboarddata.setData()）
+
+* 经测测试，在chrome上window.clipboardData是undefined
+* 出于安全考虑，clipboardData.getData("text", text)也不可用
+
+```html
+<script type="text/javascript">
+function addLink(e) {
+    e.preventDefault();
+    //经测测试，在chrome上window.clipboardData是undefined
+    //出于安全考虑，clipboardData.getData("text", text)也不可用
+    var pagelink = '\nRead more: ' + document.location.href,
+        copytext =  window.getSelection() + pagelink,
+        clipdata = e.clipboardData || window.clipboardData;
+    if (clipdata) {
+        clipdata.setData('Text', copytext);
+    }
+}
+document.addEventListener('copy', addLink);
+```
+
+
+
+

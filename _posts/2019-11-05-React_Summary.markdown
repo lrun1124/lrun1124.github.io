@@ -148,6 +148,14 @@ export default class TodoComponent extends React.Component{
 
 }
 ```
+### 应该在React生命周期的什么阶段发出ajax请求，为什么？
+AJAX请求应在 componentDidMount函数 进行请求。
+
+### 实现组件有哪些方式？
+
+1. React.createClass 使用API来定义组件
+1. React ES6 class component 用 ES6 的class 来定义组件
+1. Functional stateless component 通过函数定义无状态组件
 
 ### 高阶组件HoC（Higher-Order Component）
 高阶组件就是一个 React 组件包裹着另外一个 React 组件

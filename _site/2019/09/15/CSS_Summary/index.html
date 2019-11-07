@@ -1001,6 +1001,55 @@ rem布局的本质是等比缩放，一般是基于宽度。</li>
   <li>offsetWidth：内容高度+padding高度+边框宽度，jQuery中的outerWidth()方法返回的就是这个宽度。</li>
 </ul>
 
+<h3 id="css实现单多行文本溢出显示">css实现单/多行文本溢出显示</h3>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">//</span><span class="err">单行</span>
+<span class="nt">overflow</span><span class="o">:</span> <span class="nt">hidden</span><span class="o">;</span>
+<span class="nt">text-overflow</span><span class="nd">:ellipsis</span><span class="o">;</span>
+<span class="nt">white-space</span><span class="o">:</span> <span class="nt">nowrap</span><span class="o">;</span>
+
+<span class="o">//</span><span class="err">多行</span>
+<span class="nt">display</span><span class="o">:</span> <span class="nt">-webkit-box</span><span class="o">;</span>
+<span class="nt">-webkit-box-orient</span><span class="o">:</span> <span class="nt">vertical</span><span class="o">;</span>
+<span class="nt">-webkit-line-clamp</span><span class="o">:</span> <span class="nt">3</span><span class="o">;</span>
+<span class="nt">overflow</span><span class="o">:</span> <span class="nt">hidden</span><span class="o">;</span>
+</code></pre></div></div>
+
+<h3 id="让图文不可复制">让图文不可复制</h3>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">-webkit-user-select</span><span class="o">:</span> <span class="nt">none</span><span class="o">;</span> 
+<span class="nt">-ms-user-select</span><span class="o">:</span> <span class="nt">none</span><span class="o">;</span>
+<span class="nt">-moz-user-select</span><span class="o">:</span> <span class="nt">none</span><span class="o">;</span>
+<span class="nt">-khtml-user-select</span><span class="o">:</span> <span class="nt">none</span><span class="o">;</span>
+<span class="nt">user-select</span><span class="o">:</span> <span class="nt">none</span><span class="o">;</span>
+</code></pre></div></div>
+
+<h3 id="有些网页为了尊重原创复制的文本都会被加上一段来源说明是如何做到的呢">有些网页为了尊重原创，复制的文本都会被加上一段来源说明，是如何做到的呢？</h3>
+<ol>
+  <li>答案区域监听copy事件，并阻止这个事件的默认行为。</li>
+  <li>获取选中的内容（window.getSelection()）加上版权信息，</li>
+  <li>然后设置到剪切板（clipboarddata.setData()）</li>
+</ol>
+
+<ul>
+  <li>经测测试，在chrome上window.clipboardData是undefined</li>
+  <li>出于安全考虑，clipboardData.getData(“text”, text)也不可用</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+<span class="kd">function</span> <span class="nx">addLink</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="c1">//经测测试，在chrome上window.clipboardData是undefined</span>
+    <span class="c1">//出于安全考虑，clipboardData.getData("text", text)也不可用</span>
+    <span class="kd">var</span> <span class="nx">pagelink</span> <span class="o">=</span> <span class="s1">'</span><span class="err">\</span><span class="s1">nRead more: '</span> <span class="o">+</span> <span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="p">,</span>
+        <span class="nx">copytext</span> <span class="o">=</span>  <span class="nb">window</span><span class="p">.</span><span class="nx">getSelection</span><span class="p">()</span> <span class="o">+</span> <span class="nx">pagelink</span><span class="p">,</span>
+        <span class="nx">clipdata</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">clipboardData</span> <span class="o">||</span> <span class="nb">window</span><span class="p">.</span><span class="nx">clipboardData</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">clipdata</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">clipdata</span><span class="p">.</span><span class="nx">setData</span><span class="p">(</span><span class="s1">'Text'</span><span class="p">,</span> <span class="nx">copytext</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'copy'</span><span class="p">,</span> <span class="nx">addLink</span><span class="p">);</span>
+</code></pre></div></div>
+
+
 
                 <hr>
 
