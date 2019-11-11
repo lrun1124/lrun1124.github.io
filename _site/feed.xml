@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/lrun1124.github.io/</link>
     <atom:link href="http://localhost:4000/lrun1124.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 06 Nov 2019 18:43:19 +0800</pubDate>
-    <lastBuildDate>Wed, 06 Nov 2019 18:43:19 +0800</lastBuildDate>
+    <pubDate>Mon, 11 Nov 2019 13:20:35 +0800</pubDate>
+    <lastBuildDate>Mon, 11 Nov 2019 13:20:35 +0800</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
     
       <item>
@@ -824,6 +824,16 @@ JS引擎线程与worker线程间通过特定的方式通信（postMessage API，
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;未知宽度（常用）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;margin-left&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+  &lt;span class=&quot;nl&quot;&gt;transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;translateX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
 &lt;h4 id=&quot;水平垂直居中&quot;&gt;水平垂直居中&lt;/h4&gt;
 
 &lt;ul&gt;
@@ -841,7 +851,7 @@ JS引擎线程与worker线程间通过特定的方式通信（postMessage API，
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;未知容器宽高，使用transform属性，定义2D转换&lt;/li&gt;
+  &lt;li&gt;未知容器宽高，使用transform属性，定义2D转换（常用）&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -1727,6 +1737,14 @@ parent bubble
   &lt;li&gt;标准模式的排版 和JS运作模式都是以该浏览器支持的最高标准运行。在兼容模式中，页面以宽松的向后兼容的方式显示,模拟老式浏览器的行为以防止站点无法工作。&lt;/li&gt;
 &lt;/ol&gt;
 
+&lt;p&gt;常见的Doctype&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//html5 
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
+//HTML4.01 strict：不允许使用表现性、废弃元素（如 font）以及 frameset
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&amp;gt;&lt;/span&gt;
+//XHTML1.0 Strict:不使用允许表现性、废弃元素以及 frameset。文档必须是结构良好的 XML 文档。
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;HTML5 不基于 SGML，因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为（让浏览器按照它们应该的方式来运行)HTML4.01基于SGML,所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型。&lt;/p&gt;
 
 &lt;h3 id=&quot;xmlsgmlhtmlxhtmlhtml5&quot;&gt;XML,SGML,HTML,XHTML,HTML5&lt;/h3&gt;
@@ -2023,6 +2041,56 @@ label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用�
 
 &lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;link&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;rel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;preload&quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/main.js&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;script&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;前端注意哪些seo&quot;&gt;前端注意哪些SEO&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;合理的 title、description、keywords：搜索对着三项的权重逐个减小，title 值强调重点即可，重要关键词出现不要超过 2 次，而且要靠前，不同页面 title 要有所不同；description 把页面内容高度概括，长度合适，不可过分堆砌关键词，不同页面 description 有所不同；keywords 列举出重要关键词即可&lt;/li&gt;
+  &lt;li&gt;语义化的 HTML 代码，符合 W3C 规范：语义化代码让搜索引擎容易理解网页&lt;/li&gt;
+  &lt;li&gt;重要内容 HTML 代码放在最前：搜索引擎抓取 HTML 顺序是从上到下，有的搜索引擎对抓取长度有限制，保证重要内容一定会被抓取&lt;/li&gt;
+  &lt;li&gt;重要内容不要用 js 输出：爬虫不会执行 js 获取内容&lt;/li&gt;
+  &lt;li&gt;少用 iframe：搜索引擎不会抓取 iframe 中的内容&lt;/li&gt;
+  &lt;li&gt;非装饰性图片必须加 alt&lt;/li&gt;
+  &lt;li&gt;提高网站速度：网站速度是搜索引擎排序的一个重要指标&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;的title和alt有什么区别&quot;&gt;&lt;img /&gt;的title和alt有什么区别&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;title是global attributes之一，用于为元素提供附加的 advisory information。通常当鼠标滑动到元素上的时候显示。&lt;/li&gt;
+  &lt;li&gt;alt是&amp;lt;img&amp;gt;的特有属性，是图片内容的等价描述，用于图片无法加载时显示、读屏器阅读图片。可提图片高可访问性，除了纯装饰图片外都必须设置有意义的值，搜索引擎会重点分析。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;html-全局属性global-attribute有哪些&quot;&gt;HTML 全局属性(global attribute)有哪些&lt;/h3&gt;
+&lt;p&gt;全局属性是所有HTML元素共有的属性; 它们可以用于所有元素，即使属性可能对某些元素不起作用。常见的&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;title: 元素相关的建议信息&lt;/li&gt;
+  &lt;li&gt;class:为元素设置类标识，多个类名用空格分开，CSS 和 javascript 可通过 class 属性获取元素&lt;/li&gt;
+  &lt;li&gt;draggable: 设置元素是否可拖拽&lt;/li&gt;
+  &lt;li&gt;id: 元素 id，文档内唯一&lt;/li&gt;
+  &lt;li&gt;lang: 元素内容的的语言&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;http-method&quot;&gt;HTTP METHOD&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;GET是最常用的方法，通常用于请求服务器发送某个资源。&lt;/li&gt;
+  &lt;li&gt;HEAD与 GET 类似，但服务器在响应中值返回首部，不返回实体的主体部分。这就允许客户端在未获取实际资源的情
+况下，对资源的首部进行检查，使用HEAD，我们可以更高效的完成以下工作：在不获取资源的情况下，了解资源的一些信息，比如资源类型；通过查看响应中的状态码，可以确定资源是否存在；通过查看首部，测试资源是否被修改；&lt;/li&gt;
+  &lt;li&gt;PUT让服务器用请求的主体部分来创建一个由所请求的 URL 命名的新文档，或者，如果那个 URL 已经存在的话，就用干这个主体替代它&lt;/li&gt;
+  &lt;li&gt;POST起初是用来向服务器输入数据的。实际上，通常会用它来支持 HTML 的表单。表单中填好的数据通常会被送给服务器，然后由服务器将其发送到要去的地方。&lt;/li&gt;
+  &lt;li&gt;TRACE会在目的服务器端发起一个“回环”诊断，我们都知道，客户端在发起一个请求时，这个请求可能要穿过防火墙、代理、网关、或者其它的一些应用程序。这中间的每个节点都可能会修改原始的HTTP请求，TRACE方法允许客户端在最终将请求发送服务器时，它变成了什么样子。由于有一个“回环”诊断，在请求最终到达服务器时，服务器会弹回一条TRACE响应，并在响应主体中携带它收到的原始请求报文的最终模样。这样客户端就可以查看HTTP请求报文在发送的途中，是否被修改过了。&lt;/li&gt;
+  &lt;li&gt;OPTIONS方法请求 web 服务器告知其支持的各种功能。可以查询服务器支持哪些方法或者对某些特殊资源支持哪些方法。若请求成功，则它会在HTTP头中包含一个名为“Allow”的头，值是所支持的方法，如“GET, POST”。&lt;/li&gt;
+  &lt;li&gt;DELETE请求服务器删除请求 URL 指定的资源&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;put和post&quot;&gt;PUT和POST&lt;/h3&gt;
+&lt;p&gt;PUT方法是幂等的：调用一次与连续调用多次是等价的（即没有副作用），而连续调用多次POST方法可能会有副作用，比如将一个订单重复提交多次。等幂就是值不变性，相同的请求得到相同的响应结果，不会出现相同的请求出现不同的响应结果。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;PUT请求：如果两个请求相同，后一个请求会把第一个请求覆盖掉。（所以PUT用来改资源）&lt;/li&gt;
+  &lt;li&gt;Post请求：后一个请求不会把第一个请求覆盖掉。（所以Post用来增资源）&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;相同的请求怎样处理由我们服务器决定，比如：一个创建一篇博文的uri,被请求两次时，假如我们的服务器认为他们是不一样的，那么这时就只能用post，而不能用put.&lt;/p&gt;
+
 </description>
         <pubDate>Tue, 10 Sep 2019 10:00:00 +0800</pubDate>
         <link>http://localhost:4000/lrun1124.github.io/2019/09/10/HTML_Summary/</link>
@@ -2828,25 +2896,77 @@ CMD缺点：执行等待时间会叠加。因为每个文件执行时是同步�
 &lt;h3 id=&quot;javascript继承的6种方法&quot;&gt;javascript继承的6种方法&lt;/h3&gt;
 
 &lt;h3 id=&quot;一个页面从输入-url-到页面加载显示完成这个过程中都发生了什么&quot;&gt;一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;以http,webkit,chrome为例&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;再输入url的时候，浏览器可能会做一些预处理，比如 Chrome 会根据历史统计来预估所输入字符对应的网站，比如输入了「ba」，根据之前的历史发现 90% 的概率会访问「www.baidu.com 」，因此就会在输入回车前就马上开始建立 TCP 链接甚至渲染了，还有很多其它很多优化策略&lt;/li&gt;
-  &lt;li&gt;浏览器会开启一个线程来处理这个请求，对 URL 分析判断如果是 http 协议就按照 Web 方式来处理;&lt;/li&gt;
-  &lt;li&gt;浏览器内核中会先查看缓存，然后调用浏览器内核中的对应方法;&lt;/li&gt;
-  &lt;li&gt;进行DNS解析，使用UDP协议获取网址的IP地址;&lt;/li&gt;
-  &lt;li&gt;设置 UA 等信息发出第二个GET请求，进行HTTP协议会话，客户端发送报头(请求报头);&lt;/li&gt;
+  &lt;li&gt;再输入url的时候，浏览器根据优化策略可能会做一些&lt;strong&gt;预处理&lt;/strong&gt;，比如 Chrome 会根据历史统计来预估所输入字符对应的网站，比如输入了「go」，根据之前的历史发现 90% 的概率会访问google，因此就会在输入回车前就马上开始建立 TCP 链接甚至渲染了；&lt;/li&gt;
+  &lt;li&gt;Browser进程会开启一个线程来处理这个请求，&lt;strong&gt;解析 URL&lt;/strong&gt;获取协议，主机，端口，path，如果是http协议就按照 Web 方式来处理；&lt;/li&gt;
+  &lt;li&gt;Browser会先查看&lt;strong&gt;缓存&lt;/strong&gt;，尝试使用&lt;strong&gt;强缓存&lt;/strong&gt;；
+    &lt;ol&gt;
+      &lt;li&gt;如果资源未缓存，发起新请求；&lt;/li&gt;
+      &lt;li&gt;如果已缓存，检验是否足够新，检验新鲜通常有两个 HTTP 头进行控制&lt;code class=&quot;highlighter-rouge&quot;&gt;Expires&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;Cache-Control&lt;/code&gt;；
+        &lt;ul&gt;
+          &lt;li&gt;HTTP1.0 提供 Expires，值为一个绝对时间表示缓存新鲜日期&lt;/li&gt;
+          &lt;li&gt;HTTP1.1 增加了 Cache-Control: max-age=,值为以秒为单位的最大新鲜时间&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;足够新直接使用，否则与服务器进行验证。&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;进行&lt;strong&gt;DNS解析&lt;/strong&gt;，发出第一个GET请求，获取主机 ip 地址，过程如下：
+    &lt;ol&gt;
+      &lt;li&gt;浏览器缓存&lt;/li&gt;
+      &lt;li&gt;本机缓存&lt;/li&gt;
+      &lt;li&gt;hosts 文件&lt;/li&gt;
+      &lt;li&gt;路由器缓存&lt;/li&gt;
+      &lt;li&gt;ISP DNS 缓存&lt;/li&gt;
+      &lt;li&gt;DNS 递归查询（可能存在负载均衡导致每次 IP 不一样）&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;打开一个 socket 与目标 IP 地址，端口&lt;strong&gt;建立 TCP 链接&lt;/strong&gt;，三次握手；&lt;/li&gt;
+  &lt;li&gt;TCP 链接建立后设置 UA 等信息发送第二个HTTP 请求，&lt;strong&gt;进行HTTP协议会话&lt;/strong&gt;，客户端发送请求报头;&lt;/li&gt;
   &lt;li&gt;进过运营商路由，主干网传输，进入到相应服务器上的 Web Server，如 Apache、Tomcat、Node.JS 等服务器;&lt;/li&gt;
-  &lt;li&gt;进入部署好的后端应用，如 PHP、Java、JavaScript、Python 等，找到对应的处理过程;&lt;/li&gt;
-  &lt;li&gt;处理结束回馈报头，此处如果浏览器访问过，缓存上有对应资源，会与服务器最后修改时间对比，一致则返回http状态码304，表示网页未修改过;&lt;/li&gt;
-  &lt;li&gt;浏览器开始下载html文档(响应报头，状态码200)，同时使用缓存;&lt;/li&gt;
-  &lt;li&gt;转交给Renderer进程. 开始渲染&lt;/li&gt;
-  &lt;li&gt;解析html建立dom树&lt;/li&gt;
-  &lt;li&gt;解析css构建CSSOM 树（Recaculate Style）&lt;/li&gt;
-  &lt;li&gt;合并 DOM 树与 CSSOM 树为 Render 树&lt;/li&gt;
-  &lt;li&gt;布局render树（Layout/reflow），负责各元素尺寸、位置的计算&lt;/li&gt;
-  &lt;li&gt;绘制render树（paint），绘制页面像素信息&lt;/li&gt;
-  &lt;li&gt;浏览器会将各层的信息发送给GPU，GPU会将各层复合图层化（composite），显示在屏幕上。&lt;/li&gt;
-  &lt;li&gt;渲染完毕后就是load事件了，之后就是自己的JS逻辑处理了&lt;/li&gt;
+  &lt;li&gt;服务器检查HTTP请求头是否包含&lt;strong&gt;协议缓存验证信息&lt;/strong&gt;如果验证缓存新鲜，与服务器最后修改时间对比，如果可以使用协议缓存，返回&lt;code class=&quot;highlighter-rouge&quot;&gt;304&lt;/code&gt;；&lt;/li&gt;
+  &lt;li&gt;不能使用协议缓存，处理程序读取完整请求并准备 HTTP 响应，可能需要查询数据库等操作，返回&lt;code class=&quot;highlighter-rouge&quot;&gt;200&lt;/code&gt;状态码；&lt;/li&gt;
+  &lt;li&gt;服务器将&lt;strong&gt;响应报文通过 TCP 连接发送回浏览器&lt;/strong&gt;；&lt;/li&gt;
+  &lt;li&gt;浏览器接收 HTTP 响应，然后根据情况选择&lt;strong&gt;关闭 TCP 连接或者保留重用&lt;/strong&gt;，四次挥手；&lt;/li&gt;
+  &lt;li&gt;浏览器检查响应状态吗，根据情况处理，1XX，3XX， 4XX，5XX这些情况处理与 2XX 不同；&lt;/li&gt;
+  &lt;li&gt;如果资源可缓存，&lt;strong&gt;进行缓存&lt;/strong&gt;；&lt;/li&gt;
+  &lt;li&gt;对响应进行&lt;strong&gt;解码&lt;/strong&gt;（例如 gzip 压缩）；&lt;/li&gt;
+  &lt;li&gt;根据资源类型决定如何处理；&lt;/li&gt;
+  &lt;li&gt;假设资源为 HTML 文档，浏览器开始&lt;strong&gt;下载html文档&lt;/strong&gt;;&lt;/li&gt;
+  &lt;li&gt;Browser进程转交给Renderer进程；&lt;/li&gt;
+  &lt;li&gt;Render进程的Renderer接口收到消息，简单解释后，交给&lt;strong&gt;Render线程&lt;/strong&gt;；&lt;/li&gt;
+  &lt;li&gt;Render线程接收请求，开始渲染, 这其中可能需要Browser进程获取资源和需要GPU进程来帮助渲染, 当然可能会有JS线程操作DOM（这样可能会造成回流并重绘）；&lt;/li&gt;
+  &lt;li&gt;解析html&lt;strong&gt;建立dom树&lt;/strong&gt;, 触发&lt;code class=&quot;highlighter-rouge&quot;&gt;DOMContentLoaded&lt;/code&gt;；&lt;/li&gt;
+  &lt;li&gt;解析过程中遇到图片、样式表、js 文件，&lt;strong&gt;启动下载&lt;/strong&gt;；&lt;/li&gt;
+  &lt;li&gt;解析css&lt;strong&gt;构建CSSOM 树&lt;/strong&gt;；&lt;/li&gt;
+  &lt;li&gt;合并 DOM 树与 CSSOM 树为 &lt;strong&gt;Render 树&lt;/strong&gt;；&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;布局render树&lt;/strong&gt;（Layout/reflow），负责各元素尺寸、位置的计算；&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;绘制render树&lt;/strong&gt;（paint），绘制页面像素信息；&lt;/li&gt;
+  &lt;li&gt;浏览器会将各层的信息发送给GPU，GPU会将各层复合图层化（composite），显示在屏幕上；&lt;/li&gt;
+  &lt;li&gt;渲染完毕后触发&lt;code class=&quot;highlighter-rouge&quot;&gt;load&lt;/code&gt;事件了。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;tcp三次握手四次挥手&quot;&gt;TCP三次握手，四次挥手&lt;/h3&gt;
+
+&lt;p&gt;三次握手如下：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;客户端发送一个 TCP 的&lt;strong&gt;SYN=1，Seq=X&lt;/strong&gt;的包到服务器端口&lt;/li&gt;
+  &lt;li&gt;服务器发回&lt;strong&gt;SYN=1， ACK=X+1， Seq=Y&lt;/strong&gt;的响应包&lt;/li&gt;
+  &lt;li&gt;客户端发送&lt;strong&gt;ACK=Y+1， Seq=Z&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;关闭 TCP 连接的四次握手如下：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;主动方发送&lt;strong&gt;Fin=1， Ack=Z， Seq= X&lt;/strong&gt;报文&lt;/li&gt;
+  &lt;li&gt;被动方发送&lt;strong&gt;ACK=X+1， Seq=Z&lt;/strong&gt;报文&lt;/li&gt;
+  &lt;li&gt;被动方发送&lt;strong&gt;Fin=1， ACK=X， Seq=Y&lt;/strong&gt;报文&lt;/li&gt;
+  &lt;li&gt;主动方发送&lt;strong&gt;ACK=Y， Seq=X&lt;/strong&gt;报文&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h3 id=&quot;json的了解&quot;&gt;JSON的了解&lt;/h3&gt;

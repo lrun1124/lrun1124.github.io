@@ -117,6 +117,15 @@ div {
 }
 ```
 
+- 未知宽度（常用）
+
+```css
+div {
+  margin-left : 50% ; 
+  transform: translateX(-50%);
+}
+```
+
 #### 水平垂直居中
 
 - 若已知容器的宽300px,高400px,则先用top和left将容器左上角定位到中心点位置，再通过设置margin移动div中心点到居中的位置
@@ -132,7 +141,7 @@ div {
 }
 ```
 
-- 未知容器宽高，使用transform属性，定义2D转换
+- 未知容器宽高，使用transform属性，定义2D转换（常用）
 
 ```css
 div {

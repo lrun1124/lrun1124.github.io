@@ -314,6 +314,14 @@ parent bubble
   <li>标准模式的排版 和JS运作模式都是以该浏览器支持的最高标准运行。在兼容模式中，页面以宽松的向后兼容的方式显示,模拟老式浏览器的行为以防止站点无法工作。</li>
 </ol>
 
+<p>常见的Doctype</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//html5 
+<span class="cp">&lt;!doctype html&gt;</span>
+//HTML4.01 strict：不允许使用表现性、废弃元素（如 font）以及 frameset
+<span class="cp">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;</span>
+//XHTML1.0 Strict:不使用允许表现性、废弃元素以及 frameset。文档必须是结构良好的 XML 文档。
+<span class="cp">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;</span>
+</code></pre></div></div>
 <p>HTML5 不基于 SGML，因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为（让浏览器按照它们应该的方式来运行)HTML4.01基于SGML,所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型。</p>
 
 <h3 id="xmlsgmlhtmlxhtmlhtml5">XML,SGML,HTML,XHTML,HTML5</h3>
@@ -610,6 +618,56 @@ label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用�
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">link</span> <span class="nx">rel</span><span class="o">=</span><span class="s2">"preload"</span> <span class="nx">href</span><span class="o">=</span><span class="s2">"/main.js"</span> <span class="k">as</span><span class="o">=</span><span class="s2">"script"</span><span class="o">&gt;</span>
 </code></pre></div></div>
+
+<h3 id="前端注意哪些seo">前端注意哪些SEO</h3>
+<ol>
+  <li>合理的 title、description、keywords：搜索对着三项的权重逐个减小，title 值强调重点即可，重要关键词出现不要超过 2 次，而且要靠前，不同页面 title 要有所不同；description 把页面内容高度概括，长度合适，不可过分堆砌关键词，不同页面 description 有所不同；keywords 列举出重要关键词即可</li>
+  <li>语义化的 HTML 代码，符合 W3C 规范：语义化代码让搜索引擎容易理解网页</li>
+  <li>重要内容 HTML 代码放在最前：搜索引擎抓取 HTML 顺序是从上到下，有的搜索引擎对抓取长度有限制，保证重要内容一定会被抓取</li>
+  <li>重要内容不要用 js 输出：爬虫不会执行 js 获取内容</li>
+  <li>少用 iframe：搜索引擎不会抓取 iframe 中的内容</li>
+  <li>非装饰性图片必须加 alt</li>
+  <li>提高网站速度：网站速度是搜索引擎排序的一个重要指标</li>
+</ol>
+
+<h3 id="的title和alt有什么区别"><img />的title和alt有什么区别</h3>
+<ol>
+  <li>title是global attributes之一，用于为元素提供附加的 advisory information。通常当鼠标滑动到元素上的时候显示。</li>
+  <li>alt是&lt;img&gt;的特有属性，是图片内容的等价描述，用于图片无法加载时显示、读屏器阅读图片。可提图片高可访问性，除了纯装饰图片外都必须设置有意义的值，搜索引擎会重点分析。</li>
+</ol>
+
+<h3 id="html-全局属性global-attribute有哪些">HTML 全局属性(global attribute)有哪些</h3>
+<p>全局属性是所有HTML元素共有的属性; 它们可以用于所有元素，即使属性可能对某些元素不起作用。常见的</p>
+<ul>
+  <li>title: 元素相关的建议信息</li>
+  <li>class:为元素设置类标识，多个类名用空格分开，CSS 和 javascript 可通过 class 属性获取元素</li>
+  <li>draggable: 设置元素是否可拖拽</li>
+  <li>id: 元素 id，文档内唯一</li>
+  <li>lang: 元素内容的的语言</li>
+</ul>
+
+<h3 id="http-method">HTTP METHOD</h3>
+<ol>
+  <li>GET是最常用的方法，通常用于请求服务器发送某个资源。</li>
+  <li>HEAD与 GET 类似，但服务器在响应中值返回首部，不返回实体的主体部分。这就允许客户端在未获取实际资源的情
+况下，对资源的首部进行检查，使用HEAD，我们可以更高效的完成以下工作：在不获取资源的情况下，了解资源的一些信息，比如资源类型；通过查看响应中的状态码，可以确定资源是否存在；通过查看首部，测试资源是否被修改；</li>
+  <li>PUT让服务器用请求的主体部分来创建一个由所请求的 URL 命名的新文档，或者，如果那个 URL 已经存在的话，就用干这个主体替代它</li>
+  <li>POST起初是用来向服务器输入数据的。实际上，通常会用它来支持 HTML 的表单。表单中填好的数据通常会被送给服务器，然后由服务器将其发送到要去的地方。</li>
+  <li>TRACE会在目的服务器端发起一个“回环”诊断，我们都知道，客户端在发起一个请求时，这个请求可能要穿过防火墙、代理、网关、或者其它的一些应用程序。这中间的每个节点都可能会修改原始的HTTP请求，TRACE方法允许客户端在最终将请求发送服务器时，它变成了什么样子。由于有一个“回环”诊断，在请求最终到达服务器时，服务器会弹回一条TRACE响应，并在响应主体中携带它收到的原始请求报文的最终模样。这样客户端就可以查看HTTP请求报文在发送的途中，是否被修改过了。</li>
+  <li>OPTIONS方法请求 web 服务器告知其支持的各种功能。可以查询服务器支持哪些方法或者对某些特殊资源支持哪些方法。若请求成功，则它会在HTTP头中包含一个名为“Allow”的头，值是所支持的方法，如“GET, POST”。</li>
+  <li>DELETE请求服务器删除请求 URL 指定的资源</li>
+</ol>
+
+<h3 id="put和post">PUT和POST</h3>
+<p>PUT方法是幂等的：调用一次与连续调用多次是等价的（即没有副作用），而连续调用多次POST方法可能会有副作用，比如将一个订单重复提交多次。等幂就是值不变性，相同的请求得到相同的响应结果，不会出现相同的请求出现不同的响应结果。</p>
+
+<ol>
+  <li>PUT请求：如果两个请求相同，后一个请求会把第一个请求覆盖掉。（所以PUT用来改资源）</li>
+  <li>Post请求：后一个请求不会把第一个请求覆盖掉。（所以Post用来增资源）</li>
+</ol>
+
+<p>相同的请求怎样处理由我们服务器决定，比如：一个创建一篇博文的uri,被请求两次时，假如我们的服务器认为他们是不一样的，那么这时就只能用post，而不能用put.</p>
+
 
 
                 <hr>
