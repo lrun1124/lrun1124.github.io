@@ -1,0 +1,316 @@
+---
+layout:     post
+title:      "居中"
+subtitle:   ""
+date:       2019-11-12 12:00:00
+author:     "Run"
+header-img: "img/ArrayUnique-bg.jpg"
+tags:
+    - Summary
+---
+
+**Table of Contents** 
+- [水平居中](#%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD)
+  - [inline元素](#inline%E5%85%83%E7%B4%A0)
+  - [block元素](#block%E5%85%83%E7%B4%A0)
+    - [普通margin auto](#%E6%99%AE%E9%80%9Amargin-auto)
+    - [position属性加偏移](#position%E5%B1%9E%E6%80%A7%E5%8A%A0%E5%81%8F%E7%A7%BB)
+    - [Flex布局](#flex%E5%B8%83%E5%B1%80)
+    - [利用display:inline-block](#%E5%88%A9%E7%94%A8displayinline-block)
+    - [绝对定位的div居中](#%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D%E7%9A%84div%E5%B1%85%E4%B8%AD)
+- [垂直居中](#%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD)
+  - [inline元素](#inline%E5%85%83%E7%B4%A0-1)
+    - [单行的inline元素](#%E5%8D%95%E8%A1%8C%E7%9A%84inline%E5%85%83%E7%B4%A0)
+    - [多行的inline元素](#%E5%A4%9A%E8%A1%8C%E7%9A%84inline%E5%85%83%E7%B4%A0)
+  - [block元素](#block%E5%85%83%E7%B4%A0-1)
+    - [position属性加偏移](#position%E5%B1%9E%E6%80%A7%E5%8A%A0%E5%81%8F%E7%A7%BB-1)
+    - [Flex布局](#flex%E5%B8%83%E5%B1%80-1)
+- [水平垂直居中](#%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD)
+  - [margin：auto](#marginauto)
+  - [偏移百分比](#%E5%81%8F%E7%A7%BB%E7%99%BE%E5%88%86%E6%AF%94)
+  - [Flex布局](#flex%E5%B8%83%E5%B1%80-2)
+
+## 水平居中
+
+### inline元素
+为父元素设置text-align: center
+```css
+.parent {
+    width: 300px;
+    height: 200px;
+    background-color: skyblue;
+    text-align: center;
+}
+
+.child {
+    background-color: yellow;
+}
+```
+<img src="http://lrun1124.github.io/img/center/h_inline.png" width = "300px"/>
+
+### block元素
+
+#### 普通margin auto
+已知宽度情况下，margin:0 auto或margin-left:auto; margin-right:auto;兼容性强
+```css
+.parent {
+    width: 300px;
+    height: 200px;
+    background-color: skyblue;
+}
+
+.child {
+    background-color: yellow;
+    width: 100px;
+    margin: 0 auto;
+}
+```
+
+<img src="http://lrun1124.github.io/img/center/h_block_1.png" width = "300px"/>
+
+#### position属性加偏移百分比
+
+首先设置父元素为相对定位，再设置子元素为绝对定位，设置子元素的left:50%，即让子元素的左上角水平居中；分已知宽度和未知宽度两种，已知宽度使用margin-left偏移，未知宽度使用transform（要考虑css3兼容性）
+```css
+.parent {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background-color: skyblue;
+}
+
+/*已知宽度*/
+.child {
+    position: absolute;
+    background-color: yellow;
+    width: 100px;
+    left: 50%;
+    margin-left: -50px;
+}
+
+/*未知宽度*/
+.child2 {
+    position: absolute;
+    background-color: yellow;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+```
+#### Flex布局
+
+设置父元素justify-content: center，宽度定不定都可以, 不设置高度或填满父容器
+```css
+.parent {
+    width: 300px;
+    height: 200px;
+    background-color: skyblue;
+    display: flex;
+    justify-content: center;
+}
+
+.child {
+    background-color: yellow;
+    height: 100px;
+}
+```
+<img src="http://lrun1124.github.io/img/center/h_flex.png" width = "300px"/>
+
+#### 利用display:inline-block
+设置子元素为display: inline-block, 不需要考虑高度可以使用inline，父元素text-align: center;
+```css
+.parent {
+    width: 300px;
+    height: 200px;
+    background-color: skyblue;
+    text-align: center;
+}
+
+.child {
+    display: inline-block;
+    background-color: yellow;
+}
+```
+<img src="http://lrun1124.github.io/img/center/h_inline_block.png" width = "300px"/>
+
+#### 绝对定位的div居中
+设置left: 0; right: 0; + margin: auto
+```css
+.parent {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background-color: skyblue;
+}
+
+.child {
+    position: absolute;
+    background-color: yellow;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    left: 0;
+    right: 0; 
+}
+```
+<img src="http://lrun1124.github.io/img/center/h_absolute.png" width = "300px"/>
+
+## 垂直居中
+### inline元素
+#### 单行的inline元素
+只需要设置单行行内元素的"行高等于盒子的高"即可；
+```css
+.parent {
+    width: 300px;
+    height: 200px;
+    background-color: skyblue;
+}
+
+.child {
+    background-color: yellow;
+    line-height: 200px;
+}
+```
+
+<img src="http://lrun1124.github.io/img/center/v_inline.png" width = "300px"/>
+
+#### 多行的inline元素
+给父元素设置display:table-cell;和vertical-align: middle;
+```css
+.parent {
+    width: 500px;
+    height: 300px;
+    background-color: skyblue;
+    display: table-cell;
+    vertical-align:middle;
+}
+```
+<img src="http://lrun1124.github.io/img/center/v_inline.png" width = "300px"/>
+
+### block元素
+
+#### position属性加偏移百分比
+首先设置父元素为相对定位，再设置子元素为绝对定位，设置子元素的top: 50%，即让子元素的左上角垂直居中；
+
+```css
+.parent {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background-color: skyblue;
+}
+
+/*已知高度*/
+.child {
+    position: absolute;
+    background-color: yellow;
+    height: 100px;
+    top: 50%;
+    margin-top: -50px 
+}
+
+/*未知高度*/
+.child2 {
+    position: absolute;
+    background-color: yellow;
+    top: 50%;
+    transform: translateY(-50%);
+}
+```
+
+#### Flex布局
+设置父元素align-items: center;
+```css
+.parent {
+    width: 300px;
+    height: 200px;
+    background-color: skyblue;
+    display: flex;
+    align-items: center;
+}
+
+.child {
+    background-color: yellow;
+}
+```
+
+<img src="http://lrun1124.github.io/img/center/v_flex.png" width = "300px"/>
+
+
+## 水平垂直居中 
+水平垂直就只考虑block属性
+
+### margin：auto
+设置top: 0; right: 0; bottom: 0; left: 0; margin: auto;
+```css
+.parent {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background-color: skyblue;
+}
+
+/*已知宽高*/
+.child {
+    position: absolute;
+    background-color: yellow;
+    height: 100px;
+    width: 100px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto
+}
+```
+<img src="http://lrun1124.github.io/img/center/vh_block.png" width = "300px"/>
+
+### 偏移百分比
+使用偏移百分比，已知用margin调整，未知用transform调整
+```css
+.parent {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background-color: skyblue;
+}
+
+/*已知宽高*/
+.child {
+    position: absolute;
+    background-color: yellow;
+    height: 100px;
+    width: 100px;
+    left: 50%;
+    top: 50%;
+    margin-left: -50px;
+    margin-top: -50px
+}
+
+/*未知宽高*/
+.child2 {
+    position: absolute;
+    background-color: yellow;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%)
+}
+```
+
+### Flex布局
+设置父元素align-items: center; 和justify-content: center
+```css
+.parent {
+    width: 300px;
+    height: 200px;
+    background-color: skyblue;
+    display: flex;
+    align-items: center; /*垂直*/
+    justify-content: center; /*水平*/
+}
+
+.child {
+    background-color: yellow;
+}
+```
+<img src="http://lrun1124.github.io/img/center/vh_flex.png" width = "300px"/>
