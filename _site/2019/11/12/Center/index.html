@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/lrun1124.github.io/img/favicon.ico">
+
+    <title>居中 - Run Note</title>
+
+    <link rel="canonical" href="http://localhost:4000/lrun1124.github.io/2019/11/12/Center/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/lrun1124.github.io/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/lrun1124.github.io/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/lrun1124.github.io/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/lrun1124.github.io/">Run Note</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/lrun1124.github.io/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/lrun1124.github.io/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/lrun1124.github.io/portfolio/">Portfolio</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/lrun1124.github.io/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/lrun1124.github.io/img/ArrayUnique-bg.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/lrun1124.github.io/img/ArrayUnique-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/lrun1124.github.io/tags/#Summary" title="Summary">Summary</a>
+                        
+                    </div>
+                    <h1>居中</h1>
+                    
+                    
+                    <h2 class="subheading"></h2>
+                    
+                    <span class="meta">Posted by Run on November 12, 2019</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<p><strong>Table of Contents</strong></p>
+<ul>
+  <li><a href="#%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD">水平居中</a>
+    <ul>
+      <li><a href="#inline%E5%85%83%E7%B4%A0">inline元素</a></li>
+      <li><a href="#block%E5%85%83%E7%B4%A0">block元素</a>
+        <ul>
+          <li><a href="#%E6%99%AE%E9%80%9Amargin-auto">普通margin auto</a></li>
+          <li><a href="#position%E5%B1%9E%E6%80%A7%E5%8A%A0%E5%81%8F%E7%A7%BB">position属性加偏移</a></li>
+          <li><a href="#flex%E5%B8%83%E5%B1%80">Flex布局</a></li>
+          <li><a href="#%E5%88%A9%E7%94%A8displayinline-block">利用display:inline-block</a></li>
+          <li><a href="#%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D%E7%9A%84div%E5%B1%85%E4%B8%AD">绝对定位的div居中</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD">垂直居中</a>
+    <ul>
+      <li><a href="#inline%E5%85%83%E7%B4%A0-1">inline元素</a>
+        <ul>
+          <li><a href="#%E5%8D%95%E8%A1%8C%E7%9A%84inline%E5%85%83%E7%B4%A0">单行的inline元素</a></li>
+          <li><a href="#%E5%A4%9A%E8%A1%8C%E7%9A%84inline%E5%85%83%E7%B4%A0">多行的inline元素</a></li>
+        </ul>
+      </li>
+      <li><a href="#block%E5%85%83%E7%B4%A0-1">block元素</a>
+        <ul>
+          <li><a href="#position%E5%B1%9E%E6%80%A7%E5%8A%A0%E5%81%8F%E7%A7%BB-1">position属性加偏移</a></li>
+          <li><a href="#flex%E5%B8%83%E5%B1%80-1">Flex布局</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD">水平垂直居中</a>
+    <ul>
+      <li><a href="#marginauto">margin：auto</a></li>
+      <li><a href="#%E5%81%8F%E7%A7%BB%E7%99%BE%E5%88%86%E6%AF%94">偏移百分比</a></li>
+      <li><a href="#flex%E5%B8%83%E5%B1%80-2">Flex布局</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="水平居中">水平居中</h2>
+
+<h3 id="inline元素">inline元素</h3>
+<p>为父元素设置text-align: center</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.parent</span> <span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">skyblue</span><span class="p">;</span>
+    <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.child</span> <span class="p">{</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">yellow</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><img src="http://lrun1124.github.io/img/center/h_inline.png" width="300px" /></p>
+
+<h3 id="block元素">block元素</h3>
+
+<h4 id="普通margin-auto">普通margin auto</h4>
+<p>已知宽度情况下，margin:0 auto或margin-left:auto; margin-right:auto;兼容性强</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.parent</span> <span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">skyblue</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.child</span> <span class="p">{</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">yellow</span><span class="p">;</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+    <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span> <span class="nb">auto</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="http://lrun1124.github.io/img/center/h_block_1.png" width="300px" /></p>
+
+<h4 id="position属性加偏移百分比">position属性加偏移百分比</h4>
+
+<p>首先设置父元素为相对定位，再设置子元素为绝对定位，设置子元素的left:50%，即让子元素的左上角水平居中；分已知宽度和未知宽度两种，已知宽度使用margin-left偏移，未知宽度使用transform（要考虑css3兼容性）</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.parent</span> <span class="p">{</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">skyblue</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/*已知宽度*/</span>
+<span class="nc">.child</span> <span class="p">{</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">yellow</span><span class="p">;</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+    <span class="nl">left</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+    <span class="nl">margin-left</span><span class="p">:</span> <span class="m">-50px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/*未知宽度*/</span>
+<span class="nc">.child2</span> <span class="p">{</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">yellow</span><span class="p">;</span>
+    <span class="nl">left</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+    <span class="nl">transform</span><span class="p">:</span> <span class="n">translateX</span><span class="p">(</span><span class="m">-50%</span><span class="p">);</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+<h4 id="flex布局">Flex布局</h4>
+
+<p>设置父元素justify-content: center，宽度定不定都可以, 不设置高度或填满父容器</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.parent</span> <span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">skyblue</span><span class="p">;</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+    <span class="nl">justify-content</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.child</span> <span class="p">{</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">yellow</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><img src="http://lrun1124.github.io/img/center/h_flex.png" width="300px" /></p>
+
+<h4 id="利用displayinline-block">利用display:inline-block</h4>
+<p>设置子元素为display: inline-block, 不需要考虑高度可以使用inline，父元素text-align: center;</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.parent</span> <span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">skyblue</span><span class="p">;</span>
+    <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.child</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="n">inline-block</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">yellow</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><img src="http://lrun1124.github.io/img/center/h_inline_block.png" width="300px" /></p>
+
+<h4 id="绝对定位的div居中">绝对定位的div居中</h4>
+<p>设置left: 0; right: 0; + margin: auto</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.parent</span> <span class="p">{</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">skyblue</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.child</span> <span class="p">{</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">yellow</span><span class="p">;</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+    <span class="nl">margin</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span>
+    <span class="nl">left</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">right</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span> 
+<span class="p">}</span>
+</code></pre></div></div>
+<p><img src="http://lrun1124.github.io/img/center/h_absolute.png" width="300px" /></p>
+
+<h2 id="垂直居中">垂直居中</h2>
+<h3 id="inline元素-1">inline元素</h3>
+<h4 id="单行的inline元素">单行的inline元素</h4>
+<p>只需要设置单行行内元素的”行高等于盒子的高”即可；</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.parent</span> <span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">skyblue</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.child</span> <span class="p">{</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">yellow</span><span class="p">;</span>
+    <span class="nl">line-height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="http://lrun1124.github.io/img/center/v_inline.png" width="300px" /></p>
+
+<h4 id="多行的inline元素">多行的inline元素</h4>
+<p>给父元素设置display:table-cell;和vertical-align: middle;</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.parent</span> <span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">500px</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">skyblue</span><span class="p">;</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="nb">table-cell</span><span class="p">;</span>
+    <span class="nl">vertical-align</span><span class="p">:</span><span class="nb">middle</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><img src="http://lrun1124.github.io/img/center/v_inline.png" width="300px" /></p>
+
+<h3 id="block元素-1">block元素</h3>
+
+<h4 id="position属性加偏移百分比-1">position属性加偏移百分比</h4>
+<p>首先设置父元素为相对定位，再设置子元素为绝对定位，设置子元素的top: 50%，即让子元素的左上角垂直居中；</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.parent</span> <span class="p">{</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">skyblue</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/*已知高度*/</span>
+<span class="nc">.child</span> <span class="p">{</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">yellow</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+    <span class="nl">top</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+    <span class="nl">margin-top</span><span class="p">:</span> <span class="m">-50px</span> 
+<span class="p">}</span>
+
+<span class="c">/*未知高度*/</span>
+<span class="nc">.child2</span> <span class="p">{</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">yellow</span><span class="p">;</span>
+    <span class="nl">top</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+    <span class="nl">transform</span><span class="p">:</span> <span class="n">translateY</span><span class="p">(</span><span class="m">-50%</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="flex布局-1">Flex布局</h4>
+<p>设置父元素align-items: center;</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.parent</span> <span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">skyblue</span><span class="p">;</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+    <span class="nl">align-items</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.child</span> <span class="p">{</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">yellow</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="http://lrun1124.github.io/img/center/v_flex.png" width="300px" /></p>
+
+<h2 id="水平垂直居中">水平垂直居中</h2>
+<p>水平垂直就只考虑block属性</p>
+
+<h3 id="marginauto">margin：auto</h3>
+<p>设置top: 0; right: 0; bottom: 0; left: 0; margin: auto;</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.parent</span> <span class="p">{</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">skyblue</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/*已知宽高*/</span>
+<span class="nc">.child</span> <span class="p">{</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">yellow</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+    <span class="nl">left</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">right</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">bottom</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">margin</span><span class="p">:</span> <span class="nb">auto</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><img src="http://lrun1124.github.io/img/center/vh_block.png" width="300px" /></p>
+
+<h3 id="偏移百分比">偏移百分比</h3>
+<p>使用偏移百分比，已知用margin调整，未知用transform调整</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.parent</span> <span class="p">{</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">skyblue</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/*已知宽高*/</span>
+<span class="nc">.child</span> <span class="p">{</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">yellow</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+    <span class="nl">left</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+    <span class="nl">top</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+    <span class="nl">margin-left</span><span class="p">:</span> <span class="m">-50px</span><span class="p">;</span>
+    <span class="nl">margin-top</span><span class="p">:</span> <span class="m">-50px</span>
+<span class="p">}</span>
+
+<span class="c">/*未知宽高*/</span>
+<span class="nc">.child2</span> <span class="p">{</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">yellow</span><span class="p">;</span>
+    <span class="nl">left</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+    <span class="nl">top</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+    <span class="nl">transform</span><span class="p">:</span> <span class="n">translate</span><span class="p">(</span><span class="m">-50%</span><span class="p">,</span> <span class="m">-50%</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="flex布局-2">Flex布局</h3>
+<p>设置父元素align-items: center; 和justify-content: center</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.parent</span> <span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">skyblue</span><span class="p">;</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+    <span class="nl">align-items</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span> <span class="c">/*垂直*/</span>
+    <span class="nl">justify-content</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span> <span class="c">/*水平*/</span>
+<span class="p">}</span>
+
+<span class="nc">.child</span> <span class="p">{</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">yellow</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><img src="http://lrun1124.github.io/img/center/vh_flex.png" width="300px" /></p>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="/2019/11/12/Center"
+                    data-title="居中"
+                    data-url="http://localhost:4000/lrun1124.github.io/2019/11/12/Center/"
+                    data-images="http://localhost:4000/lrun1124.github.io/img/ArrayUnique-bg.jpg"
+                    data-content="Table of Contents
+
+  水平居中
+    
+      inline元素
+      block元素
+        
+        ... | Run Note " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/lrun1124.github.io/2019/11/05/React_Summary/" data-toggle="tooltip" data-placement="top" title="React Summary">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="/2019/11/12/Center"
+                        data-title="居中"
+                        data-url="http://localhost:4000/lrun1124.github.io/2019/11/12/Center/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+        				
+                            
+                				<a href="/lrun1124.github.io/tags/#JavaScript" title="JavaScript" rel="7">
+                                    JavaScript
+                                </a>
+                            
+        				
+                            
+                				<a href="/lrun1124.github.io/tags/#code" title="code" rel="4">
+                                    code
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/lrun1124.github.io/tags/#Summary" title="Summary" rel="8">
+                                    Summary
+                                </a>
+                            
+        				
+        			</div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="#">Foo</a></li>
+                    
+                        <li><a href="#">Bar</a></li>
+                    
+                        <li><a href="#">Example Friends</a></li>
+                    
+                        <li><a href="#">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'run';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    
+                    <li>
+                        <a target="_blank" href="http://weibo.com/lrun">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+
+
+                    
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/lrun">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/lrun1124">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Run Note 2019
+<!--                     <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe> -->
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="backtop">
+        <a href="#">TOP</a>
+    </div> 
+</footer>
+
+<!-- jQuery -->
+<script src="/lrun1124.github.io/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/lrun1124.github.io/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/lrun1124.github.io/js/hux-blog.min.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

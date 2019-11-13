@@ -11,6 +11,29 @@ tags:
 
 **Table of Contents** 
 
+- [React 使用场景](#react-%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF)
+- [React 生命周期](#react-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F)
+  - [Mounting](#mounting)
+    - [constructor](#constructor)
+    - [componentWillMount](#componentwillmount)
+    - [render](#render)
+    - [componentDidMount](#componentdidmount)
+  - [Updating](#updating)
+    - [componentWillReceiveProps](#componentwillreceiveprops)
+    - [shouldComponentUpdate](#shouldcomponentupdate)
+    - [componentWillUpdate](#componentwillupdate)
+    - [render](#render-1)
+    - [componentDidUpdate](#componentdidupdate)
+  - [Unmounting](#unmounting)
+    - [componentWillUnmount](#componentwillunmount)
+  - [React v16.3](#react-v163)
+    - [getDerivedStateFromProps的帮助来实现](#getderivedstatefromprops%E7%9A%84%E5%B8%AE%E5%8A%A9%E6%9D%A5%E5%AE%9E%E7%8E%B0)
+    - [getSnapshotBeforeUpdate](#getsnapshotbeforeupdate)
+- [并不是父子关系的组件，如何实现相互的数据通信？](#%E5%B9%B6%E4%B8%8D%E6%98%AF%E7%88%B6%E5%AD%90%E5%85%B3%E7%B3%BB%E7%9A%84%E7%BB%84%E4%BB%B6%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9B%B8%E4%BA%92%E7%9A%84%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1)
+- [应该在React生命周期的什么阶段发出ajax请求，为什么？](#%E5%BA%94%E8%AF%A5%E5%9C%A8react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9A%84%E4%BB%80%E4%B9%88%E9%98%B6%E6%AE%B5%E5%8F%91%E5%87%BAajax%E8%AF%B7%E6%B1%82%E4%B8%BA%E4%BB%80%E4%B9%88)
+- [实现组件有哪些方式？](#%E5%AE%9E%E7%8E%B0%E7%BB%84%E4%BB%B6%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E5%BC%8F)
+- [高阶组件HoC（Higher-Order Component）](#%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6hochigher-order-component)
+
 ### React 使用场景
 逻辑复杂单页应用，偏中后台管理系统，纯展示性的UI页面不合适
 

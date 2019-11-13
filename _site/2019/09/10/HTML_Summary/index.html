@@ -183,7 +183,7 @@
       <li><a href="#%E8%AF%B7%E6%8F%8F%E8%BF%B0%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1">请描述事件冒泡</a></li>
       <li><a href="#%E8%AF%B7%E8%A7%A3%E9%87%8A%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98event-delegation">请解释事件委托（event delegation）</a></li>
       <li><a href="#ie%E5%92%8Cfirefox%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6">IE和firefox事件机制</a></li>
-      <li><a href="#%E7%BB%99%E4%B8%80%E4%B8%AAdom%E5%90%8C%E6%97%B6%E7%BB%91%E5%AE%9A%E4%B8%A4%E4%B8%AA%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E4%B8%80%E4%B8%AA%E7%94%A8%E6%8D%95%E8%8E%B7%E4%B8%80%E4%B8%AA%E7%94%A8%E5%86%92%E6%B3%A1%E4%BC%9A%E6%89%A7%E8%A1%8C%E5%87%A0%E6%AC%A1%E4%BA%8B%E4%BB%B6">给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件？</a></li>
+      <li><a href="#%E7%BB%99%E4%B8%80%E4%B8%AAdom%E5%90%8C%E6%97%B6%E7%BB%91%E5%AE%9A%E4%B8%A4%E4%B8%AA%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E4%B8%80%E4%B8%AA%E7%94%A8%E6%8D%95%E8%8E%B7%E4%B8%80%E4%B8%AA%E7%94%A8%E5%86%92%E6%B3%A1%E4%BC%9A%E6%89%A7%E8%A1%8C%E5%87%A0%E6%AC%A1%E4%BA%8B%E4%BB%B6%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%90%84%E4%B8%AA%E9%98%B6%E6%AE%B5">给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件？（事件的各个阶段）</a></li>
       <li><a href="#window%E5%AF%B9%E8%B1%A1%E5%92%8Cdocument%E5%AF%B9%E8%B1%A1"><code class="highlighter-rouge">window</code>对象和<code class="highlighter-rouge">document</code>对象</a></li>
       <li><a href="#document-%E4%B8%AD%E7%9A%84load%E4%BA%8B%E4%BB%B6%E5%92%8Cdomcontentloaded%E4%BA%8B%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88">document 中的<code class="highlighter-rouge">load</code>事件和<code class="highlighter-rouge">DOMContentLoaded</code>事件之间的区别是什么？</a></li>
       <li><a href="#%E9%A1%B5%E9%9D%A2%E7%BC%96%E7%A0%81%E5%92%8C%E8%A2%AB%E8%AF%B7%E6%B1%82%E7%9A%84%E8%B5%84%E6%BA%90%E7%BC%96%E7%A0%81%E5%A6%82%E6%9E%9C%E4%B8%8D%E4%B8%80%E8%87%B4">页面编码和被请求的资源编码如果不一致</a></li>
@@ -204,6 +204,23 @@
       <li><a href="#%E9%A1%B5%E9%9D%A2%E5%8F%AF%E8%A7%81%E6%80%A7page-visibility-api-%E5%8F%AF%E4%BB%A5%E6%9C%89%E5%93%AA%E4%BA%9B%E7%94%A8%E9%80%94">页面可见性（Page Visibility API） 可以有哪些用途？</a></li>
       <li><a href="#cookie%E9%9A%94%E7%A6%BB">Cookie隔离</a></li>
       <li><a href="#dom%E6%93%8D%E4%BD%9C">DOM操作</a></li>
+      <li><a href="#%E5%A6%82%E4%BD%95%E5%9C%A8%E9%A1%B5%E9%9D%A2%E4%B8%8A%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%9C%86%E5%BD%A2%E7%9A%84%E5%8F%AF%E7%82%B9%E5%87%BB%E5%8C%BA%E5%9F%9F">如何在页面上实现一个圆形的可点击区域？</a></li>
+      <li><a href="#%E7%BD%91%E9%A1%B5%E9%AA%8C%E8%AF%81%E7%A0%81%E6%98%AF%E5%B9%B2%E5%98%9B%E7%9A%84%E6%98%AF%E4%B8%BA%E4%BA%86%E8%A7%A3%E5%86%B3%E4%BB%80%E4%B9%88%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98">网页验证码是干嘛的，是为了解决什么安全问题</a></li>
+      <li><a href="#documenwrite%E5%92%8C-innerhtml%E7%9A%84%E5%8C%BA%E5%88%AB">documen.write和 innerHTML的区别</a></li>
+      <li><a href="#%E5%88%97%E4%B8%BEie%E4%B8%8E%E5%85%B6%E4%BB%96%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E7%89%B9%E6%80%A7">列举IE与其他浏览器不一样的特性？</a></li>
+      <li><a href="#e6-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B8%B8%E8%A7%81%E7%9A%84-bug%E7%BC%BA%E9%99%B7%E6%88%96%E8%80%85%E4%B8%8E%E6%A0%87%E5%87%86%E4%B8%8D%E4%B8%80%E8%87%B4%E7%9A%84%E5%9C%B0%E6%96%B9%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3">E6 浏览器有哪些常见的 bug,缺陷或者与标准不一致的地方,如何解决</a></li>
+      <li><a href="#web%E5%BA%94%E7%94%A8%E4%BB%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%BB%E5%8A%A8%E6%8E%A8%E9%80%81data%E5%88%B0%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%89%E9%82%A3%E4%BA%9B%E6%96%B9%E5%BC%8F">WEB应用从服务器主动推送Data到客户端有那些方式</a></li>
+      <li><a href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%AE%BF%E9%97%AE%E9%A1%B5%E9%9D%A2%E4%B8%AD%E6%97%B6%E5%BC%B9%E5%87%BA%E5%BC%95%E5%AF%BC%E7%94%A8%E6%88%B7%E5%85%B3%E9%97%AD%E5%BC%95%E5%AF%BC%E4%B9%8B%E5%90%8E%E5%86%8D%E6%AC%A1%E8%BF%9B%E5%85%A5%E9%A1%B5%E9%9D%A2%E6%97%B6%E4%B8%8D%E5%B8%8C%E6%9C%9B%E5%87%BA%E7%8E%B0%E5%BC%95%E5%AF%BC%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0">第一次访问页面中时弹出引导，用户关闭引导，之后再次进入页面时不希望出现引导，如何实现？</a>
+        <ul>
+          <li><a href="#dsn-prefetchpreload-prefetch">dsn-prefetch，preload, prefetch</a></li>
+        </ul>
+      </li>
+      <li><a href="#%E5%89%8D%E7%AB%AF%E6%B3%A8%E6%84%8F%E5%93%AA%E4%BA%9Bseo">前端注意哪些SEO</a></li>
+      <li><a href="#img%E7%9A%84title%E5%92%8Calt%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><img />的title和alt有什么区别</a></li>
+      <li><a href="#html-%E5%85%A8%E5%B1%80%E5%B1%9E%E6%80%A7global-attribute%E6%9C%89%E5%93%AA%E4%BA%9B">HTML 全局属性(global attribute)有哪些</a></li>
+      <li><a href="#http-method">HTTP METHOD</a></li>
+      <li><a href="#put%E5%92%8Cpost">PUT和POST</a></li>
+      <li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF-fouc%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D">什么是 FOUC?如何避免</a></li>
     </ul>
   </li>
 </ul>
@@ -347,7 +364,7 @@ parent bubble
 强烈建议使用link标签，慎用@import方式。这样可以避免考虑@import的语法规则和注意事项，避免产生资源文件下载顺序混乱和http请求过多的烦恼。</p>
 <ol>
   <li>link属于HTML标签，而@import是CSS提供的;</li>
-  <li>页面被加载的时，link会同时被加载，@import引入的 CSS 将在页面加载完毕后被加载。;</li>
+  <li>页面被加载的时，link会同时被加载，@import引入的 CSS 将在页面加载完毕后被加载。</li>
   <li>import只在IE5以上才能识别，而link是HTML标签，无兼容问题;</li>
   <li>link方式的样式的权重 高于@import的权重</li>
 </ol>
@@ -589,6 +606,15 @@ label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用�
   <li>png24位的图片在IE6浏览器上出现背景，解决方案是做成PNG8.</li>
 </ol>
 
+<h3 id="e6-浏览器有哪些常见的-bug缺陷或者与标准不一致的地方如何解决">E6 浏览器有哪些常见的 bug,缺陷或者与标准不一致的地方,如何解决</h3>
+<ol>
+  <li>ol内li的序号全为 1，不递增。解决方法：为 li 设置样式display: list-item;</li>
+  <li>IE6 只支持a标签的:hover伪类，解决方法：使用 js 为元素监听 mouseenter，mouseleave 事件，添加类实现效果</li>
+  <li>通过为块级元素设置宽度和左右 margin 为 auto 时，IE6 不能实现水平居中，解决方法：为父元素设置text-align: center;</li>
+  <li>IE5-8 不支持opacity</li>
+  <li>IE6 在设置height小于font-size时高度值为font-size，解决办法：font-size: 0;</li>
+</ol>
+
 <h3 id="web应用从服务器主动推送data到客户端有那些方式">WEB应用从服务器主动推送Data到客户端有那些方式</h3>
 <ol>
   <li>html5提供的Websocket</li>
@@ -668,6 +694,8 @@ label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用�
 
 <p>相同的请求怎样处理由我们服务器决定，比如：一个创建一篇博文的uri,被请求两次时，假如我们的服务器认为他们是不一样的，那么这时就只能用post，而不能用put.</p>
 
+<h3 id="什么是-fouc如何避免">什么是 FOUC?如何避免</h3>
+<p>Flash Of Unstyled Content：用户定义样式表加载之前浏览器使用默认样式显示文档，用户样式加载渲染之后再从新显示文档，造成页面闪烁。解决方法：把样式表放到文档的head</p>
 
 
                 <hr>
@@ -771,7 +799,7 @@ Table of Contents
                             
         				
                             
-                				<a href="/lrun1124.github.io/tags/#Summary" title="Summary" rel="7">
+                				<a href="/lrun1124.github.io/tags/#Summary" title="Summary" rel="8">
                                     Summary
                                 </a>
                             

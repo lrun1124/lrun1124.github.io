@@ -16,13 +16,15 @@ tags:
 ### 总结
 
 #### 服务器端
-1. 图片服务器，图片压缩，webP，wekpack图片压缩
+1. 图片服务器，图片压缩，根据需要选择合适图片，gif，png，jpeg，webP，wekpack图片压缩
 1. Ngnix
+1. CDN空间换时间
+1. 利用cache,添加 Expires 或者 Cache-Control 响应头, 配置 ETag
 
 #### request层面
 1. 减少http请求次数
 1. http Keep-alive 处理好timeout
-1. cookie隔离
+1. 减小 cookie 大小, cookie隔离
 1. 前端用变量保存AJAX请求结果，每次操作本地变量，不用请求，减少请求次数
 
 #### html层面布局
@@ -31,6 +33,7 @@ tags:
 1. 模块化JS打包
 
 #### JS端
+1. 压缩js
 1. 减少回流代码，减少dom直接操作，读取引起回流属性
 1. 用requestAnimationFrame加强网页的流畅性
 1. 使用transform操作动画
@@ -38,8 +41,10 @@ tags:
 1. 多次append可以先放到一个临时页面再插入页面
 1. localstorge和sessionstorage
 1. 用innerHTML代替DOM操作，减少DOM操作次数，优化javascript性能。
+1. 事件监听器合理设计
 
 #### css端
+1. css sprite合并小图片
 1. 尽量使用class修改，减少js直接修改css
 1. 使用transform操作动画
 1. 避免使用通配符，不使用标签名或类名修饰ID规则

@@ -180,15 +180,17 @@
 
 <h4 id="服务器端">服务器端</h4>
 <ol>
-  <li>图片服务器，图片压缩，webP，wekpack图片压缩</li>
+  <li>图片服务器，图片压缩，根据需要选择合适图片，gif，png，jpeg，webP，wekpack图片压缩</li>
   <li>Ngnix</li>
+  <li>CDN空间换时间</li>
+  <li>利用cache,添加 Expires 或者 Cache-Control 响应头, 配置 ETag</li>
 </ol>
 
 <h4 id="request层面">request层面</h4>
 <ol>
   <li>减少http请求次数</li>
   <li>http Keep-alive 处理好timeout</li>
-  <li>cookie隔离</li>
+  <li>减小 cookie 大小, cookie隔离</li>
   <li>前端用变量保存AJAX请求结果，每次操作本地变量，不用请求，减少请求次数</li>
 </ol>
 
@@ -201,6 +203,7 @@
 
 <h4 id="js端">JS端</h4>
 <ol>
+  <li>压缩js</li>
   <li>减少回流代码，减少dom直接操作，读取引起回流属性</li>
   <li>用requestAnimationFrame加强网页的流畅性</li>
   <li>使用transform操作动画</li>
@@ -208,10 +211,12 @@
   <li>多次append可以先放到一个临时页面再插入页面</li>
   <li>localstorge和sessionstorage</li>
   <li>用innerHTML代替DOM操作，减少DOM操作次数，优化javascript性能。</li>
+  <li>事件监听器合理设计</li>
 </ol>
 
 <h4 id="css端">css端</h4>
 <ol>
+  <li>css sprite合并小图片</li>
   <li>尽量使用class修改，减少js直接修改css</li>
   <li>使用transform操作动画</li>
   <li>避免使用通配符，不使用标签名或类名修饰ID规则</li>
@@ -278,11 +283,7 @@
 
 服务器端
 
-  图片服务器，图片压缩，webP，wekpack图片压缩
-  Ngnix
-
-
-requ... | Run Note " >
+  图片服务器，图片压缩，根据需要选择合适图片，gif，png，jpeg，webP，we... | Run Note " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -361,7 +362,7 @@ requ... | Run Note " >
                             
         				
                             
-                				<a href="/lrun1124.github.io/tags/#Summary" title="Summary" rel="7">
+                				<a href="/lrun1124.github.io/tags/#Summary" title="Summary" rel="8">
                                     Summary
                                 </a>
                             

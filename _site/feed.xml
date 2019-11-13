@@ -5,13 +5,376 @@
     <description></description>
     <link>http://localhost:4000/lrun1124.github.io/</link>
     <atom:link href="http://localhost:4000/lrun1124.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 11 Nov 2019 13:20:35 +0800</pubDate>
-    <lastBuildDate>Mon, 11 Nov 2019 13:20:35 +0800</lastBuildDate>
+    <pubDate>Wed, 13 Nov 2019 14:17:12 +0800</pubDate>
+    <lastBuildDate>Wed, 13 Nov 2019 14:17:12 +0800</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>居中</title>
+        <description>&lt;p&gt;&lt;strong&gt;Table of Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD&quot;&gt;水平居中&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#inline%E5%85%83%E7%B4%A0&quot;&gt;inline元素&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#block%E5%85%83%E7%B4%A0&quot;&gt;block元素&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#%E6%99%AE%E9%80%9Amargin-auto&quot;&gt;普通margin auto&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#position%E5%B1%9E%E6%80%A7%E5%8A%A0%E5%81%8F%E7%A7%BB&quot;&gt;position属性加偏移&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#flex%E5%B8%83%E5%B1%80&quot;&gt;Flex布局&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#%E5%88%A9%E7%94%A8displayinline-block&quot;&gt;利用display:inline-block&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D%E7%9A%84div%E5%B1%85%E4%B8%AD&quot;&gt;绝对定位的div居中&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD&quot;&gt;垂直居中&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#inline%E5%85%83%E7%B4%A0-1&quot;&gt;inline元素&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#%E5%8D%95%E8%A1%8C%E7%9A%84inline%E5%85%83%E7%B4%A0&quot;&gt;单行的inline元素&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#%E5%A4%9A%E8%A1%8C%E7%9A%84inline%E5%85%83%E7%B4%A0&quot;&gt;多行的inline元素&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#block%E5%85%83%E7%B4%A0-1&quot;&gt;block元素&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#position%E5%B1%9E%E6%80%A7%E5%8A%A0%E5%81%8F%E7%A7%BB-1&quot;&gt;position属性加偏移&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#flex%E5%B8%83%E5%B1%80-1&quot;&gt;Flex布局&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD&quot;&gt;水平垂直居中&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#marginauto&quot;&gt;margin：auto&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E5%81%8F%E7%A7%BB%E7%99%BE%E5%88%86%E6%AF%94&quot;&gt;偏移百分比&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#flex%E5%B8%83%E5%B1%80-2&quot;&gt;Flex布局&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;水平居中&quot;&gt;水平居中&lt;/h2&gt;
+
+&lt;h3 id=&quot;inline元素&quot;&gt;inline元素&lt;/h3&gt;
+&lt;p&gt;为父元素设置text-align: center&lt;/p&gt;
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.parent&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;300px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;200px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;skyblue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;text-align&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.child&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;yellow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/center/h_inline.png&quot; width=&quot;300px&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;block元素&quot;&gt;block元素&lt;/h3&gt;
+
+&lt;h4 id=&quot;普通margin-auto&quot;&gt;普通margin auto&lt;/h4&gt;
+&lt;p&gt;已知宽度情况下，margin:0 auto或margin-left:auto; margin-right:auto;兼容性强&lt;/p&gt;
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.parent&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;300px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;200px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;skyblue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.child&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;yellow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/center/h_block_1.png&quot; width=&quot;300px&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;position属性加偏移百分比&quot;&gt;position属性加偏移百分比&lt;/h4&gt;
+
+&lt;p&gt;首先设置父元素为相对定位，再设置子元素为绝对定位，设置子元素的left:50%，即让子元素的左上角水平居中；分已知宽度和未知宽度两种，已知宽度使用margin-left偏移，未知宽度使用transform（要考虑css3兼容性）&lt;/p&gt;
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.parent&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;relative&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;300px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;200px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;skyblue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;/*已知宽度*/&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.child&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;absolute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;yellow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;margin-left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;-50px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;/*未知宽度*/&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.child2&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;absolute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;yellow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;translateX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h4 id=&quot;flex布局&quot;&gt;Flex布局&lt;/h4&gt;
+
+&lt;p&gt;设置父元素justify-content: center，宽度定不定都可以, 不设置高度或填满父容器&lt;/p&gt;
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.parent&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;300px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;200px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;skyblue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;justify-content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.child&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;yellow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/center/h_flex.png&quot; width=&quot;300px&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;利用displayinline-block&quot;&gt;利用display:inline-block&lt;/h4&gt;
+&lt;p&gt;设置子元素为display: inline-block, 不需要考虑高度可以使用inline，父元素text-align: center;&lt;/p&gt;
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.parent&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;300px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;200px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;skyblue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;text-align&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.child&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inline-block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;yellow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/center/h_inline_block.png&quot; width=&quot;300px&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;绝对定位的div居中&quot;&gt;绝对定位的div居中&lt;/h4&gt;
+&lt;p&gt;设置left: 0; right: 0; + margin: auto&lt;/p&gt;
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.parent&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;relative&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;300px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;200px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;skyblue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.child&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;absolute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;yellow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/center/h_absolute.png&quot; width=&quot;300px&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;垂直居中&quot;&gt;垂直居中&lt;/h2&gt;
+&lt;h3 id=&quot;inline元素-1&quot;&gt;inline元素&lt;/h3&gt;
+&lt;h4 id=&quot;单行的inline元素&quot;&gt;单行的inline元素&lt;/h4&gt;
+&lt;p&gt;只需要设置单行行内元素的”行高等于盒子的高”即可；&lt;/p&gt;
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.parent&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;300px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;200px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;skyblue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.child&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;yellow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;line-height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;200px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/center/v_inline.png&quot; width=&quot;300px&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;多行的inline元素&quot;&gt;多行的inline元素&lt;/h4&gt;
+&lt;p&gt;给父元素设置display:table-cell;和vertical-align: middle;&lt;/p&gt;
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.parent&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;500px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;300px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;skyblue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;table-cell&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;vertical-align&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;middle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/center/v_inline.png&quot; width=&quot;300px&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;block元素-1&quot;&gt;block元素&lt;/h3&gt;
+
+&lt;h4 id=&quot;position属性加偏移百分比-1&quot;&gt;position属性加偏移百分比&lt;/h4&gt;
+&lt;p&gt;首先设置父元素为相对定位，再设置子元素为绝对定位，设置子元素的top: 50%，即让子元素的左上角垂直居中；&lt;/p&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.parent&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;relative&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;300px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;200px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;skyblue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;/*已知高度*/&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.child&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;absolute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;yellow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;margin-top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;-50px&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;/*未知高度*/&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.child2&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;absolute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;yellow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;translateY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;flex布局-1&quot;&gt;Flex布局&lt;/h4&gt;
+&lt;p&gt;设置父元素align-items: center;&lt;/p&gt;
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.parent&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;300px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;200px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;skyblue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;align-items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.child&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;yellow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/center/v_flex.png&quot; width=&quot;300px&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;水平垂直居中&quot;&gt;水平垂直居中&lt;/h2&gt;
+&lt;p&gt;水平垂直就只考虑block属性&lt;/p&gt;
+
+&lt;h3 id=&quot;marginauto&quot;&gt;margin：auto&lt;/h3&gt;
+&lt;p&gt;设置top: 0; right: 0; bottom: 0; left: 0; margin: auto;&lt;/p&gt;
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.parent&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;relative&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;300px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;200px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;skyblue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;/*已知宽高*/&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.child&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;absolute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;yellow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;bottom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;auto&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/center/vh_block.png&quot; width=&quot;300px&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;偏移百分比&quot;&gt;偏移百分比&lt;/h3&gt;
+&lt;p&gt;使用偏移百分比，已知用margin调整，未知用transform调整&lt;/p&gt;
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.parent&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;relative&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;300px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;200px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;skyblue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;/*已知宽高*/&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.child&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;absolute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;yellow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;margin-left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;-50px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;margin-top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;-50px&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;/*未知宽高*/&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.child2&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;absolute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;yellow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;translate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;-50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;flex布局-2&quot;&gt;Flex布局&lt;/h3&gt;
+&lt;p&gt;设置父元素align-items: center; 和justify-content: center&lt;/p&gt;
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.parent&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;300px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;200px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;skyblue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;align-items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;/*垂直*/&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;justify-content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;/*水平*/&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.child&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;yellow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/center/vh_flex.png&quot; width=&quot;300px&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Tue, 12 Nov 2019 20:00:00 +0800</pubDate>
+        <link>http://localhost:4000/lrun1124.github.io/2019/11/12/Center/</link>
+        <guid isPermaLink="true">http://localhost:4000/lrun1124.github.io/2019/11/12/Center/</guid>
+        
+        <category>Summary</category>
+        
+        
+      </item>
     
       <item>
         <title>React Summary</title>
         <description>&lt;p&gt;&lt;strong&gt;Table of Contents&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#react-%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF&quot;&gt;React 使用场景&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#react-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F&quot;&gt;React 生命周期&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#mounting&quot;&gt;Mounting&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#constructor&quot;&gt;constructor&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#componentwillmount&quot;&gt;componentWillMount&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#render&quot;&gt;render&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#componentdidmount&quot;&gt;componentDidMount&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#updating&quot;&gt;Updating&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#componentwillreceiveprops&quot;&gt;componentWillReceiveProps&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#shouldcomponentupdate&quot;&gt;shouldComponentUpdate&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#componentwillupdate&quot;&gt;componentWillUpdate&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#render-1&quot;&gt;render&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#componentdidupdate&quot;&gt;componentDidUpdate&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#unmounting&quot;&gt;Unmounting&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#componentwillunmount&quot;&gt;componentWillUnmount&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#react-v163&quot;&gt;React v16.3&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#getderivedstatefromprops%E7%9A%84%E5%B8%AE%E5%8A%A9%E6%9D%A5%E5%AE%9E%E7%8E%B0&quot;&gt;getDerivedStateFromProps的帮助来实现&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#getsnapshotbeforeupdate&quot;&gt;getSnapshotBeforeUpdate&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#%E5%B9%B6%E4%B8%8D%E6%98%AF%E7%88%B6%E5%AD%90%E5%85%B3%E7%B3%BB%E7%9A%84%E7%BB%84%E4%BB%B6%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9B%B8%E4%BA%92%E7%9A%84%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1&quot;&gt;并不是父子关系的组件，如何实现相互的数据通信？&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#%E5%BA%94%E8%AF%A5%E5%9C%A8react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9A%84%E4%BB%80%E4%B9%88%E9%98%B6%E6%AE%B5%E5%8F%91%E5%87%BAajax%E8%AF%B7%E6%B1%82%E4%B8%BA%E4%BB%80%E4%B9%88&quot;&gt;应该在React生命周期的什么阶段发出ajax请求，为什么？&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#%E5%AE%9E%E7%8E%B0%E7%BB%84%E4%BB%B6%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E5%BC%8F&quot;&gt;实现组件有哪些方式？&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6hochigher-order-component&quot;&gt;高阶组件HoC（Higher-Order Component）&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h3 id=&quot;react-使用场景&quot;&gt;React 使用场景&lt;/h3&gt;
 &lt;p&gt;逻辑复杂单页应用，偏中后台管理系统，纯展示性的UI页面不合适&lt;/p&gt;
@@ -705,27 +1068,60 @@ JS引擎线程与worker线程间通过特定的方式通信（postMessage API，
       &lt;li&gt;&lt;a href=&quot;#%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B&quot;&gt;盒子模型&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#css%E9%80%89%E6%8B%A9%E5%99%A8&quot;&gt;CSS选择器&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#display%E7%9A%84%E5%80%BC%E5%8F%8A%E4%BD%9C%E7%94%A8&quot;&gt;display的值及作用&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#position%E5%B1%9E%E6%80%A7%E5%AE%9A%E4%BD%8D%E5%8E%9F%E7%82%B9&quot;&gt;position属性（定位原点）&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#%E5%B1%85%E4%B8%ADdiv&quot;&gt;居中div&lt;/a&gt;
+      &lt;li&gt;&lt;a href=&quot;#position%E5%B1%9E%E6%80%A7%E5%AE%9A%E4%BD%8D%E5%8E%9F%E7%82%B9&quot;&gt;position属性（定位原点）&lt;/a&gt;
         &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD&quot;&gt;水平居中&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD&quot;&gt;水平垂直居中&lt;/a&gt;&lt;/li&gt;
           &lt;li&gt;&lt;a href=&quot;#flexbox%E5%BC%B9%E6%80%A7%E7%9B%92%E5%B8%83%E5%B1%80%E6%A8%A1%E5%9E%8B&quot;&gt;Flexbox（弹性盒布局模型)&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#display-none%E4%B8%8Evisibility-hidden%E7%9A%84%E5%8C%BA%E5%88%AB&quot;&gt;display: none;与visibility: hidden;的区别&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E7%94%A8%E7%BA%AFcss%E5%88%9B%E5%BB%BA%E4%B8%89%E8%A7%92%E5%BD%A2&quot;&gt;用纯css创建三角形&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8&quot;&gt;清除浮动&lt;/a&gt;
         &lt;ul&gt;
           &lt;li&gt;&lt;a href=&quot;#%E5%88%A9%E7%94%A8clear%E5%B1%9E%E6%80%A7&quot;&gt;利用clear属性&lt;/a&gt;&lt;/li&gt;
           &lt;li&gt;&lt;a href=&quot;#%E8%A7%A6%E5%8F%91%E6%B5%AE%E5%8A%A8%E5%85%83%E7%B4%A0%E7%88%B6%E5%85%83%E7%B4%A0%E7%9A%84bfc&quot;&gt;触发浮动元素父元素的BFC&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#%E6%80%BB%E7%BB%93&quot;&gt;总结&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#zoom1%E7%9A%84%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E5%8E%9F%E7%90%86&quot;&gt;zoom:1的清除浮动原理?&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#css%E4%BC%98%E5%85%88%E7%BA%A7%E7%AE%97%E6%B3%95%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97&quot;&gt;CSS优先级算法如何计算？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#css%E5%AE%9A%E4%B9%89%E7%9A%84%E6%9D%83%E9%87%8D&quot;&gt;CSS定义的权重&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#css%E4%BC%98%E5%8C%96%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD%E7%9A%84%E6%96%B9%E5%BC%8F&quot;&gt;CSS优化、提高性能的方式&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E6%B5%8F%E8%A7%88%E5%99%A8%E8%A7%A3%E6%9E%90%E9%80%89%E6%8B%A9%E5%99%A8%E8%BF%87%E7%A8%8B&quot;&gt;浏览器解析选择器过程&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E5%85%A8%E5%B1%8F%E6%BB%9A%E5%8A%A8%E5%8E%9F%E7%90%86&quot;&gt;全屏滚动原理&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E4%BC%AA%E7%B1%BB%E5%92%8C%E4%BC%AA%E5%85%83%E7%B4%A0&quot;&gt;伪类和伪元素&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#css3%E6%96%B0%E5%A2%9E%E4%BC%AA%E7%B1%BB%E5%92%8C%E4%BC%AA%E5%85%83%E7%B4%A0%E6%9C%89%E9%82%A3%E4%BA%9B&quot;&gt;CSS3新增伪类和伪元素有那些？&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E5%85%83%E7%B4%A0%E7%AB%96%E5%90%91%E7%9A%84%E7%99%BE%E5%88%86%E6%AF%94&quot;&gt;元素竖向的百分比&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E7%BB%8F%E5%B8%B8%E9%81%87%E5%88%B0%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8E%9F%E5%9B%A0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%98%AF%E4%BB%80%E4%B9%88%E5%B8%B8%E7%94%A8hack%E7%9A%84%E6%8A%80%E5%B7%A7-&quot;&gt;经常遇到的浏览器的兼容性有哪些？原因，解决方法是什么，常用hack的技巧 ？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#li%E4%B8%8Eli%E4%B9%8B%E9%97%B4%E6%9C%89%E7%9C%8B%E4%B8%8D%E8%A7%81%E7%9A%84%E7%A9%BA%E7%99%BD%E9%97%B4%E9%9A%94%E6%98%AF%E4%BB%80%E4%B9%88%E5%8E%9F%E5%9B%A0%E5%BC%95%E8%B5%B7%E7%9A%84%E6%9C%89%E4%BB%80%E4%B9%88%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95&quot;&gt;li与li之间有看不见的空白间隔是什么原因引起的？有什么解决办法？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#displayinline-block-%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BC%9A%E6%98%BE%E7%A4%BA%E9%97%B4%E9%9A%99%E6%90%BA%E7%A8%8B&quot;&gt;display:inline-block 什么时候会显示间隙？(携程)&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%88%9D%E5%A7%8B%E5%8C%96css%E6%A0%B7%E5%BC%8F&quot;&gt;为什么要初始化CSS样式。&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#absolute%E7%9A%84containing-block%E5%AE%B9%E5%99%A8%E5%9D%97%E8%AE%A1%E7%AE%97%E6%96%B9%E5%BC%8F%E8%B7%9F%E6%AD%A3%E5%B8%B8%E6%B5%81%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C&quot;&gt;absolute的containing block(容器块)计算方式跟正常流有什么不同？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#position%E8%B7%9Fdisplaymargin-collapseoverflowfloat%E8%BF%99%E4%BA%9B%E7%89%B9%E6%80%A7%E7%9B%B8%E4%BA%92%E5%8F%A0%E5%8A%A0%E5%90%8E%E4%BC%9A%E6%80%8E%E4%B9%88%E6%A0%B7&quot;&gt;position跟display、margin collapse、overflow、float这些特性相互叠加后会怎么样？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E5%AF%B9bfc%E8%A7%84%E8%8C%83%E5%9D%97%E7%BA%A7%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8A%E4%B8%8B%E6%96%87block-formatting-context%E7%9A%84%E7%90%86%E8%A7%A3&quot;&gt;对BFC规范(块级格式化上下文：block formatting context)的理解？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#absolute%E7%9A%84containing-block%E5%AE%B9%E5%99%A8%E5%9D%97%E8%AE%A1%E7%AE%97%E6%96%B9%E5%BC%8F%E8%B7%9F%E6%AD%A3%E5%B8%B8%E6%B5%81%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C-1&quot;&gt;absolute的containing block(容器块)计算方式跟正常流有什么不同？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%96%E8%BE%B9%E8%B7%9D%E5%90%88%E5%B9%B6%E5%A4%96%E8%BE%B9%E8%B7%9D%E6%8A%98%E5%8F%A0collapsing-margins&quot;&gt;什么是外边距合并？外边距折叠(collapsing margins)&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%9A%84%E5%B8%83%E5%B1%80%E7%94%A8%E8%BF%87%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2%E5%90%97&quot;&gt;移动端的布局用过媒体查询吗？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#margin%E5%92%8Cpadding%E5%88%86%E5%88%AB%E9%80%82%E5%90%88%E4%BB%80%E4%B9%88%E5%9C%BA%E6%99%AF%E4%BD%BF%E7%94%A8&quot;&gt;margin和padding分别适合什么场景使用？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9chrome%E8%AE%B0%E4%BD%8F%E5%AF%86%E7%A0%81%E5%90%8E%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85%E8%A1%A8%E5%8D%95%E7%9A%84%E9%BB%84%E8%89%B2%E8%83%8C%E6%99%AF-&quot;&gt;如何修改chrome记住密码后自动填充表单的黄色背景 ？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E4%BD%A0%E5%AF%B9line-height%E6%98%AF%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E7%9A%84&quot;&gt;你对line-height是如何理解的？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E8%AE%BE%E7%BD%AE%E5%85%83%E7%B4%A0%E6%B5%AE%E5%8A%A8%E5%90%8E%E8%AF%A5%E5%85%83%E7%B4%A0%E7%9A%84display%E5%80%BC%E6%98%AF%E5%A4%9A%E5%B0%91&quot;&gt;设置元素浮动后，该元素的display值是多少？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E6%80%8E%E4%B9%88%E8%AE%A9chrome%E6%94%AF%E6%8C%81%E5%B0%8F%E4%BA%8E12px-%E7%9A%84%E6%96%87%E5%AD%97&quot;&gt;怎么让Chrome支持小于12px 的文字？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E8%AE%A9%E9%A1%B5%E9%9D%A2%E9%87%8C%E7%9A%84%E5%AD%97%E4%BD%93%E5%8F%98%E6%B8%85%E6%99%B0%E5%8F%98%E7%BB%86%E7%94%A8css%E6%80%8E%E4%B9%88%E5%81%9A&quot;&gt;让页面里的字体变清晰，变细用CSS怎么做？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E5%A6%82%E6%9E%9C%E9%9C%80%E8%A6%81%E6%89%8B%E5%8A%A8%E5%86%99%E5%8A%A8%E7%94%BB%E4%BD%A0%E8%AE%A4%E4%B8%BA%E6%9C%80%E5%B0%8F%E6%97%B6%E9%97%B4%E9%97%B4%E9%9A%94%E6%98%AF%E5%A4%9A%E4%B9%85%E4%B8%BA%E4%BB%80%E4%B9%88%E9%98%BF%E9%87%8C&quot;&gt;如果需要手动写动画，你认为最小时间间隔是多久，为什么？（阿里）&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#overflow-scroll%E6%97%B6%E4%B8%8D%E8%83%BD%E5%B9%B3%E6%BB%91%E6%BB%9A%E5%8A%A8%E7%9A%84%E9%97%AE%E9%A2%98%E6%80%8E%E4%B9%88%E5%A4%84%E7%90%86&quot;&gt;overflow: scroll时不能平滑滚动的问题怎么处理？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E6%9C%89%E4%B8%80%E4%B8%AA%E9%AB%98%E5%BA%A6%E8%87%AA%E9%80%82%E5%BA%94%E7%9A%84div%E9%87%8C%E9%9D%A2%E6%9C%89%E4%B8%A4%E4%B8%AAdiv%E4%B8%80%E4%B8%AA%E9%AB%98%E5%BA%A6100px%E5%B8%8C%E6%9C%9B%E5%8F%A6%E4%B8%80%E4%B8%AA%E5%A1%AB%E6%BB%A1%E5%89%A9%E4%B8%8B%E7%9A%84%E9%AB%98%E5%BA%A6&quot;&gt;有一个高度自适应的div，里面有两个div，一个高度100px，希望另一个填满剩下的高度。&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#pngjpggif-%E8%BF%99%E4%BA%9B%E5%9B%BE%E7%89%87%E6%A0%BC%E5%BC%8F%E8%A7%A3%E9%87%8A%E4%B8%80%E4%B8%8B%E5%88%86%E5%88%AB%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8%E6%9C%89%E6%B2%A1%E6%9C%89%E4%BA%86%E8%A7%A3%E8%BF%87webp&quot;&gt;png、jpg、gif 这些图片格式解释一下，分别什么时候用。有没有了解过webp？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E4%BB%80%E4%B9%88%E6%98%AFcss-%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8--%E5%90%8E%E5%A4%84%E7%90%86%E5%99%A8&quot;&gt;什么是CSS 预处理器 / 后处理器？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#rem%E5%B8%83%E5%B1%80%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9&quot;&gt;rem布局的优缺点&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#js%E8%8E%B7%E5%8F%96css%E5%B1%9E%E6%80%A7&quot;&gt;JS获取css属性&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#height-clientheight-offsetheigh&quot;&gt;height, clientHeight, offsetHeigh&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#css%E5%AE%9E%E7%8E%B0%E5%8D%95%E5%A4%9A%E8%A1%8C%E6%96%87%E6%9C%AC%E6%BA%A2%E5%87%BA%E6%98%BE%E7%A4%BA&quot;&gt;css实现单/多行文本溢出显示&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E8%AE%A9%E5%9B%BE%E6%96%87%E4%B8%8D%E5%8F%AF%E5%A4%8D%E5%88%B6&quot;&gt;让图文不可复制&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E6%9C%89%E4%BA%9B%E7%BD%91%E9%A1%B5%E4%B8%BA%E4%BA%86%E5%B0%8A%E9%87%8D%E5%8E%9F%E5%88%9B%E5%A4%8D%E5%88%B6%E7%9A%84%E6%96%87%E6%9C%AC%E9%83%BD%E4%BC%9A%E8%A2%AB%E5%8A%A0%E4%B8%8A%E4%B8%80%E6%AE%B5%E6%9D%A5%E6%BA%90%E8%AF%B4%E6%98%8E%E6%98%AF%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%B0%E7%9A%84%E5%91%A2&quot;&gt;有些网页为了尊重原创，复制的文本都会被加上一段来源说明，是如何做到的呢？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#display-block%E5%92%8Cdisplay-inline%E7%9A%84%E5%8C%BA%E5%88%AB&quot;&gt;display: block;和display: inline;的区别&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#displayfloatposition-%E7%9A%84%E5%85%B3%E7%B3%BB&quot;&gt;display,float,position 的关系&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#stacking-context-%E5%8F%A0%E5%B1%82%E9%A1%BA%E5%BA%8F%E5%B8%83%E5%B1%80%E8%A7%84%E5%88%99&quot;&gt;stacking context, 叠层顺序布局规则&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#position-%E5%B1%9E%E6%80%A7&quot;&gt;position 属性&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#absolute%E5%92%8Crelative&quot;&gt;absolute和relative&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -794,91 +1190,6 @@ JS引擎线程与worker线程间通过特定的方式通信（postMessage API，
   &lt;li&gt;inherit 规定从父元素继承 position 属性的值。&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&quot;居中div&quot;&gt;居中div&lt;/h3&gt;
-
-&lt;h4 id=&quot;水平居中&quot;&gt;水平居中&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;给div设置一个width，然后设置margin:0 auto;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;300px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;让绝对定位的div居中&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;py&quot;&gt;positive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;absolute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;300px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;300px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;nl&quot;&gt;bottom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;nl&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;nl&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;未知宽度（常用）&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;margin-left&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
-  &lt;span class=&quot;nl&quot;&gt;transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;translateX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;水平垂直居中&quot;&gt;水平垂直居中&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;若已知容器的宽300px,高400px,则先用top和left将容器左上角定位到中心点位置，再通过设置margin移动div中心点到居中的位置&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;relative&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;	&lt;span class=&quot;c&quot;&gt;/* 相对定位或绝对定位均可 */&lt;/span&gt;
-	&lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;300px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;400px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;nl&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;-200px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;-150px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;	&lt;span class=&quot;c&quot;&gt;/* 外边距为自身宽高的一半的负数 */&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;未知容器宽高，使用transform属性，定义2D转换（常用）&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;relative&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;	&lt;span class=&quot;c&quot;&gt;/* 相对定位或绝对定位均可 */&lt;/span&gt;
-	&lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;nl&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;nl&quot;&gt;transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;translate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;-50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;	&lt;span class=&quot;c&quot;&gt;/* 通过translate定义2D转换 */&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;flex布局&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nc&quot;&gt;.container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
- 	&lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
- 	&lt;span class=&quot;nl&quot;&gt;align-items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 		&lt;span class=&quot;c&quot;&gt;/* 垂直居中 */&lt;/span&gt;
- 	&lt;span class=&quot;nl&quot;&gt;justify-content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;	&lt;span class=&quot;c&quot;&gt;/* 水平居中 */&lt;/span&gt;
-
- &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
- &lt;span class=&quot;nc&quot;&gt;.container&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
- 	&lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
- 	&lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
- 	&lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;pink&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;		&lt;span class=&quot;c&quot;&gt;/* 方便看效果 */&lt;/span&gt;
- &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
 &lt;h4 id=&quot;flexbox弹性盒布局模型&quot;&gt;Flexbox（弹性盒布局模型)&lt;/h4&gt;
 
 &lt;p&gt;一个用于页面布局的全新CSS3功能，Flexbox可以把列表放在同一个方向（从上到下排列，从左到右），并让列表能延伸到占用可用的空间。&lt;/p&gt;
@@ -890,6 +1201,18 @@ JS引擎线程与worker线程间通过特定的方式通信（postMessage API，
 在布局上有了比以前更加灵活的空间&lt;/p&gt;
 
 &lt;p&gt;如何兼容低版本浏览器：手动实现响应式，为低版本浏览器些resize函数，根据浏览器窗口大小使用不同样式&lt;/p&gt;
+
+&lt;h3 id=&quot;display-none与visibility-hidden的区别&quot;&gt;display: none;与visibility: hidden;的区别&lt;/h3&gt;
+&lt;p&gt;联系：它们都能让元素不可见&lt;/p&gt;
+
+&lt;p&gt;区别：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;display: none;会让元素完全从渲染树中消失，渲染的时候不占据任何空间；visibility: hidden;不会让元素从渲染树消失，渲染时元素继续占据空间，只是内容不可见;&lt;/li&gt;
+  &lt;li&gt;修改常规流中元素的 display 通常会造成文档重排。修改 visibility 属性只会造成本元素的重绘;&lt;/li&gt;
+  &lt;li&gt;display: none;是非继承属性，子孙节点消失由于元素从渲染树消失造成，通过修改子孙节点属性无法显示;&lt;/li&gt;
+  &lt;li&gt;visibility: hidden;是继承属性，子孙节点由于继承了 hidden 而消失，通过设置 visibility: visible，可以让子孙节点显示;&lt;/li&gt;
+  &lt;li&gt;读屏器不会读取 display: none;元素内容；会读取 visibility: hidden;元素内容。&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;h3 id=&quot;用纯css创建三角形&quot;&gt;用纯css创建三角形&lt;/h3&gt;
 
@@ -1363,9 +1686,17 @@ p:nth-child(2)	选择属于其父元素的第二个子元素的每个 &amp;lt;p&
   &lt;li&gt;fixed: 它的containing block一律为根元素(html/body)，根元素也是initial containing block&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&quot;什么是外边距合并&quot;&gt;什么是外边距合并？&lt;/h3&gt;
+&lt;h3 id=&quot;什么是外边距合并外边距折叠collapsing-margins&quot;&gt;什么是外边距合并？外边距折叠(collapsing margins)&lt;/h3&gt;
 &lt;p&gt;外边距合并指的是，当两个垂直外边距相遇时，它们将形成一个外边距。
 合并后的外边距的高度等于两个发生合并的外边距的高度中的较大者。&lt;/p&gt;
+
+&lt;p&gt;规则：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;两个或多个毗邻的普通流中的块元素垂直方向上的 margin 会折叠&lt;/li&gt;
+  &lt;li&gt;浮动元素/inline-block 元素/绝对定位元素的 margin 不会和垂直方向上的其他元素的 margin 折叠&lt;/li&gt;
+  &lt;li&gt;创建了块级格式化上下文的元素，不会和它的子元素发生 margin 折叠&lt;/li&gt;
+  &lt;li&gt;元素自身的 margin-bottom 和 margin-top 相邻时也会折叠&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/css_summary/margin_merge.png&quot; /&gt;&lt;/p&gt;
 
@@ -1471,8 +1802,8 @@ p:nth-child(2)	选择属于其父元素的第二个子元素的每个 &amp;lt;p&
 &lt;p&gt;GIF/PNG/JPG/WEBP/APNG都是属于位图（位图 ,务必区别于矢量图)&lt;/p&gt;
 &lt;ol&gt;
   &lt;li&gt;gif图形交换格式，索引颜色格式，颜色少的情况下，产生的文件极小，支持背景透明，动画，图形渐进，无损压缩, 适合线条，图标等, 缺点只有256种颜色&lt;/li&gt;
-  &lt;li&gt;jpg支持上百万种颜色，有损压缩，压缩比可达180：1，而且质量受损不明显，不支持图形渐进与背景透明，不支持动画&lt;/li&gt;
-  &lt;li&gt;png为替代gif产生的，支持透明，半透明，不透明。不支持动画，无损图像格式。Png8简单说是静态gif，也只有256色，png24不透明，但不止256色。&lt;/li&gt;
+  &lt;li&gt;jpg支持上百万种颜色，有损压缩，压缩比可达180：1，而且质量受损不明显，不支持图形渐进与背景透明，不支持动画，适合照片&lt;/li&gt;
+  &lt;li&gt;png为替代gif产生的，支持透明，半透明，不透明。不支持动画，无损图像格式。Png8简单说是静态gif，也只有256色，png24不透明，但不止256色。适合背景、按钮。&lt;/li&gt;
   &lt;li&gt;webp谷歌开发的旨在加快图片加载速度的图片格式，图片压缩体积是jpeg的2/3，同时提供了有损压缩与无损压缩。高版本的W3C浏览器才支持，google39+，safari7+&lt;/li&gt;
 &lt;/ol&gt;
 
@@ -1581,6 +1912,68 @@ rem布局的本质是等比缩放，一般是基于宽度。&lt;/li&gt;
 &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'copy'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;addLink&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;h3 id=&quot;display-block和display-inline的区别&quot;&gt;display: block;和display: inline;的区别&lt;/h3&gt;
+&lt;p&gt;block元素特点&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;处于常规流中时，如果width没有设置，会自动填充满父容器&lt;/li&gt;
+  &lt;li&gt;可以应用margin/padding&lt;/li&gt;
+  &lt;li&gt;在没有设置高度的情况下会扩展高度以包含常规流中的子元素&lt;/li&gt;
+  &lt;li&gt;处于常规流中时布局时在前后元素位置之间（独占一个水平空间）&lt;/li&gt;
+  &lt;li&gt;忽略vertical-align&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;inline元素特点&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;水平方向上根据direction依次布局&lt;/li&gt;
+  &lt;li&gt;不会在元素前后进行换行&lt;/li&gt;
+  &lt;li&gt;margin/padding在竖直方向上无效，水平方向上有效&lt;/li&gt;
+  &lt;li&gt;受white-space控制&lt;/li&gt;
+  &lt;li&gt;width/height属性对非替换行内元素无效，宽度由元素内容决定&lt;/li&gt;
+  &lt;li&gt;非替换行内元素的行框高由line-height确定，替换行内元素的行框高由height,margin,padding,border决&lt;/li&gt;
+  &lt;li&gt;浮动或绝对定位时会转换为block&lt;/li&gt;
+  &lt;li&gt;vertical-align属性生效&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;displayfloatposition-的关系&quot;&gt;display,float,position 的关系&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;http://lrun1124.github.io/img/css_summary/display&amp;amp;position&amp;amp;float.png&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;display值为none。当元素display值为none时，元素不产生框，float和position都不起作用。&lt;/li&gt;
+  &lt;li&gt;position是absolute或fixed。当元素display值不为none，而position是absolute或者fixed时，此时float不起作用，计算值也为none，display值会按上表设置。元素框的位置由top、left、right、bottom值和其父元素决定。&lt;/li&gt;
+  &lt;li&gt;float值不为none。当元素有了浮动属性（float不为none，是left或right）后，该框浮动且display值会按上表转换。例如，span是行内元素，设置浮动后会变为块级元素。&lt;/li&gt;
+  &lt;li&gt;元素为根元素。如果元素是根元素，设置的display也会按上表进行转换。否则，元素的display值为指定值或默认值。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;stacking-context-叠层顺序布局规则&quot;&gt;stacking context, 叠层顺序布局规则&lt;/h3&gt;
+
+&lt;p&gt;从下到上&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;形成层叠上下文环境的元素的背景与边框&lt;/li&gt;
+  &lt;li&gt;拥有负 z-index 的子堆叠上下文元素 （负的越高越堆叠层级越低）&lt;/li&gt;
+  &lt;li&gt;block元素&lt;/li&gt;
+  &lt;li&gt;float元素&lt;/li&gt;
+  &lt;li&gt;inline/inline-block元素&lt;/li&gt;
+  &lt;li&gt;拥有 z-index:0 的子堆叠上下文元素&lt;/li&gt;
+  &lt;li&gt;拥有正 z-index: 的子堆叠上下文元素（正的越低越堆叠层级越低）&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;position-属性&quot;&gt;position 属性&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;static：默认值。没有定位，元素出现在正常的流中（忽略top,bottom,left,right或者z-index声明）。&lt;/li&gt;
+  &lt;li&gt;relative：生成相对定位的元素，通过top,bottom,left,right的设置相对于其正常位置进行定位。可通过z-index进行层次分级。&lt;/li&gt;
+  &lt;li&gt;absolute：生成绝对定位的元素，相对于static定位以外的第一个父元素进行定位。元素的位置通过”left”,”top”,”right”以及”bottom”属性进行规定。可通过z-index进行层次分级。&lt;/li&gt;
+  &lt;li&gt;fixed：生成绝对定位的元素，相对于浏览器窗口进行定位。元素的位置通过”left”,”top”,”right”以及”bottom”属性进行规定。可通过z-index进行层次分级。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;absolute和relative&quot;&gt;absolute和relative&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;relative定位的层总是相对于其最近的父元素，无论其父元素是何种定位方式。对于absolute定位的层总是相对于其最近的定义为absolute或relative的父层，而这个父层并不一定是其直接父层。&lt;/li&gt;
+  &lt;li&gt;定位为relative的元素脱离正常的文本流中，但其在文本流中的位置依然存在，定位为absolute的层脱离正常文本流，但与relative的区别是其在正常流中的位置不在存在。&lt;/li&gt;
+&lt;/ol&gt;
 </description>
         <pubDate>Sun, 15 Sep 2019 10:00:00 +0800</pubDate>
         <link>http://localhost:4000/lrun1124.github.io/2019/09/15/CSS_Summary/</link>
@@ -1606,7 +1999,7 @@ rem布局的本质是等比缩放，一般是基于宽度。&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E8%AF%B7%E6%8F%8F%E8%BF%B0%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1&quot;&gt;请描述事件冒泡&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E8%AF%B7%E8%A7%A3%E9%87%8A%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98event-delegation&quot;&gt;请解释事件委托（event delegation）&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#ie%E5%92%8Cfirefox%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6&quot;&gt;IE和firefox事件机制&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#%E7%BB%99%E4%B8%80%E4%B8%AAdom%E5%90%8C%E6%97%B6%E7%BB%91%E5%AE%9A%E4%B8%A4%E4%B8%AA%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E4%B8%80%E4%B8%AA%E7%94%A8%E6%8D%95%E8%8E%B7%E4%B8%80%E4%B8%AA%E7%94%A8%E5%86%92%E6%B3%A1%E4%BC%9A%E6%89%A7%E8%A1%8C%E5%87%A0%E6%AC%A1%E4%BA%8B%E4%BB%B6&quot;&gt;给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E7%BB%99%E4%B8%80%E4%B8%AAdom%E5%90%8C%E6%97%B6%E7%BB%91%E5%AE%9A%E4%B8%A4%E4%B8%AA%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E4%B8%80%E4%B8%AA%E7%94%A8%E6%8D%95%E8%8E%B7%E4%B8%80%E4%B8%AA%E7%94%A8%E5%86%92%E6%B3%A1%E4%BC%9A%E6%89%A7%E8%A1%8C%E5%87%A0%E6%AC%A1%E4%BA%8B%E4%BB%B6%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%90%84%E4%B8%AA%E9%98%B6%E6%AE%B5&quot;&gt;给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件？（事件的各个阶段）&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#window%E5%AF%B9%E8%B1%A1%E5%92%8Cdocument%E5%AF%B9%E8%B1%A1&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;window&lt;/code&gt;对象和&lt;code class=&quot;highlighter-rouge&quot;&gt;document&lt;/code&gt;对象&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#document-%E4%B8%AD%E7%9A%84load%E4%BA%8B%E4%BB%B6%E5%92%8Cdomcontentloaded%E4%BA%8B%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88&quot;&gt;document 中的&lt;code class=&quot;highlighter-rouge&quot;&gt;load&lt;/code&gt;事件和&lt;code class=&quot;highlighter-rouge&quot;&gt;DOMContentLoaded&lt;/code&gt;事件之间的区别是什么？&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E9%A1%B5%E9%9D%A2%E7%BC%96%E7%A0%81%E5%92%8C%E8%A2%AB%E8%AF%B7%E6%B1%82%E7%9A%84%E8%B5%84%E6%BA%90%E7%BC%96%E7%A0%81%E5%A6%82%E6%9E%9C%E4%B8%8D%E4%B8%80%E8%87%B4&quot;&gt;页面编码和被请求的资源编码如果不一致&lt;/a&gt;&lt;/li&gt;
@@ -1627,6 +2020,23 @@ rem布局的本质是等比缩放，一般是基于宽度。&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E9%A1%B5%E9%9D%A2%E5%8F%AF%E8%A7%81%E6%80%A7page-visibility-api-%E5%8F%AF%E4%BB%A5%E6%9C%89%E5%93%AA%E4%BA%9B%E7%94%A8%E9%80%94&quot;&gt;页面可见性（Page Visibility API） 可以有哪些用途？&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#cookie%E9%9A%94%E7%A6%BB&quot;&gt;Cookie隔离&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#dom%E6%93%8D%E4%BD%9C&quot;&gt;DOM操作&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E5%A6%82%E4%BD%95%E5%9C%A8%E9%A1%B5%E9%9D%A2%E4%B8%8A%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%9C%86%E5%BD%A2%E7%9A%84%E5%8F%AF%E7%82%B9%E5%87%BB%E5%8C%BA%E5%9F%9F&quot;&gt;如何在页面上实现一个圆形的可点击区域？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E7%BD%91%E9%A1%B5%E9%AA%8C%E8%AF%81%E7%A0%81%E6%98%AF%E5%B9%B2%E5%98%9B%E7%9A%84%E6%98%AF%E4%B8%BA%E4%BA%86%E8%A7%A3%E5%86%B3%E4%BB%80%E4%B9%88%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98&quot;&gt;网页验证码是干嘛的，是为了解决什么安全问题&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#documenwrite%E5%92%8C-innerhtml%E7%9A%84%E5%8C%BA%E5%88%AB&quot;&gt;documen.write和 innerHTML的区别&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E5%88%97%E4%B8%BEie%E4%B8%8E%E5%85%B6%E4%BB%96%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E7%89%B9%E6%80%A7&quot;&gt;列举IE与其他浏览器不一样的特性？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#e6-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B8%B8%E8%A7%81%E7%9A%84-bug%E7%BC%BA%E9%99%B7%E6%88%96%E8%80%85%E4%B8%8E%E6%A0%87%E5%87%86%E4%B8%8D%E4%B8%80%E8%87%B4%E7%9A%84%E5%9C%B0%E6%96%B9%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3&quot;&gt;E6 浏览器有哪些常见的 bug,缺陷或者与标准不一致的地方,如何解决&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#web%E5%BA%94%E7%94%A8%E4%BB%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%BB%E5%8A%A8%E6%8E%A8%E9%80%81data%E5%88%B0%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%89%E9%82%A3%E4%BA%9B%E6%96%B9%E5%BC%8F&quot;&gt;WEB应用从服务器主动推送Data到客户端有那些方式&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%AE%BF%E9%97%AE%E9%A1%B5%E9%9D%A2%E4%B8%AD%E6%97%B6%E5%BC%B9%E5%87%BA%E5%BC%95%E5%AF%BC%E7%94%A8%E6%88%B7%E5%85%B3%E9%97%AD%E5%BC%95%E5%AF%BC%E4%B9%8B%E5%90%8E%E5%86%8D%E6%AC%A1%E8%BF%9B%E5%85%A5%E9%A1%B5%E9%9D%A2%E6%97%B6%E4%B8%8D%E5%B8%8C%E6%9C%9B%E5%87%BA%E7%8E%B0%E5%BC%95%E5%AF%BC%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0&quot;&gt;第一次访问页面中时弹出引导，用户关闭引导，之后再次进入页面时不希望出现引导，如何实现？&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#dsn-prefetchpreload-prefetch&quot;&gt;dsn-prefetch，preload, prefetch&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E5%89%8D%E7%AB%AF%E6%B3%A8%E6%84%8F%E5%93%AA%E4%BA%9Bseo&quot;&gt;前端注意哪些SEO&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#img%E7%9A%84title%E5%92%8Calt%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB&quot;&gt;&lt;img /&gt;的title和alt有什么区别&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#html-%E5%85%A8%E5%B1%80%E5%B1%9E%E6%80%A7global-attribute%E6%9C%89%E5%93%AA%E4%BA%9B&quot;&gt;HTML 全局属性(global attribute)有哪些&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#http-method&quot;&gt;HTTP METHOD&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#put%E5%92%8Cpost&quot;&gt;PUT和POST&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E4%BB%80%E4%B9%88%E6%98%AF-fouc%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D&quot;&gt;什么是 FOUC?如何避免&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -1770,7 +2180,7 @@ parent bubble
 强烈建议使用link标签，慎用@import方式。这样可以避免考虑@import的语法规则和注意事项，避免产生资源文件下载顺序混乱和http请求过多的烦恼。&lt;/p&gt;
 &lt;ol&gt;
   &lt;li&gt;link属于HTML标签，而@import是CSS提供的;&lt;/li&gt;
-  &lt;li&gt;页面被加载的时，link会同时被加载，@import引入的 CSS 将在页面加载完毕后被加载。;&lt;/li&gt;
+  &lt;li&gt;页面被加载的时，link会同时被加载，@import引入的 CSS 将在页面加载完毕后被加载。&lt;/li&gt;
   &lt;li&gt;import只在IE5以上才能识别，而link是HTML标签，无兼容问题;&lt;/li&gt;
   &lt;li&gt;link方式的样式的权重 高于@import的权重&lt;/li&gt;
 &lt;/ol&gt;
@@ -2012,6 +2422,15 @@ label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用�
   &lt;li&gt;png24位的图片在IE6浏览器上出现背景，解决方案是做成PNG8.&lt;/li&gt;
 &lt;/ol&gt;
 
+&lt;h3 id=&quot;e6-浏览器有哪些常见的-bug缺陷或者与标准不一致的地方如何解决&quot;&gt;E6 浏览器有哪些常见的 bug,缺陷或者与标准不一致的地方,如何解决&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;ol内li的序号全为 1，不递增。解决方法：为 li 设置样式display: list-item;&lt;/li&gt;
+  &lt;li&gt;IE6 只支持a标签的:hover伪类，解决方法：使用 js 为元素监听 mouseenter，mouseleave 事件，添加类实现效果&lt;/li&gt;
+  &lt;li&gt;通过为块级元素设置宽度和左右 margin 为 auto 时，IE6 不能实现水平居中，解决方法：为父元素设置text-align: center;&lt;/li&gt;
+  &lt;li&gt;IE5-8 不支持opacity&lt;/li&gt;
+  &lt;li&gt;IE6 在设置height小于font-size时高度值为font-size，解决办法：font-size: 0;&lt;/li&gt;
+&lt;/ol&gt;
+
 &lt;h3 id=&quot;web应用从服务器主动推送data到客户端有那些方式&quot;&gt;WEB应用从服务器主动推送Data到客户端有那些方式&lt;/h3&gt;
 &lt;ol&gt;
   &lt;li&gt;html5提供的Websocket&lt;/li&gt;
@@ -2091,6 +2510,8 @@ label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用�
 
 &lt;p&gt;相同的请求怎样处理由我们服务器决定，比如：一个创建一篇博文的uri,被请求两次时，假如我们的服务器认为他们是不一样的，那么这时就只能用post，而不能用put.&lt;/p&gt;
 
+&lt;h3 id=&quot;什么是-fouc如何避免&quot;&gt;什么是 FOUC?如何避免&lt;/h3&gt;
+&lt;p&gt;Flash Of Unstyled Content：用户定义样式表加载之前浏览器使用默认样式显示文档，用户样式加载渲染之后再从新显示文档，造成页面闪烁。解决方法：把样式表放到文档的head&lt;/p&gt;
 </description>
         <pubDate>Tue, 10 Sep 2019 10:00:00 +0800</pubDate>
         <link>http://localhost:4000/lrun1124.github.io/2019/09/10/HTML_Summary/</link>
@@ -3538,15 +3959,17 @@ origin： 协议+主机+端口号，也可以设置为”*“，表示可以传�
 
 &lt;h4 id=&quot;服务器端&quot;&gt;服务器端&lt;/h4&gt;
 &lt;ol&gt;
-  &lt;li&gt;图片服务器，图片压缩，webP，wekpack图片压缩&lt;/li&gt;
+  &lt;li&gt;图片服务器，图片压缩，根据需要选择合适图片，gif，png，jpeg，webP，wekpack图片压缩&lt;/li&gt;
   &lt;li&gt;Ngnix&lt;/li&gt;
+  &lt;li&gt;CDN空间换时间&lt;/li&gt;
+  &lt;li&gt;利用cache,添加 Expires 或者 Cache-Control 响应头, 配置 ETag&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h4 id=&quot;request层面&quot;&gt;request层面&lt;/h4&gt;
 &lt;ol&gt;
   &lt;li&gt;减少http请求次数&lt;/li&gt;
   &lt;li&gt;http Keep-alive 处理好timeout&lt;/li&gt;
-  &lt;li&gt;cookie隔离&lt;/li&gt;
+  &lt;li&gt;减小 cookie 大小, cookie隔离&lt;/li&gt;
   &lt;li&gt;前端用变量保存AJAX请求结果，每次操作本地变量，不用请求，减少请求次数&lt;/li&gt;
 &lt;/ol&gt;
 
@@ -3559,6 +3982,7 @@ origin： 协议+主机+端口号，也可以设置为”*“，表示可以传�
 
 &lt;h4 id=&quot;js端&quot;&gt;JS端&lt;/h4&gt;
 &lt;ol&gt;
+  &lt;li&gt;压缩js&lt;/li&gt;
   &lt;li&gt;减少回流代码，减少dom直接操作，读取引起回流属性&lt;/li&gt;
   &lt;li&gt;用requestAnimationFrame加强网页的流畅性&lt;/li&gt;
   &lt;li&gt;使用transform操作动画&lt;/li&gt;
@@ -3566,10 +3990,12 @@ origin： 协议+主机+端口号，也可以设置为”*“，表示可以传�
   &lt;li&gt;多次append可以先放到一个临时页面再插入页面&lt;/li&gt;
   &lt;li&gt;localstorge和sessionstorage&lt;/li&gt;
   &lt;li&gt;用innerHTML代替DOM操作，减少DOM操作次数，优化javascript性能。&lt;/li&gt;
+  &lt;li&gt;事件监听器合理设计&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h4 id=&quot;css端&quot;&gt;css端&lt;/h4&gt;
 &lt;ol&gt;
+  &lt;li&gt;css sprite合并小图片&lt;/li&gt;
   &lt;li&gt;尽量使用class修改，减少js直接修改css&lt;/li&gt;
   &lt;li&gt;使用transform操作动画&lt;/li&gt;
   &lt;li&gt;避免使用通配符，不使用标签名或类名修饰ID规则&lt;/li&gt;
@@ -3726,24 +4152,6 @@ origin： 协议+主机+端口号，也可以设置为”*“，表示可以传�
         <pubDate>Mon, 02 Sep 2019 19:00:00 +0800</pubDate>
         <link>http://localhost:4000/lrun1124.github.io/2019/09/02/%E5%AE%9E%E7%8E%B0call,apply,bind/</link>
         <guid isPermaLink="true">http://localhost:4000/lrun1124.github.io/2019/09/02/%E5%AE%9E%E7%8E%B0call,apply,bind/</guid>
-        
-        <category>code</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>N Sum problem</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;“Move on. ”&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
-&lt;p&gt;To do&lt;/p&gt;
-</description>
-        <pubDate>Tue, 27 Aug 2019 19:00:00 +0800</pubDate>
-        <link>http://localhost:4000/lrun1124.github.io/2019/08/27/N-Sum-problem/</link>
-        <guid isPermaLink="true">http://localhost:4000/lrun1124.github.io/2019/08/27/N-Sum-problem/</guid>
         
         <category>code</category>
         
