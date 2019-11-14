@@ -269,13 +269,10 @@ target.addEventListener(type, listener[, options]);</p>
      
 <span class="c1">//父级绑定click事件冒泡</span>
 <span class="nx">d1</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'parent bubble'</span><span class="p">)</span> <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
-
 <span class="c1">//子级绑定click事件冒泡</span>
 <span class="nx">d2</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'child bubble'</span><span class="p">)</span> <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
-
 <span class="c1">//子级绑定click事件捕获</span>
 <span class="nx">d2</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'child capture'</span><span class="p">)</span> <span class="p">},</span> <span class="kc">true</span><span class="p">);</span>
-
 <span class="c1">//父级绑定click事件捕获</span>
 <span class="nx">d1</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'parent capture'</span><span class="p">)</span> <span class="p">},</span> <span class="kc">true</span><span class="p">);</span>
 <span class="nt">&lt;/script&gt;</span>
@@ -432,50 +429,57 @@ parent bubble
 <p>原理：HTML5的离线存储是基于一个新建的.appcache文件的缓存机制(不是存储技术)，通过这个文件上的解析清单离线存储资源，这些资源就会像cookie一样被存储了下来。之后当网络在处于离线状态下时，浏览器会通过被离线存储的数据进行页面展示。</p>
 
 <p>如何使用：</p>
-<ol>
-  <li>页面头部像下面一样加入一个manifest的属性；</li>
-  <li>在cache.manifest文件的编写离线存储的资源；
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  	CACHE MANIFEST
-  	#v0.11
-  	CACHE:
-  	js/app.js
-  	css/style.css
-  	NETWORK:
-  	resourse/logo.png
-  	FALLBACK:
-  	/ /offline.html
-</code></pre></div>    </div>
+<ul>
+  <li>页面头部像下面一样加入一个manifest的属性，&lt;html manifest=”myapp.appcache”&gt;（后缀无所谓）</li>
+  <li>在myapp.appcache文件的编写离线存储的资源。manifest 文件首行为CACHE MANIFEST，其余就是要缓存的 URL 列表，每个一行，相对路径都相对于 manifest 文件的 url。
+    <ol>
+      <li>注释以#开头</li>
+      <li>CACHE: 默认类型。</li>
+      <li>NETWORK：表示资源从不缓存。</li>
+      <li>FALLBACK:每行包含两个 url，第二个 URL 是指需要加载和存储在缓存中的资源， 第一个 URL 是一个前缀。任何匹配该前缀的 URL 都不会缓存，如果从网络中载入这样的 URL 失败的话，就会用第二个 URL 指定的缓存资源来替代。以下是一个文件例子：
+```
+CACHE MANIFEST</li>
+    </ol>
   </li>
-  <li>在离线状态时，操作window.applicationCache进行需求实现。</li>
-</ol>
+</ul>
 
-<h3 id="如何实现浏览器内多个标签页之间的通信">如何实现浏览器内多个标签页之间的通信?</h3>
+<p>CACHE:
+myapp.html
+myapp.css
+myapp.js</p>
 
-<ol>
-  <li>WebSocket、SharedWorker</li>
-  <li>也可以调用localstorge、cookies等本地存储方式；localstorge另一个浏览上下文里被添加、修改或删除时，它都会触发一个事件，我们通过监听事件，控制它的值来进行页面信息通信；</li>
-</ol>
+<p>NETWORK:
+cgi/</p>
 
-<h3 id="iframe缺点">iframe缺点</h3>
-<p>iframe缺点：</p>
-<ol>
-  <li>iframe会阻塞主页面的<code class="highlighter-rouge">Onload</code>事件；</li>
-  <li>搜索引擎的检索程序无法解读这种页面，不利于SEO;</li>
-  <li>iframe和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载。</li>
-</ol>
+<p>FALLBACK:
+videos/ offline_help.html</p>
 
-<p>使用iframe之前需要考虑这两个缺点。如果需要使用iframe，最好是通过javascript动态给iframe添加src属性值，这样可以绕开以上两个问题。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>* 在离线状态时，操作window.applicationCache进行需求实现。
 
-<h3 id="label的作用是什么是怎么用的"><code class="highlighter-rouge">Label</code>的作用是什么？是怎么用的？</h3>
-<p>&lt;label&gt; 标签为 input 元素定义标注（标记）, 提供焦点绑定。
-label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用户改进了可用性。如果在 label 元素内点击文本，就会触发此控件。就是说，当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。用for属性绑定id。</p>
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;form&gt;</span>
-<span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"male"</span><span class="nt">&gt;</span>Male<span class="nt">&lt;/label&gt;</span>
-<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"sex"</span> <span class="na">id=</span><span class="s">"male"</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;br</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"female"</span><span class="nt">&gt;</span>Female<span class="nt">&lt;/label&gt;</span>
-<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"sex"</span> <span class="na">id=</span><span class="s">"female"</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;/form&gt;</span>
+### 如何实现浏览器内多个标签页之间的通信?
+
+1. WebSocket、SharedWorker
+1. 也可以调用localstorge、cookies等本地存储方式；localstorge另一个浏览上下文里被添加、修改或删除时，它都会触发一个事件，我们通过监听事件，控制它的值来进行页面信息通信；
+
+### iframe缺点
+iframe缺点：
+1. iframe会阻塞主页面的`Onload`事件；
+1. 搜索引擎的检索程序无法解读这种页面，不利于SEO;
+1. iframe和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载。
+
+使用iframe之前需要考虑这两个缺点。如果需要使用iframe，最好是通过javascript动态给iframe添加src属性值，这样可以绕开以上两个问题。
+
+### `Label`的作用是什么？是怎么用的？
+\&lt;label&gt; 标签为 input 元素定义标注（标记）, 提供焦点绑定。
+label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用户改进了可用性。如果在 label 元素内点击文本，就会触发此控件。就是说，当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。用for属性绑定id。
+```html
+&lt;form&gt;
+&lt;label for="male"&gt;Male&lt;/label&gt;
+&lt;input type="radio" name="sex" id="male" /&gt;
+&lt;br /&gt;
+&lt;label for="female"&gt;Female&lt;/label&gt;
+&lt;input type="radio" name="sex" id="female" /&gt;
+&lt;/form&gt;
 </code></pre></div></div>
 <h3 id="websocket如何兼容低浏览器">webSocket如何兼容低浏览器？</h3>
 <ol>

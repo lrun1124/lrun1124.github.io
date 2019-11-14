@@ -92,13 +92,10 @@ var d2 = document.getElementsByClass('d2');
      
 //父级绑定click事件冒泡
 d1.addEventListener('click', function(){ console.log('parent bubble') }, false);
-
 //子级绑定click事件冒泡
 d2.addEventListener('click', function(){ console.log('child bubble') }, false);
-
 //子级绑定click事件捕获
 d2.addEventListener('click', function(){ console.log('child capture') }, true);
-
 //父级绑定click事件捕获
 d1.addEventListener('click', function(){ console.log('parent capture') }, true);
 </script>
@@ -236,20 +233,28 @@ CSS规范规定，每个元素都有display属性，确定该元素的类型，�
 原理：HTML5的离线存储是基于一个新建的.appcache文件的缓存机制(不是存储技术)，通过这个文件上的解析清单离线存储资源，这些资源就会像cookie一样被存储了下来。之后当网络在处于离线状态下时，浏览器会通过被离线存储的数据进行页面展示。
 
 如何使用：
-1. 页面头部像下面一样加入一个manifest的属性；
-1. 在cache.manifest文件的编写离线存储的资源；
+* 页面头部像下面一样加入一个manifest的属性，\<html manifest="myapp.appcache">（后缀无所谓）
+* 在myapp.appcache文件的编写离线存储的资源。manifest 文件首行为CACHE MANIFEST，其余就是要缓存的 URL 列表，每个一行，相对路径都相对于 manifest 文件的 url。
+1. 注释以#开头 
+1. CACHE: 默认类型。
+1. NETWORK：表示资源从不缓存。 
+1. FALLBACK:每行包含两个 url，第二个 URL 是指需要加载和存储在缓存中的资源， 第一个 URL 是一个前缀。任何匹配该前缀的 URL 都不会缓存，如果从网络中载入这样的 URL 失败的话，就会用第二个 URL 指定的缓存资源来替代。以下是一个文件例子：
 ```
-  	CACHE MANIFEST
-  	#v0.11
-  	CACHE:
-  	js/app.js
-  	css/style.css
-  	NETWORK:
-  	resourse/logo.png
-  	FALLBACK:
-  	/ /offline.html
+CACHE MANIFEST
+
+CACHE:
+myapp.html
+myapp.css
+myapp.js
+
+NETWORK:
+cgi/
+
+FALLBACK:
+videos/ offline_help.html
+
 ```
-1. 在离线状态时，操作window.applicationCache进行需求实现。
+* 在离线状态时，操作window.applicationCache进行需求实现。
 
 ### 如何实现浏览器内多个标签页之间的通信?
 

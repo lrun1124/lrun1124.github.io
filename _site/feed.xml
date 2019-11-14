@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/lrun1124.github.io/</link>
     <atom:link href="http://localhost:4000/lrun1124.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 13 Nov 2019 14:17:12 +0800</pubDate>
-    <lastBuildDate>Wed, 13 Nov 2019 14:17:12 +0800</lastBuildDate>
+    <pubDate>Thu, 14 Nov 2019 17:19:49 +0800</pubDate>
+    <lastBuildDate>Thu, 14 Nov 2019 17:19:49 +0800</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
     
       <item>
@@ -2085,13 +2085,10 @@ target.addEventListener(type, listener[, options]);&lt;/p&gt;
      
 &lt;span class=&quot;c1&quot;&gt;//父级绑定click事件冒泡&lt;/span&gt;
 &lt;span class=&quot;nx&quot;&gt;d1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'click'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'parent bubble'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
 &lt;span class=&quot;c1&quot;&gt;//子级绑定click事件冒泡&lt;/span&gt;
 &lt;span class=&quot;nx&quot;&gt;d2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'click'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'child bubble'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
 &lt;span class=&quot;c1&quot;&gt;//子级绑定click事件捕获&lt;/span&gt;
 &lt;span class=&quot;nx&quot;&gt;d2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'click'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'child capture'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
 &lt;span class=&quot;c1&quot;&gt;//父级绑定click事件捕获&lt;/span&gt;
 &lt;span class=&quot;nx&quot;&gt;d1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'click'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'parent capture'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
@@ -2248,50 +2245,57 @@ parent bubble
 &lt;p&gt;原理：HTML5的离线存储是基于一个新建的.appcache文件的缓存机制(不是存储技术)，通过这个文件上的解析清单离线存储资源，这些资源就会像cookie一样被存储了下来。之后当网络在处于离线状态下时，浏览器会通过被离线存储的数据进行页面展示。&lt;/p&gt;
 
 &lt;p&gt;如何使用：&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;页面头部像下面一样加入一个manifest的属性；&lt;/li&gt;
-  &lt;li&gt;在cache.manifest文件的编写离线存储的资源；
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  	CACHE MANIFEST
-  	#v0.11
-  	CACHE:
-  	js/app.js
-  	css/style.css
-  	NETWORK:
-  	resourse/logo.png
-  	FALLBACK:
-  	/ /offline.html
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;页面头部像下面一样加入一个manifest的属性，&amp;lt;html manifest=”myapp.appcache”&amp;gt;（后缀无所谓）&lt;/li&gt;
+  &lt;li&gt;在myapp.appcache文件的编写离线存储的资源。manifest 文件首行为CACHE MANIFEST，其余就是要缓存的 URL 列表，每个一行，相对路径都相对于 manifest 文件的 url。
+    &lt;ol&gt;
+      &lt;li&gt;注释以#开头&lt;/li&gt;
+      &lt;li&gt;CACHE: 默认类型。&lt;/li&gt;
+      &lt;li&gt;NETWORK：表示资源从不缓存。&lt;/li&gt;
+      &lt;li&gt;FALLBACK:每行包含两个 url，第二个 URL 是指需要加载和存储在缓存中的资源， 第一个 URL 是一个前缀。任何匹配该前缀的 URL 都不会缓存，如果从网络中载入这样的 URL 失败的话，就会用第二个 URL 指定的缓存资源来替代。以下是一个文件例子：
+```
+CACHE MANIFEST&lt;/li&gt;
+    &lt;/ol&gt;
   &lt;/li&gt;
-  &lt;li&gt;在离线状态时，操作window.applicationCache进行需求实现。&lt;/li&gt;
-&lt;/ol&gt;
+&lt;/ul&gt;
 
-&lt;h3 id=&quot;如何实现浏览器内多个标签页之间的通信&quot;&gt;如何实现浏览器内多个标签页之间的通信?&lt;/h3&gt;
+&lt;p&gt;CACHE:
+myapp.html
+myapp.css
+myapp.js&lt;/p&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;WebSocket、SharedWorker&lt;/li&gt;
-  &lt;li&gt;也可以调用localstorge、cookies等本地存储方式；localstorge另一个浏览上下文里被添加、修改或删除时，它都会触发一个事件，我们通过监听事件，控制它的值来进行页面信息通信；&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;NETWORK:
+cgi/&lt;/p&gt;
 
-&lt;h3 id=&quot;iframe缺点&quot;&gt;iframe缺点&lt;/h3&gt;
-&lt;p&gt;iframe缺点：&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;iframe会阻塞主页面的&lt;code class=&quot;highlighter-rouge&quot;&gt;Onload&lt;/code&gt;事件；&lt;/li&gt;
-  &lt;li&gt;搜索引擎的检索程序无法解读这种页面，不利于SEO;&lt;/li&gt;
-  &lt;li&gt;iframe和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载。&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;FALLBACK:
+videos/ offline_help.html&lt;/p&gt;
 
-&lt;p&gt;使用iframe之前需要考虑这两个缺点。如果需要使用iframe，最好是通过javascript动态给iframe添加src属性值，这样可以绕开以上两个问题。&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;* 在离线状态时，操作window.applicationCache进行需求实现。
 
-&lt;h3 id=&quot;label的作用是什么是怎么用的&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Label&lt;/code&gt;的作用是什么？是怎么用的？&lt;/h3&gt;
-&lt;p&gt;&amp;lt;label&amp;gt; 标签为 input 元素定义标注（标记）, 提供焦点绑定。
-label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用户改进了可用性。如果在 label 元素内点击文本，就会触发此控件。就是说，当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。用for属性绑定id。&lt;/p&gt;
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;form&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;label&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;for=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;male&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Male&lt;span class=&quot;nt&quot;&gt;&amp;lt;/label&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;radio&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sex&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;male&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;br&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;label&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;for=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;female&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Female&lt;span class=&quot;nt&quot;&gt;&amp;lt;/label&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;radio&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sex&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;female&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/form&amp;gt;&lt;/span&gt;
+### 如何实现浏览器内多个标签页之间的通信?
+
+1. WebSocket、SharedWorker
+1. 也可以调用localstorge、cookies等本地存储方式；localstorge另一个浏览上下文里被添加、修改或删除时，它都会触发一个事件，我们通过监听事件，控制它的值来进行页面信息通信；
+
+### iframe缺点
+iframe缺点：
+1. iframe会阻塞主页面的`Onload`事件；
+1. 搜索引擎的检索程序无法解读这种页面，不利于SEO;
+1. iframe和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载。
+
+使用iframe之前需要考虑这两个缺点。如果需要使用iframe，最好是通过javascript动态给iframe添加src属性值，这样可以绕开以上两个问题。
+
+### `Label`的作用是什么？是怎么用的？
+\&amp;lt;label&amp;gt; 标签为 input 元素定义标注（标记）, 提供焦点绑定。
+label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用户改进了可用性。如果在 label 元素内点击文本，就会触发此控件。就是说，当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。用for属性绑定id。
+```html
+&amp;lt;form&amp;gt;
+&amp;lt;label for=&quot;male&quot;&amp;gt;Male&amp;lt;/label&amp;gt;
+&amp;lt;input type=&quot;radio&quot; name=&quot;sex&quot; id=&quot;male&quot; /&amp;gt;
+&amp;lt;br /&amp;gt;
+&amp;lt;label for=&quot;female&quot;&amp;gt;Female&amp;lt;/label&amp;gt;
+&amp;lt;input type=&quot;radio&quot; name=&quot;sex&quot; id=&quot;female&quot; /&amp;gt;
+&amp;lt;/form&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;h3 id=&quot;websocket如何兼容低浏览器&quot;&gt;webSocket如何兼容低浏览器？&lt;/h3&gt;
 &lt;ol&gt;
@@ -2559,6 +2563,13 @@ label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用�
       &lt;li&gt;&lt;a href=&quot;#%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96amdcmdcommonjs&quot;&gt;前端模块化，AMD/CMD/CommonJS&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F&quot;&gt;内存泄漏&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#--objectis%E5%8C%BA%E5%88%AB&quot;&gt;==, ===, Object.is()区别&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E8%BF%90%E7%AE%97%E7%AC%A6%E5%88%A4%E6%96%AD%E7%9B%B8%E7%AD%89%E7%9A%84%E6%B5%81%E7%A8%8B%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84&quot;&gt;===运算符判断相等的流程是怎样的&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E8%BF%90%E7%AE%97%E7%AC%A6%E5%88%A4%E6%96%AD%E7%9B%B8%E7%AD%89%E7%9A%84%E6%B5%81%E7%A8%8B%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84&quot;&gt;==运算符判断相等的流程是怎样的&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E5%AF%B9%E8%B1%A1%E5%88%B0%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%BD%AC%E6%8D%A2%E6%AD%A5%E9%AA%A4&quot;&gt;对象到字符串的转换步骤&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E5%AF%B9%E8%B1%A1%E5%88%B0%E6%95%B0%E5%AD%97%E7%9A%84%E8%BD%AC%E6%8D%A2%E6%AD%A5%E9%AA%A4&quot;&gt;对象到数字的转换步骤&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E7%9A%84%E6%AF%94%E8%BE%83%E8%A7%84%E5%88%99&quot;&gt;&amp;lt;,&amp;gt;,&amp;lt;=,&amp;gt;=的比较规则&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E8%BF%90%E7%AE%97%E7%AC%A6%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B&quot;&gt;运算符工作流程&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E5%87%BD%E6%95%B0%E5%86%85%E9%83%A8-arguments-%E5%8F%98%E9%87%8F%E6%9C%89%E5%93%AA%E4%BA%9B%E7%89%B9%E6%80%A7%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B1%9E%E6%80%A7%E5%A6%82%E4%BD%95%E5%B0%86%E5%AE%83%E8%BD%AC%E6%8D%A2%E4%B8%BA%E6%95%B0%E7%BB%84&quot;&gt;函数内部 arguments 变量有哪些特性,有哪些属性,如何将它转换为数组&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E5%89%8D%E7%AB%AF%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%8D%95%E4%BE%8B%E5%8D%95%E4%BD%93%E5%B7%A5%E5%8E%82%E7%AD%96%E7%95%A5%E8%A3%85%E9%A5%B0%E8%80%85%E9%80%82%E9%85%8D%E5%99%A8%E8%A7%82%E5%AF%9F%E8%80%85%E9%97%A8%E9%9D%A2&quot;&gt;前端设计模式，单例，单体，工厂，策略，装饰者，适配器，观察者，门面&lt;/a&gt;
         &lt;ul&gt;
           &lt;li&gt;&lt;a href=&quot;#%E5%8D%95%E4%BD%93%E6%A8%A1%E5%BC%8Fsingleton&quot;&gt;单体模式(Singleton)&lt;/a&gt;&lt;/li&gt;
@@ -2575,8 +2586,10 @@ label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用�
       &lt;li&gt;&lt;a href=&quot;#node%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9&quot;&gt;Node的优缺点&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#cookie%E5%92%8Csession&quot;&gt;Cookie和Session&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#cookie-loaclstorage-sessionstorage&quot;&gt;cookie, loaclStorage, sessionStorage&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#javascript%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF&quot;&gt;Javascript如何实现继承？&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#javascript%E7%BB%A7%E6%89%BF%E7%9A%846%E7%A7%8D%E6%96%B9%E6%B3%95&quot;&gt;javascript继承的6种方法&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E4%B8%80%E4%B8%AA%E9%A1%B5%E9%9D%A2%E4%BB%8E%E8%BE%93%E5%85%A5-url-%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E6%98%BE%E7%A4%BA%E5%AE%8C%E6%88%90%E8%BF%99%E4%B8%AA%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%83%BD%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88&quot;&gt;一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B&quot;&gt;TCP三次握手，四次挥手&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#json%E7%9A%84%E4%BA%86%E8%A7%A3&quot;&gt;JSON的了解&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#xml%E5%92%8Cjson&quot;&gt;XML和JSON&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#mvc%E5%92%8Cmvvm%E7%9A%84%E7%90%86%E8%A7%A3&quot;&gt;MVC和MVVM的理解&lt;/a&gt;&lt;/li&gt;
@@ -2601,12 +2614,25 @@ label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用�
       &lt;li&gt;&lt;a href=&quot;#polyfill&quot;&gt;polyfill&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E4%BD%A0%E4%BD%BF%E7%94%A8%E4%BB%80%E4%B9%88%E8%AF%AD%E5%8F%A5%E9%81%8D%E5%8E%86%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B1%9E%E6%80%A7%E5%92%8C%E6%95%B0%E7%BB%84%E7%9A%84%E5%85%83%E7%B4%A0&quot;&gt;你使用什么语句遍历对象的属性和数组的元素？&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E8%B0%83%E7%94%A8%E5%A0%86%E6%A0%88%E5%92%8C%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB&quot;&gt;什么是事件循环？调用堆栈和任务队列之间有什么区别？&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#javascript-%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95%E5%AE%9A%E4%B9%89%E5%AF%B9%E8%B1%A1&quot;&gt;javascript 有哪些方法定义对象&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#js%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95%E6%9E%84%E5%BB%BA%E5%87%BD%E6%95%B0&quot;&gt;JS几种方法构建函数&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E8%AF%B7%E8%A7%A3%E9%87%8Afunction-foo-%E5%92%8Cvar-foo--function-%E4%B9%8B%E9%97%B4foo%E7%9A%84%E7%94%A8%E6%B3%95%E4%B8%8A%E7%9A%84%E5%8C%BA%E5%88%AB&quot;&gt;请解释&lt;code class=&quot;highlighter-rouge&quot;&gt;function foo() {}&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;var foo = function() {}&lt;/code&gt;之间&lt;code class=&quot;highlighter-rouge&quot;&gt;foo&lt;/code&gt;的用法上的区别。&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E4%BD%BF%E7%94%A8letvar%E5%92%8Cconst%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB&quot;&gt;使用let、var和const创建变量有什么区别？&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%A4%84&quot;&gt;构造函数中使用箭头函数有什么好处？&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#%E8%AF%B7%E7%BB%99%E5%87%BA%E4%B8%80%E4%B8%AA%E8%A7%A3%E6%9E%84destructuring%E5%AF%B9%E8%B1%A1%E6%88%96%E6%95%B0%E7%BB%84%E7%9A%84%E4%BE%8B%E5%AD%90&quot;&gt;请给出一个解构（destructuring）对象或数组的例子。&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E5%86%99%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E4%BA%8B%E4%BB%B6%E4%BE%A6%E5%90%AC%E5%99%A8%E5%87%BD%E6%95%B0&quot;&gt;写一个通用的事件侦听器函数。&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#%E9%98%B2%E6%8A%96debounce%E5%92%8C%E8%8A%82%E6%B5%81throttle&quot;&gt;防抖(debounce)和节流(throttle）&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#%E9%98%B2%E6%8A%96&quot;&gt;防抖&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#%E8%8A%82%E6%B5%81&quot;&gt;节流&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#egetattributepropname%E5%92%8Cepropname&quot;&gt;e.getAttribute(propName)和e.propName&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#height-clientheight-offsetheighscrollheight&quot;&gt;height, clientHeight, offsetHeigh，scrollHeight&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#mouseovermouseout-%E4%B8%8E-mouseentermouseleave-%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB&quot;&gt;mouseover/mouseout 与 mouseenter/mouseleave 的区别与联系&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#es6&quot;&gt;ES6&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;!-- END doctoc generated TOC please keep comment here to allow auto update --&gt;
@@ -2970,6 +2996,79 @@ CMD缺点：执行等待时间会叠加。因为每个文件执行时是同步�
 
 &lt;p&gt;==会进行类型转换，===不会，Object.is 在三等号判等的基础上特别处理了 NaN 、-0 和 +0 ，保证 -0 和 +0 不再相同，但 Object.is(NaN, NaN) 会返回 true.&lt;/p&gt;
 
+&lt;h3 id=&quot;运算符判断相等的流程是怎样的&quot;&gt;===运算符判断相等的流程是怎样的&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;类型不同，不等&lt;/li&gt;
+  &lt;li&gt;null，undefined，boolean，number这四个类型的只要值(数值)相等，就相等，-0 === 0 //true&lt;/li&gt;
+  &lt;li&gt;只要其中有一个为NAN，则不等&lt;/li&gt;
+  &lt;li&gt;string类型，长度/内容/编码不同，都是不等，相同位置包含相同的16位，相等&lt;/li&gt;
+  &lt;li&gt;指向相同的对象，数组，函数，则相等，若指向不同对象，不等&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;运算符判断相等的流程是怎样的-1&quot;&gt;==运算符判断相等的流程是怎样的&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;若类型不同，则按===规则判断&lt;/li&gt;
+  &lt;li&gt;类型不同，则启用隐式类型转换
+    &lt;ol&gt;
+      &lt;li&gt;有NAN，一律返回false&lt;/li&gt;
+      &lt;li&gt;null和undefined不会相互转换，相等&lt;/li&gt;
+      &lt;li&gt;有boolean类型，boolean类型转换成数字比较&lt;/li&gt;
+      &lt;li&gt;有string类型，两种情况：
+        &lt;ol&gt;
+          &lt;li&gt;对象，对象用toString方法转换成string相比。&lt;/li&gt;
+          &lt;li&gt;数字，string类型转换成数字进行比较&lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/li&gt;
+      &lt;li&gt;有数字类型，和对象相比，对象用valueof转换成原始值进行比较&lt;/li&gt;
+      &lt;li&gt;其他情况，一律返回false&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;对象到字符串的转换步骤&quot;&gt;对象到字符串的转换步骤&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;如果对象有 toString()方法，javascript 调用它。如果返回一个基础类型（primitive value 如：string number boolean）,将这个值转换为字符串作为结果&lt;/li&gt;
+  &lt;li&gt;如果对象没有 toString()方法或者返回值不是原始值，javascript 寻找对象的 valueOf()方法，如果存在就调用它，返回结果是基础类型则转为字符串作为结果&lt;/li&gt;
+  &lt;li&gt;否则，javascript 不能从 toString()或者 valueOf()获得一个原始值，此时 throws a TypeError&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;对象到数字的转换步骤&quot;&gt;对象到数字的转换步骤&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;如果对象有valueOf()方法并且返回元素值，javascript将返回值转换为数字作为结果&lt;/li&gt;
+  &lt;li&gt;否则，如果对象有toString()并且返回原始值，javascript将返回结果转换为数字作为结果&lt;/li&gt;
+  &lt;li&gt;否则，throws a TypeError&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;的比较规则&quot;&gt;&amp;lt;,&amp;gt;,&amp;lt;=,&amp;gt;=的比较规则&lt;/h3&gt;
+&lt;p&gt;1所有比较运算符都支持任意类型，但是比较只支持数字和字符串，所以需要执行必要的转换然后进行比较，转换规则如下:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;如果操作数是对象，转换为原始值：如果 valueOf 方法返回原始值，则使用这个值，否则使用 toString 方法的结果，如果转换失败则报错&lt;/li&gt;
+  &lt;li&gt;经过必要的对象到原始值的转换后，如果两个操作数都是字符串，按照字母顺序进行比较（他们的 16 位 unicode 值的大小）&lt;/li&gt;
+  &lt;li&gt;否则，如果有一个操作数不是字符串，将两个操作数转换为数字进行比较&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;运算符工作流程&quot;&gt;运算符工作流程&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;如果有操作数是对象，转换为原始值&lt;/li&gt;
+  &lt;li&gt;此时如果有一个操作数是字符串，其他的操作数都转换为字符串并执行连接&lt;/li&gt;
+  &lt;li&gt;否则：所有操作数都转换为数字并执行加法&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;函数内部-arguments-变量有哪些特性有哪些属性如何将它转换为数组&quot;&gt;函数内部 arguments 变量有哪些特性,有哪些属性,如何将它转换为数组&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;arguments 所有函数中都包含的一个局部变量，是一个类数组对象，对应函数调用时的实参。如果函数定义同名参数会在调用时覆盖默认对象&lt;/li&gt;
+  &lt;li&gt;arguments[index]分别对应函数调用时的实参，并且通过 arguments 修改实参时会同时修改实参&lt;/li&gt;
+  &lt;li&gt;arguments.length 为实参的个数
+转化为数组
+    &lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;slice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[].&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;slice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// ES2015&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[...&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
 &lt;h3 id=&quot;前端设计模式单例单体工厂策略装饰者适配器观察者门面&quot;&gt;前端设计模式，单例，单体，工厂，策略，装饰者，适配器，观察者，门面&lt;/h3&gt;
 
 &lt;h4 id=&quot;单体模式singleton&quot;&gt;单体模式(Singleton)&lt;/h4&gt;
@@ -3277,9 +3376,18 @@ CMD缺点：执行等待时间会叠加。因为每个文件执行时是同步�
 &lt;/ol&gt;
 
 &lt;h3 id=&quot;cookie-loaclstorage-sessionstorage&quot;&gt;cookie, loaclStorage, sessionStorage&lt;/h3&gt;
-
+&lt;p&gt;、&lt;/p&gt;
 &lt;ol&gt;
-  &lt;li&gt;cookie: 可设置失效时间，默认是浏览器关闭后，大小4K左右，每次都会携带在HTTP头中，这也是大小限制的原因，如果使用cookie保存过多数据会带来性能问题，主要用于保存密码等信息&lt;/li&gt;
+  &lt;li&gt;cookie: 可设置失效时间，默认是浏览器关闭后，大小4K左右，每次都会携带在HTTP头中，这也是大小限制的原因，如果使用cookie保存过多数据会带来性能问题，主要用于保存密码等信息。cookie 作用域通过文档源和文档路径来确定，通过path和domain进行配置，web 页面同目录或子目录文档都可访问
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;document.cookie = 'name=qiu; max-age=9999; path=/; domain=domain; secure';
+document.cookie = 'name=aaa; path=/; domain=domain; secure';
+// 要改变cookie的值，需要使用相同的名字、路径和域，新的值
+// 来设置cookie，同样的方法可以用来改变有效期
+// 设置max-age为0可以删除指定cookie
+//读取cookie，访问document.cookie返回键值对组成的字符串，
+//不同键值对之间用'; '分隔。通过解析获得需要的值
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
   &lt;li&gt;localStorage: 除非主动删除，否则永久保留，一般5M左右，仅在浏览器保存，不参与通信
     &lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;localStorage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'myCat'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;nx&quot;&gt;localStorage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'myCat'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -3691,6 +3799,27 @@ origin： 协议+主机+端口号，也可以设置为”*“，表示可以传�
 
 &lt;p&gt;事件循环是一个单线程循环，用于监视调用堆栈并检查是否有工作即将在任务队列中完成。如果调用堆栈为空并且任务队列中有回调函数，则将回调函数出队并推送到调用堆栈中执行。&lt;/p&gt;
 
+&lt;h3 id=&quot;javascript-有哪些方法定义对象&quot;&gt;javascript 有哪些方法定义对象&lt;/h3&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//字面量&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{};&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//构造函数&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//Object对象方法create()&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;js几种方法构建函数&quot;&gt;JS几种方法构建函数&lt;/h3&gt;
+&lt;p&gt;4种&lt;/p&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//函数声明&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//函数表达式&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(){};&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//Function对象构造函数&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'a'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'b'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'return a+b'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//箭头函数&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
 &lt;h3 id=&quot;请解释function-foo-和var-foo--function-之间foo的用法上的区别&quot;&gt;请解释&lt;code class=&quot;highlighter-rouge&quot;&gt;function foo() {}&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;var foo = function() {}&lt;/code&gt;之间&lt;code class=&quot;highlighter-rouge&quot;&gt;foo&lt;/code&gt;的用法上的区别。&lt;/h3&gt;
 
 &lt;p&gt;前者是函数声明，后者是函数表达式。关键的区别在于函数声明会使函数体提升（具有与变量相同的提升行为），但函数表达式的函数体不能。有关变量提升的更多解释，请参阅上面关于变量提升的问题。如果你试图在定义函数表达式之前调用它，你会得到一个&lt;code class=&quot;highlighter-rouge&quot;&gt;Uncaught TypeError: XXX is not a function&lt;/code&gt;的错误。&lt;/p&gt;
@@ -3935,6 +4064,80 @@ origin： 协议+主机+端口号，也可以设置为”*“，表示可以传�
   &lt;li&gt;监听滚动事件，比如是否滑到底部自动加载更多，用节流来判断&lt;/li&gt;
 &lt;/ol&gt;
 
+&lt;h3 id=&quot;egetattributepropname和epropname&quot;&gt;e.getAttribute(propName)和e.propName&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;e.getAttribute()，是标准 DOM 操作文档元素属性的方法，具有通用性可在任意文档上使用，返回元素在源文件中设置的属性&lt;/li&gt;
+  &lt;li&gt;e.propName 通常是在 HTML 文档中访问特定元素的特性，浏览器解析元素后生成对应对象（如 a 标签生成 HTMLAnchorElement），这些对象的特性会根据特定规则结合属性设置得到，对于没有对应特性的属性，只能使用 getAttribute 进行访问&lt;/li&gt;
+  &lt;li&gt;e.getAttribute()返回值是源文件中设置的值，类型是字符串或者 null（有的实现返回”“）&lt;/li&gt;
+  &lt;li&gt;e.propName 返回值可能是字符串、布尔值、对象、undefined 等&lt;/li&gt;
+  &lt;li&gt;大部分 attribute 与 property 是一一对应关系，修改其中一个会影响另一个，如 id，title 等属性
+一些布尔属性&amp;lt;input hidden/&amp;gt;的检测设置需要 hasAttribute 和 removeAttribute 来完成，或者设置对应 property&lt;/li&gt;
+  &lt;li&gt;像&amp;lt;a href=”../index.html”&amp;gt;link&amp;lt;/a&amp;gt;中 href 属性，转换成 property 的时候需要通过转换得到完整 URL&lt;/li&gt;
+  &lt;li&gt;一些 attribute 和 property 不是一一对应如：form 控件中&lt;input value=&quot;hello&quot; /&gt;对应的是 defaultValue，修改或设置 value property 修改的是控件当前值，setAttribute 修改 value 属性不会改变 value property&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;height-clientheight-offsetheighscrollheight&quot;&gt;height, clientHeight, offsetHeigh，scrollHeight&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;width/height：指元素content的宽高&lt;/li&gt;
+  &lt;li&gt;offsetWidth/offsetHeight 返回值包含content + padding + border&lt;/li&gt;
+  &lt;li&gt;clientWidth/clientHeight 返回值只包含content + padding，如果有滚动条，也不包含滚动条&lt;/li&gt;
+  &lt;li&gt;scrollWidth/scrollHeight 返回值包含content + padding + 溢出内容的尺寸&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;mouseovermouseout-与-mouseentermouseleave-的区别与联系&quot;&gt;mouseover/mouseout 与 mouseenter/mouseleave 的区别与联系&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;mouseover/mouseout 是标准事件，所有浏览器都支持；mouseenter/mouseleave 是 IE5.5 引入的特有事件后来被 DOM3 标准采纳，现代标准浏览器也支持&lt;/li&gt;
+  &lt;li&gt;mouseover/mouseout 是冒泡事件；mouseenter/mouseleave不冒泡。需要为多个元素监听鼠标移入/出事件时，推荐 mouseover/mouseout 托管，提高性能&lt;/li&gt;
+  &lt;li&gt;标准事件模型中 event.target 表示发生移入/出的元素,event.relatedTarget对应移出/如元素；在老 IE 中 event.srcElement 表示发生移入/出的元素，event.toElement表示移出的目标元素，event.fromElement表示移入时的来源元素&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;例子：鼠标从 div#target 元素移出时进行处理，判断逻辑如下：&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;target&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;span&amp;gt;&lt;/span&gt;test&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'target'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'mouseout'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mouseoutHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;attachEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;attachEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'onmouseout'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mouseoutHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mouseoutHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;srcElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// 判断移出鼠标的元素是否为目标元素&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'target'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// 判断鼠标是移出元素还是移到子元素&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;relatedTarget&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;relatedTarget&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;relatedTarget&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;relatedTarget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nodeName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toUpperCase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'BODY'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;relatedTarget&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;relatedTarget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;parentNode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// 如果相等，说明鼠标在元素内部移动&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;relatedTarget&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// 执行需要操作&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;//alert('鼠标移出');&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;===运算符判断相等的流程是怎样的
+如果两个值不是相同类型，它们不相等
+如果两个值都是 null 或者都是 undefined，它们相等
+如果两个值都是布尔类型 true 或者都是 false，它们相等
+如果其中有一个是NaN，它们不相等
+如果都是数值型并且数值相等，他们相等， -0 等于 0
+如果他们都是字符串并且在相同位置包含相同的 16 位值，他它们相等；如果在长度或者内容上不等，它们不相等；两个字符串显示结果相同但是编码不同==和===都认为他们不相等
+如果他们指向相同对象、数组、函数，它们相等；如果指向不同对象，他们不相等&lt;/p&gt;
 &lt;h2 id=&quot;es6&quot;&gt;ES6&lt;/h2&gt;
 
 </description>
