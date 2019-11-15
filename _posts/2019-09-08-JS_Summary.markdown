@@ -166,7 +166,6 @@ JS的作用域和Java,C++之类语言最大的区别就在于它的函数作用�
 ```JS
 function f1(){
 	var n=999;
-	function f2(){
 		n++;
 		alert(n);
 	}
@@ -1309,32 +1308,23 @@ console.log(q); // true
 ```js
 // event(事件)工具集，来源：github.com/markyun
  	my.Event = {
- 		// 页面加载完成后
- 		readyEvent : function(fn) {
- 			if (fn == null) {
- 				fn = document;
- 			}
- 			var oldonload = window.onload;
- 			if (typeof window.onload != 'function') {
- 				window.onload = fn;
- 			} else {
- 				window.onload = function() {
- 					oldonload();
- 					fn();
- 				};
- 			}
+        getEvent: function (event) {
+            return event || window.event;
+        },
+        // 获取事件目标
+ 		getTarget : function(event) {
+ 			return event.target || event.srcElement;
  		},
  		// 视能力分别使用dom0||dom2||IE方式 来绑定事件
  		// 参数： 操作的元素,事件名称 ,事件处理程序
  		addEvent : function(element, type, handler) {
- 			if (element.addEventListener) {
- 				//事件类型、需要执行的函数、是否捕捉
+ 			if (element.addEventListener) {//DOM2
  				element.addEventListener(type, handler, false);
- 			} else if (element.attachEvent) {
+ 			} else if (element.attachEvent) {//IE78   
  				element.attachEvent('on' + type, function() {
  					handler.call(element);
  				});
- 			} else {
+ 			} else {//dom0
  				element['on' + type] = handler;
  			}
  		},
@@ -1348,40 +1338,21 @@ console.log(q); // true
  				element['on' + type] = null;
  			}
  		},
+        // 取消事件的默认行为
+ 		preventDefault : function(event) {
+ 			if (event.preventDefault) {
+ 				event.preventDefault();
+ 			} else if('returnValue' in event){
+ 				event.returnValue = false;
+ 			}
+ 		},
  		// 阻止事件 (主要是事件冒泡，因为IE不支持事件捕获)
  		stopPropagation : function(ev) {
  			if (ev.stopPropagation) {
  				ev.stopPropagation();
- 			} else {
+ 			} else if(cancelBubble in event){
  				ev.cancelBubble = true;
  			}
- 		},
- 		// 取消事件的默认行为
- 		preventDefault : function(event) {
- 			if (event.preventDefault) {
- 				event.preventDefault();
- 			} else {
- 				event.returnValue = false;
- 			}
- 		},
- 		// 获取事件目标
- 		getTarget : function(event) {
- 			return event.target || event.srcElement;
- 		},
- 		// 获取event对象的引用，取到事件的所有信息，确保随时能使用event；
- 		getEvent : function(e) {
- 			var ev = e || window.event;
- 			if (!ev) {
- 				var c = this.getEvent.caller;
- 				while (c) {
- 					ev = c.arguments[0];
- 					if (ev && Event == ev.constructor) {
- 						break;
- 					}
- 					c = c.caller;
- 				}
- 			}
- 			return ev;
  		}
  	};
 ```
@@ -1507,16 +1478,24 @@ function mouseoutHandler(e) {
 </script>
 ```
 
-===运算符判断相等的流程是怎样的
-如果两个值不是相同类型，它们不相等
-如果两个值都是 null 或者都是 undefined，它们相等
-如果两个值都是布尔类型 true 或者都是 false，它们相等
-如果其中有一个是NaN，它们不相等
-如果都是数值型并且数值相等，他们相等， -0 等于 0
-如果他们都是字符串并且在相同位置包含相同的 16 位值，他它们相等；如果在长度或者内容上不等，它们不相等；两个字符串显示结果相同但是编码不同==和===都认为他们不相等
-如果他们指向相同对象、数组、函数，它们相等；如果指向不同对象，他们不相等
-## ES6
+### IIFE立即执行函数
+JavaScript函数作用域链的特性,可以使用这种技术模拟私有作用域。IIFE的出现是为了隔离作用域，比如JQuery的代码都会放在一个IIFE里，通过定义一个匿名函数,相当于创建了一个“私有”的命名空间，该命名空间的变量和方法，不会破坏污染全局的命名空间。此时若是想访问全局对象，将全局对象以参数形式传进去即可，,"容器"内可以访问外部的变量,而外部环境不能访问"容器"内的变量。
 
+```js
+ (function(){
+})();//常见写法，将（）放在外面
+
+(function(){
+}());//将（）与函数写在一块置于外层（）中
+```
+
+立即执行函数有两个注意点：
+1. 是必须要有（），
+1. 函数体必须是函数表达式。
+
+作用：
+1. 隔离作用域
+1. 封装临时变量
 
 
 

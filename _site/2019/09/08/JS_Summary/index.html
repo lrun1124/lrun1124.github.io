@@ -363,7 +363,6 @@
 
 <pre><code class="language-JS">function f1(){
 	var n=999;
-	function f2(){
 		n++;
 		alert(n);
 	}
@@ -1565,32 +1564,23 @@ origin： 协议+主机+端口号，也可以设置为”*“，表示可以传�
 <h3 id="写一个通用的事件侦听器函数">写一个通用的事件侦听器函数。</h3>
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// event(事件)工具集，来源：github.com/markyun</span>
  	<span class="nx">my</span><span class="p">.</span><span class="nx">Event</span> <span class="o">=</span> <span class="p">{</span>
- 		<span class="c1">// 页面加载完成后</span>
- 		<span class="na">readyEvent</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
- 			<span class="k">if</span> <span class="p">(</span><span class="nx">fn</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
- 				<span class="nx">fn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">;</span>
- 			<span class="p">}</span>
- 			<span class="kd">var</span> <span class="nx">oldonload</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">onload</span><span class="p">;</span>
- 			<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">!=</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span>
- 				<span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="nx">fn</span><span class="p">;</span>
- 			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
- 				<span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
- 					<span class="nx">oldonload</span><span class="p">();</span>
- 					<span class="nx">fn</span><span class="p">();</span>
- 				<span class="p">};</span>
- 			<span class="p">}</span>
+        <span class="na">getEvent</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">event</span> <span class="o">||</span> <span class="nb">window</span><span class="p">.</span><span class="nx">event</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="c1">// 获取事件目标</span>
+ 		<span class="na">getTarget</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+ 			<span class="k">return</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span> <span class="o">||</span> <span class="nx">event</span><span class="p">.</span><span class="nx">srcElement</span><span class="p">;</span>
  		<span class="p">},</span>
  		<span class="c1">// 视能力分别使用dom0||dom2||IE方式 来绑定事件</span>
  		<span class="c1">// 参数： 操作的元素,事件名称 ,事件处理程序</span>
  		<span class="na">addEvent</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">handler</span><span class="p">)</span> <span class="p">{</span>
- 			<span class="k">if</span> <span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">)</span> <span class="p">{</span>
- 				<span class="c1">//事件类型、需要执行的函数、是否捕捉</span>
+ 			<span class="k">if</span> <span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">)</span> <span class="p">{</span><span class="c1">//DOM2</span>
  				<span class="nx">element</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">handler</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
- 			<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">attachEvent</span><span class="p">)</span> <span class="p">{</span>
+ 			<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">attachEvent</span><span class="p">)</span> <span class="p">{</span><span class="c1">//IE78   </span>
  				<span class="nx">element</span><span class="p">.</span><span class="nx">attachEvent</span><span class="p">(</span><span class="s1">'on'</span> <span class="o">+</span> <span class="nx">type</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
  					<span class="nx">handler</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
  				<span class="p">});</span>
- 			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+ 			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span><span class="c1">//dom0</span>
  				<span class="nx">element</span><span class="p">[</span><span class="s1">'on'</span> <span class="o">+</span> <span class="nx">type</span><span class="p">]</span> <span class="o">=</span> <span class="nx">handler</span><span class="p">;</span>
  			<span class="p">}</span>
  		<span class="p">},</span>
@@ -1604,40 +1594,21 @@ origin： 协议+主机+端口号，也可以设置为”*“，表示可以传�
  				<span class="nx">element</span><span class="p">[</span><span class="s1">'on'</span> <span class="o">+</span> <span class="nx">type</span><span class="p">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
  			<span class="p">}</span>
  		<span class="p">},</span>
+        <span class="c1">// 取消事件的默认行为</span>
+ 		<span class="na">preventDefault</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+ 			<span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">)</span> <span class="p">{</span>
+ 				<span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+ 			<span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="s1">'returnValue'</span> <span class="k">in</span> <span class="nx">event</span><span class="p">){</span>
+ 				<span class="nx">event</span><span class="p">.</span><span class="nx">returnValue</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+ 			<span class="p">}</span>
+ 		<span class="p">},</span>
  		<span class="c1">// 阻止事件 (主要是事件冒泡，因为IE不支持事件捕获)</span>
  		<span class="na">stopPropagation</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ev</span><span class="p">)</span> <span class="p">{</span>
  			<span class="k">if</span> <span class="p">(</span><span class="nx">ev</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">)</span> <span class="p">{</span>
  				<span class="nx">ev</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
- 			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+ 			<span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">cancelBubble</span> <span class="k">in</span> <span class="nx">event</span><span class="p">){</span>
  				<span class="nx">ev</span><span class="p">.</span><span class="nx">cancelBubble</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
  			<span class="p">}</span>
- 		<span class="p">},</span>
- 		<span class="c1">// 取消事件的默认行为</span>
- 		<span class="na">preventDefault</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
- 			<span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">)</span> <span class="p">{</span>
- 				<span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
- 			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
- 				<span class="nx">event</span><span class="p">.</span><span class="nx">returnValue</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
- 			<span class="p">}</span>
- 		<span class="p">},</span>
- 		<span class="c1">// 获取事件目标</span>
- 		<span class="na">getTarget</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
- 			<span class="k">return</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span> <span class="o">||</span> <span class="nx">event</span><span class="p">.</span><span class="nx">srcElement</span><span class="p">;</span>
- 		<span class="p">},</span>
- 		<span class="c1">// 获取event对象的引用，取到事件的所有信息，确保随时能使用event；</span>
- 		<span class="na">getEvent</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
- 			<span class="kd">var</span> <span class="nx">ev</span> <span class="o">=</span> <span class="nx">e</span> <span class="o">||</span> <span class="nb">window</span><span class="p">.</span><span class="nx">event</span><span class="p">;</span>
- 			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">ev</span><span class="p">)</span> <span class="p">{</span>
- 				<span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getEvent</span><span class="p">.</span><span class="nx">caller</span><span class="p">;</span>
- 				<span class="k">while</span> <span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
- 					<span class="nx">ev</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="kr">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
- 					<span class="k">if</span> <span class="p">(</span><span class="nx">ev</span> <span class="o">&amp;&amp;</span> <span class="nx">Event</span> <span class="o">==</span> <span class="nx">ev</span><span class="p">.</span><span class="kd">constructor</span><span class="p">)</span> <span class="p">{</span>
- 						<span class="k">break</span><span class="p">;</span>
- 					<span class="p">}</span>
- 					<span class="nx">c</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">caller</span><span class="p">;</span>
- 				<span class="p">}</span>
- 			<span class="p">}</span>
- 			<span class="k">return</span> <span class="nx">ev</span><span class="p">;</span>
  		<span class="p">}</span>
  	<span class="p">};</span>
 </code></pre></div></div>
@@ -1772,15 +1743,27 @@ origin： 协议+主机+端口号，也可以设置为”*“，表示可以传�
 <span class="nt">&lt;/script&gt;</span>
 </code></pre></div></div>
 
-<p>===运算符判断相等的流程是怎样的
-如果两个值不是相同类型，它们不相等
-如果两个值都是 null 或者都是 undefined，它们相等
-如果两个值都是布尔类型 true 或者都是 false，它们相等
-如果其中有一个是NaN，它们不相等
-如果都是数值型并且数值相等，他们相等， -0 等于 0
-如果他们都是字符串并且在相同位置包含相同的 16 位值，他它们相等；如果在长度或者内容上不等，它们不相等；两个字符串显示结果相同但是编码不同==和===都认为他们不相等
-如果他们指向相同对象、数组、函数，它们相等；如果指向不同对象，他们不相等</p>
-<h2 id="es6">ES6</h2>
+<h3 id="iife立即执行函数">IIFE立即执行函数</h3>
+<p>JavaScript函数作用域链的特性,可以使用这种技术模拟私有作用域。IIFE的出现是为了隔离作用域，比如JQuery的代码都会放在一个IIFE里，通过定义一个匿名函数,相当于创建了一个“私有”的命名空间，该命名空间的变量和方法，不会破坏污染全局的命名空间。此时若是想访问全局对象，将全局对象以参数形式传进去即可，,”容器”内可以访问外部的变量,而外部环境不能访问”容器”内的变量。</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+<span class="p">})();</span><span class="c1">//常见写法，将（）放在外面</span>
+
+<span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+<span class="p">}());</span><span class="c1">//将（）与函数写在一块置于外层（）中</span>
+</code></pre></div></div>
+
+<p>立即执行函数有两个注意点：</p>
+<ol>
+  <li>是必须要有（），</li>
+  <li>函数体必须是函数表达式。</li>
+</ol>
+
+<p>作用：</p>
+<ol>
+  <li>隔离作用域</li>
+  <li>封装临时变量</li>
+</ol>
 
 
 
