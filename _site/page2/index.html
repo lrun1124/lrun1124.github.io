@@ -158,6 +158,40 @@
             ">
     			
 <div class="post-preview">
+    <a href="/lrun1124.github.io/2019/09/02/%E5%AE%9E%E7%8E%B0call,apply,bind/">
+        <h2 class="post-title">
+            实现call,apply,bind
+        </h2>
+        
+        <h3 class="post-subtitle">
+            
+        </h3>
+        
+        <div class="post-content-preview">
+            
+  “Move on. ”
+
+
+call
+Function.prototype.myCall = function(context, ...arg) {
+  const s = Symbol('temp');
+  context.s = this;
+  context.s(...arg);
+  delete context.s;
+}
+
+
+apply
+Function.prototype.m...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Run on September 2, 2019
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/lrun1124.github.io/2019/08/27/N-Sum-problem/">
         <h2 class="post-title">
             N Sum problem
@@ -442,44 +476,6 @@ function transfer(num){
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/lrun1124.github.io/2017/11/07/JavaScript-Note(1)/">
-        <h2 class="post-title">
-            JavaScrip Note(1)
-        </h2>
-        
-        <h3 class="post-subtitle">
-            类型，原型，原型链，作用域，作用域链，闭包
-        </h3>
-        
-        <div class="post-content-preview">
-            
-  “Step 1. ”
-
-
-
-
-前言
-
-转前端工作一年多后对JS的一些基础仍然存在盲区，记录一些note查漏补缺
-
-正文
-
-JS基本数据类型及存储结构
-
-
-  Boolean, null, undefined, String, Number
-  ES 2015 新增 : Symbol
-    
-      独一无二的变量，由于对象中的方法属性可能在传递分享时被不小心修改或覆盖，用Symb...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Run on November 7, 2017
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -532,7 +528,7 @@ JS基本数据类型及存储结构
                             
                         
                             
-                                <a href="/lrun1124.github.io/tags/#Summary" title="Summary" rel="8">
+                                <a href="/lrun1124.github.io/tags/#Summary" title="Summary" rel="9">
                                     Summary
                                 </a>
                             

@@ -2,7 +2,7 @@
 layout:     post
 title:      "deep copy & shadow copy"
 subtitle:   ""
-date:       2019-11-19 12:00:00
+date:       2019-11-19 00:00:00
 author:     "Run"
 header-img: "img/ArrayUnique-bg.jpg"
 tags:
@@ -42,7 +42,7 @@ function shadowCopy(source) {
 1. 对象中含有NaN、Infinity和-Infinity，则序列化的结果会变成null
 1. 无法拷贝对象的循环引用
 
-### 自己实现
+### 实现
 ```js
 function isObject(source) {
     Object.prototype.toString.call(source) === '[object Object]';
