@@ -1306,7 +1306,7 @@ console.log(q); // true
 
 ### 写一个通用的事件侦听器函数。
 ```js
-// event(事件)工具集，来源：github.com/markyun
+// event(事件)工具集
  	my.Event = {
         getEvent: function (event) {
             return event || window.event;
@@ -1317,13 +1317,21 @@ console.log(q); // true
  		},
  		// 视能力分别使用dom0||dom2||IE方式 来绑定事件
  		// 参数： 操作的元素,事件名称 ,事件处理程序
- 		addEvent : function(element, type, handler) {
+ 		addEvent : function(element, type, handler, useCapture) {
  			if (element.addEventListener) {//DOM2
- 				element.addEventListener(type, handler, false);
- 			} else if (element.attachEvent) {//IE78   
- 				element.attachEvent('on' + type, function() {
- 					handler.call(element);
- 				});
+ 				element.addEventListener(type, handler, useCapture);
+                // 返回handler。调用者可以保存，以后remove
+                return handler;
+ 			} else if (element.attachEvent) {//IE78
+                // 标准化this，event，target
+                var wrapper = function () {
+                    var event = window.event;
+                    event.target = event.srcElement;
+                    handler.call(el, event);
+                }; 
+ 				element.attachEvent('on' + type, wrapper);
+                // 返回wrapper。调用者可以保存，以后remove
+                return wrapper;
  			} else {//dom0
  				element['on' + type] = handler;
  			}
@@ -1347,11 +1355,11 @@ console.log(q); // true
  			}
  		},
  		// 阻止事件 (主要是事件冒泡，因为IE不支持事件捕获)
- 		stopPropagation : function(ev) {
- 			if (ev.stopPropagation) {
- 				ev.stopPropagation();
+ 		stopPropagation : function(event) {
+ 			if (event.stopPropagation) {
+ 				event.stopPropagation();
  			} else if(cancelBubble in event){
- 				ev.cancelBubble = true;
+ 				event.cancelBubble = true;
  			}
  		}
  	};
@@ -1496,7 +1504,6 @@ JavaScript函数作用域链的特性,可以使用这种技术模拟私有作用
 作用：
 1. 隔离作用域
 1. 封装临时变量
-
 
 
 

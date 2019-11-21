@@ -206,7 +206,7 @@ function checkfy(obj) {
             fn.apply(obj, arguments);
           }
         };
-      }(key));
+      })(key);
     }
   }
 } 
@@ -217,4 +217,157 @@ var obj = new Page();
 obj.postA('checkfy');
 obj.postB('checkfy');
 obj.postC('checkfy');
+```
+
+### 鼠标单击 Button1 后将 Button1 移动到 Button2 的后面
+```html
+<body>
+    <div>
+        <input type="button" id ="btn1" value="1" />
+        <input type="button" id ="btn2" value="2" />
+    </div>
+    <script type="text/javascript">
+        var btn1 = document.getElementById('btn1');
+        var btn2 = document.getElementById('btn2');
+
+        function addEvent(element, type, handler) {
+            if(element.addEventListener) {
+                element.addEventListener(type, handler, false);
+            } else if (element.attachEvent) {
+                element.attachEvent('on' + type, handler);
+            } else {
+                element['on' + type] = handler;
+            }
+        }
+        addEvent(btn1, 'click', function (e){
+            //e.insertBefore() 方法在参考节点之前插入一个节点作为一个指定父节点的子节点。
+            //parentElement.insertBefore(newElement, referEl
+			//1. 如果要插入的newElement已经在DOM树中存在，那么执行此方法会将该节点从DOM树中移除。
+			//2. 如果referElement为null，那么`newElement会被添加到父节点的子节点末尾
+            btn1.parentNode.insertBefore(btn2, btn1);
+        });
+    </script>
+</body>
+```
+
+### 如何实现insertAfter
+JS原生不存在insertAfter方法, 元素节点还有一个属性: nextSibling，即指向元素的下个兄弟元素，如果已经是末尾子节点则为null。
+```js
+function insertAfter(newNode, referenceNode) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}
+```
+
+### 网页中实现一个计算当年还剩多少时间的倒数计时程序,要求网页上实时动态显示"×× 年还剩 ×× 天 ×× 时 ×× 分 ×× 秒
+```html
+<body>
+<span id="target"></span>
+<script type="text/javascript">
+    // 为了简化。每月默认30天
+    function getTimeString() {
+        var start = new Date();
+        var end = new Date(start.getFullYear() + 1, 0, 1);
+        var elapse = Math.floor((end - start) / 1000);
+
+        var seconds = elapse % 60 ;
+        var minutes = Math.floor(elapse / 60) % 60;
+        var hours = Math.floor(elapse / (60 * 60)) % 24;
+        var days = Math.floor(elapse / (60 * 60 * 24)) % 30;
+        var months = Math.floor(elapse / (60 * 60 * 24 * 30)) % 12;
+        var years = Math.floor(elapse / (60 * 60 * 24 * 30 * 12));
+
+        return start.getFullYear() + '年还剩' + years + '年' + months + '月' + days + '日'
+            + hours + '小时' + minutes + '分' + seconds + '秒';
+    }
+
+    function addText(elem, text) {
+        if (elem.textContent) {
+            elem.textContent = text;
+        } else if (elem.innerText) {
+            elem.innerText = text;
+        } else {
+            elem.innerHTML = text;
+        }
+    }
+
+    var target = document.getElementById('target');
+
+    setInterval(function () {
+        addText(target, getTimeString());
+    }, 1000)
+</script>
+</body>
+```
+
+### 完成一个函数,接受数组作为参数,数组元素为整数或者数组,数组元素包含整数或数组,函数返回扁平化后的数组
+如：[1, [2, [ [3, 4], 5], 6]] => [1, 2, 3, 4, 5, 6]
+```js
+function flat(arr, res) {
+	if(!Array.isArray(arr)) {
+		res.push(arr);
+	} else {
+		arr.forEach(item => {
+			if(!Array.isArray(arr)){
+				res.push(item);
+			} else {
+				flat(item, res);
+			}
+		});
+	}
+}
+var data = [1, [2, [ [3, 4], 5], 6]];
+var res = [];
+flat(data, res)
+console.log(res)
+```
+
+### 接受 url 中 query string 为参数,返回解析后的 Object
+## URL object
+modern browser 可以用 URL object
+```js
+var url_string = "http://www.example.com/t.html?a=1&b=3&c=m2-m3-m4-m5"; //window.location.href
+var url = new URL(url_string);
+var c = url.searchParams.get("c");
+console.log(c);
+```
+
+## URLSearchParams polyfill.
+https://github.com/ungap/url-search-params
+
+## 实现
+```js
+function parse_query_string(query) {
+	//不是字符串处理
+	if(Object.prototype.toString.call(query) !== '[object String]') {
+		return {};
+	}
+	//去掉字符串开头可能带的?
+    if (query.charAt(0) === '?') {
+        query = query.substring(1);
+    }
+	var query_arr = query.split("&");
+	var query_obj = {};
+	for (var i = 0; i < query_arr.length; i++) {
+		var pair = query_arr[i].split("=");
+		var key = decodeURIComponent(pair[0]);
+		var value = decodeURIComponent(pair[1]);
+		//分三种情况，第一次碰到直接添加，第二次变成数组，第三次直接push数组
+		if (!(key in query_obj)) {
+			// If first entry with this name
+			query_obj[key] = decodeURIComponent(value);
+		} else if (!Array.isArray(query_obj[key])) {
+			// If second entry with this name
+			var arr = [query_obj[key], decodeURIComponent(value)];
+			query_obj[key] = arr;
+		} else {
+			// If third or later entry with this name
+			query_obj[key].push(decodeURIComponent(value));
+		}
+	}
+	return query_obj;
+}
+
+var query_string = "a=1&b=3&c=m2-m3-m4-m5&a=2&b=1&b=2&b=3&b=4";
+var parsed_qs = parse_query_string(query_string);
+console.log(parsed_qs);
 ```
