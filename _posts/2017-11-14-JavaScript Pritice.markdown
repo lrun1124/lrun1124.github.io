@@ -371,3 +371,163 @@ var query_string = "a=1&b=3&c=m2-m3-m4-m5&a=2&b=1&b=2&b=3&b=4";
 var parsed_qs = parse_query_string(query_string);
 console.log(parsed_qs);
 ```
+
+### 解析一个完整的 url,返回 Object 包含域与 window.location 相同
+
+先写正则再加括号
+- 协议 [^:]+
+- \/\/
+- host [^:\/\/?#&]+
+- :
+- 端口 (\d+)?
+- pathname \/[^?]*
+- ?
+- .*
+```js
+/**
+ * 解析一个url并生成window.location对象中包含的域
+ * location:
+ * {
+ *      href: '包含完整的url',
+ *      origin: '包含协议到pathname之前的内容',
+ *      protocol: 'url使用的协议，包含末尾的:',
+ *      username: '用户名', // 暂时不支持
+ *      password: '密码',  // 暂时不支持
+ *      host: '完整主机名，包含:和端口',
+ *      hostname: '主机名，不包含端口'
+ *      port: '端口号',
+ *      pathname: '服务器上访问资源的路径/开头',
+ *      search: 'query string，?开头',
+ *      hash: '#开头的fragment identifier'
+ * }
+ *
+ * @param {string} url 需要解析的url
+ * @return {Object} 包含url信息的对象
+ */
+function parseUrl(url) {
+    var result = {};
+    var keys = ['href', 'origin', 'protocol', 'host',
+                'hostname', 'port', 'pathname', 'search', 'hash'];
+    var i, len;
+    var regexp = /(([^:]+:)\/\/(([^:\/\?#]+):(\d+)?))(\/[^?]*)?(.*)/;
+    var match = regexp.exec(url);
+	//嵌套规则：根据开括号的出现顺序来计数
+    if (match) {
+        for (i = keys.length - 1; i >= 0; --i) {
+            result[keys[i]] = match[i] ? match[i] : '';
+        }
+    }
+    return result;
+}
+```
+
+### 完成函数 getScrollOffset 返回窗口滚动条偏移量
+```js
+/**
+ * 获取指定window中滚动条的偏移量，如未指定则获取当前window
+ * 滚动条偏移量
+ *
+ * @param {window} w 需要获取滚动条偏移量的窗口
+ * @return {Object} obj.x为水平滚动条偏移量,obj.y为竖直滚动条偏移量
+ */
+function getScrollOffset(w) {
+    w =  w || window;
+    // 如果是标准浏览器
+    if (w.pageXOffset != null) {
+        return {
+            x: w.pageXOffset,
+            y: w.pageYOffset
+        };
+    }
+
+    // 老版本IE，根据兼容性不同访问不同元素
+    var d = w.document;
+    if (d.compatMode === 'CSS1Compat') {
+        return {
+            x: d.documentElement.scrollLeft,
+            y: d.documentElement.scrollTop
+        }
+    }
+
+    return {
+        x: d.body.scrollLeft,
+        y: d.body.scrollTop
+    };
+}
+```
+
+### 实现一个 Event 类,继承自此类的对象都会拥有两个方法 on,off,once 和 trigger
+```js
+function myEvent (){
+	if(!(this instanceof myEvent)) {
+		return new Event();
+	}
+	this._callback = {}
+}
+myEvent.prototype.on = function(type, handler) {
+	this.callback = this.callback || {};
+	this.callback[type] = this.callback[type] || [];
+	this.callback[type].push(handler);
+	return this;
+}
+myEvent.prototype.off = function(type, handler) {
+	var list = this._callbacks[type];
+	if(!list) return;
+	for(var i=0; i<lisy.length;i++){
+		if(list[i] === handler) {
+			list.splice(i, 1);
+		}
+	}
+	return this;
+}
+myEvent.prototype.trigger = function(type) {
+	var list = this._callbacks[type];
+	if(!list) return;
+	for(var i=0; i<lisy.length;i++){{
+		list[i].call(this);
+	}
+	return this;
+}
+myEvent.prototype.off = function(type, handler) {
+	var me = this;
+	var wrapper = function () {
+		handler.call(this);
+		me.off(type);
+	}
+	me.on(type, wrapper);
+	return this;
+}
+```
+
+### 编写一个函数将列表子元素顺序反转
+```html
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>TEst</title>
+</head>
+<body>
+    <ul id="target">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <input type='button' id='btn' value="click">
+<script type="text/javascript">
+	var target = document.getElementById('target');
+    var btn = document.getElementById('btn');
+    function revertList (){
+        var newList = document.createDocumentFragment();
+        for(var i=target.children.length-1; i>=0; i--) {
+            newList.appendChild(target.children[i])
+        }
+        //appendChild:如果被插入的节点已经存在于当前文档的文档树中,则那个节点会首先从原先的位置移除,然后再插入到新的位置.
+        target.appendChild(newList);
+    }
+    btn.addEventListener('click', revertList, false);
+</script>
+</body>
+</html>
+```
