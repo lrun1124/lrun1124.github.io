@@ -1596,7 +1596,7 @@ origin： 协议+主机+端口号，也可以设置为”*“，表示可以传�
  		<span class="na">removeEvent</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">handler</span><span class="p">)</span> <span class="p">{</span>
  			<span class="k">if</span> <span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">)</span> <span class="p">{</span>
  				<span class="nx">element</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">handler</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
- 			<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">datachEvent</span><span class="p">)</span> <span class="p">{</span>
+ 			<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">detachEvent</span><span class="p">)</span> <span class="p">{</span>
  				<span class="nx">element</span><span class="p">.</span><span class="nx">detachEvent</span><span class="p">(</span><span class="s1">'on'</span> <span class="o">+</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">handler</span><span class="p">);</span>
  			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
  				<span class="nx">element</span><span class="p">[</span><span class="s1">'on'</span> <span class="o">+</span> <span class="nx">type</span><span class="p">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
@@ -1867,13 +1867,13 @@ Table of Contents
                             
         				
                             
+        				
+                            
+        				
+                            
                 				<a href="/lrun1124.github.io/tags/#code" title="code" rel="4">
                                     code
                                 </a>
-                            
-        				
-                            
-        				
                             
         				
                             

@@ -12,7 +12,7 @@
 
     <title>JavaScrip Practice - Run Note</title>
 
-    <link rel="canonical" href="http://localhost:4000/lrun1124.github.io/2017/11/07/JavaScript-Pritice/">
+    <link rel="canonical" href="http://localhost:4000/lrun1124.github.io/2019/12/01/JavaScript_Pritice/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/lrun1124.github.io/css/bootstrap.min.css">
@@ -152,7 +152,7 @@
                     
                     <h2 class="subheading">code oj</h2>
                     
-                    <span class="meta">Posted by Run on November 7, 2017</span>
+                    <span class="meta">Posted by Run on December 1, 2019</span>
                 </div>
             </div>
         </div>
@@ -170,7 +170,41 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h3 id="1200000011转化为1200000011">12000000.11转化为『12,000,000.11』</h3>
+				<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc">DocToc</a></em></p>
+
+<ul>
+  <li><a href="#1200000011%E8%BD%AC%E5%8C%96%E4%B8%BA%E3%80%8E1200000011%E3%80%8F">12000000.11转化为『12,000,000.11』</a></li>
+  <li><a href="#%E6%95%B0%E7%BB%84%E9%9A%8F%E6%9C%BA%E6%8E%92%E5%88%97">数组随机排列</a></li>
+  <li><a href="#%E8%8E%B7%E5%8F%96%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9C%80%E5%A4%A7%E5%80%BC">获取数组中最大值</a></li>
+  <li><a href="#%E6%8C%87%E5%AE%9A%E5%8C%BA%E5%9F%9F%E5%8A%A0%E9%80%8F%E6%98%8E%E9%81%AE%E7%BD%A9mask">指定区域加透明遮罩mask</a></li>
+  <li><a href="#%E8%AF%B7%E7%94%A8%E4%BB%A3%E7%A0%81%E5%86%99%E5%87%BA%E4%BB%8A%E5%A4%A9%E6%98%AF%E6%98%9F%E6%9C%9F-x%E5%85%B6%E4%B8%AD-x-%E8%A1%A8%E7%A4%BA%E5%BD%93%E5%A4%A9%E6%98%AF%E6%98%9F%E6%9C%9F%E5%87%A0%E5%A6%82%E6%9E%9C%E5%BD%93%E5%A4%A9%E6%98%AF%E6%98%9F%E6%9C%9F%E4%B8%80%E8%BE%93%E5%87%BA%E5%BA%94%E8%AF%A5%E6%98%AF%E4%BB%8A%E5%A4%A9%E6%98%AF%E6%98%9F%E6%9C%9F%E4%B8%80">请用代码写出(今天是星期 x)其中 x 表示当天是星期几,如果当天是星期一,输出应该是”今天是星期一”</a></li>
+  <li><a href="#%E4%B8%8B%E9%9D%A2%E8%BF%99%E6%AE%B5%E4%BB%A3%E7%A0%81%E6%83%B3%E8%A6%81%E5%BE%AA%E7%8E%AF%E5%BB%B6%E6%97%B6%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C-0-1-2-3-4%E8%AF%B7%E9%97%AE%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C%E6%98%AF%E5%90%A6%E6%AD%A3%E7%A1%AE%E5%A6%82%E6%9E%9C%E4%B8%8D%E6%AD%A3%E7%A1%AE%E8%AF%B7%E8%AF%B4%E6%98%8E%E4%B8%BA%E4%BB%80%E4%B9%88%E5%B9%B6%E4%BF%AE%E6%94%B9%E5%BE%AA%E7%8E%AF%E5%86%85%E7%9A%84%E4%BB%A3%E7%A0%81%E4%BD%BF%E5%85%B6%E8%BE%93%E5%87%BA%E6%AD%A3%E7%A1%AE%E7%BB%93%E6%9E%9C">下面这段代码想要循环延时输出结果 0 1 2 3 4,请问输出结果是否正确,如果不正确,请说明为什么,并修改循环内的代码使其输出正确结果</a></li>
+  <li><a href="#%E7%8E%B0%E6%9C%89%E4%B8%80%E4%B8%AA-page-%E7%B1%BB%E5%85%B6%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%E4%B8%8A%E6%9C%89%E8%AE%B8%E5%A4%9A%E4%BB%A5-post-%E5%BC%80%E5%A4%B4%E7%9A%84%E6%96%B9%E6%B3%95%E5%A6%82-postmsg%E5%8F%A6%E6%9C%89%E4%B8%80%E6%8B%A6%E6%88%AA%E5%87%BD%E6%95%B0-chekc%E5%8F%AA%E8%BF%94%E5%9B%9E-ture-%E6%88%96-false%E8%AF%B7%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E8%AF%A5%E5%87%BD%E6%95%B0%E5%BA%94%E6%89%B9%E9%87%8F%E6%94%B9%E9%80%A0%E5%8E%9F-page-%E7%9A%84-postxxx-%E6%96%B9%E6%B3%95%E5%9C%A8%E4%BF%9D%E7%95%99%E5%85%B6%E5%8E%9F%E6%9C%89%E5%8A%9F%E8%83%BD%E7%9A%84%E5%90%8C%E6%97%B6%E4%B8%BA%E6%AF%8F%E4%B8%AA-postxxx-%E6%96%B9%E6%B3%95%E5%A2%9E%E5%8A%A0%E6%8B%A6%E6%88%AA%E9%AA%8C%E8%AF%81%E5%8A%9F%E8%83%BD%E5%BD%93-chekc-%E8%BF%94%E5%9B%9E-true-%E6%97%B6%E7%BB%A7%E7%BB%AD%E6%89%A7%E8%A1%8C%E5%8E%9F-postxxx-%E6%96%B9%E6%B3%95%E8%BF%94%E5%9B%9E-false-%E6%97%B6%E4%B8%8D%E5%86%8D%E6%89%A7%E8%A1%8C%E5%8E%9F-postxxx-%E6%96%B9%E6%B3%95">现有一个 Page 类,其原型对象上有许多以 post 开头的方法(如 postMsg);另有一拦截函数 chekc,只返回 ture 或 false.请设计一个函数,该函数应批量改造原 Page 的 postXXX 方法,在保留其原有功能的同时,为每个 postXXX 方法增加拦截验证功能,当 chekc 返回 true 时继续执行原 postXXX 方法,返回 false 时不再执行原 postXXX 方法</a></li>
+  <li><a href="#%E9%BC%A0%E6%A0%87%E5%8D%95%E5%87%BB-button1-%E5%90%8E%E5%B0%86-button1-%E7%A7%BB%E5%8A%A8%E5%88%B0-button2-%E7%9A%84%E5%90%8E%E9%9D%A2">鼠标单击 Button1 后将 Button1 移动到 Button2 的后面</a></li>
+  <li><a href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0insertafter">如何实现insertAfter</a></li>
+  <li><a href="#%E7%BD%91%E9%A1%B5%E4%B8%AD%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%AE%A1%E7%AE%97%E5%BD%93%E5%B9%B4%E8%BF%98%E5%89%A9%E5%A4%9A%E5%B0%91%E6%97%B6%E9%97%B4%E7%9A%84%E5%80%92%E6%95%B0%E8%AE%A1%E6%97%B6%E7%A8%8B%E5%BA%8F%E8%A6%81%E6%B1%82%E7%BD%91%E9%A1%B5%E4%B8%8A%E5%AE%9E%E6%97%B6%E5%8A%A8%E6%80%81%E6%98%BE%E7%A4%BA%C3%97%C3%97-%E5%B9%B4%E8%BF%98%E5%89%A9-%C3%97%C3%97-%E5%A4%A9-%C3%97%C3%97-%E6%97%B6-%C3%97%C3%97-%E5%88%86-%C3%97%C3%97-%E7%A7%92">网页中实现一个计算当年还剩多少时间的倒数计时程序,要求网页上实时动态显示”×× 年还剩 ×× 天 ×× 时 ×× 分 ×× 秒</a></li>
+  <li><a href="#%E5%AE%8C%E6%88%90%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E6%8E%A5%E5%8F%97%E6%95%B0%E7%BB%84%E4%BD%9C%E4%B8%BA%E5%8F%82%E6%95%B0%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E4%B8%BA%E6%95%B4%E6%95%B0%E6%88%96%E8%80%85%E6%95%B0%E7%BB%84%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E5%8C%85%E5%90%AB%E6%95%B4%E6%95%B0%E6%88%96%E6%95%B0%E7%BB%84%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E6%89%81%E5%B9%B3%E5%8C%96%E5%90%8E%E7%9A%84%E6%95%B0%E7%BB%84">完成一个函数,接受数组作为参数,数组元素为整数或者数组,数组元素包含整数或数组,函数返回扁平化后的数组</a></li>
+  <li><a href="#%E6%8E%A5%E5%8F%97-url-%E4%B8%AD-query-string-%E4%B8%BA%E5%8F%82%E6%95%B0%E8%BF%94%E5%9B%9E%E8%A7%A3%E6%9E%90%E5%90%8E%E7%9A%84-object">接受 url 中 query string 为参数,返回解析后的 Object</a>
+    <ul>
+      <li><a href="#url-object">URL object</a></li>
+      <li><a href="#urlsearchparams-polyfill">URLSearchParams polyfill.</a></li>
+      <li><a href="#%E5%AE%9E%E7%8E%B0">实现</a></li>
+    </ul>
+  </li>
+  <li><a href="#%E8%A7%A3%E6%9E%90%E4%B8%80%E4%B8%AA%E5%AE%8C%E6%95%B4%E7%9A%84-url%E8%BF%94%E5%9B%9E-object-%E5%8C%85%E5%90%AB%E5%9F%9F%E4%B8%8E-windowlocation-%E7%9B%B8%E5%90%8C">解析一个完整的 url,返回 Object 包含域与 window.location 相同</a></li>
+  <li><a href="#%E5%AE%8C%E6%88%90%E5%87%BD%E6%95%B0-getscrolloffset-%E8%BF%94%E5%9B%9E%E7%AA%97%E5%8F%A3%E6%BB%9A%E5%8A%A8%E6%9D%A1%E5%81%8F%E7%A7%BB%E9%87%8F">完成函数 getScrollOffset 返回窗口滚动条偏移量</a></li>
+  <li><a href="#%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA-event-%E7%B1%BB%E7%BB%A7%E6%89%BF%E8%87%AA%E6%AD%A4%E7%B1%BB%E7%9A%84%E5%AF%B9%E8%B1%A1%E9%83%BD%E4%BC%9A%E6%8B%A5%E6%9C%89%E4%B8%A4%E4%B8%AA%E6%96%B9%E6%B3%95-onoffonce-%E5%92%8C-trigger">实现一个 Event 类,继承自此类的对象都会拥有两个方法 on,off,once 和 trigger</a></li>
+  <li><a href="#%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E5%B0%86%E5%88%97%E8%A1%A8%E5%AD%90%E5%85%83%E7%B4%A0%E9%A1%BA%E5%BA%8F%E5%8F%8D%E8%BD%AC">编写一个函数将列表子元素顺序反转</a></li>
+  <li><a href="#%E4%BB%A5%E4%B8%8B%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E7%A9%BA%E7%99%BD%E5%8C%BA%E5%9F%9F%E5%BA%94%E8%AF%A5%E5%A1%AB%E5%86%99%E4%BB%80%E4%B9%88">以下函数的作用是?空白区域应该填写什么</a></li>
+  <li><a href="#%E4%BD%BF%E7%94%A8%E5%8E%9F%E7%94%9F-javascript-%E7%BB%99%E4%B8%8B%E9%9D%A2%E5%88%97%E8%A1%A8%E4%B8%AD%E7%9A%84-li-%E8%8A%82%E7%82%B9%E7%BB%91%E5%AE%9A%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E7%82%B9%E5%87%BB%E6%97%B6%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-object-%E5%AF%B9%E8%B1%A1%E5%85%BC%E5%AE%B9-ie-%E5%92%8C%E6%A0%87%E5%87%86%E6%B5%8F%E8%A7%88%E5%99%A8">使用原生 javascript 给下面列表中的 li 节点绑定点击事件,点击时创建一个 Object 对象,兼容 IE 和标准浏览器</a></li>
+  <li><a href="#%E6%9C%89%E4%B8%80%E4%B8%AA%E5%A4%A7%E6%95%B0%E7%BB%84var-a--1-2-3-a-%E7%9A%84%E9%95%BF%E5%BA%A6%E6%98%AF-100%E5%86%85%E5%AE%B9%E5%A1%AB%E5%85%85%E9%9A%8F%E6%9C%BA%E6%95%B4%E6%95%B0%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%AF%B7%E5%85%88%E6%9E%84%E9%80%A0%E6%AD%A4%E6%95%B0%E7%BB%84-a%E7%84%B6%E5%90%8E%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E7%AE%97%E6%B3%95%E5%B0%86%E5%85%B6%E5%86%85%E5%AE%B9%E5%8E%BB%E9%87%8D">有一个大数组,var a = [‘1’, ‘2’, ‘3’, …];a 的长度是 100,内容填充随机整数的字符串.请先构造此数组 a,然后设计一个算法将其内容去重</a></li>
+</ul>
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+<h3 id="1200000011转化为1200000011">12000000.11转化为『12,000,000.11』</h3>
 
 <p>如何将浮点数点左边的数每三位添加一个逗号，如12000000.11转化为『12,000,000.11』?</p>
 
@@ -479,7 +513,7 @@ console.log(arrayRandom(arr));
 </code></pre></div></div>
 
 <h3 id="接受-url-中-query-string-为参数返回解析后的-object">接受 url 中 query string 为参数,返回解析后的 Object</h3>
-<h2 id="url-object">URL object</h2>
+<h4 id="url-object">URL object</h4>
 <p>modern browser 可以用 URL object</p>
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">url_string</span> <span class="o">=</span> <span class="s2">"http://www.example.com/t.html?a=1&amp;b=3&amp;c=m2-m3-m4-m5"</span><span class="p">;</span> <span class="c1">//window.location.href</span>
 <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">URL</span><span class="p">(</span><span class="nx">url_string</span><span class="p">);</span>
@@ -487,10 +521,10 @@ console.log(arrayRandom(arr));
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">c</span><span class="p">);</span>
 </code></pre></div></div>
 
-<h2 id="urlsearchparams-polyfill">URLSearchParams polyfill.</h2>
+<h4 id="urlsearchparams-polyfill">URLSearchParams polyfill.</h4>
 <p>https://github.com/ungap/url-search-params</p>
 
-<h2 id="实现">实现</h2>
+<h4 id="实现">实现</h4>
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">parse_query_string</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span> <span class="p">{</span>
 	<span class="c1">//不是字符串处理</span>
 	<span class="k">if</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">'[object String]'</span><span class="p">)</span> <span class="p">{</span>
@@ -531,52 +565,53 @@ console.log(arrayRandom(arr));
 
 <p>先写正则再加括号</p>
 <ul>
-  <li>协议 [^:]+</li>
-  <li>\/\/</li>
-  <li>host [^:\/\/?#&amp;]+</li>
-  <li>:</li>
-  <li>端口 (\d+)?</li>
-  <li>pathname \/[^?]*</li>
-  <li>?</li>
-  <li>.*
-```js
-/**</li>
-  <li>解析一个url并生成window.location对象中包含的域</li>
-  <li>location:</li>
-  <li>{</li>
-  <li>href: ‘包含完整的url’,</li>
-  <li>origin: ‘包含协议到pathname之前的内容’,</li>
-  <li>protocol: ‘url使用的协议，包含末尾的:’,</li>
-  <li>username: ‘用户名’, // 暂时不支持</li>
-  <li>password: ‘密码’,  // 暂时不支持</li>
-  <li>host: ‘完整主机名，包含:和端口’,</li>
-  <li>hostname: ‘主机名，不包含端口’</li>
-  <li>port: ‘端口号’,</li>
-  <li>pathname: ‘服务器上访问资源的路径/开头’,</li>
-  <li>search: ‘query string，?开头’,</li>
-  <li>hash: ‘#开头的fragment identifier’</li>
-  <li>}
- *</li>
-  <li>@param {string} url 需要解析的url</li>
-  <li>@return {Object} 包含url信息的对象
- <em>/
-function parseUrl(url) {
- var result = {};
- var keys = [‘href’, ‘origin’, ‘protocol’, ‘host’,
-             ‘hostname’, ‘port’, ‘pathname’, ‘search’, ‘hash’];
- var i, len;
- var regexp = /(([^:]+:)\/\/(([^:\/\?#]+):(\d+)?))(\/[^?]</em>)?(.*)/;
- var match = regexp.exec(url);
- //嵌套规则：根据开括号的出现顺序来计数
- if (match) {
-     for (i = keys.length - 1; i &gt;= 0; –i) {
-         result[keys[i]] = match[i] ? match[i] : ‘’;
-     }
- }
- return result;
-}
-```</li>
+  <li>协议 <code class="highlighter-rouge">[^:]+</code></li>
+  <li><code class="highlighter-rouge">\/\/</code></li>
+  <li>host <code class="highlighter-rouge">[^:\/\/?#&amp;]+</code></li>
+  <li><code class="highlighter-rouge">:</code></li>
+  <li>端口 <code class="highlighter-rouge">(\d+)?</code></li>
+  <li>pathname <code class="highlighter-rouge">\/[^?]*</code></li>
+  <li><code class="highlighter-rouge">?</code></li>
+  <li><code class="highlighter-rouge">.*</code></li>
 </ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/**
+ * 解析一个url并生成window.location对象中包含的域
+ * location:
+ * {
+ *      href: '包含完整的url',
+ *      origin: '包含协议到pathname之前的内容',
+ *      protocol: 'url使用的协议，包含末尾的:',
+ *      username: '用户名', // 暂时不支持
+ *      password: '密码',  // 暂时不支持
+ *      host: '完整主机名，包含:和端口',
+ *      hostname: '主机名，不包含端口'
+ *      port: '端口号',
+ *      pathname: '服务器上访问资源的路径/开头',
+ *      search: 'query string，?开头',
+ *      hash: '#开头的fragment identifier'
+ * }
+ *
+ * param {string} url 需要解析的url
+ * return {Object} 包含url信息的对象
+ */
+</code></pre></div></div>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">parseUrl</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="kd">var</span> <span class="nx">keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'href'</span><span class="p">,</span> <span class="s1">'origin'</span><span class="p">,</span> <span class="s1">'protocol'</span><span class="p">,</span> <span class="s1">'host'</span><span class="p">,</span>
+                <span class="s1">'hostname'</span><span class="p">,</span> <span class="s1">'port'</span><span class="p">,</span> <span class="s1">'pathname'</span><span class="p">,</span> <span class="s1">'search'</span><span class="p">,</span> <span class="s1">'hash'</span><span class="p">];</span>
+    <span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">len</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">regexp</span> <span class="o">=</span> <span class="sr">/</span><span class="se">(([^</span><span class="sr">:</span><span class="se">]</span><span class="sr">+:</span><span class="se">)\/\/(([^</span><span class="sr">:</span><span class="se">\/\?</span><span class="sr">#</span><span class="se">]</span><span class="sr">+</span><span class="se">)</span><span class="sr">:</span><span class="se">(\d</span><span class="sr">+</span><span class="se">)?))(\/[^</span><span class="sr">?</span><span class="se">]</span><span class="sr">*</span><span class="se">)?(</span><span class="sr">.*</span><span class="se">)</span><span class="sr">/</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">match</span> <span class="o">=</span> <span class="nx">regexp</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
+	<span class="c1">//嵌套规则：根据开括号的出现顺序来计数</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">match</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="nx">keys</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">result</span><span class="p">[</span><span class="nx">keys</span><span class="p">[</span><span class="nx">i</span><span class="p">]]</span> <span class="o">=</span> <span class="nx">match</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">?</span> <span class="nx">match</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">:</span> <span class="s1">''</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
 <h3 id="完成函数-getscrolloffset-返回窗口滚动条偏移量">完成函数 getScrollOffset 返回窗口滚动条偏移量</h3>
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
@@ -612,6 +647,303 @@ function parseUrl(url) {
 <span class="p">}</span>
 </code></pre></div></div>
 
+<h3 id="实现一个-event-类继承自此类的对象都会拥有两个方法-onoffonce-和-trigger">实现一个 Event 类,继承自此类的对象都会拥有两个方法 on,off,once 和 trigger</h3>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">myEvent</span> <span class="p">(){</span>
+	<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="k">this</span> <span class="k">instanceof</span> <span class="nx">myEvent</span><span class="p">))</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="k">new</span> <span class="nx">Event</span><span class="p">();</span>
+	<span class="p">}</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">_callback</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="p">}</span>
+<span class="nx">myEvent</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">on</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">handler</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">callback</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">callback</span> <span class="o">||</span> <span class="p">{};</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">callback</span><span class="p">[</span><span class="nx">type</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">callback</span><span class="p">[</span><span class="nx">type</span><span class="p">]</span> <span class="o">||</span> <span class="p">[];</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">callback</span><span class="p">[</span><span class="nx">type</span><span class="p">].</span><span class="nx">push</span><span class="p">(</span><span class="nx">handler</span><span class="p">);</span>
+	<span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">myEvent</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">off</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">handler</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_callbacks</span><span class="p">[</span><span class="nx">type</span><span class="p">];</span>
+	<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">list</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+	<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">lisy</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="k">if</span><span class="p">(</span><span class="nx">list</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="nx">handler</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">list</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">myEvent</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">trigger</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_callbacks</span><span class="p">[</span><span class="nx">type</span><span class="p">];</span>
+	<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">list</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+	<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">lisy</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="nx">list</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">myEvent</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">off</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">handler</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">me</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">wrapper</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+		<span class="nx">handler</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+		<span class="nx">me</span><span class="p">.</span><span class="nx">off</span><span class="p">(</span><span class="nx">type</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="nx">me</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">wrapper</span><span class="p">);</span>
+	<span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="编写一个函数将列表子元素顺序反转">编写一个函数将列表子元素顺序反转</h3>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>TEst<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">"target"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;li&gt;</span>1<span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;</span>2<span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;</span>3<span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;</span>4<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">'button'</span> <span class="na">id=</span><span class="s">'btn'</span> <span class="na">value=</span><span class="s">"click"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+	<span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'target'</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">btn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'btn'</span><span class="p">);</span>
+    <span class="kd">function</span> <span class="nx">revertList</span> <span class="p">(){</span>
+        <span class="kd">var</span> <span class="nx">newList</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createDocumentFragment</span><span class="p">();</span>
+        <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="nx">target</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">newList</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+        <span class="p">}</span>
+        <span class="c1">//appendChild:如果被插入的节点已经存在于当前文档的文档树中,则那个节点会首先从原先的位置移除,然后再插入到新的位置.</span>
+        <span class="nx">target</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">newList</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nx">btn</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="nx">revertList</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<h3 id="以下函数的作用是空白区域应该填写什么">以下函数的作用是?空白区域应该填写什么</h3>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// define</span>
+<span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nb">window</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">str</span> <span class="o">=</span> <span class="nx">str</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">fn</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">format</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">arg</span> <span class="o">=</span> <span class="nx">__1__</span><span class="p">;</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">__2__</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">arg</span><span class="p">[</span><span class="nx">b</span><span class="p">]</span> <span class="o">||</span> <span class="s1">''</span><span class="p">;</span>
+        <span class="p">});</span>
+    <span class="p">};</span>
+
+    <span class="nb">window</span><span class="p">.</span><span class="nx">fn</span> <span class="o">=</span> <span class="nx">fn</span><span class="p">;</span>
+<span class="p">})(</span><span class="nb">window</span><span class="p">);</span>
+
+<span class="c1">// use</span>
+<span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">fn</span><span class="p">(</span><span class="s1">'&lt;p&gt;&lt;a href="{0}"&gt;{1}&lt;/a&gt;&lt;span&gt;{2}&lt;/span&gt;&lt;/p&gt;'</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="s1">'http://www.alibaba.com'</span><span class="p">,</span> <span class="s1">'Alibaba'</span><span class="p">,</span> <span class="s1">'Welcome'</span><span class="p">));</span>
+<span class="p">})();</span>
+</code></pre></div></div>
+
+<p>define 部分定义一个简单的模板类，使用{}作为转义标记，中间的数字表示替换目标，format 实参用来替换模板内标记 横线处填：</p>
+
+<ol>
+  <li><code class="highlighter-rouge">Array.prototype.slice.call(arguments, 0)</code></li>
+  <li><code class="highlighter-rouge">/\{\s*(\d+)\s*\}/g</code></li>
+</ol>
+
+<p>编写一个函数实现 form 的序列化(即将一个表单中的键值序列化为可提交的字符串)</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"target"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;select</span> <span class="na">name=</span><span class="s">"age"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"aaa"</span><span class="nt">&gt;</span>aaa<span class="nt">&lt;/option&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"bbb"</span> <span class="na">selected</span><span class="nt">&gt;</span>bbb<span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;/select&gt;</span>
+    <span class="nt">&lt;select</span> <span class="na">name=</span><span class="s">"friends"</span> <span class="na">multiple</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"qiu"</span> <span class="na">selected</span><span class="nt">&gt;</span>qiu<span class="nt">&lt;/option&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"de"</span><span class="nt">&gt;</span>de<span class="nt">&lt;/option&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"qing"</span> <span class="na">selected</span><span class="nt">&gt;</span>qing<span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;/select&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"name"</span> <span class="na">value=</span><span class="s">"qiudeqing"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"password"</span> <span class="na">name=</span><span class="s">"password"</span> <span class="na">value=</span><span class="s">"11111"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"salery"</span> <span class="na">value=</span><span class="s">"3333"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;textarea</span> <span class="na">name=</span><span class="s">"description"</span><span class="nt">&gt;</span>description<span class="nt">&lt;/textarea&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">name=</span><span class="s">"hobby"</span> <span class="na">checked</span> <span class="na">value=</span><span class="s">"football"</span><span class="nt">&gt;</span>Football
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">name=</span><span class="s">"hobby"</span> <span class="na">value=</span><span class="s">"basketball"</span><span class="nt">&gt;</span>Basketball
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"sex"</span> <span class="na">checked</span> <span class="na">value=</span><span class="s">"Female"</span><span class="nt">&gt;</span>Female
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"sex"</span> <span class="na">value=</span><span class="s">"Male"</span><span class="nt">&gt;</span>Male
+<span class="nt">&lt;/form&gt;</span>
+
+
+<span class="nt">&lt;script&gt;</span>
+<span class="cm">/**
+ * 将一个表单元素序列化为可提交的字符串
+ *
+ * @param {FormElement} form 需要序列化的表单元素
+ * @return {string} 表单序列化后的字符串
+ */</span>
+<span class="kd">function</span> <span class="nx">serializeForm</span><span class="p">(</span><span class="nx">form</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">form</span> <span class="o">||</span> <span class="nx">form</span><span class="p">.</span><span class="nx">nodeName</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">!==</span> <span class="s1">'FORM'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[];</span>
+
+  <span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">len</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">field</span><span class="p">,</span> <span class="nx">fieldName</span><span class="p">,</span> <span class="nx">fieldType</span><span class="p">;</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">form</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">field</span> <span class="o">=</span> <span class="nx">form</span><span class="p">.</span><span class="nx">elements</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+    <span class="nx">fieldName</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+    <span class="nx">fieldType</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">type</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">field</span><span class="p">.</span><span class="nx">disabled</span> <span class="o">||</span> <span class="o">!</span><span class="nx">fieldName</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">continue</span><span class="p">;</span>
+    <span class="p">}</span> <span class="c1">// enf if</span>
+
+    <span class="k">switch</span> <span class="p">(</span><span class="nx">fieldType</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">case</span> <span class="s1">'text'</span><span class="p">:</span>
+      <span class="k">case</span> <span class="s1">'password'</span><span class="p">:</span>
+      <span class="k">case</span> <span class="s1">'hidden'</span><span class="p">:</span>
+      <span class="k">case</span> <span class="s1">'textarea'</span><span class="p">:</span>
+        <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">fieldName</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'='</span> <span class="o">+</span>
+            <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">field</span><span class="p">.</span><span class="nx">value</span><span class="p">));</span>
+        <span class="k">break</span><span class="p">;</span>
+
+      <span class="k">case</span> <span class="s1">'radio'</span><span class="p">:</span>
+      <span class="k">case</span> <span class="s1">'checkbox'</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">field</span><span class="p">.</span><span class="nx">checked</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">fieldName</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'='</span> <span class="o">+</span>
+            <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">field</span><span class="p">.</span><span class="nx">value</span><span class="p">));</span>
+        <span class="p">}</span>
+        <span class="k">break</span><span class="p">;</span>
+
+      <span class="k">case</span> <span class="s1">'select-one'</span><span class="p">:</span>
+      <span class="k">case</span> <span class="s1">'select-multiple'</span><span class="p">:</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">jLen</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">jLen</span><span class="p">;</span> <span class="o">++</span><span class="nx">j</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">field</span><span class="p">.</span><span class="nx">options</span><span class="p">[</span><span class="nx">j</span><span class="p">].</span><span class="nx">selected</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">fieldName</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'='</span> <span class="o">+</span>
+              <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">field</span><span class="p">.</span><span class="nx">options</span><span class="p">[</span><span class="nx">j</span><span class="p">].</span><span class="nx">value</span> <span class="o">||</span> <span class="nx">field</span><span class="p">.</span><span class="nx">options</span><span class="p">[</span><span class="nx">j</span><span class="p">].</span><span class="nx">text</span><span class="p">));</span>
+          <span class="p">}</span>
+        <span class="p">}</span> <span class="c1">// end for</span>
+        <span class="k">break</span><span class="p">;</span>
+
+      <span class="k">case</span> <span class="s1">'file'</span><span class="p">:</span>
+      <span class="k">case</span> <span class="s1">'submit'</span><span class="p">:</span>
+        <span class="k">break</span><span class="p">;</span> <span class="c1">// 是否处理？</span>
+
+      <span class="nl">default</span><span class="p">:</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span> <span class="c1">// end switch</span>
+  <span class="p">}</span> <span class="c1">// end for</span>
+
+    <span class="k">return</span> <span class="nx">result</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">'&amp;'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'target'</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">serializeForm</span><span class="p">(</span><span class="nx">form</span><span class="p">));</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<h3 id="使用原生-javascript-给下面列表中的-li-节点绑定点击事件点击时创建一个-object-对象兼容-ie-和标准浏览器">使用原生 javascript 给下面列表中的 li 节点绑定点击事件,点击时创建一个 Object 对象,兼容 IE 和标准浏览器</h3>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">"nav"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"http://11111"</span><span class="nt">&gt;</span>111<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"http://2222"</span><span class="nt">&gt;</span>222<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"http://333"</span><span class="nt">&gt;</span>333<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"http://444"</span><span class="nt">&gt;</span>444<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+
+Object:
+{
+    "index": 1,
+    "name": "111",
+    "link": "http://1111"
+}
+</code></pre></div></div>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">EventUtil</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="p">...</span>
+<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">DOMUtil</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="c1">//innerText 对IE的兼容性较好</span>
+	<span class="c1">//textContent虽然作为标准方法但是只支持IE8+以上的浏览器</span>
+    <span class="na">text</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">elem</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="s1">'textContent'</span> <span class="k">in</span> <span class="nx">elem</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">elem</span><span class="p">.</span><span class="nx">textContent</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="s1">'innerText'</span> <span class="k">in</span> <span class="nx">elem</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">elem</span><span class="p">.</span><span class="nx">innerText</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="na">prop</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">elem</span><span class="p">,</span> <span class="nx">propName</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">elem</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="nx">propName</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">nav</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'nav'</span><span class="p">);</span>
+
+<span class="nx">EventUtil</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">nav</span><span class="p">,</span> <span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">event</span> <span class="o">=</span> <span class="nx">EventUtil</span><span class="p">.</span><span class="nx">getEvent</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">EventUtil</span><span class="p">.</span><span class="nx">getTarget</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">children</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">children</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">len</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">anchor</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{};</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">children</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">children</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">obj</span><span class="p">.</span><span class="nx">index</span> <span class="o">=</span> <span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="nx">anchor</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">'a'</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+            <span class="nx">obj</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">DOMUtil</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">anchor</span><span class="p">);</span>
+            <span class="nx">obj</span><span class="p">.</span><span class="nx">link</span> <span class="o">=</span> <span class="nx">DOMUtil</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="nx">anchor</span><span class="p">,</span> <span class="s1">'href'</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s1">'index: '</span> <span class="o">+</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">index</span> <span class="o">+</span> <span class="s1">' name: '</span> <span class="o">+</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span>
+        <span class="s1">' link: '</span> <span class="o">+</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">link</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="有一个大数组var-a--1-2-3-a-的长度是-100内容填充随机整数的字符串请先构造此数组-a然后设计一个算法将其内容去重">有一个大数组,var a = [‘1’, ‘2’, ‘3’, …];a 的长度是 100,内容填充随机整数的字符串.请先构造此数组 a,然后设计一个算法将其内容去重</h3>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">unique</span> <span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">arr</span> <span class="o">||</span> <span class="o">!</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">arr</span><span class="p">))</span> <span class="k">return</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="p">{},</span> 
+		<span class="nx">res</span> <span class="o">=</span> <span class="p">[];</span>
+	<span class="nx">arr</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="nx">index</span><span class="p">){</span>
+		<span class="k">if</span><span class="p">(</span><span class="nx">hash</span><span class="p">[</span><span class="nx">item</span><span class="p">]){</span>
+			<span class="nx">arr</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+			<span class="nx">hash</span><span class="p">[</span><span class="nx">item</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">});</span>
+<span class="p">}</span>
+<span class="cm">/**
+* 用100个随机整数对应的字符串填充数组。
+**/</span>
+<span class="kd">function</span> <span class="nx">fillArray</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">start</span><span class="p">,</span> <span class="nx">end</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">start</span> <span class="o">=</span> <span class="nx">start</span> <span class="o">==</span> <span class="kc">undefined</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="nx">start</span><span class="p">;</span>
+	<span class="nx">end</span> <span class="o">=</span> <span class="nx">end</span> <span class="o">==</span> <span class="kc">undefined</span> <span class="p">?</span>  <span class="mi">100</span> <span class="p">:</span> <span class="nx">end</span><span class="p">;</span>
+
+	<span class="k">if</span> <span class="p">(</span><span class="nx">end</span> <span class="o">&lt;=</span> <span class="nx">start</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">end</span> <span class="o">=</span> <span class="nx">start</span> <span class="o">+</span> <span class="mi">100</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="nx">end</span> <span class="o">-</span> <span class="nx">start</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">arr</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">""</span> <span class="o">+</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="nx">width</span><span class="p">)</span> <span class="o">+</span> <span class="nx">start</span><span class="p">));</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">arr</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="c1">//生成数组</span>
+<span class="nx">fillArray</span><span class="p">(</span><span class="nx">input</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="c1">//随机排列</span>
+<span class="nx">input</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">;});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">input</span><span class="p">);</span>
+<span class="c1">//去重</span>
+<span class="nx">unique</span><span class="p">(</span><span class="nx">input</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">input</span><span class="p">);</span>
+</code></pre></div></div>
+
 
                 <hr>
 
@@ -620,13 +952,17 @@ function parseUrl(url) {
                 </style>
                 <div class="ds-share"
                     style="text-align: right"
-                    data-thread-key="/2017/11/07/JavaScript Pritice"
+                    data-thread-key="/2019/12/01/JavaScript_Pritice"
                     data-title="JavaScrip Practice"
-                    data-url="http://localhost:4000/lrun1124.github.io/2017/11/07/JavaScript-Pritice/"
+                    data-url="http://localhost:4000/lrun1124.github.io/2019/12/01/JavaScript_Pritice/"
                     data-images="http://localhost:4000/lrun1124.github.io/img/jspractice/jspractice-bg.jpg"
-                    data-content="12000000.11转化为『12,000,000.11』
+                    data-content="
 
-如何将浮点数点左边的数每三位添加一个逗号，如12000000.11转化为『12,000,00... | Run Note " >
+Table of Contents  generated with DocToc
+
+
+  12000000.11转化为『12,000,000.11』
+... | Run Note " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -646,13 +982,9 @@ function parseUrl(url) {
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/lrun1124.github.io/2017/11/07/JavaScript-Note(1)/" data-toggle="tooltip" data-placement="top" title="JavaScrip Note(1)">&larr; Previous Post</a>
+                        <a href="/lrun1124.github.io/2019/11/19/deep_copy_and_shadow_copy/" data-toggle="tooltip" data-placement="top" title="deep copy & shadow copy">&larr; Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/lrun1124.github.io/2017/11/24/JavaScript-Note(2)/" data-toggle="tooltip" data-placement="top" title="JavaScrip Note(2)">Next Post &rarr;</a>
-                    </li>
                     
                 </ul>
 
@@ -661,9 +993,9 @@ function parseUrl(url) {
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="/2017/11/07/JavaScript Pritice"
+                        data-thread-key="/2019/12/01/JavaScript_Pritice"
                         data-title="JavaScrip Practice"
-                        data-url="http://localhost:4000/lrun1124.github.io/2017/11/07/JavaScript-Pritice/" >
+                        data-url="http://localhost:4000/lrun1124.github.io/2019/12/01/JavaScript_Pritice/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -695,13 +1027,13 @@ function parseUrl(url) {
                             
         				
                             
+        				
+                            
+        				
+                            
                 				<a href="/lrun1124.github.io/tags/#code" title="code" rel="4">
                                     code
                                 </a>
-                            
-        				
-                            
-        				
                             
         				
                             

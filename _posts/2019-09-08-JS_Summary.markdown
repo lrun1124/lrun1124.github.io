@@ -1340,7 +1340,7 @@ console.log(q); // true
  		removeEvent : function(element, type, handler) {
  			if (element.removeEventListener) {
  				element.removeEventListener(type, handler, false);
- 			} else if (element.datachEvent) {
+ 			} else if (element.detachEvent) {
  				element.detachEvent('on' + type, handler);
  			} else {
  				element['on' + type] = null;
