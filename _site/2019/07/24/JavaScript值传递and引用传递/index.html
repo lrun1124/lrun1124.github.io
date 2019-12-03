@@ -175,39 +175,39 @@
   <li>JavaScript是采用值传递还是引用传递的，并解释一下原理</li>
 </ul>
 
-<p>很多人的回答应该是，基础类型采用值传递，Number其他采取引用查传递</p>
+<p>很多人的回答应该是，基础类型采用值传递，其他采取引用查传递</p>
 
 <p>今天和一个刚转做前端的同事解释JS的值传递和引用传递，发现这句话其实很有问题。</p>
 
-<p>下面一段代码</p>
+<p>以下面一段代码为例</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function reset(nums) {
-  nums = [];
-}
-var nums = [1,2,3];
-reset(nums);
-console.log(nums);
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">reset</span><span class="p">(</span><span class="nx">nums</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">nums</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+<span class="nx">reset</span><span class="p">(</span><span class="nx">nums</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">nums</span><span class="p">);</span>
 
-//output:
-//[1,2,3]
+<span class="c1">//output:</span>
+<span class="c1">//[1,2,3]</span>
 </code></pre></div></div>
 
-<p>Array属于引用传递，但是Array确并没有在reset函数中被重置。按照引用传递的含义，nums的引用（指针）被传递到函数内部，这个引用指向的内容变化了，nums也应该变化。所以这里存在问题。</p>
+<p>Array属于引用传递，但是<code class="highlighter-rouge">nums</code>确并没有在reset函数中被重置。按照引用传递的含义，<code class="highlighter-rouge">nums</code>的引用（指针）被传递到函数内部，这个引用指向的内容变化了，nums也应该变化。所以这里存在问题。</p>
 
-<p>实际上还有一种传递方式，叫共享调用（Call-by-sharing), 它和引用调用的不同在于，传递的是对象指针的拷贝，而不是指针本身，那就是说nums在reset函数中是函数外nums的指针拷贝。</p>
+<p>实际上，还有一种传递方式，叫<strong>共享调用</strong>（Call-by-sharing), 它和引用调用的不同在于，传递的是<strong>对象指针的拷贝</strong>，而不是指针本身，也就是说nums在reset函数中传递的是函数外nums的指针拷贝。</p>
 
 <p>从上面的解释可以看出，对于 JS 来说：</p>
 
 <ul>
-  <li>基本类型是传值调用（call by value）</li>
-  <li>引用类型传共享调用 (call by sharing)</li>
+  <li><strong>基本类型是传值调用</strong>（call by value）</li>
+  <li><strong>引用类型传共享调用</strong> (call by sharing)</li>
 </ul>
 
 <p>传值调用本质上传递的是变量的值的拷贝。</p>
 
 <p>传共享调用本质上是传递对象的指针的拷贝，其指针也是变量的值。所以传共享调用也可以说是传值调用。</p>
 
-<p>所以《JavaScript 高级程序设计》说 JavaScript 参数传递都是按值传参也是有道理的。</p>
+<p>所以《JavaScript 高级程序设计》里会说 JavaScript 参数传递都是按值传参的。</p>
 
 
 
@@ -227,7 +227,7 @@ console.log(nums);
   JavaScript是采用值传递还是引用传递的，并解释一下原理
 
 
-很多人的回答应该是，基础类型采用值传递，Number其他... | Run Note " >
+很多人的回答应该是，基础类型采用值传递，其他采取引用查传... | Run Note " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>

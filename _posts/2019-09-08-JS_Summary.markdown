@@ -111,15 +111,15 @@ tags:
 
 内置对象
 
-Object对象：所有对象的父对象，原型链最上层
-数据封装对象：Array, Boolean, String, Number, Object
-其他： Math, Date, RegExp, Error, Function
+* Object对象：所有对象的父对象，原型链最上层
+* 数据封装对象：Array, Boolean, String, Number, Object
+* 其他： Math, Date, RegExp, Error, Function
 
 ### `null`, `undefined`区别, 未声明变量
 
-null表示一个对象没有值，一般是程序员显示声明，Js不会自己设置为null，typeof(null)为Object
+null表示一个对象没有值，一般是程序员**显示声明**，Js不会自己设置为null，typeof(null)为Object
 
-undefined表示一个变量声明了，但还没有初始化， typeof(undefined)为undefined
+undefined表示一个变量声明了，但还没有初始化，typeof(undefined)为undefined
 
 null === undefined 为true, null == undefined为false，目前的JS环境中，它们的差别很小，同时存在是因为历史原因，Js初期的设计参考了C等语言，在C中，null可以自动转型为0，由于JS的设计者Brendan Eich认为‘无’的概念最好不是一个对象，并且JS早期缺乏错误处理机制，null自动转型为0可能会造成一些不被察觉的错误，所以设计了undefined
 
@@ -142,20 +142,106 @@ null === undefined 为true, null == undefined为false，目前的JS环境中，�
 
 原型链: JS的继承是通过原型链实现的。当JS的对象需要某个属性的时候，首先会从当前对象的属性中去找，找不到就会到原型prototype中去找，还是找不到就会沿着原型链向上寻找，直到找到Object.prototype，如果最终找不到，则返回null
 
-### JS作用域，作用域链
+### 作用域
 * 全局作用域
-	- 最外层定义的变量
-	- 未定义直接赋值的变量
-	- 顶层对象windows下的变量
+    - 最外层定义的变量
+    - 未定义直接赋值的变量
+    - 顶层对象windows下的变量
 * 局部作用域
-  - var函数作用域
-  - let, const
+    - var函数作用域
+    - let, const
 
 JS的作用域和Java,C++之类语言最大的区别就在于它的函数作用域，对于一些熟悉Java,C++语言的人，会造成一些难以理解的结果。可以通过几个例子来看一下：
 
+code1：
+
+```js
+var i = 'out';
+var test = function(){
+	console.log(i);
+	var i = 'in';
+	console.log(i);
+}
+test();
+```
+这里运行结果是<br />
+undefined<br />
+in<br />
+而不是<br />
+out<br />in
+
+code2：
+
+```js
+var i = 'out';
+if(true){
+	var i = 'in'
+	console.log(i);
+}
+console.log(i);
+
+test();
+```
+这里运行结果是<br />
+in<br />
+in<br />
+而不是<br />
+in<br />
+out
+
+造成结果的原因都是因为JS的函数作用域，所谓函数作用域：<strong>变量在其所声明的函数内的任意位置都是可访问的</strong>，这里就引出了JS变量的函数提升，对于code1，其实际的执行code可以改写如下:
+
+```JS
+var i = 'out';
+var test = function(){
+	var i;
+	console.log(i);
+	i = 'in';
+	console.log(i);
+}
+test();
+```
+
+可以看到变量i的声明在函数内部是被提升到了开始的位置，但是赋值的位置确是不变的。类似的code2可以改写为:
+
+```JS
+var i;
+var i; 
+i = 'out';
+if(true){
+	i = 'in'
+	console.log(i);
+}
+console.log(i);
+
+test();
+```
+i在if中被修改了
+
+### 作用域链
+
+当代码在环境中执行的时候，会创建变量对象的一个作用域链（scope chain）。其用途是<strong>保证能够有序访问当前环境中的变量和函数</strong>。作用域链的前端始终是当前代码所在的变量对象，下一个变量对象总是外部环境的变量对象。<strong>标识符解析时,总是沿着作用域链从前端向后逐层的搜索</strong>。
+
+环境之间的联系是<strong>线性有序</strong>的,内部环境是可以通过作用域链访问所有外部环境，但是外部环境不能访问内部环境。所以引发了<strong>闭包</strong>的概念
+
+- 另使用with可以在作用域顶端添加某个对象，因为有可能造成混淆和兼容错误，所以不被推荐使用，不过在某些情况下可以减少不必要的作用域链搜索过程并简化代码，当然，这种简化方式用一个指针也可以做到。
+
+```JS
+var a, x, y;
+var r = 10;
+
+with (Math) {
+  a = PI * r * r;
+  x = r * cos(PI);
+  y = r * sin(PI / 2);
+}
+```
+
 ### `闭包（closure）`，为什么使用闭包
 
-<strong>闭包就是能够读取其他函数内部变量的函数</strong>, 即使被外部函数返回，依然可以访问到外部（封闭）函数作用域的函数。本质上是将函数内部和外部联系起来的桥梁。
+从作用域链的角度，内部环境是可以通过作用域链访问所有外部环境，但是外部环境不能访问内部环境。所以引发了<strong>闭包</strong>
+
+<strong>闭包就是能够读取其他函数内部变量的函数</strong>, 即使被外部函数返回，依然可以访问到外部（封闭）函数作用域的函数。**本质上是将函数内部和外部联系起来的桥梁**。
 
  闭包的特性：
 
@@ -163,11 +249,12 @@ JS的作用域和Java,C++之类语言最大的区别就在于它的函数作用�
  1. 内部函数可以引用外层的参数和变量
  1. 参数和变量不会被垃圾回收机制回收
 
-```JS
+```js
 function f1(){
 	var n=999;
+    var f2 = function (){
 		n++;
-		alert(n);
+		console.log(n);
 	}
 	return f2;
 }
@@ -176,7 +263,7 @@ result();//1000
 result();//1001
 ```
 
-以上代码通过内部的add在函数f1之外操作内部变量n，这里还体现了一个闭包的特点，可以看到在f1执行一次后n的值是被保存的，这是因为f2第一次在调用时被赋给了一个全局变量，而f2依赖于f1，所以f1的环境也始终被保存在内存中，不会被垃圾回收机制回收，所以<strong>大量使用闭包内存消耗很大，会导致性能下降</strong>>，第二个要注意地方时<strong>函数内部的值可能会被修改</strong>。
+以上代码通过内部的f2在函数f1之外操作内部变量n，这里还体现了一个闭包的特点，可以看到在f1执行一次后n的值是被保存的，这是因为f2第一次在调用时被赋给了一个全局变量，而f2依赖于f1，所以f1的环境也始终被保存在内存中，不会被垃圾回收机制回收，所以<strong>大量使用闭包内存消耗很大，会导致性能下降</strong>>，第二个要注意地方时<strong>函数内部的值可能会被修改</strong>。
 
 **为什么使用闭包？**
 
@@ -188,7 +275,7 @@ result();//1001
 JS 中的`this`是一个相对复杂的概念，不是简单几句能解释清楚的。粗略地讲，函数的调用方式决定了`this`的值。
 
 1. 在调用函数时使用`new`关键字，函数内的`this`是一个全新的对象。
-1. 如果`apply`、`call`或`bind`方法用于调用、创建一个函数，函数内的 this 就是作为参数传入这些方法的对象。
+1. 如果`apply`、`call`或`bind`方法用于调用、创建一个函数，函数内的`this`就是作为参数传入这些方法的对象。
 1. 当函数作为对象里的方法被调用时，`this`指向直接调用者，函数内的`this`是调用该函数的对象。比如当`obj.method()`被调用时，函数内的 this 将绑定到`obj`对象。
 1. 如果调用函数不符合上述规则，那么`this`的值指向全局对象（global object）。浏览器环境下`this`的值指向`window`对象，但是在严格模式下(`'use strict'`)，`this`的值为`undefined`。
 1. 如果符合上述多个规则，则较高的规则（1 号最高，4 号最低）将决定`this`的值。
@@ -196,13 +283,33 @@ JS 中的`this`是一个相对复杂的概念，不是简单几句能解释清�
 
 ### `New`的过程
 
+```js
+function Person(name, age) { 
+    this.name = name; 
+    this.age = age;  
+} 
+var person = new Person("hellen", 23);
+```
+
 1. 创建空对象；
-	- var obj = {};
+```js
+var obj = new Object();
+```
 1. 将创建出对象的原型链引用指向所要构造函数的原型；
-	- obj.\__proto__ = ClassA.prototype; 
-1. 调用构造函数，this指向新实例对象：
-	- ClassA.call(obj);　　//{}.构造函数();          
-1. 将初始化完毕的新对象地址，保存到等号左边的变量中
+```js
+obj.__proto__ = Person.prototype;
+```
+1. 让Person中的this指向obj，并执行Person的函数体（构造函数）；
+```js
+var result = Person.apply(obj,arguments); 
+```      
+1. 判断Person的返回值类型，如果是值类型，返回obj。如果是引用类型，就返回这个引用类型的对象。
+```js
+if (typeof(result) == "object")
+    person = result; 
+else
+    person = obj;
+```
 
 ### 不会查找原型的函数
 
