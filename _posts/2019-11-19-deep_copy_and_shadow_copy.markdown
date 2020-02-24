@@ -25,7 +25,6 @@ function shadowCopy(source) {
     return res;
 }
 ```
-
 实例
 
 1. Array.prototype.slice(target)
@@ -88,11 +87,11 @@ console.log(obj1, obj2);
 ```
 测试以上代码循环引用结果
 事实上，就算没有循环引用处理，chrome也做了优化，并不会无限递归
-<img src="http://127.0.0.1:4000/lrun1124.github.io/img/copy/cycle.png" width = "500px"/>
+<img src="http://lrun1124.github.io/img/copy/cycle.png" width = "500px"/>
 测试Date对象结果
-<img src="http://127.0.0.1:4000/lrun1124.github.io/img/copy/date.png" width = "600px"/>
+<img src="http://lrun1124.github.io/img/copy/date.png" width = "600px"/>
 测试RegExp对象结果
-<img src="http://127.0.0.1:4000/lrun1124.github.io/img/copy/reg.png" width = "600px"/>
+<img src="http://lrun1124.github.io/img/copy/reg.png" width = "600px"/>
 
 
 ### lodash

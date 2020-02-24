@@ -534,7 +534,7 @@ a.r = a;
 1. 类型不同，不等
 1. null，undefined，boolean，number这四个类型的只要值(数值)相等，就相等，-0 === 0 //true
 1. 只要其中有一个为NAN，则不等
-1. string类型，长度/内容/编码不同，都是不等，字符一一对应，相等
+1. string类型，长度/内容/编码不同，都是不等，每个字符16 位 unicode 值的相同，相等
 1. 指向相同的对象，数组，函数，则相等，若指向不同对象，不等
 
 ### ==运算符判断相等的流程是怎样的
@@ -560,12 +560,12 @@ a.r = a;
 1. 否则，throws a TypeError
 
 ### <,>,<=,>=的比较规则
-1所有比较运算符都支持任意类型，但是比较只支持数字和字符串，所以需要执行必要的转换然后进行比较，转换规则如下:
+所有比较运算符都支持任意类型，但是比较只支持数字和字符串，所以需要执行必要的转换然后进行比较，转换规则如下:
 1. 如果操作数是对象，转换为原始值：如果 valueOf 方法返回原始值，则使用这个值，否则使用 toString 方法的结果，如果转换失败则报错
 1. 经过必要的对象到原始值的转换后，如果两个操作数都是字符串，按照字母顺序进行比较（他们的 16 位 unicode 值的大小）
 1. 否则，如果有一个操作数不是字符串，将两个操作数转换为数字进行比较
 
-### 运算符工作流程
+### 运算符+工作流程
 1. 如果有操作数是对象，转换为原始值
 1. 此时如果有一个操作数是字符串，其他的操作数都转换为字符串并执行连接
 1. 否则：所有操作数都转换为数字并执行加法
@@ -605,10 +605,11 @@ var singleton = {
 单例模式定义了一个对象的创建过程，此对象只有一个单独的实例，并提供一个访问它的全局访问点
 
 ```js
+//利用闭包保存unique
 var single = (function(){
     var unique;
 
-    function getInstance(){　　　　// 如果该实例存在，则直接返回，否则就对其实例化
+    function getInstance(){// 如果该实例存在，则直接返回，否则就对其实例化
         if( unique === undefined ){
             unique = new Construct();
         }
@@ -627,61 +628,58 @@ var single = (function(){
 
 #### 工厂模式(Factory)
 
-提供一个创建对象的借口，无需指定具体的类，把成员对象的创建工作转交给一个外部对象，<strong>好处在于消除对象之间的耦合(也就是相互影响), 有助于创建模块化的代码</strong>
+提供一个创建对象的接口，无需指定具体的类，把成员对象的创建工作转交给一个外部对象，<strong>好处在于消除对象之间的耦合(也就是相互影响), 有助于创建模块化的代码</strong>
 
 <strong>简单工厂模式</strong>：使用一个类，通常为单体，来生成实例。典型的实例，xhr工厂。
 
 ```js
-   var XMLHttpFactory =function(){};　　　　　　//这是一个简单工厂模式
-　　XMLHttpFactory.createXMLHttp =function(){
-　　　 var XMLHttp = null;
-　　　　if (window.XMLHttpRequest){
-　　　　　　XMLHttp = new XMLHttpRequest()
-　　　 }else if (window.ActiveXObject){
-　　　　　　XMLHttp = new ActiveXObject("Microsoft.XMLHTTP")
-　　　　}
-　　return XMLHttp;
-　　}
-　　//XMLHttpFactory.createXMLHttp()这个方法根据当前环境的具体情况返回一个XHR对象。
-　　var AjaxHander =function(){
-　　　　var XMLHttp = XMLHttpFactory.createXMLHttp();
-　　　　...
-　　}
+var XMLHttpFactory = function(){};//这是一个简单工厂模式
+XMLHttpFactory.createXMLHttp = function(){
+    var XMLHttp = null;
+    if (window.XMLHttpRequest){
+        XMLHttp = new XMLHttpRequest()
+    }else if (window.ActiveXObject){
+        XMLHttp = new ActiveXObject("Microsoft.XMLHTTP")
+    }
+        return XMLHttp;
+}
+//XMLHttpFactory.createXMLHttp()这个方法根据当前环境的具体情况返回一个XHR对象。
+var AjaxHander =function(){
+    var XMLHttp = XMLHttpFactory.createXMLHttp();
+    ...
+}
 ```
 <strong>复杂工厂模式</strong>：先设计一个抽象类，这个类不能被实例化，只能用来派生子类，最后通过对子类的扩展实现工厂方法
 
 ```js
-var XMLHttpFactory =function(){};　     //这是一个抽象工厂模式
+var XMLHttpFactory =function(){};//这是一个抽象工厂模式
 
 XMLHttpFactory.prototype = {
-　　//如果真的要调用这个方法会抛出一个错误，它不能被实例化，只能用来派生子类
-　　createFactory:function(){
-  　　throw new Error('This is an abstract class');
-　　}
+    //如果真的要调用这个方法会抛出一个错误，它不能被实例化，只能用来派生子类
+    createFactory : function(){
+        throw new Error('This is an abstract class');
+    }
 }
 
-var XHRHandler =function(){}; //定义一个子类
+var XHRHandler = function(){}; //定义一个子类
 
 // 子类继承父类原型方法
 extend( XHRHandler , XMLHttpFactory );
 
-XHRHandler.prototype =new XMLHttpFactory(); //把超类原型引用传递给子类,实现继承
+XHRHandler.prototype = new XMLHttpFactory(); //把超类原型引用传递给子类,实现继承
 
 XHRHandler.prototype.constructor = XHRHandler; //重置子类原型的构造器为子类自身
 
 //重新定义createFactory 方法
 XHRHandler.prototype.createFactory =function(){
-　　var XMLHttp =null;
-　　if (window.XMLHttpRequest){
+var XMLHttp =null;
+if (window.XMLHttpRequest){
+    XMLHttp =new XMLHttpRequest();
+}else if (window.ActiveXObject){
+    XMLHttp =new ActiveXObject("Microsoft.XMLHTTP")
+}
 
-  　　XMLHttp =new XMLHttpRequest();
-
-　　}else if (window.ActiveXObject){
-
-  　　XMLHttp =new ActiveXObject("Microsoft.XMLHTTP")
-　　}
-
-　　return XMLHttp;
+    return XMLHttp;
 }
 ```
 应用场景：
@@ -689,17 +687,17 @@ XHRHandler.prototype.createFactory =function(){
 以下几种情景下工厂模式特别有用：
 
 1. 对象的构建十分复杂
-2. 需要依赖具体环境创建不同实例
-3. 处理大量具有相同属性的小对象
+1. 需要依赖具体环境创建不同实例
+1. 处理大量具有相同属性的小对象
 
 优点：
 
 可以实现一些相同的方法，这些相同的方法我们可以放在父类中编写代码，那么需要实现具体的业务逻辑，那么可以放在子类中重写该父类的方法，去实现自己的业务逻辑；
 
-也就是说有两点：　　
+也就是说有两点：
 
 1. 弱化对象间的耦合，防止代码的重复。在一个方法中进行类的实例化，可以消除重复性的代码。
-2. 重复性的代码可以放在父类去编写，子类继承于父类的所有成员属性和方法，子类只专注于实现自己的业务逻辑。
+1. 重复性的代码可以放在父类去编写，子类继承于父类的所有成员属性和方法，子类只专注于实现自己的业务逻辑。
 
 缺点：
 
@@ -735,7 +733,7 @@ function vipCustomer() {
 }
  
 vipCustomer.prototype.getPrice = function(price) {
-　　return price * this.discount;
+return price * this.discount;
 }
 // 对于老客户
 function oldCustomer() {
@@ -789,30 +787,30 @@ context.getResult();  // 普通客户 的结账价为: 200
 动态地给一个对象添加一些新的方法。就扩展功能而言，它比生成子类方式更为灵活。装饰者的运作过程是透明的，这就是说你可以用它包装其他对象，然后继续按之前使用那么对象的方法来使用。
 
 ```js
-var myText= {};
-myText.Decorations={};
-myText.Core=function(myString){
-    this.show =function(){return myString;}
+var myText = {};
+myText.Decorations ={};
+myText.Core = function(myString){
+    this.show = function(){return myString;}
 }
 //第一次装饰，string后加？
-myText.Decorations.addQuestuibMark =function(myString){
-    this.show =function(){return myString.show()+'?';};
+myText.Decorations.addQuestuibMark = function(myString){
+    this.show = function(){return myString.show()+'?';};
 }
 //第二次装饰，添加标签
-myText.Decorations.makeItalic =function(myString){
-    this.show =function(){return'<li>'+myString.show()+'</li>'};
+myText.Decorations.makeItalic = function(myString){
+    this.show = function(){return '<li>' + myString.show() + '</li>'};
 }
 //得到myText.Core的实例
-var theString =new myText.Core('this is a sample test String');
-alert(theString.show());　　//output 'this is a sample test String'
+var theString = new myText.Core('this is a sample test String');
+alert(theString.show());//output 'this is a sample test String'
 
 //得到？装饰后的String
-theString =new myText.Decorations.addQuestuibMark(theString);
-alert(theString.show());　　//output 'this is a sample test String?'
+theString = new myText.Decorations.addQuestuibMark(theString);
+alert(theString.show());//output 'this is a sample test String?'
 
 //得到标签装饰后的String
-theString =new myText.Decorations.makeItalic (theString);
-alert(theString.show());　　//output '<li>this is a sample test String</li>'
+theString = new myText.Decorations.makeItalic(theString);
+alert(theString.show());//output '<li>this is a sample test String</li>'
 ```
 
 从这个示例中可以看出，我们的目的是为了得到装饰过得String，这一切都可以不用事先知道组件对象的接口，也就是说我们只需要调用myString.show()，而其中具体的实现不用关心，甚至可以动态的实现。
@@ -888,10 +886,10 @@ Node的优缺点
 3. session 的运行依赖 session id，而 session id 是存在 cookie 中的，也就是说，如果浏览器禁用了 cookie ，同时 session 也会失效（但是可以通过其它方式实现，比如在 url 中传递 session_id）
 4. session 可以放在 文件、数据库、或内存中都可以。
 5. 用户验证这种场合一般会用 session 因此，维持一个会话的核心就是客户端的唯一标识，即 session id
-6. cookie是不安全的，一些网络攻击如XSS和CSRF可以获取cookie或进行cookie欺骗，所以重要信息放在session里，必要放在cookie里要枷锁
+6. cookie是不安全的，一些网络攻击如XSS和CSRF可以获取cookie或进行cookie欺骗，所以重要信息放在session里，必要放在cookie里要加锁
 
 ### cookie, loaclStorage, sessionStorage
-、
+
 1. cookie: 可设置失效时间，默认是浏览器关闭后，大小4K左右，每次都会携带在HTTP头中，这也是大小限制的原因，如果使用cookie保存过多数据会带来性能问题，主要用于保存密码等信息。cookie 作用域通过文档源和文档路径来确定，通过path和domain进行配置，web 页面同目录或子目录文档都可访问
 ```
 document.cookie = 'name=qiu; max-age=9999; path=/; domain=domain; secure';
@@ -999,7 +997,7 @@ JSON（JavaScript Object Notation）是一种<strong>轻量级的数据交换格
 
 字符串转对象：
 
-```JS
+```js
 JSON.parse(str);
 str.parseJSON(str);
 eval('(' + str + ')')
@@ -1007,7 +1005,7 @@ eval('(' + str + ')')
 
 对象转字符串：
 
-```JS
+```js
 JSON.stringify(obj);
 obj.toJSONString(str);
 ```
@@ -1034,8 +1032,9 @@ Model：数据访问层
 
 都是遍历数组，forEach为每个元素执行回调，最终无返回值，map每个元素返回一个新值，最后返回新数组
 
-匿名函数的典型应用场景是什么？
+### 匿名函数的典型应用场景是什么？
 
+1. 只使用一次的回调函数，不需要具体函数名，便于维护和提高可读性
 1. 匿名函数可以在 IIFE 中使用，来封装局部作用域内的代码，以便其声明的变量不会暴露到全局作用域。
 
 ```js
@@ -1043,8 +1042,6 @@ Model：数据访问层
   // 一些代码。
 })();
 ```
-1. 只使用一次的回调函数，不需要具体函数名，便于维护和提高可读性
-
 1. 用于函数式编程
 
 ### 宿主对象（host objects）和原生对象（native objects）的区别是什么？
@@ -1501,7 +1498,7 @@ function debounce(fn, delay){
 // 然后是旧代码
 function showTop  () {
     var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-　　console.log('滚动条位置：' + scrollTop);
+console.log('滚动条位置：' + scrollTop);
 }
 window.onscroll = debounce(showTop,1000) // 为了方便观察效果我们取个大点的间断值，实际使用根据需要来配置
 ```
@@ -1528,7 +1525,7 @@ function throttle(fn,delay){
 // 以下照旧
 function showTop  () {
     var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-　　console.log('滚动条位置：' + scrollTop);
+console.log('滚动条位置：' + scrollTop);
 }
 window.onscroll = throttle(showTop,1000)
 ```
