@@ -11,7 +11,9 @@ tags:
 
 ## summary
 
-浅拷贝和深拷贝都只针对于引用数据类型，浅拷贝只复制指向某个对象的指针，而不复制对象本身，新旧对象还是共享同一块内存；但深拷贝会另外创造一个一模一样的对象，新对象跟原对象不共享内存，修改新对象不会改到原对象；
+- 浅度拷贝（shadow copy）：复制一层对象的属性，并不包括对象里面的为引用类型的数据，当改变拷贝的对象里面的引用类型时，源对象也会改变。·
+
+- 深度拷贝（deep copy）：重新开辟一个内存空间，需要递归拷贝对象里的引用，直到子属性都为基本类型。两个对象对应两个不同的地址，修改一个对象的属性，不会改变另一个对象的属性。
 
 ## shadow copy
 ```js
@@ -31,6 +33,16 @@ function shadowCopy(source) {
 1. Array.prototype.concat(value1[, value2[, ...[, valueN]]])
 1. Object.assign(target,source)
 1. ...扩展运算符
+
+以slice为例，意味着b拷贝a一层的属性，所以对b内部基础变量的修改并不会改变a数组的值，但是对b中对象修改时a中的值也被修改了
+```js
+var a = [{a:1}, 1, 1];
+var b = a.slice(0,2);
+b[0].a = 2;
+b[1] = 2;
+console.log(a[0]);
+console.log(a[1]);
+```
 
 ## deep copy
 ### JSON.parse(JSON.stringify())
@@ -53,7 +65,6 @@ function deepCopy(source) {
     var target = Array.isArray(source) ? [] : {};
     for(key in source) {
         //循环引用处理, 出现obj.x = obj则跳过
-        debugger;
         if(source[key] === source) {
             continue;
         }

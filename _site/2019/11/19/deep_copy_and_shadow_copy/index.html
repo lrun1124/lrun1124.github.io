@@ -172,7 +172,14 @@
 
 				<h2 id="summary">summary</h2>
 
-<p>浅拷贝和深拷贝都只针对于引用数据类型，浅拷贝只复制指向某个对象的指针，而不复制对象本身，新旧对象还是共享同一块内存；但深拷贝会另外创造一个一模一样的对象，新对象跟原对象不共享内存，修改新对象不会改到原对象；</p>
+<ul>
+  <li>
+    <p>浅度拷贝（shadow copy）：复制一层对象的属性，并不包括对象里面的为引用类型的数据，当改变拷贝的对象里面的引用类型时，源对象也会改变。·</p>
+  </li>
+  <li>
+    <p>深度拷贝（deep copy）：重新开辟一个内存空间，需要递归拷贝对象里的引用，直到子属性都为基本类型。两个对象对应两个不同的地址，修改一个对象的属性，不会改变另一个对象的属性。</p>
+  </li>
+</ul>
 
 <h2 id="shadow-copy">shadow copy</h2>
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">shadowCopy</span><span class="p">(</span><span class="nx">source</span><span class="p">)</span> <span class="p">{</span>
@@ -185,7 +192,6 @@
     <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></div>
-
 <p>实例</p>
 
 <ol>
@@ -194,6 +200,15 @@
   <li>Object.assign(target,source)</li>
   <li>…扩展运算符</li>
 </ol>
+
+<p>以slice为例，意味着b拷贝a一层的属性，所以对b内部基础变量的修改并不会改变a数组的值，但是对b中对象修改时a中的值也被修改了</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[{</span><span class="na">a</span><span class="p">:</span><span class="mi">1</span><span class="p">},</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="nx">b</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">a</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="nx">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+</code></pre></div></div>
 
 <h2 id="deep-copy">deep copy</h2>
 <h3 id="jsonparsejsonstringify">JSON.parse(JSON.stringify())</h3>
@@ -217,7 +232,6 @@
     <span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">source</span><span class="p">)</span> <span class="p">?</span> <span class="p">[]</span> <span class="p">:</span> <span class="p">{};</span>
     <span class="k">for</span><span class="p">(</span><span class="nx">key</span> <span class="k">in</span> <span class="nx">source</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">//循环引用处理, 出现obj.x = obj则跳过</span>
-        <span class="kr">debugger</span><span class="p">;</span>
         <span class="k">if</span><span class="p">(</span><span class="nx">source</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">===</span> <span class="nx">source</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">continue</span><span class="p">;</span>
         <span class="p">}</span>
@@ -251,11 +265,11 @@
 </code></pre></div></div>
 <p>测试以上代码循环引用结果
 事实上，就算没有循环引用处理，chrome也做了优化，并不会无限递归
-<img src="http://127.0.0.1:4000/lrun1124.github.io/img/copy/cycle.png" width="500px" />
+<img src="http://lrun1124.github.io/img/copy/cycle.png" width="500px" />
 测试Date对象结果
-<img src="http://127.0.0.1:4000/lrun1124.github.io/img/copy/date.png" width="600px" />
+<img src="http://lrun1124.github.io/img/copy/date.png" width="600px" />
 测试RegExp对象结果
-<img src="http://127.0.0.1:4000/lrun1124.github.io/img/copy/reg.png" width="600px" /></p>
+<img src="http://lrun1124.github.io/img/copy/reg.png" width="600px" /></p>
 
 <h3 id="lodash">lodash</h3>
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">_</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'lodash'</span><span class="p">);</span>
@@ -282,7 +296,9 @@
                     data-images="http://localhost:4000/lrun1124.github.io/img/ArrayUnique-bg.jpg"
                     data-content="summary
 
-浅拷贝和深拷贝都只针对于引用数据类型，浅拷贝只复制指向某个对象的指针，而不复制对象本身，新旧对象还是共享同一块内存；但深拷贝会另外创造一... | Run Note " >
+
+  
+    浅度拷贝（shadow copy）：复制一层对象的属性，并不包括对象里面的为引用类型的数据，当改变拷贝的对象里面的引用类... | Run Note " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -497,7 +513,7 @@
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Run Note 2019
+                    Copyright &copy; Run Note 2020
 <!--                     <iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="91px" height="20px"
