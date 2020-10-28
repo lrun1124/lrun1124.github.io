@@ -114,50 +114,47 @@ console.log(threeSum([-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6]));
 
 ### 016.3SumClosest
 
-<img src="http://lrun1124.github.io/img/leetcode/015.png" width="500"/>
+<img src="http://lrun1124.github.io/img/leetcode/016.png" width="500"/>
 
 ```js
-var threeSum = function(nums) {
-    //处理边界
-    if(nums.length < 3) return [];
-    //先排序
-    nums = nums.sort(function(a,b){ return a - b });
-    let res = [];
-    //特殊处理全0和全其他值
-    if(nums[0] === nums[nums.length-1]) {
-        if(nums[0] === 0) {
-            res.push([0,0,0]);
-            return res;
-        } else {
-            return [];
-        }
-    }
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var threeSumClosest = function(nums, target) {
+    nums.sort(function(a,b){return a - b;});
+    var gap = Number.MAX_VALUE,
+        res;
+
     for(let i=0; i<nums.length; i++) {
-        if(i !== 0 && nums[i] === nums[i-1]) continue;
-        //two point，变成sum2问题
+        if(i!=0 && nums[i] === nums[i-1]) continue;
         let mid = i+1,
-            end = nums.length-1;
+            end = nums.length - 1,
+            sum;
         while(mid < end) {
-            let sum = nums[i] + nums[mid] + nums[end];
-            if(sum === 0) {
-                res.push([nums[i], nums[mid], nums[end]]);
-                //向右向左滑动，找到第一个不同的值，注意就算没有相同的值也要滑动，所以用do-while，否则会无限循环
-                do{ mid++; } while(mid < end && nums[mid] === nums[mid-1])
-                do{ end--; } while(mid < end && nums[end] === nums[end+1])
+            sum = nums[i] + nums[mid] + nums[end];
+            if(Math.abs(sum - target) < gap){
+                gap = Math.abs(sum - target);
+                res = sum;
             }
-            else if(sum > 0) {
-                do{ end--; } while(mid < end && nums[end] === nums[end+1])
+            if(sum > target) {
+                do {end--} while(mid<end && nums[end] === nums[end+1]);
+            } else if (sum < target) {
+                do {mid++} while(mid<end && nums[mid] === nums[mid-1]);
             } else {
-                do{ mid++; } while(mid < end && nums[mid] === nums[mid-1])
-            } 
+                return sum;
+            }
         }
     }
     return res;
 };
-console.log(threeSum([-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6]));
+
+console.log(threeSumClosest([1,2,5,10,11],12))
 ```
 
-先排序，循环数组，内层变成2sum问题，再用两个指针滑动，和为0记录，内外循环过程中下一个遇相同的值跳过
+思路和sum3类似，先排序，外层遍历数组，内层开头结尾两个指针，去除前后相同值
+
 
 ### 018.4Sum
 <img src="http://lrun1124.github.io/img/leetcode/018.png" width="500"/>
@@ -206,6 +203,33 @@ console.log(fourSum([1, 0, -1, 0, -2, 2], 0))
 ### 026.Remove Duplicates from Sorted Array
 <img src="http://lrun1124.github.io/img/leetcode/018.png" width="500"/>
 
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+
+//有序情况，需要改变nums的ref的情况
+var removeDuplicates = function(nums) {
+    if(nums.length === 0) return 0;
+    var current = nums[0];
+    for(let i=1; i<nums.length; i++) {
+        //splice后需要指针前移一位，因为splice掉一个值后
+        //i自然指向下一位了，如果不--，下次循环又++后，会跳过一个值
+        if(nums[i] === current) {
+            nums.splice(i,1);
+            i--;
+        } else {
+            current = nums[i];
+        }
+    }
+    return nums.length;
+}
+```
+
+有序用current记录，指针滑动，遇到相同的splice，否则更新current
+
 ```js
 /**
  * @param {number[]} nums
@@ -231,30 +255,7 @@ var removeDuplicates = function(nums) {
 console.log(removeDuplicates([0,0,1,1,1,2,2,3,3,4]))
 ```
 
-```js
-/**
- * @param {number[]} nums
- * @return {number}
- */
-
-//有序情况，需要改变nums的ref的情况
-var removeDuplicates = function(nums) {
-    if(nums.length === 0) return 0;
-    var current = nums[0];
-    for(let i=1; i<nums.length; i++) {
-        //splice后需要指针后移，不然会跳过一个值
-        if(nums[i] === current) {
-            nums.splice(i,1);
-            i--;
-        } else {
-            current = nums[i];
-        }
-    }
-    return nums.length;
-}
-```
-
-一个current记录现在的值，指针滑动，遇到相同的splice，否则更新current
+无序用hash记录，指针滑动，遇到相同的splice，否则更新记入hash
 
 ### 027.Remove Element
 <img src="http://lrun1124.github.io/img/leetcode/027.png" width="500"/>
@@ -559,4 +560,80 @@ console.log(firstMissingPositive([3,4,-1,1]))
 
 原地hash，哈希的规则是nums[i] = i+1, 占座思想，让nums[i]都坐在i-1的位置上，最后第一个不满足规则的数的位置+1，就是结果
 
+### 004.Median of Two Sorted Arrays
 
+<img src="http://lrun1124.github.io/img/leetcode/004.png" width="500"/>
+
+```JS
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number}
+ */
+
+var findMedianSortedArrays = function(nums1, nums2) {
+    debugger;
+    var i = 0, //nums1的指针
+        j = 0, //nums2的指针
+        m = nums1.length,
+        n = nums2.length,
+        len = m+n,
+        last, //上一次循环到的数，用于len为偶数时的中位数计算
+        current; //现在循环到的数
+
+    for(let k=0; k<=len/2; k++){
+        last = current; //记下上一次循环的数
+        if(i<m && j<n) { //如果两个数组都没结束，谁小谁指针移动
+            current = nums1[i]< nums2[j] ?  nums1[i++] : nums2[j++];
+        } else { //如果一个数组结束了，另一个一直向后
+            current = i<m ? nums1[i++] : nums2[j++];  
+        } 
+    }
+    if(len%2 === 0) { //偶数
+        return (last + current)/2.0;
+    } else { //奇数
+        return current;
+    }
+};
+console.log(findMedianSortedArrays([1,2],[3,4]))
+```
+
+O(m+n)的解法：找中位数就是找nums1和nums2合并起来的下标为len/2的数，所以遍历len/2+1次，找到这个数，同时记录他前面的数，再分别处理奇偶情况
+
+O(log(m+n))的解法：Todo...
+
+
+### 048.Rotate Image
+Input: matrix = [[1,2,3],[4,5,6],[7,8,9]] 
+Output: [[7,4,1],[8,5,2],[9,6,3]]
+
+Input: matrix = [[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]
+Output: [[15,13,2,5],[14,3,4,1],[12,6,8,9],[16,7,10,11]]
+```js
+/**
+ * @param {number[][]} matrix
+ * @return {void} Do not return anything, modify matrix in-place instead.
+ */
+
+ 1,2,3  7,4,1
+ 4,5,6  8,5,2
+ 7,8,9  9,6,3 
+
+var rotate = function(matrix) {
+    debugger;
+    //先矩阵转置
+    for(let i=0; i<matrix.length; i++) {
+        for(let j=i; j<matrix.length; j++) {
+            //matrix[i][j]别写成matrix[i,j]!!!
+            let temp = matrix[i][j];
+            matrix[i][j] = matrix[j][i];
+            matrix[j][i] = temp;
+        }
+    }
+    //再反转每行
+    for(let i=0; i<matrix.length; i++) {
+        matrix[i].reverse();
+    }
+}
+console.log(rotate([[1,2,3],[4,5,6],[7,8,9]]))
+```
