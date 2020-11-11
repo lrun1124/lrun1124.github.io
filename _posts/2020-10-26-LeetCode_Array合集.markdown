@@ -604,6 +604,9 @@ O(log(m+n))的解法：Todo...
 
 
 ### 048.Rotate Image
+
+<img src="http://lrun1124.github.io/img/leetcode/048.png" width="500"/>
+
 Input: matrix = [[1,2,3],[4,5,6],[7,8,9]] 
 Output: [[7,4,1],[8,5,2],[9,6,3]]
 
@@ -637,3 +640,202 @@ var rotate = function(matrix) {
 }
 console.log(rotate([[1,2,3],[4,5,6],[7,8,9]]))
 ```
+
+### 55.Jump Game
+
+<img src="http://lrun1124.github.io/img/leetcode/055.png" width="500"/>
+
+Example 1:
+
+Input: nums = [2,3,1,1,4]
+Output: true
+Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
+Example 2:
+
+Input: nums = [3,2,1,0,4]
+Output: false
+Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index.
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var canJump = function(nums) {
+    let max = 0; //代表最远能到的距离
+    for(let i=0; i<nums.length; i++) {
+        if (i > max) return false;
+        max = Math.max(max, i+nums[i]);
+    }
+    return true;
+};
+console.log(canJump([2,3,1,1,4]));
+```
+
+用一个max距离，记录目前能到的最远距离，遍历数组，每次更新max的情况，当i>max, 意味着当前位置到不了了，那么后面也就肯定到不了了
+
+### 56.Merge Intervals
+<img src="http://lrun1124.github.io/img/leetcode/056.png" width="500"/>
+
+```js
+/**
+ * @param {number[][]} intervals
+ * @return {number[][]}
+ */
+
+Input: intervals = [[1,3],[2,6],[8,10],[15,18]]
+Output: [[1,6],[8,10],[15,18]]
+
+var merge = function(intervals) {
+    var current,
+        next;
+    intervals.sort((a,b) => {
+        return a[0] - b[0];
+    });
+    for(let i=0; i<intervals.length-1; i++) {
+        current = intervals[i];
+        next = intervals[i+1];
+        if(current[1] >= next[0]) {
+            current[1] = Math.max(next[1],current[1])
+            intervals.splice(i+1,1);
+            i--;
+        }
+    }
+    return intervals;
+};
+console.log(merge([[1,4],[0,2],[3,5]]));
+```
+
+首先按第一个数字的大小排序，然后判断前后两个元素，如果前元素的第二个值大于后元素的第一个值，就说明需要合并，这时候两种情况一种是部分重叠[1,4],[2,6]，一种后一个包含在前一个之内[1,4],[2,3],所以直接取两个元素第二个值的max，然后splice掉第二个值，记得--，因为下次还需要从合并后的数组元素开始检测。
+
+### 57.Insert Interval
+<img src="http://lrun1124.github.io/img/leetcode/057.png" width="500"/>
+
+```js
+/**
+ * @param {number[][]} intervals
+ * @param {number[]} newInterval
+ * @return {number[][]}
+ */
+Input: intervals = [[1,3],[6,9]], newInterval = [2,5]
+Output: [[1,5],[6,9]]
+
+Input: intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]], newInterval = [4,8]
+Output: [[1,2],[3,10],[12,16]]
+
+var insert = function(intervals, newInterval) {
+    let len = intervals.length,
+        i = 0,
+        res = [];
+    //第一阶段，不和newInterval重叠，在newInterval前面的部分，直接push
+    while(i<len && intervals[i][1] < newInterval[0]) {
+        res.push(intervals[i]);
+        i++;
+    }
+    //第二阶段，和newInterval重叠，不断更新前后端的值，直到不重叠
+    while(i<len && intervals[i][0] <= newInterval[1]) {
+        newInterval[0] = Math.min(intervals[i][0], newInterval[0]);
+        newInterval[1] = Math.max(intervals[i][1], newInterval[1]);
+        i++;
+    }
+    //第三阶段，不和newInterval重叠，在newInterval后面的部分，直接push
+    res.push(newInterval);
+    while(i<len) {
+        res.push(intervals[i]);
+        i++;
+    }
+    return res;
+};
+insert([[1,3],[6,9]],[2,5])
+```
+分成3个阶段，不重叠 -> 重叠 -> 不重叠，关键在于判断两次边界
+
+
+### 53. Maximum Subarray
+<img src="http://lrun1124.github.io/img/leetcode/053.png" width="500"/>
+
+```js
+Input: nums = [-2,1,-3,4,-1,2,1,-5,4]
+Output: 6
+Explanation: [4,-1,2,1] has the largest sum = 6.
+
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxSubArray = function(nums) {
+    let sum = 0,
+        res = nums[0];
+    for(let num of nums) {
+        if(sum > 0) { //sum为正意味着可以加上之前的sum
+            sum += num;
+        } else {  //sum为负意味着可以加上会更小，要舍弃
+            sum = num;
+        }
+        res = Math.max(res, sum);
+    }
+    return res;
+};
+console.log(maxSubArray([1]))
+```
+
+DP思想，如果前面的sum是负的，意味着对结果是副作用，直接舍弃了前面的结果，从这个数字开始重新计算
+```
+ [-2,1,-3,4,-1,2,1,-5,4]
+取-2，sum = -2，变负增益，下次舍弃
+取1， sum = 1
+取-3，sum = 1 +（-3） = -2， 变负增益，下次舍弃
+取4， sum = 4
+取-1，sum = 4 + （-1） = 3
+...
+```
+
+### 54. Spiral Matrix
+<img src="http://lrun1124.github.io/img/leetcode/054.png" width="500"/>
+
+```
+/**
+ * @param {number[][]} matrix
+ * @return {number[]}
+ */
+ Input:
+[
+ [ 1, 2, 3 ],
+ [ 4, 5, 6 ],
+ [ 7, 8, 9 ]
+]
+Output: [1,2,3,6,9,8,7,4,5]
+
+[
+  [1, 2, 3, 4],
+  [5, 6, 7, 8],
+  [9,10,11,12]
+]
+Output: [1,2,3,4,8,12,11,10,9,5,6,7]
+
+var spiralOrder = function(matrix) {
+    debugger;
+    if(matrix.length === 0) return [];
+    //定义上下左右四条边界
+    let up = 0,
+        down = matrix.length - 1,
+        left = 0,
+        right = matrix[0].length - 1,
+        res = [];
+    while(true) {
+        for(let i=left; i<=right; i++) { res.push(matrix[up][i])};//向右
+        if(++up > down) break;
+        for(let i=up; i<=down; i++) {res.push(matrix[i][right])};//向下
+        if(--right < left) break;
+        for(let i=right; i>=left; i--) {res.push(matrix[down][i])};//向左
+        if(--down < up) break;
+        for(let i=down; i>=up; i--) {res.push(matrix[i][left])};//向上
+        if(++left > right) break;
+    }
+    return res;
+};
+```
+
+定义上下左右四条边界，关键的点是，每次遍历一条边后，将当前边从矩阵中移除（通过挪动边界）
+然后判断是否过界，过界直接break
