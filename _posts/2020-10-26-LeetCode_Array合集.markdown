@@ -794,7 +794,7 @@ DP思想，如果前面的sum是负的，意味着对结果是副作用，直接
 ### 54. Spiral Matrix
 <img src="http://lrun1124.github.io/img/leetcode/054.png" width="500"/>
 
-```
+```js
 /**
  * @param {number[][]} matrix
  * @return {number[]}
@@ -839,3 +839,318 @@ var spiralOrder = function(matrix) {
 
 定义上下左右四条边界，关键的点是，每次遍历一条边后，将当前边从矩阵中移除（通过挪动边界）
 然后判断是否过界，过界直接break
+
+### 59. Spiral Matrix II
+<img src="http://lrun1124.github.io/img/leetcode/059.png" width="500"/>
+
+```js
+Input: 3
+Output:
+[
+ [ 1, 2, 3 ],
+ [ 8, 9, 4 ],
+ [ 7, 6, 5 ]
+]
+/**
+ * @param {number} n
+ * @return {number[][]}
+ */
+var generateMatrix = function(n) {
+    debugger;
+    if(n===0) return [];
+    let up = 0,
+        down = n-1,
+        left = 0,
+        right = n-1,
+        res = [],
+        count = 1;
+    for(let i=0; i<n; i++) {
+        res.push(new Array(n));
+    }
+    while(count <= n*n) {
+        for(let i=left; i<=right; i++) {
+            res[up][i] = count;
+            count++;
+        }
+        up++;
+        for(let i=up; i<=down; i++) {
+            res[i][right] = count;
+            count++;
+        }
+        right--;
+        for(let i=right; i>=left; i--) {
+            res[down][i] = count;
+            count++;
+        }
+        down--;
+        for(let i=down; i>=up; i--) {
+            res[i][left] = count;
+            count++;
+        }
+        left++;
+    }
+    return res; 
+};
+console.log(generateMatrix(3))
+```
+
+原理同上，设定4条边界，终止条件是n*n
+
+### 62. Unique Paths
+<img src="http://lrun1124.github.io/img/leetcode/062_1.png" width="500"/>
+<img src="http://lrun1124.github.io/img/leetcode/062_2.png" width="500"/>
+
+```js
+/**
+ * @param {number} m
+ * @param {number} n
+ * @return {number}
+ */
+var uniquePaths = function(m, n) {
+    debugger;
+    let dp = [];
+    for(let i=0; i<m; i++) {
+        dp.push(new Array(n));
+    }
+    for(let i=0; i<n; i++) {dp[0][i] = 1;} //填上横1
+    for(let i=0; i<m; i++) {dp[i][0] = 1;} //填上竖1
+    for(let i=1; i<m; i++) {
+        for(let j=1; j<n; j++) {
+            dp[i][j] = dp[i-1][j] + dp[i][j-1];
+        }
+    }
+    return dp[m-1][n-1];
+};
+console.log(uniquePaths(3,7))
+```
+
+dp思想，用dp[i][j]表示到i，j的路线数，那么dp[i][j] = dp[i-1][j] + dp[i][j-1]
+
+### 63. Unique Paths II
+<img src="http://lrun1124.github.io/img/leetcode/063.png" width="500"/>
+
+```js
+Input: obstacleGrid = [[0,0,0],[0,1,0],[0,0,0]]
+Output: 2
+Explanation: There is one obstacle in the middle of the 3x3 grid above.
+There are two ways to reach the bottom-right corner:
+1. Right -> Right -> Down -> Down
+2. Down -> Down -> Right -> Right
+
+/**
+ * @param {number[][]} obstacleGrid
+ * @return {number}
+ */
+var uniquePathsWithObstacles = function(obstacleGrid) {
+    debugger;
+    if(!obstacleGrid && obstacleGrid.length === 0) return 0;
+    let m = obstacleGrid.length,
+        n = obstacleGrid[0].length,
+        dp = [];
+    for(let i=0; i<m; i++) {
+        dp.push(new Array(n));
+    }
+    for(let i=0; i<m; i++) {
+        dp[i][0] = 0;
+    }
+    for(let i=0; i<n; i++) {
+        dp[0][i] = 0;
+    }
+    //第一列，碰到障碍前都设为1
+    for(let i=0; i<m && obstacleGrid[i][0] === 0; i++) {
+        dp[i][0] = 1;
+    }
+    //第一行，碰到障碍前都设为1
+    for(let i=0; i<n && obstacleGrid[0][i] === 0; i++) {
+        dp[0][i] = 1;
+    }
+    for(let i=1; i<m; i++) {
+        for(let j=1; j<n; j++) {
+            if(obstacleGrid[i][j] === 1) dp[i][j] = 0;
+            else {
+                dp[i][j] = dp[i-1][j] + dp[i][j-1];
+            }
+        }
+    }
+    return dp[m-1][n-1];
+};
+```
+
+DP思想同上，第一行第一列，如果碰到障碍，后面的位置就都到不了，设为0
+
+### 64. Minimum Path Sum
+<img src="http://lrun1124.github.io/img/leetcode/064.png" width="500"/>
+
+```js
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+var minPathSum = function(grid) {
+    debugger;
+    if(!grid) return 0;
+    var m = grid.length,
+        n = grid[0].length,
+        dp = [];
+    for(let i=0; i<m; i++) {
+        dp.push(new Array(n));
+    }
+    dp[0][0] = grid[0][0];
+    for(let i=1; i<m; i++) {
+        dp[i][0] = grid[i][0] + dp[i-1][0];
+    }
+    for(let i=1; i<n; i++) {
+        dp[0][i] = grid[0][i] + dp[0][i-1];
+    }
+    for(let i=1; i<m; i++) {
+        for(let j=1; j<n; j++) {
+            dp[i][j] = grid[i][j] + Math.min(dp[i-1][j], dp[i][j-1]);
+        }
+    }
+    return dp[m-1][n-1];
+};
+console.log(minPathSum([[1,3,1],[1,5,1],[4,2,1]]))
+```
+
+DP思想，dp[i][j] = grid[i][j] + Math.min(dp[i-1][j], dp[i][j-1]);
+
+### 66. Plus One
+<img src="http://lrun1124.github.io/img/leetcode/066.png" width="500"/>
+
+```js
+/**
+ * @param {number[]} digits
+ * @return {number[]}
+ */
+Input: digits = [1,2,3]
+Output: [1,2,4]
+var plusOne = function(digits) {
+    debugger;
+    for(let i=digits.length-1; i>=0; i--) {
+        if(digits[i] !== 9) {
+            digits[i]++;
+            break;
+        }
+        digits[i] = 0;
+        if(i===0){digits.splice(0,0,1);}
+    }
+    return digits;
+};
+console.log(plusOne([1,9,9]))
+```
+
+碰到非9就+1然后break，否则继续，直到最高位，插入1
+
+### 73. Set Matrix Zeroes
+<img src="http://lrun1124.github.io/img/leetcode/073.png" width="500"/>
+
+```js
+Input: matrix = [[1,1,1],[1,0,1],[1,1,1]]
+Output: [[1,0,1],[0,0,0],[1,0,1]]
+/**
+ * @param {number[][]} matrix
+ * @return {void} Do not return anything, modify matrix in-place instead.
+ */
+var setZeroes = function(matrix) {
+    debugger;
+    var m = matrix.length,
+        n = matrix[0].length;
+    for(let i=0; i<m; i++) {
+        for(let j=0; j<n; j++) {
+            if(matrix[i][j] === 0) {
+                for(let k=0; k<m; k++) matrix[k][j] = 'a';
+                for(let p=0; p<n; p++) matrix[i][p] = 'a';
+            }
+        }
+    }
+    for(let i=0; i<m; i++) {
+        for(let j=0; j<n; j++) {
+            if(matrix[i][j] === 'a') {
+                matrix[i][j] = 0;
+            }
+        }
+    }            
+};
+test = [[1,1,1],[1,0,1],[1,1,1]];
+setZeroes(test);
+console.log(test);
+```
+
+题目要求有限空间
+
+O(m+n)解法是用一个set记录下值0所在的横竖坐标
+O(1)解法是遍历中将值为0的横竖都变成一另一个值，最后再遍历一次将0换回来
+
+### 74. Search a 2D Matrix
+<img src="http://lrun1124.github.io/img/leetcode/074.png" width="500"/>
+
+```js
+Input: matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,50]], target = 3
+Output: true
+/**
+ * @param {number[][]} matrix
+ * @param {number} target
+ * @return {boolean}
+ */
+var searchMatrix = function(matrix, target) {
+    if(!matrix || matrix.length===0) return false;
+    let m = matrix.length,
+        n = matrix[0].length,
+        left = 0,
+        right = m*n-1,
+        mid;
+    while(left <= right) { //注意是<=,不然会丢一次循环
+        mid = left + Math.floor(right-left);
+        x = Math.floor(mid/n);
+        y = mid % n;
+        if(matrix[x][y] === target) return true;
+        if(matrix[x][y] > target) right = mid-1;
+        else left = mid+1;
+    }
+    return false;
+};
+console.log(searchMatrix([[1,3,5,7],[10,11,16,20],[23,30,34,50]],3))
+```
+
+两种思路，一种两次二分，先找到行，在对行内二分;另一种，对整个矩阵进行二分，计算坐标，x = Math.floor(mid/n); y = mid % n;
+
+### 75. Sort Colors
+<img src="http://lrun1124.github.io/img/leetcode/075.png" width="500"/>
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+Input: nums = [2,0,2,1,1,0]
+Output: [0,0,1,1,2,2]
+var sortColors = function(nums) {
+    if(!nums || nums.length === 0) return;
+    let len = nums.length,
+        zero = 0, //指向下一个0该在的位置
+        two = len - 1; //指向下一个2该在的位置
+    for(let i=0; i<=two; i++) {
+        if(nums[i] === 0) {
+            nums[i] = nums[zero];
+            nums[zero] = 0;
+            zero++;
+        } else if(nums[i] === 2){
+            nums[i] = nums[two];
+            nums[two] = 2;
+            two--;
+            i--;
+        }
+    }
+};
+
+
+var test = [2,0,1];
+sortColors(test);
+console.log(test);
+```
+
+双指针两个指针分别指向 下一个0、2应该存放的位置
+
+遇0则交换 当前元素 和 p0空间的值，并 使得 p0指针 指向 下一个0应该存放的位置，遍历下一个元素
+遇2则交换 当前元素 和 p2空间的值，并 使得 p2指针 指向 下一个2应该存放的位置，继续遍历 交换后的当前元素
+
