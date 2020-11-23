@@ -1154,3 +1154,248 @@ console.log(test);
 遇0则交换 当前元素 和 p0空间的值，并 使得 p0指针 指向 下一个0应该存放的位置，遍历下一个元素
 遇2则交换 当前元素 和 p2空间的值，并 使得 p2指针 指向 下一个2应该存放的位置，继续遍历 交换后的当前元素
 
+### 78. Subsets
+
+<img src="http://lrun1124.github.io/img/leetcode/078.png" width="500"/>
+
+```js
+Input: nums = [1,2,3]
+Output: [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
+Input: nums = [0]
+Output: [[],[0]]
+
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var subsets = function(nums) {
+    debugger;
+    if(nums.length === 0) return [[]];
+    var res = [[], [nums[0]]];
+    for(let i=1; i<nums.length; i++) {
+        var temp = [];
+        for(let j=0; j<res.length; j++) {
+            temp.push([...res[j], nums[i]]);
+        }
+        res = [...res, ...temp];
+    }
+    return res;
+};
+console.log(subsets([1,2,3]))
+```
+
+DP思想, [1,2,3] 是[1,2]的subset+3, 初始化结果[[], [nums[0]]]
+
+### 79. Word Search 
+
+<img src="http://lrun1124.github.io/img/leetcode/079.png" width="500"/>
+
+```js
+/**
+ * @param {character[][]} board
+ * @param {string} word
+ * @return {boolean}
+ */
+Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"
+Output: true
+Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCB"
+Output: false
+var exist = function(board, word) {
+  const m = board.length;
+  const n = board[0].length;
+  const used = new Array(m);    // 二维矩阵used，存放bool值
+  for (let i = 0; i < m; i++) {
+    used[i] = new Array(n);
+  }
+  // canFind 判断当前点是否是目标路径上的点
+  const canFind = (row, col, i) => { // row col 当前点的坐标，i当前考察的word字符索引
+    if (i == word.length) {          // 递归结束条件
+      return true;
+    }
+    if (row < 0 || row >= m || col < 0 || col >= n) { // 当前点要存在，不越界
+      return false;
+    }
+    if (used[row][col] || board[row][col] != word[i]) { // 当前点已经访问过，或，非目标点
+      return false;
+    }
+    // 排除掉上面的false情况，当前点是合格的，可以继续递归考察
+    used[row][col] = true;  // 记录一下当前点被访问了
+
+    const canFindRest = canFind(row + 1, col, i + 1) || canFind(row - 1, col, i + 1) ||
+      canFind(row, col + 1, i + 1) || canFind(row, col - 1, i + 1); 
+
+    if (canFindRest) { // 基于当前点[row,col]，可以为剩下的字符找到路径
+      return true;    
+    }
+    used[row][col] = false; // 不能为剩下字符找到路径，返回false，撤销当前点的访问状态，继续考察别的分支
+    return false;
+  };
+
+  for (let i = 0; i < m; i++) {   // 找 dfs 的入口
+    for (let j = 0; j < n; j++) {
+      if (board[i][j] == word[0] && canFind(i, j, 0)) { // 找到起点，递归结果true，找到目标路径
+        return true; 
+      }
+    }
+  }
+  return false; // 怎么样都没有返回true，则返回false
+};
+
+```
+
+回溯经典题，标记
+
+### 80. Remove Duplicates from Sorted Array II
+<img src="http://lrun1124.github.io/img/leetcode/080.png" width="500"/>
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+ 对于无序的，不考虑O(1)空间的解法，用hash
+var removeDuplicates = function(nums) {
+    debugger;
+    let hash = {};
+    for(let i=0; i<nums.length; i++) {
+        if(!hash[nums[i]]) {
+            hash[nums[i]] = 1;
+        } else if(hash[nums[i]] < 2) {
+            hash[nums[i]]++;
+        } else {
+            nums.splice(i,1);
+            i--;
+        }
+    }
+    return nums.length;
+};
+console.log(removeDuplicates([0,0,1,1,1,1,2,3,3]));
+```
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+对有序的，O(1)空间的解法
+var removeDuplicates = function(nums) {
+    if(nums.length == 0) return 0;
+    var count = 1; //记录出现次数
+    for(let i=1; i<nums.length; i++) {
+        if(nums[i] === nums[i-1]) {
+            if(count >= 2) {
+                nums.splice(i,1);
+                i--;
+                continue;
+            }
+            count++;
+        } else {
+            count = 1;
+        }
+    }
+    return nums.length;
+};
+console.log(removeDuplicates([0,0,1,1,1,1,2,3,3]));
+```
+
+### 90. Subsets II
+<img src="http://lrun1124.github.io/img/leetcode/090.png" width="500"/>
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+
+ Input: [1,2,2]
+Output:
+[
+  [2],
+  [1],
+  [1,2,2],
+  [2,2],
+  [1,2],
+  []
+]
+
+var subsetsWithDup = function(nums) {
+    if(nums.length === 0) return [[]];
+    nums.sort((a,b) => {return a-b;}) //先排序
+    var res = [[], [nums[0]]],
+        last = [[nums[0]]]; //记下上一次的子序列，用于处理重复
+    for(let i=1; i<nums.length; i++) {
+        var temp = [],
+            start = 0;
+        if(nums[i] === nums[i-1]) { //规律是碰到和上一个相同的数，那就从上一次新加的子数组中生产
+           for(let j=0; j<last.length; j++) {
+               temp.push([...last[j], nums[i]]);
+           }
+        } else { //否则从整个结果数组生产子集
+            for(let j=0; j<res.length; j++) {
+                temp.push([...res[j], nums[i]]);
+            }
+        }
+        res = [...res, ...temp];
+        last = temp.slice(0);
+    }
+    return res;
+};
+console.log(subsetsWithDup([4,4,4,1,4]))
+```
+动态规划，跟78题Subsets比主要是处理重复的情况, 先排序, 规律是碰到和上一个相同的数，那就从上一次新加的子数组中生产，而不是从整个结果数组生产子集，每次记下上一次的子数组，击败99.7%
+
+### 105. Construct Binary Tree from Preorder and Inorder Traversal
+<img src="http://lrun1124.github.io/img/leetcode/105.png" width="500"/>
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {number[]} preorder
+ * @param {number[]} inorder
+ * @return {TreeNode}
+ */
+
+preorder = [3,9,20,15,7]
+inorder =  [9,3,15,20,7]
+
+var buildTree = function(preorder, inorder) {
+    var len = preorder.length,
+        hashMap = {};
+    if(len === 0) return null;
+    //构造hash，快速定位inorder里的根节点位置
+    for(let i=0; i<len; i++) {
+        hashMap[inorder[i]] = i;
+    }
+    return builder(preorder, 0, len-1, inorder, 0, len-1, hashMap)
+};
+
+function builder(preorder, preorder_left, preorder_right, inorder, inorder_left, inorder_right, hashMap) {
+    //终止条件，是左指针超过右边
+    if(preorder_left > preorder_right) {
+        return null;
+    }
+    var rootVal = preorder[preorder_left], //根节点的val
+        inorder_root_index = hashMap[rootVal], //通过hash快速找到根节点位置
+        left_size = inorder_root_index - inorder_left; //计算左子树的长度，用于划分本轮递归范围
+    return {
+        val: rootVal,
+        left: builder(preorder, preorder_left + 1, preorder_left + left_size, inorder, inorder_left, inorder_root_index - 1, hashMap),
+        right: builder(preorder, preorder_left + left_size + 1, preorder_right, inorder, inorder_root_index + 1, inorder_right, hashMap)
+    }
+}
+
+console.log(buildTree([3,9,20,15,7], [9,3,15,20,7]));
+```
+
+### 106. Construct Binary Tree from Inorder and Postorder Traversal
+
+<img src="http://lrun1124.github.io/img/leetcode/106.png" width="500"/>
+
+
