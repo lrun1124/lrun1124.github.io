@@ -1373,23 +1373,21 @@ var buildTree = function(preorder, inorder) {
     for(let i=0; i<len; i++) {
         hashMap[inorder[i]] = i;
     }
-    return builder(preorder, 0, len-1, inorder, 0, len-1, hashMap)
-};
-
-function builder(preorder, preorder_left, preorder_right, inorder, inorder_left, inorder_right, hashMap) {
-    //终止条件，是左指针超过右边
-    if(preorder_left > preorder_right) {
+    var builder = (preorder_left, preorder_right, inorder_left, inorder_right) => {
+        if(preorder_left > preorder_right) {
         return null;
+        }
+        var rootVal = preorder[preorder_left], //根节点的val
+            inorder_root_index = hashMap[rootVal], //通过hash快速找到根节点位置
+            left_size = inorder_root_index - inorder_left; //计算左子树的长度，用于划分本轮递归范围
+        return {
+            val: rootVal,
+            left: builder(preorder_left + 1, preorder_left + left_size, inorder_left, inorder_root_index - 1),
+            right: builder(preorder_left + left_size + 1, preorder_right,  inorder_root_index + 1, inorder_right)
+        } 
     }
-    var rootVal = preorder[preorder_left], //根节点的val
-        inorder_root_index = hashMap[rootVal], //通过hash快速找到根节点位置
-        left_size = inorder_root_index - inorder_left; //计算左子树的长度，用于划分本轮递归范围
-    return {
-        val: rootVal,
-        left: builder(preorder, preorder_left + 1, preorder_left + left_size, inorder, inorder_left, inorder_root_index - 1, hashMap),
-        right: builder(preorder, preorder_left + left_size + 1, preorder_right, inorder, inorder_root_index + 1, inorder_right, hashMap)
-    }
-}
+    return builder(0, len-1, 0, len-1);
+};
 
 console.log(buildTree([3,9,20,15,7], [9,3,15,20,7]));
 ```
@@ -1398,4 +1396,37 @@ console.log(buildTree([3,9,20,15,7], [9,3,15,20,7]));
 
 <img src="http://lrun1124.github.io/img/leetcode/106.png" width="500"/>
 
+```js
+inorder = [9,3,15,20,7]
+postorder = [9,15,7,20,3]
+
+var buildTree = function(inorder, postorder) {
+    debugger;
+    var len = inorder.length;
+    if(len === 0) return null;
+    var hashMap = {},
+        postIdx = len-1;
+    //构造hash，快速定位inorder里的根节点位置
+    for(let i=0; i<len; i++) {
+        hashMap[inorder[i]] = i;
+    }
+    var builder = (inorder_left, inorder_right) => {
+        if(inorder_left > inorder_right) {
+            return null;
+        }
+        var rootVal = postorder[postIdx], //根节点的val
+            inorder_root_index = hashMap[rootVal]; //通过hash快速找到根节点位置
+        postIdx--;
+        return {
+            val: rootVal,
+            right: builder(inorder_root_index + 1, inorder_right), //right要在前
+            left: builder(inorder_left, inorder_root_index - 1),
+        }
+    }
+    return builder(0, len-1);
+};
+console.log(buildTree([9,3,15,20,7], [9,15,7,20,3]));
+```
+
+观察规律，后续从后向前就是根节点的位置，所以对中序迭代就好
 
