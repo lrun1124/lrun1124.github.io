@@ -1415,7 +1415,7 @@ var buildTree = function(inorder, postorder) {
             return null;
         }
         var rootVal = postorder[postIdx], //根节点的val
-            inorder_root_index = hashMap[rootVal]; //通过hash快速找到根节点位置
+            inorder_root_index = hashMap[rootVal]; //通过hash快速找到中序根节点位置，分成左右
         postIdx--;
         return {
             val: rootVal,
@@ -1430,3 +1430,135 @@ console.log(buildTree([9,3,15,20,7], [9,15,7,20,3]));
 
 观察规律，后续从后向前就是根节点的位置，所以对中序迭代就好
 
+### 118. Pascal's Triangle
+
+<img src="http://lrun1124.github.io/img/leetcode/118.png" width="500"/>
+
+```js
+Input: 5
+Output:
+[
+     [1],
+    [1,1],
+   [1,2,1],
+  [1,3,3,1],
+ [1,4,6,4,1]
+]
+/**
+ * @param {number} numRows
+ * @return {number[][]}
+ */
+var generate = function(numRows) {
+    if(numRows === 0 ) return [];
+    var res = [[1]];
+    for(let i=1; i<numRows; i++) {
+        var row = new Array(i+1);
+        for(let j=0; j<i+1; j++) {
+            if(j===0 || j===i) {
+                row[j] = 1;
+            } else {
+                row[j] = res[i-1][j] + res[i-1][j-1];
+            } 
+        }
+        res.push(row);
+    }
+    return res;
+};
+console.log(generate(5));
+```
+动态规划，动态方程row[j] = res[i-1][j] + res[i-1][j-1];
+
+### 119. Pascal's Triangle II
+
+<img src="http://lrun1124.github.io/img/leetcode/119.png" width="500"/>
+
+```js
+/**
+ * @param {number} rowIndex
+ * @return {number[]}
+ */
+Input: rowIndex = 3
+Output: [1,3,3,1]
+var getRow = function(rowIndex) {
+    if(rowIndex === 0 ) return [1];
+    var res = [[1]];
+    for(let i=1; i<=rowIndex; i++) {
+        var row = new Array(i+1);
+        for(let j=0; j<i+1; j++) {
+            if(j===0 || j===i) {
+                row[j] = 1;
+            } else {
+                row[j] = res[i-1][j] + res[i-1][j-1];
+            } 
+        }
+        res.push(row);
+    }
+    return res[rowIndex];
+};
+console.log(getRow(3))
+```
+同118 DP
+
+### 120. Triangle
+<img src="http://lrun1124.github.io/img/leetcode/120.png" width="500"/>
+
+```js
+递归解法
+/**
+ * @param {number[][]} triangle
+ * @return {number}
+ */
+var minimumTotal = function(triangle) {
+    var helper = (i, j) => {
+        if(i === triangle.length - 1) {
+            return triangle[i][j];
+        }
+        return triangle[i][j] + Math.min(helper(i+1,j), helper(i+1,j+1));
+    }
+    return helper(0, 0);
+};
+var test =  [
+     [2],
+    [3,4],
+   [6,5,7],
+  [4,1,8,3]
+];
+minimumTotal(test)
+```
+递归, triangle[i][j]到底部的最小距离，等于triangle[i][j]+ 下一层的邻居triangle[i+1][j]和triangle[i+1][j+1]到底部距离的较小值，递归会超时
+
+```js
+DP解法
+/**
+ * @param {number[][]} triangle
+ * @return {number}
+ */
+var minimumTotal = function(triangle) {
+    debugger;
+    let len = triangle.length,
+        dp = [];
+    if(len === 0) return 0;
+    if(len === 1) return triangle[0][0];
+    for(let i=0; i<len; i++) {
+        if(i===len-1) {
+            dp.push(triangle[i].slice(0));
+        } else {
+            dp.push(new Array(i+1));
+        }
+    }
+    for(let i=len-2; i>=0; i--) {
+        for(let j=0; j<=i; j++) {
+            dp[i][j] = triangle[i][j] + Math.min(dp[i+1][j], dp[i+1][j+1]);
+        }
+    }
+    return dp[0][0];
+};
+var test =  [
+     [2],
+    [3,4],
+   [6,5,7],
+  [4,1,8,3]
+];
+minimumTotal(test)
+```
+dp公式dp[i][j] = triangle[i][j] + Math.min(dp[i+1][j], dp[i+1][j+1]);
