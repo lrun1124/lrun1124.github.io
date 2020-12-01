@@ -1562,3 +1562,331 @@ var test =  [
 minimumTotal(test)
 ```
 dp公式dp[i][j] = triangle[i][j] + Math.min(dp[i+1][j], dp[i+1][j+1]);
+
+### 121. Best Time to Buy and Sell Stock
+
+<img src="http://lrun1124.github.io/img/leetcode/121.png" width="500"/>
+
+```js
+
+Input: [7,1,5,1,3,6,4]
+Output: 5
+Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+             Not 7-1 = 6, as selling price needs to be larger than buying price.
+
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function(prices) {
+    let len = prices.length;
+    if(len===0 || len===1) return 0;
+    let dp = [0],
+        minPrice = prices[0], //记下最低的买入价格
+        res = 0;
+    for(let i=1; i<len; i++) {
+        let current = prices[i] - minPrice;
+        dp[i] = dp[i] < dp[i-1] ? dp[i-1] : current;
+        if(prices[i] < minPrice) { //更新最低的价格
+            minPrice = prices[i];
+        }
+        if(current > res) { //同时记住最大的值
+            res = current;
+        }
+    }
+    return res;
+}
+maxProfit([1,2])
+```
+
+只能单次买卖，dp公式dp[i] = Math.max(dp[i-1], prices[i] - minPrice)，遍历过程要记下最低的价格，用于计算当前的值，同时顺便记住最大的值
+
+### 122. Best Time to Buy and Sell Stock II
+<img src="http://lrun1124.github.io/img/leetcode/122.png" width="500"/>
+
+```js
+Input: [7,1,5,3,6,4] [1,7,5,6,7] [0,6,6,7,6]
+Output: 7
+Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-1 = 4.
+             Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3.
+
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function(prices) {
+    let len = prices.length;
+    if(len === 0 || len === 1) return 0;
+    let dp = [0];
+    for(let i=1; i<prices.length; i++) {
+        //如果比昨天跌了，那就是昨天的收益不变，如果涨了就是今天卖，加上今天和昨天的差价，因为如果昨天卖了，那么今天价格更高，就等今天卖，加差值，如果昨天没卖，那就加上一笔昨天买，今天卖的收益，还是加差值。
+        dp[i] = prices[i] < prices[i-1] ? dp[i-1] : (dp[i-1] + prices[i] - prices[i-1]);
+    }
+    return dp[len-1];
+};
+maxProfit([7,1,5,3,6,4]);
+```
+可以多次买卖，dp公式  dp[i] = prices[i] < prices[i-1] ? dp[i-1] : (dp[i-1] + prices[i] - prices[i-1]); 和上一题的区别在于，不用记住最小的买入值了，直接算卖出差价就知道当前的值, 为什么？
+因为如果昨天卖了，那么今天价格更高，就等今天卖，加差值，如果昨天没卖，那就加上一笔昨天买，今天卖的收益，还是加差值。
+
+### 123. Best Time to Buy and Sell Stock III (有问题)
+<img src="http://lrun1124.github.io/img/leetcode/123.png" width="500"/>
+
+```js
+Input: prices = [3,3,5,0,0,3,1,4]
+Output: 6
+Explanation: Buy on day 4 (price = 0) and sell on day 6 (price = 3), profit = 3-0 = 3.
+Then buy on day 7 (price = 1) and sell on day 8 (price = 4), profit = 4-1 = 3.
+
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function(prices) {
+    debugger;
+    let len = prices.length;
+    if(len === 0 || len === 1) return 0;
+    let dp = [0],
+        count = [0],
+        lastSellIdx = -1;
+    for(let i=1; i<prices.length; i++) {
+        if(prices[i] <= prices[i-1]) {
+            dp[i] = dp[i-1];
+            count[i] = count[i-1];
+        } else {
+            if(count[i-1] < 2) {
+                dp[i] = dp[i-1] + prices[i] - prices[i-1];
+                count[i] = lastSellIdx < (i-1) ? (count[i-1] + 1) : count[i-1];
+                lastSellIdx = i;
+            } else {
+                if(prices[i] < prices[lastSellIdx]) {
+                    dp[i] = dp[i-1];
+                } else {
+                    dp[i] = dp[i-1] + prices[i] - prices[lastSellIdx];
+                    lastSellIdx = i;
+                }
+                count[i] = count[i-1];
+            }
+        }
+        console.log("dp:" + dp);
+        //console.log("count:" + count);
+        // console.log("lastSellPrice:" + lastSellPrice);
+    }
+    return dp[len-1];
+};
+//maxProfit([2,1,4,5,2,9,7]);
+maxProfit([14,9,10,12,4,8,1,16]);
+```
+因为如果昨天卖了，那么今天价格更高，就等今天卖，加差值
+如果昨天没卖，买卖次数少于2，那就加上一笔昨天买，今天卖的收益，还是加差值，否则等于dp[i-1]
+
+### 153. Find Minimum in Rotated Sorted Array
+<img src="http://lrun1124.github.io/img/leetcode/153.png" width="500"/>
+
+```js
+Input: nums = [3,4,5,1,2]
+Output: 1
+Input: nums = [11,13,15,17]
+Output: 11
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findMin = function(nums) {
+    let len  = nums.length;
+    if(len === 1 ) return nums[0];
+    let left = 0,
+        right = nums.length - 1,
+        mid;
+    while(left <= right) {
+        if(left === right) return nums[left];
+        if(right - left === 1) {
+            return Math.min(nums[left], nums[right]);
+        }
+        mid = left + Math.floor((right-left)/2);
+        if((nums[mid] < nums[mid+1] && nums[mid] < nums[mid-1])) {
+            return nums[mid];
+        }
+        if(nums[mid] > nums[right]) {
+            left = mid+1;
+        } else {
+            right = mid-1;
+        }
+    }
+};
+console.log(findMin([2,1]));
+```
+
+### 152. Maximum Product Subarray
+<img src="http://lrun1124.github.io/img/leetcode/152.png" width="500"/>
+
+```js
+Input: [2,3,-2,4]
+Output: 6
+Input: [-2,0,-1]
+Output: 0
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxProduct = function(nums) {
+    let len = nums.length,
+        dpMax = [nums[0]],
+        dpMin = [nums[0]],
+        res = nums[0];
+    for(let i=1; i<len; i++) {
+        dpMax[i] = Math.max(dpMax[i-1]*nums[i], dpMin[i-1]*nums[i], nums[i]);
+        dpMin[i] = Math.min(dpMax[i-1]*nums[i], dpMin[i-1]*nums[i], nums[i]);
+        if(dpMax[i] > res) res = dpMax[i];
+    }
+    return res;
+};
+maxProduct([2,3,-2,4]);
+```
+DP思想，因为负数相乘可能更大，所以要同时记住最大最小的数
+
+### 167. Two Sum II - Input array is sorted
+<img src="http://lrun1124.github.io/img/leetcode/167.png" width="500"/>
+
+```js   
+Input: numbers = [2,7,11,15], target = 9
+Output: [1,2]
+/**
+ * @param {number[]} numbers
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(numbers, target) {
+    debugger;
+    let left = 0,
+        right = numbers.length - 1,
+        sum;
+    while(left < right) {
+        sum = numbers[left] + numbers[right];
+        if(sum === target) return [++left, ++right];
+        if(sum > target) {
+            right--;
+        } else {
+            left++;
+        }
+    }
+}; 
+twoSum([2,7,11,15],9)
+```
+因为有序，可以用双指针，一头一尾，大了就尾挪动，小了就头动，如果无序，还是用hash
+
+### 169. Majority Element
+<img src="http://lrun1124.github.io/img/leetcode/169.png" width="500"/>
+
+```js
+先排序，中间肯定是众数
+Input: [3,2,3]
+Output: 3
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var majorityElement = function(nums) {
+    nums.sort((a,b)=>{return a-b;});
+    return nums[Math.floor(nums.length/2)];
+};
+majorityElement([3,2,3]);
+```
+
+解法一：先排序，取中间值
+
+```js
+摩尔投票
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var majorityElement = function(nums) {
+    var res = nums[0],
+        count = 1;
+    for(let i=1; i<nums.length; i++) {
+        if(res === nums[i]) {
+            count++;
+        } else { 
+            count--;
+        }
+        if(count > Math.floor(nums.length/2)) return res;
+        if(count === 0) {
+            res = nums[i];
+            count = 1;
+        }
+    }
+    return res;
+};
+majorityElement([3,2,3]);
+```
+解法二：摩尔投票，如果碰到相同的就count+1，否则-1，到0换新数字，原理很简单，因为majority num的数目肯定是大于一半以上的，也就是说会有一半以上的人投支持票+1，也就是投反对票-1的人少于一半，那最后剩下的肯定是majority num
+
+### 189. Rotate Array
+
+<img src="http://lrun1124.github.io/img/leetcode/189.png" width="500"/>
+
+```js
+Input: nums = [1,2,3,4,5,6,7], k = 3
+Output: [5,6,7,1,2,3,4]
+Explanation:
+rotate 1 steps to the right: [7,1,2,3,4,5,6]
+rotate 2 steps to the right: [6,7,1,2,3,4,5]
+rotate 3 steps to the right: [5,6,7,1,2,3,4]
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var rotate = function(nums, k) {
+    if(k === 0) return nums;
+    nums.splice(0, nums.length, ...[...nums.slice(nums.length-k), ...nums.slice(0,nums.length-k)]);
+};
+var nums = [1,2,3,4,5,6,7];
+rotate(nums,3);
+console.log(nums);
+```
+用splice和slice跑赢97%...，这道题要注意不能直接num=，因为是要改变原数组，js共享传递，导致直接=不能覆盖原数组，要用splice
+
+### 209. Minimum Size Subarray Sum
+
+<img src="http://lrun1124.github.io/img/leetcode/209.png" width="500"/>
+
+```js
+Input: s = 7, nums = [2,3,1,2,4,3]
+Output: 2
+Explanation: the subarray [4,3] has the minimal length under the problem constraint.
+/**
+ * @param {number} s
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minSubArrayLen = function(s, nums) {
+    debugger;
+    if(nums.length === 0) return 0;
+    let start = 0,
+        end = 0,
+        sum = 0,
+        res = Number.MAX_VALUE;
+    while(end < nums.length) {
+        sum += nums[end]; //每次向右滑动
+        while(sum >= s) { //然后从左开始缩短数组，记录到最短的值
+            res = Math.min(res, end - start + 1)
+            sum -=nums[start];
+            start++;
+        }
+        end++;
+    }
+    return res === Number.MAX_VALUE ? 0 : res;
+};
+minSubArrayLen(3,[2,3,1,2,4,3])
+```
+
+滑动窗口，双指针
+
+
+
+
+
+
+
