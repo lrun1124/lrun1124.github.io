@@ -1746,6 +1746,7 @@ maxProduct([2,3,-2,4]);
 DP思想，因为负数相乘可能更大，所以要同时记住最大最小的数
 
 ### 167. Two Sum II - Input array is sorted
+
 <img src="http://lrun1124.github.io/img/leetcode/167.png" width="500"/>
 
 ```js   
@@ -1776,6 +1777,7 @@ twoSum([2,7,11,15],9)
 因为有序，可以用双指针，一头一尾，大了就尾挪动，小了就头动，如果无序，还是用hash
 
 ### 169. Majority Element
+
 <img src="http://lrun1124.github.io/img/leetcode/169.png" width="500"/>
 
 ```js
@@ -1884,9 +1886,146 @@ minSubArrayLen(3,[2,3,1,2,4,3])
 
 滑动窗口，双指针
 
+### 216. Combination Sum III
+
+<img src="http://lrun1124.github.io/img/leetcode/216.png" width="500"/>
+
+```js
+Input: k = 3, n = 7
+Output: [[1,2,4]]
+Input: k = 3, n = 9
+Output: [[1,2,6],[1,3,5],[2,3,4]]
+Explanation:
+1 + 2 + 4 = 7
+There are no other valid combinations.
+/**
+ * @param {number} k
+ * @param {number} n
+ * @return {number[][]}
+ */
+var combinationSum3 = function(k, n) {
+    var res = [];
+    const dfs = (begin, sum, path) => {
+        //console.log(path);
+        if(path.length === k) {
+            if(sum === 0) {
+                res.push(path.slice(0));
+                return;
+            }
+            if(sum < 0) {
+                return;
+            }
+        }
+        for(let i=begin; i<=9; i++) {
+            path.push(i);
+            dfs(i+1, sum-i, path);
+            path.pop();
+        }
+    }
+    dfs(1,n,[]);
+    return res;
+};
+combinationSum3(3,7)
+```
+combination组合问题就是递归，递归遍历一棵树的模板如下
+
+```js
+begin是开始节点
+sum用于判断递归终止
+path记录路径
+const dfs = (begin, sum, path) => {
+    if(终止条件) {
+        //一些操作，比如push进res
+        return;
+    }
+    for(从begin开始循环) {
+        path.push(当前); //当前入栈
+        dfs(...);
+        path.pop() //上一次return，说明不满足，最后一次结果出栈
+    }
+}
+```
+
+### 217. Contains Duplicate
+
+<img src="http://lrun1124.github.io/img/leetcode/217.png" width="500"/>
+
+```js
+用set
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var containsDuplicate = function(nums) {
+    return new Set(nums).size !== nums.length;
+};
+containsDuplicate([1,2,3,1]);
+```
+
+或者用hash
+
+### 219. Contains Duplicate II
+
+<img src="http://lrun1124.github.io/img/leetcode/219.png" width="500"/>
+
+```js
+Input: nums = [1,2,3,1], k = 3
+Output: true
+Input: nums = [1,2,3,1,2,3], k = 2
+Output: false
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {boolean}
+ */
+var containsNearbyDuplicate = function(nums, k) {
+    let s = new Set(), //使用一个滑动窗口Set
+        start = 0; //记录每次滑动需要delete的
+    for(let i=0; i<nums.length; i++) {
+        if(i > k) { //当窗口内的值够的时候，每次循环把开始的位置删掉
+            s.delete(nums[start]);
+            start++;
+        }
+        if(s.has(nums[i])) return true; //判断当前set里有无重复
+        s.add(nums[i]);
+    }
+    return false;
+};
+containsNearbyDuplicate([0,1,2,3,4,0,0,7,8,9,10,11,12,0], 1);
+```
+维护一个set，滑动窗口
+
+### 228. Summary Ranges
+
+<img src="http://lrun1124.github.io/img/leetcode/219.png" width="500"/>
 
 
+```js
+Input: nums = [0,1,2,4,5,7]
+Output: ["0->2","4->5","7"]
 
+Input: nums = [0,2,3,4,6,8,9]
+Output: ["0","2->4","6","8->9"]
 
-
-
+var summaryRanges = function(nums) {
+    if(nums.length === 0) return [];
+    if(nums.length === 1) return [`${nums[0]}`]
+    let res = [],
+        start = 0,
+        end = 0;
+    do {
+        if(nums[end+1]-nums[end] === 1) end++;
+        else {
+            if(end === start) {
+                res.push(`${nums[end]}`);
+            } else {
+                res.push(`${nums[start]}->${nums[end]}`);
+            }
+            end++;
+            start = end;
+        }
+    } while(end < nums.length)
+    return res;
+};
+summaryRanges([0,2,3,4,6,8,9])
+```

@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+
+        <title>Multi-Panel. MicroStrategy 9</title>
+
+        <link rel="shortcut icon" href="../style/mstr/images/favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" type="text/css" href="../javascript/mojo/css/core-ws.css"/>
+        <link rel="stylesheet" type="text/css" href="../javascript/mojo/css/Vis.css"/>
+        <link rel="stylesheet" type="text/css" href="../javascript/mojo/css/cge.css"/>
+         <link rel="stylesheet" type="text/css" href="../style/mstr/fsm.css"/>
+        <link rel="stylesheet" type="text/css" href="../style/mstr/widgets.css"/>
+        <link rel="stylesheet" type="text/css" href="../style/mstr/mstr.css"/>
+        <link rel="stylesheet" type="text/css" href="../style/mstr/pagePrompts.css" />
+        <link rel="stylesheet" type="text/css" href="../javascript/mojo/css/workstation.css"/>
+        <link rel="stylesheet" type="text/css" href="../javascript/mojo/css/font/fonts.css"/>
+        <link rel="stylesheet" type="text/css" href="../VisFramework/ngm/dist/css/ngm.css" />
+        <link rel="stylesheet" type="text/css" href="../javascript/mojo/css/font/fr/css/web_fr_iconfont.css" />
+        <link rel="stylesheet" type="text/css" href="../javascript/mojo/css/font/vi/css/vi_icons.css" />
+        <link rel="stylesheet" type="text/css" href="../javascript/react/css/pcl.css" />
+
+        <script src="../javascript/libraries/modernizr.js" language="javascript"></script>
+        <script src="../javascript/libraries/jquery-2.0.3.min.js" language="javascript"></script>
+        <script src="../javascript/libraries/annotate.js" language="javascript"></script>
+        <script src="../javascript/libraries/jspdf.js" language="javascript"></script>
+        <script src="../javascript/libraries/ssf.js" language="javascript"></script>
+        <script src="../javascript/libraries/nlp_compromise.min.js" language="javascript"></script>
+        <script src="../javascript/libraries/hammer.min.js" language="javascript"></script>
+        <script src="../javascript/libraries/webfont.js" language="javascript"></script>
+        <script src="../javascript/bundles/html5-vi-react.js" language="javascript"></script>
+
+        <style type="text/css">
+            .mstrConsole {
+                background: #fff;
+                border: 2px solid #666;
+                bottom: 50px;
+                height: auto;
+                position: absolute;
+                right: 50px;
+                width: auto;
+                z-index: 10001;
+
+                -webkit-transition: all 350ms;
+            }
+
+            .mstrDebugConsole {
+                background: #fff;
+                height: 260px;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                width: 600px;
+            }
+
+            .mstrDebugConsole div {
+                border: 1px solid transparent;
+                border-bottom-color: #999;
+                padding: 5px 10px;
+            }
+
+            .mstrDebugConsole div:nth-child(odd) {
+                background: #fff;
+            }
+
+            .mstrDebugConsole div:nth-child(even) {
+                background: #e5e5e5;
+            }
+
+            .mstrConsoleInput {
+                border-top: 1px solid #666;
+                height: 28px;
+                width: 590px;
+                padding: 5px;
+            }
+
+            .mstrConsoleInput input {
+                width: 500px;
+            }
+
+            .mstrConsoleInput input[type="button"] {
+                cursor: pointer;
+                margin: 0 0 0 5px;
+                padding: 1px 6px;
+                width: 80px;
+            }
+
+            .mstrConsoleToolbar {
+                position: absolute;
+                right: 0;
+                top: -30px;
+                width: 590px;
+            }
+
+            .mstrConsoleToolbar div {
+                background: #ccc;
+                border: 1px solid #000;
+                color: #333;
+
+
+
+                cursor: pointer;
+                float: right;
+                line-height: 20px;
+                margin-right: 5px;
+                text-align: center;
+                width: 20px;
+            }
+
+            .mstrConsole.min {
+                height: 0;
+                width: 0;
+            }
+        </style>
+    </head>
+
+    <body class="mstrWeb mstr-one-tier" onload="">
+        <div id="mainApp"></div>
+        <div id="mainAppMsg"></div>
+
+        <script type="text/javascript">
+            // Does the FormWrapper NOT exist?
+            if (!window.FormWrapper) {
+                // Likely this is a mac so set to window.client.
+                window.FormWrapper = window.client;
+            }
+
+            window.ReactComponents = this.ReactComponents && this.ReactComponents.default;
+
+            window.console = window.console || {log: function(){}};  //avoid IE9 error
+            window.mstr_profile = {
+                enabled: false,
+                timeStart: function(label) {
+                    if ( console.time && this.enabled ) {
+                        console.time(label);
+                    }
+                },
+                timeEnd: function(label) {
+                    if ( console.timeEnd && this.enabled ) {
+                        console.timeEnd(label);
+                    }
+                },
+                group: function() {
+                    if ( console.group && this.enabled ) {
+                        console.group(arguments);
+                    }
+                },
+                groupEnd: function() {
+                    if ( console.groupEnd && this.enabled ) {
+                        console.groupEnd();
+                    }
+                },
+                log: function() {
+                    if ( this.enabled ) {
+                        Function.prototype.apply.call(console.log, console, arguments);
+                    }
+                }
+            };
+
+            var customDescs,
+                customVisNames = FormWrapper.getCustomizationNames();
+
+            try {
+                customDescs = JSON.parse(FormWrapper.getCustomMessageBundle());
+            } catch (e) {
+                console.log('Cannot get custom descriptors! ' + e.message);
+                customDescs = {descriptors:[]};
+            }
+
+            //Set application config.
+            mstrConfig = {
+                resolveOnly: !!(FormWrapper.isPauseMode && FormWrapper.isPauseMode()),
+                taskURL: 'taskProc',
+                thousandsSep: ',',
+                decimalSep: '.',
+                listSep: ',',
+                units: '2',
+                unitsLabel: 'Inches',
+                jsLibs: '../javascript-libraries/',
+                onMobileDevice: false,
+                messageBundle: JSON.parse(FormWrapper.getMessageBundle()),
+                customDescs: customDescs,
+                pluginNames: (typeof customVisNames === 'string') ? customVisNames.split(",") : [],
+                pluginsVisList: {
+                      "KPICardVisualizationStyle": {
+                        "d": "KPI",
+                        "desc": 15800,
+                        "s": "KPICardVisualizationStyle",
+                        "c": "VisKPICard",
+                        "wtp": "9"
+                      },
+                      "GraphMatrixVisualizationStyle": {
+                        "d": "Graph Matrix",
+                        "s": "GraphMatrixVisualizationStyle",
+                        "c": "gm.VisGraphMatrix",
+                        "wtp": "1",
+                        "st": [
+                          "LineChart",
+                          "AreaChart",
+                          "BubbleChart",
+                          "PieChart",
+                          "RingChart",
+                          "VerticalBarChart",
+                          "HorizontalBarChart",
+                          "VerticalClusteredBarChart",
+                          "HorizontalClusteredBarChart",
+                          "VerticalStackedBarChart",
+                          "HorizontalStackedBarChart",
+                          "VerticalPercentBarChart",
+                          "HorizontalPercentBarChart",
+                          "SynchronizedAxisBarChart",
+                          "MatrixBarChart",
+                          "ComboChart"
+                        ]
+                      },
+                      "MapboxVisualizationStyle": {
+                        "d": "Geospatial Service",
+                        "desc": 15751,
+                        "s": "MapboxVisualizationStyle",
+                        "c": "mapbox.VisMapbox",
+                        "wtp": "8"
+                      },
+                      "GoogleMapVisualizationStyle": {
+                        "d": "Map",
+                        "desc": 7736,
+                        "s": "GoogleMapVisualizationStyle",
+                        "c": "VisMapBase",
+                        "wtp": "6"
+                      },
+                      "VIHeatMapVisualizationStyle": {
+                        "mm": "1",
+                        "d": "Heat Map",
+                        "desc": 11819,
+                        "s": "VIHeatMapVisualizationStyle",
+                        "c": "heatmap.vi.VisHeatMap",
+                        "ma": "1",
+                        "wtp": "2"
+                      },
+                      "NetworkVisualizationStyle": {
+                        "mm": "1",
+                        "d": "Network",
+                        "desc": 11827,
+                        "s": "NetworkVisualizationStyle",
+                        "c": "netviz.VisNetwork",
+                        "ma": "2",
+                        "wtp": "3"
+                      },
+                      "NewGraphMatrixVisualizationStyle": {
+                        "d": "New Graph Matrix",
+                        "s": "NewGraphMatrixVisualizationStyle",
+                        "c": "ngm.VisNewGraphMatrix",
+                        "wtp": "1",
+                        "st": [
+                          "ClusteredBarChart",
+                          "BarChart",
+                          "LineChart",
+                          "AreaChart",
+                          "BubbleChart",
+                          "ComboChart",
+                          "Histogram",
+                          "BoxPlot",
+                          "Waterfall"
+                        ]
+                      }
+                },
+                pluginsWidgetVisMap: {
+                      "com.microstrategy.web.vf.viewer.GoogleMapApplicationViewer": "GoogleMapVisualizationStyle",
+                      "com.microstrategy.web.vf.viewer.ImageLayoutApplicationViewer": "ImageLayoutVisualizationStyle"
+                },
+                // TODO: NS - Get this dynamically.
+                paletteThemes: {
+                      "palettes": [
+                        {
+                          "colors": [
+                            11826975,
+                            1381846,
+                            1810715,
+                            950271,
+                            12407690,
+                            2276796,
+                            13614615,
+                            8355711,
+                            15255470,
+                            9869567,
+                            9101208,
+                            7912447,
+                            376261,
+                            9296859,
+                            15063710,
+                            13092807
+                          ],
+                          "tp": 1,
+                          "n": "Light Theme Palette",
+                          "pltid": "76CB9F3E366345DF89811386CBAA82CB"
+                        },
+                        {
+                          "colors": [
+                            16756758,
+                            2701311,
+                            2275844,
+                            956159,
+                            14580142,
+                            2477516,
+                            14732825,
+                            11119017,
+                            15715763,
+                            9873407,
+                            9101208,
+                            8437759,
+                            15516634,
+                            9494752,
+                            15392673,
+                            14079702
+                          ],
+                          "tp": 1,
+                          "n": "Dark Theme Palette",
+                          "pltid": "6E672B0D40504C128EE6B189E82C0461"
+                        }
+                      ],
+                      "themes": [
+                        {
+                          "sup": [
+                            {
+                              "did": "76CB9F3E366345DF89811386CBAA82CB",
+                              "tp": 71,
+                              "ql": 0
+                            }
+                          ],
+                          "n": "Light Theme",
+                          "did": "21E8ECEA4EACEA161B5828BD79A4B1E2",
+                          "dplt": "76CB9F3E366345DF89811386CBAA82CB"
+                        },
+                        {
+                          "sup": [
+                            {
+                              "did": "6E672B0D40504C128EE6B189E82C0461",
+                              "tp": 71,
+                              "ql": 0
+                            }
+                          ],
+                          "n": "Dark Theme",
+                          "did": "F1FED8AC42B57AC1B0E9518FED0F89D6",
+                          "dplt": "6E672B0D40504C128EE6B189E82C0461"
+                        }
+                      ]
+                    }
+            };
+
+            mstrConfig.mstrDescs = {descriptors: mstrConfig.messageBundle && mstrConfig.messageBundle.descriptors || []};
+            mstrConfig.messageBundle.descriptors = null;
+            var controllerNumber = mstrConfig.messageBundle.localeInfo.number;
+            mstrConfig.thousandsSep = controllerNumber.THOUSANDSEPARATOR;
+            mstrConfig.decimalSep = controllerNumber.DECIMALSEPARATOR;
+            mstrConfig.listSep = controllerNumber.LISTSEPARATOR; //DE19136 - Update mstrConfig from the value obtained from Controller(back-end)
+
+        </script>
+
+        <script src="../javascript/bundles/workstation.js" language="javascript"></script>
+       
+        <script src="../javascript/mstr/core.js" language="javascript"></script>
+        <script src="../javascript/mstr/common.js" language="javascript"></script>
+        <script src="../javascript/mstr/trees.js" language="javascript"></script>
+        <script src="../javascript/mstr/prompts.js" language="javascript"></script>
+        <script src="../javascript/mstr/expressions.js" language="javascript"></script>
+        <script src="../javascript/microstrategy.js" language="javascript"></script>
+        <script src="../javascript/PromptFunctions.js" language="javascript"></script>
+        <script src="../javascript/clientSideDescriptor.js" language="javascript"></script>
+
+        <script type="text/javascript">
+            (function ()  {
+                var mstrDebug = false;
+                if (mstrDebug) {
+                    var queue = [],
+                        idx = -1,
+                        isMinimized = false;
+
+                    // Create overall console container element and append to body.
+                    var consoleContainer = document.createElement('div');
+                    consoleContainer.className = 'mstrConsole';
+                    document.body.appendChild(consoleContainer);
+
+                    // Create console output element and append to container.
+                    var consoleDiv = document.createElement('div');
+                    consoleDiv.className = 'mstrDebugConsole';
+                    consoleContainer.appendChild(consoleDiv);
+
+                    var consoleInput = document.createElement('div');
+                    consoleInput.className = "mstrConsoleInput";
+                    consoleContainer.appendChild(consoleInput);
+
+                    // Create execute input.
+                    var execInput = document.createElement('input');
+                    execInput.onkeydown = function (evt) {
+                        function jumpQueue(isDown) {
+                            // Is the action valid?
+                            if (isDown ? idx < queue.length - 1 : idx > 0) {
+                                // Update index.
+                                idx = idx + (isDown ? 1 : -1);
+
+                                // Change input value.
+                                execInput.value = queue[idx];
+                            }
+
+                            return false;
+                        }
+
+                        switch (evt.keyCode) {
+                        case 13:                // Enter
+                            // Click the execute button.
+                            execButton.click();
+                            break;
+
+                        case 40:               // Down arrow.
+                            return jumpQueue(true);
+
+                        case 38:               // Up arrow.
+                            return jumpQueue(false);
+                        }
+                    };
+                    consoleInput.appendChild(execInput);
+
+                    // Create execute button.
+                    var execButton = document.createElement('input');
+                    execButton.setAttribute('type', 'button');
+                    execButton.setAttribute('value', 'Execute');
+                    execButton.onclick = function () {
+                        // Cache value in queue.
+                        var value = execInput.value;
+                        idx = queue.push(value) - 1;
+
+                        eval(value);
+                    };
+                    consoleInput.appendChild(execButton);
+
+                    var dvToolbar = document.createElement('div');
+                    dvToolbar.className = 'mstrConsoleToolbar';
+
+                    var clearBtn = document.createElement('div');
+                    clearBtn.setAttribute('title', 'Clear');
+                    clearBtn.innerText = 'X';
+                    clearBtn.onclick = function () {
+                        consoleDiv.innerHTML = '';
+                        execInput.value = '';
+                    };
+
+                    function configureMaxRestoreBtn(btn) {
+                        btn.setAttribute('title', isMinimized ? 'Restore' : 'Minimize');
+                        btn.innerText = isMinimized ? '?' : '?';
+                    }
+
+                    var minimizeBtn = document.createElement('div');
+                    minimizeBtn.onclick = function () {
+                        isMinimized = !isMinimized;
+                        mstrmojo.css.toggleClass(consoleContainer, 'min', isMinimized);
+                        configureMaxRestoreBtn(this);
+                    };
+
+                    configureMaxRestoreBtn(minimizeBtn);
+
+
+                    dvToolbar.appendChild(minimizeBtn);
+                    dvToolbar.appendChild(clearBtn);
+
+                    consoleContainer.appendChild(dvToolbar);
+
+                    window.console = {
+                        log: function () {
+                            Array.prototype.slice.call(arguments).forEach(function (arg) {
+                                if (typeof arg === 'object') {
+                                    arg = JSON.stringify(arg);
+
+                                    arg = arg.replace(/{/g, '{<br/>');
+                                    arg = arg.replace(/}/g, '<br/>}');
+                                    arg = arg.replace(/,/g, ',<br/>');
+                                }
+
+                                var div = document.createElement('div');
+                                div.innerHTML = arg;
+                                consoleDiv.appendChild(div);
+                            });
+                        }
+                    };
+                }
+            }());
+
+            //Derived Metric Editor
+            var isQuickSearchEnabled = true;
+            var $MSTR_JQUERY = jQuery;
+			
+            //Maps language codes to the specfic language code we use for their help links
+            var helpLocaleMapping = {
+                "1028": "1028", //Chinese (Traditional)
+                "1030": "1030", //Danish (Denmark)
+                "1031": "1031", //German
+                "2055": "1031", //German (Switzerland)
+                "1033": "1033", //English (US)
+                "2057": "1033", //English (UK)
+                "1036": "1036", //French
+                "2060": "1036", //French (Belgium)
+                "4108": "1036", //French (Switzerland)
+                "1040": "1040", //Italian
+                "2064": "1040", //Italian (Switzerland)
+                "1041": "1041", //Japanese
+                "1042": "1042", //Korean
+                "1043": "1043", //Dutch (Netherlands)
+                "1045": "1045", //Polish
+                "1046": "1046", //Portugese (Brazil)
+                "1053": "1053", //Swedish (Sweden)
+                "2052": "2052", //Chinese (Simplified)
+                "1049": "1033", //Russian (Supported within date-time, but still maps to English)
+                "1034": "3082", //Spanish (Spain)
+                "3082": "3082"  //Spanish
+            };
+            var localeId = mstrConfig.messageBundle.localeInfo.localeId;
+			
+            var mstrApp = new mstrmojo.onetier.OneTierApp({
+                placeholder: 'mainApp',
+                Privs : '<uaps><pris pgd="2168BF094415A4B4A499E880A63721A2"><pri>-25166091</pri><pri>125894239</pri><pri>-1</pri><pri>1876686812</pri><pri>23380215</pri><pri>-15728400</pri><pri>-16389</pri><pri>61809</pri></pris></uaps>',
+                name: 'mstrWeb',
+                //If we do not support the user's language, we default the language code to 1033 (US English) for both help links and datetime
+                localeId: localeId in helpLocaleMapping ? localeId : '1033',
+                //Mapping is used because we support various language codes of the same base-language (e.g. English (US) & English (UK)) but only use one localeId for each base-languages help links (i.e. UK and US help links go to the same page)
+                helpLocaleId: helpLocaleMapping[localeId] || '1033',
+                displayLocaleId: '1033',
+                jsRoot: '../javascript/',
+                jsMojoRoot: '../javascript/mojo/js/source/',
+                serverProxy: new mstrmojo.ServerProxy({
+                    transport: mstrmojo.vi.models.OneTierServerTransport
+                }),
+                isWSLiveMode: parseInt(FormWrapper.isWSLiveMode(), 10) === 1,
+                dossierServerBaseUrl: FormWrapper.getDossierServerURL() + ((FormWrapper.getDossierServerURL() && FormWrapper.getDossierServerURL().slice(-1) !== '/') ? '/' : ''),
+                //Derived Metric Editor
+                useQuickSearch: function() {return isQuickSearchEnabled && '1' == '1';},
+                searchAutoComplete: function(){return  '1' == '1';},
+                searchAutoCompleteDelay: function(){return '200';},
+                getMsgID: function () {return mstrmojo.hash.walk("rootCtrl.docCtrl.model.mid", mstrApp);},
+                helpUrl: 'http://www2.microstrategy.com/producthelp/2020/' + (FormWrapper.isDesktop() ? 'Desktop/' : 'Workstation/'),
+                upgradeHelpUrl: 'http://www2.microstrategy.com/producthelp/Current/UpgradeGuide/',
+                userHelpPage: 'index.htm#cshid=',
+                enableEmbeddedImages: true,
+                isWorkstation: true,
+                isWSStyling: true,
+                supportAdvFilter: true,
+                DSFeature: window.FormWrapper.getFeatures(),
+                serverVersions: JSON.parse(window.FormWrapper.getServerVersion()),
+                aeVersion: JSON.parse(window.FormWrapper.getAEVersionProps()).aeVersion,
+                features: {
+                    "edit-ive": true,
+                    "ngm": true,
+                    "ngmPartial": true,
+                    "mbx": true,
+                    "modify-report-list": true,
+                    "set-attributeform-display": true,
+                    "number-formatting": true,
+                    "insert-new-metric": true,
+                    "use-natural-language": true,
+                    "web-import-database": true,
+                    "web-execute-cube-report": true,
+                    "web-drill-and-link": true,
+                    "web-sort": true,
+                    "use-metric-editor": true,
+                    "use-super-grid": false,
+                    "use-microchart": false,
+                    "create-html-container": true,
+                    "create-survey": true,
+                    "use-vldb-property-editor": true,
+                    "support-cartesian-join": false
+                },
+                customization: {
+                    getCustomThresholds: function () {
+                        if (window.FormWrapper.getCustomThresholds) {
+                            return JSON.parse(window.FormWrapper.getCustomThresholds());
+                        }
+                    }
+                },
+                toggleViewBarModelData: {
+                    "items": [
+                        {
+                            "n": "view", "desc": mstrmojo.desc(8090, "View"), "visibleFeatures": "edit-ive", "pm": 0,
+                            "items": [
+                                {"n": "tocPanel", "desc": mstrmojo.desc(15433, "Contents Panel"), "cmd": "ToggleContentsPanel"},
+                                {"n": "datasetsPanel", "desc": mstrmojo.desc(11787, "Dataset Panel"), "cmd": "DisplayPanel"},
+                                {"n": "editPanel", "desc": mstrmojo.desc(11788, "Editor Panel"), "cmd": "DisplayPanel"},
+                                {"n": "filterPanel", "desc":  mstrmojo.desc(8966, "Filter Panel"), "cmd": "DisplayPanel"},
+                                {"n": "propertiesPanel", "desc":  mstrmojo.desc(15287, "Format Panel"), "cmd": "DisplayPanel"},
+                                {"n": "layersPanel", "desc":  mstrmojo.desc(16863, "Layers Panel"), "cmd": "DisplayPanel"}
+                            ]
+                        }
+                    ]
+                },
+                tbModelData: {
+                    "items":[
+                        {"n":"undo","desc":mstrmojo.desc(3482, "Undo"),"cmd":"undo","pm":1},
+                        {"n":"redo","desc":mstrmojo.desc(3473, "Redo"),"cmd":"redo","pm":1},
+                        {"n":"save","desc":mstrmojo.desc(118, "Save"),"cmd":"dSave"},
+                        {"n":"refresh", "desc":mstrmojo.desc(773,"Refresh"), "cmd":"refresh"},
+                        {"n":"refreshPulldown","pm":2,"items":[{"n":"refreshPM","desc":mstrmojo.desc(10213,"Refresh Now"),"cmd":"refresh"}, {"n":"autoRefresh","desc":mstrmojo.desc(14101,"Stop Auto Refresh"),"cmd":"toggleAutoRefresh","ttp":mstrmojo.desc(14103,"Auto refresh every ## seconds"),"descOff":mstrmojo.desc(14102,"Start Auto Refresh"),"ttpOff":mstrmojo.desc(14104,"Auto refresh is paused")}]},
+                        {"n":"pause","desc":mstrmojo.desc(15922, "Pause Data Retrieval"),"descOff":mstrmojo.desc(15923,"Resume Data Retrieval"),"cmd":"togglePauseMode","pm":0,"visibleFeatures":"dashboard-design,edit-ive"},
+                        {"n":"reprompt","desc":mstrmojo.desc(119, "Re-prompt"),"cmd":"reprompt","pm":1,"visibleFeatures":"reprompt"},
+                        
+                        {"n":"togglePreContentsPanel", "desc":"Show Contents", "descOff":"Hide Contents", "cmd":"togglePreContentsPanel", "pm":2},
+
+                        {"n": "dlmt"},
+                        {"n":"addDS","desc":mstrmojo.desc(11780, "Add Data"),
+                            "items" : [
+                                {"n":"importFile","desc":mstrmojo.desc(14303, "New Data..."),"cmd":"importFile"},
+                                {"n": "dlmt"},
+                                {"n":"addDS","desc":mstrmojo.desc(13573, "Existing Dataset..."),"cmd":"addDataset"} ,
+                                {"n":"newDS","desc":mstrmojo.desc(15397, "Existing Object..."),"cmd":"createDataset"}
+                            ]
+                        },
+                        {"n":"addChapter","desc":mstrmojo.desc(15629, "Add Chapter"),"cmd":"addChapter"},
+                        {"n":"addPage","desc":mstrmojo.desc(15628, "Add Page"),"cmd":"addPage"},
+
+                        {"n":"insertVI","desc":mstrmojo.desc(11500, "Insert Visualization"),"cmd":"insertVisualization"},
+                        {"n":"insertFlt","desc":mstrmojo.desc(6189, "Filter"),
+                            "items": [
+                                {"n":"insertFlt","desc":mstrmojo.desc(16785, "Element / Value Filter"),"cmd":"insertFilter"},
+                                {"n":"insertAMSelector","desc":mstrmojo.desc(16786, "Attribute / Metric Selector"),"cmd":"insertFilter"},
+                            ]
+                        },
+                        {"n":"insertText","desc":mstrmojo.desc(1013, "Text"),"cmd":"insertText"},
+                        {"n":"insertImage","desc":mstrmojo.desc(2922, "Image"),"cmd":"insertImage"},
+                        {"n":"insertHtml","desc":mstrmojo.desc(4538, "HTML Container"),"cmd":"insertHtml"},
+                        {"n":"insertSurvey","desc":mstrmojo.desc(10002, "Survey"),"items": [{"n": "SurveyMonkey", "desc": "SurveyMonkey", "cmd":"insertSurveyMonkey"}, {"n": "SurveyGizmo", "desc": "SurveyGizmo", "cmd":"insertSurveyGizmo"}], "visibleFeatures":"dashboard-design,edit-ive,create-html-container,create-survey"},
+                        {"n":"insertShapes","desc":mstrmojo.desc(2923, "Shape"),"items": [{"n":"Line", "desc":mstrmojo.desc(2059, "Line"), "cmd":"insertShape"},{"n":"Rectangle", "desc":mstrmojo.desc(3196, "Rectangle"), "cmd":"insertShape"},{"n":"Ellipse", "desc":mstrmojo.desc(18447, "Ellipse"), "cmd":"insertShape"},{"n":"Triangle", "desc":mstrmojo.desc(14435, "Triangle"), "cmd":"insertShape"},{"n":"Polygon", "desc":mstrmojo.desc(18448, "Polygon"), "cmd":"insertShape"}]},
+
+                        {"n":"more", "desc":mstrmojo.desc(9917, "More")},
+                        {"n":"presentationMode","desc":mstrmojo.desc(1088, "Edit"),"cmd":"togglePresentationMode","pm":1,"descOff":mstrmojo.desc(11694, "Presentation Mode")},
+                        {"n": "dlmt", "desc": "dlmt reverse", "pm":1},
+                        {"n":"togglePreviewMode","desc":mstrmojo.desc(15278, "Full View"),"cmd":"togglePreviewMode","pm":1,"descOff":mstrmojo.desc(15277, "Responsive Preview")},
+                        {"n":"enterGroupingMode","desc":mstrmojo.desc(15276, "Responsive View Editor"),"cmd":"enterGroupingMode"},
+                        {"n":"openNLP","desc":mstrmojo.desc(17615, "Natural Language Query"),"cmd":"openNLP", "visibleFeatures":"dashboard-design,edit-ive,use-natural-language"},
+                        {"n":"toggleManualMode", "desc": mstrmojo.desc(16911, "Convert to Auto Layout"), "descOff": mstrmojo.desc(16656, "Convert to Free-form Layout"), "cmd":"toggleManualMode"},
+                        
+                        {"n":"toggleFilterPanel", "desc":"Show Filter Panel", "descOff":"Hide Filter Panel", "cmd":"toggleFilterPanel", "pm":2},
+                        {"n":"chapterPageTitle", "desc":"", "cmd":"chapterPageTitle", "pm":2}
+
+                    ]
+                }
+            });
+
+            //populate descriptors for prompt; please note the descriptors listed here are in sync with those specified in the OnetierApp.js
+            if (typeof(microstrategy) != 'undefined' && microstrategy.descriptors) {
+                var mstrPromptDescriptors = "117,118,137,138,139,140,141,142,143,190,218,219,221,338,339,340,341,342,343,344,345,346,347,348,349,350,351,352,353,354,355,356,358,359,360,361,362,363,364,368,369,370,371,372,375,379,380,382,383,384,385,386,387,388,389,390,391,392,393,394,395,396,397,398,399,400,401,402,403,404,405,407,408,512,527,529,530,537,538,545,701,875,1005,1158,1885,1886,1892,2020,2021,2033,2034,2035,2052,2057,2102,2120,2122,2131,2132,2142,2146,2175,2184,2185,2210,2214,2215,2216,2409,2460,2461,2510,2519,2559,2647,2699,2789,2790,2890,2901,2946,2947,2948,2950,2961,2983,2985,3037,3038,3039,3040,3041,3042,3044,3046,3047,3048,3049,3050,3051,3052,3053,3054,3153,3154,3155,3156,3157,3168,3170,3264,3273,3274,3275,3305,3306,3307,3321,3322,3323,3324,3325,3326,3327,3328,3329,3330,3331,3377,3380,3434,3478,3479,3484,3533,3544,3583,3623,3624,3625,3626,3631,3632,3642,3643,3702,3798,3807,3811,3849,3850,3851,3878,3899,3900,3901,3902,3903,4388,4389,4400,4402,4405,4406,4407,4410,4500,4501,4502,4506,4546,4579,4585,4637,4752,4754,4862,4875,4883,4884,4885,4886,4888,4889,4891,4947,4954,4965,4969,4970,5140,5141,5142,5174,5175,5207,5224,5225,5228,5238,5239,5244,5245,5260,5261,5271,5282,5283,5297,5308,5309,5310,5325,5326,5327,5328,5329,5330,5331,5332,5333,5334,5335,5336,5337,5338,5339,5340,5341,5342,5365,5414,5415,5416,5417,5421,5422,5425,5426,5434,5447,5448,5449,5450,5451,5452,5453,5454,5455,5456,5457,5458,5459,5460,5461,5462,5463,5464,5465,5466,5467,5468,5469,5470,5471,5472,5473,5474,5475,5476,5477,5478,5479,5480,5481,5482,5483,5484,5485,5486,5487,5488,5489,5490,5491,5553,5554,5576,5577,5578,5579,5580,5581,5582,5583,5607,5674,5686,5720,5721,5728,5753,5776,5778,5784,5785,5786,5808,5858,5865,5867,5884,5901,5910,5921,5922,5923,5924,5925,5950,5956,5969,5970,5971,5976,5977,5978,5979,5980,5981,5982,6003,6117,6140,6141,6156,6595,7578,7579,7580,7743,7744,7745,7746,7747,7978,7979,8122,8953,9030,9031,9032,9034,9035,9174,9272,9751,9752,9829,9830,9832,9833,9834,9835,9836,9837,11576,11577,11578,14475,14584,5286",
+                    descArray = mstrPromptDescriptors.split(','),
+                    descMapping = {};
+                descArray.forEach(function(key) {
+                    descMapping[key] = mstrmojo.desc(key);
+                }); 
+                microstrategy.descriptors.addDescriptors({descriptors: descMapping});
+            }
+
+
+            //US85677 controller would return the feature string as "DocServices/GUIDAsNodeIdentifier:false"
+            var FEATURE_MAPPING = {
+                "DocServices/GUIDAsNodeIdentifier": "guid-as-node-identifier",
+				"acg/write": "user-can-write"
+            };
+            mstrApp.DSFeature.split(";").forEach(function(item) {
+                var pair = item.split(":");
+                mstrApp.features[FEATURE_MAPPING[pair[0]]] = pair[1].toLowerCase() === "true";
+            });
+
+            var g;
+            function mm(res) {
+                g(res);
+            };
+
+            function getDocModelData(callback) {
+                g = callback;
+                window.FormWrapper.serverRequest("TBD", "{\"taskId\":\"loadDocument\"}", "mm");
+            }
+            // read and update feature flag
+            function updateFF(res) {
+                if (mstrApp.updateFeatureFlag) {
+                    mstrApp.updateFeatureFlag(res);
+                }
+            }
+            if (!mstrApp.isWSLiveMode) {
+                window.FormWrapper.serverRequest("getPreferences", "{\"taskId\":\"getPreferences\"}", "getPreferences", "updateFF");
+            }
+        </script>
+
+        <script type="text/javascript">
+            function collectWorkstationLog(logString) {
+                
+                if (!window.WorkstationLog) {
+                    return;
+                }
+                var css = "color: blue; font-size: x-large";
+                console.log("%c%s", css, 'VI Log:');
+                console.table(mstrmojo.gm.GMUtility.timerHistory);
+                mstrmojo.gm.GMUtility.timerHistory = [];
+                mstrmojo.gm.GMUtility.timerId = 0;
+                console.log("%c%s", css, 'Workstation Log:');
+                function parseLogString(s) {
+                    var result = [],
+                        rowSeperator = '\n',
+                        columnSeperator = ',';
+                    s.split(rowSeperator).forEach(function(row, ri) {
+                        var record = {};
+                        record['info'] = row;
+                        /*
+                        row.split(columnSeperator).forEach(function(col, ci) {
+                            // TODO: parse each row
+                            record[ci] = col;
+                        });
+                        */
+                        result.push(record);
+                    })
+                    return result;
+                }
+                console.table(parseLogString(logString));
+            }
+        </script>
+
+    </body>
+</html>
