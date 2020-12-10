@@ -2208,7 +2208,6 @@ var findDuplicate = function(nums) {
         if(fast == slow)
             break;
     }
-    console.log(slow);
     let finder = 0;
     while(true){
         finder = nums[finder];
@@ -2220,33 +2219,218 @@ var findDuplicate = function(nums) {
 };
 findDuplicate([1,3,4,2,2])
 ```
-快慢指针
+快慢指针, 快慢指针相遇的地方肯定是环的入口
 
- public int findDuplicate(int[] nums) {
-        int len = nums.length;
-        int left = 1;
-        int right = len - 1;
-        while (left < right) {
-            // 在 Java 里可以这么用，当 left + right 溢出的时候，无符号右移保证结果依然正确
-            int mid = (left + right) >>> 1;
-            
-            int cnt = 0;
-            for (int num : nums) {
-                if (num <= mid) {
-                    cnt += 1;
-                }
-            }
-            //[2, 4, 5, 6, 3, 1, 2, 7]
-            // 根据抽屉原理，小于等于 4 的个数如果严格大于 4 个
-            // 此时重复元素一定出现在 [1, 4] 区间里
-            if (cnt > mid) {
-                // 重复元素位于区间 [left, mid]
-                right = mid;
-            } else {
-                // if 分析正确了以后，else 搜索的区间就是 if 的反面
-                // [mid + 1, right]
-                left = mid + 1;
+### 414. Third Maximum Number
+
+<img src="http://lrun1124.github.io/img/leetcode/414.png" width="500"/>
+
+```js
+Input: [3, 2, 1]
+Output: 1
+Input: [2, 2, 3, 1]
+Output: 1
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var thirdMax = function(nums) {
+    let first = second = third = -Number.MAX_VALUE;
+    for(let i=0; i<nums.length; i++) {
+        if(nums[i] === first || nums[i] === second || nums[i] === third) continue;
+        if(nums[i] > first) {
+            third = second;
+            second = first;
+            first = nums[i];
+        } else if(nums[i] > second) {
+            third = second;
+            second = nums[i];
+        } else if (nums[i] > third) {
+            third = nums[i];
+        }
+    }
+    return third === -Number.MAX_VALUE ? first : third;
+};
+thirdMax([1,2,-2147483648]);
+```
+领奖台机制，每次都更新前三大的数，注意Number.MIN_VALUE表示的最小值为5e-324 MIN_VALUE代表的并不是负最小,而是最接近0的一个数 负最小值可以使用-Number.MAX_VALUE表示，满足O(n)
+
+### 442. Find All Duplicates in an Array
+
+<img src="http://lrun1124.github.io/img/leetcode/442.png" width="500"/>
+
+```js
+Input:
+[4,3,2,7,8,2,3,1]
+Output:
+[2,3]
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var findDuplicates = function(nums) {
+    let hash = {},
+        res = [];
+    for(let i=0; i<nums.length; i++) {
+        if(hash[nums[i]]) {
+            res.push(nums[i]);
+        } else {
+            hash[nums[i]] = true;
+        }
+    }
+    return res;
+};
+findDuplicates([4,3,2,7,8,2,3,1]);
+```
+如果可以使用额外空间，就用hash，这种办法可以使用在范围在[0,n]之外的情况
+```js
+var findDuplicates = function(nums) {
+    let res = [];
+    for(let i=0; i<nums.length; i++) {
+        let current = Math.abs(nums[i]);
+        if(nums[current-1] < 0) {
+            res.push(current);
+        }
+        nums[current-1] = -nums[current-1]
+    }
+    return res;
+}
+findDuplicates([4,3,2,7,8,2,3,1]);
+```
+如果不能用额外空间，因为有[0,n]的范围，讲对应的位置取反，如果当前值已经是负数了，说明之前已经取反了，就证明是重复的数
+
+### 448. Find All Numbers Disappeared in an Array
+
+<img src="http://lrun1124.github.io/img/leetcode/448.png" width="500"/>
+
+```js
+Input:
+[4,3,2,7,8,2,3,1]
+Output:
+[5,6]
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var findDisappearedNumbers = function(nums) {
+    debugger;
+    let len = nums.length,
+        res = [];
+    for(let i=0; i<len; i++) {
+        let current = Math.abs(nums[i]);
+        if(nums[current-1] > 0) {
+            nums[current-1] = -nums[current-1];
+        }
+    }
+    for(let i=0; i<len; i++) {
+        if(nums[i] > 0) res.push(i+1);
+    }
+    return res;
+};
+findDisappearedNumbers([4,3,2,7,8,2,3,1]);
+```
+和前面题目思路类似，利用[1,n]的范围，把对应值置负数，最后遍历一遍，index上不是负数的就是缺失的数，击败91%，
+
+### 485. Max Consecutive Ones
+
+<img src="http://lrun1124.github.io/img/leetcode/485.png" width="500"/>
+
+```js
+Input: [1,1,0,1,1,1]
+Output: 3
+Explanation: The first two digits or the last three digits are consecutive 1s.
+    The maximum number of consecutive 1s is 3.
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findMaxConsecutiveOnes = function(nums) {
+    debugger;
+    let count = 0,
+        res = 0;
+    for(let i=0; i<nums.length; i++) {
+        if(nums[i] === 1) {
+            count++;
+            if(count > res) res = count;
+        } else {
+            count = 0;
+        }
+    }
+    return res;
+};
+findMaxConsecutiveOnes([1,0,1,1,0,1])
+```
+
+### 509. Fibonacci Number
+
+<img src="http://lrun1124.github.io/img/leetcode/509.png" width="500"/>
+
+```js
+Input: 2
+Output: 1
+Explanation: F(2) = F(1) + F(0) = 1 + 0 = 1.
+/**
+ * @param {number} N
+ * @return {number}
+ */
+var fib = function(N) {
+    let fb = new Array(N+1);
+    fb[0] = 0;
+    fb[1] = 1;
+    for(let i=2; i<=N; i++) {
+        fb[i] = fb[i-1] + fb[i-2];
+    }
+    return fb[N];
+};
+fib(2);
+```
+DP
+```js
+var fib = function(N) {
+    if(N<=1) return N;
+    else return fib(N-1) + fib(N-2);
+}
+fib(2);
+```
+递归
+
+### 532. K-diff Pairs in an Array
+
+<img src="http://lrun1124.github.io/img/leetcode/532.png" width="500"/>
+
+```js
+Input: nums = [3,1,4,1,5], k = 2
+Output: 2
+Explanation: There are two 2-diff pairs in the array, (1, 3) and (3, 5).
+Although we have two 1s in the input, we should only return the number of unique pairs.
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var findPairs = function(nums, k) {
+    let res = 0;
+    nums.sort((a,b)=>{return a-b;})
+    for(let i=0; i<nums.length; i++) {
+        if(nums[i] === nums[i-1]) continue;
+        for(let j=i+1; j<nums.length; j++) {
+            if(nums[j] - nums[i] > k) break;
+            if((nums[j] - nums[i]) === k) {
+                res++;
+                break;
             }
         }
-        return left;
     }
+    return res;
+};
+findPairs([1,2,4,4,3,3,0,9,2,3],3)
+```
+先排序，再根据每个当前值向后遍历，遇到和前一个相同的就跳过
+
+
+
+
+
+
+
+
