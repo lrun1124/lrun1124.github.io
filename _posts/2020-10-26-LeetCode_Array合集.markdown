@@ -1997,7 +1997,7 @@ containsNearbyDuplicate([0,1,2,3,4,0,0,7,8,9,10,11,12,0], 1);
 
 ### 228. Summary Ranges
 
-<img src="http://lrun1124.github.io/img/leetcode/219.png" width="500"/>
+<img src="http://lrun1124.github.io/img/leetcode/228.png" width="500"/>
 
 
 ```js
@@ -2011,7 +2011,7 @@ var summaryRanges = function(nums) {
     if(nums.length === 0) return [];
     if(nums.length === 1) return [`${nums[0]}`]
     let res = [],
-        start = 0,
+        start = 0, //双指针
         end = 0;
     do {
         if(nums[end+1]-nums[end] === 1) end++;
@@ -2024,8 +2024,229 @@ var summaryRanges = function(nums) {
             end++;
             start = end;
         }
-    } while(end < nums.length)
+    } while(end < nums.length) //用do-while因为end到末尾后需要再push一次结果
     return res;
 };
 summaryRanges([0,2,3,4,6,8,9])
 ```
+
+### 229.Majority Element II
+
+<img src="http://lrun1124.github.io/img/leetcode/229.png" width="500"/>
+
+```js
+Input: nums = [3,2,3]
+Output: [3]
+
+Input: nums = [1]
+Output: [1]
+
+Input: nums = [1,2]
+Output: [1,2]
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var majorityElement = function(nums) {
+    debugger;
+    let len = nums.length;
+    if(len === 0) return [];
+    nums.sort((a,b)=>{return a-b;});
+    let current,
+        count = 0,
+        target = Math.floor(len/3),
+        res = [];
+    for(let i=0; i<=nums.length; i++) { //<=多执行一遍,结尾的值也要写入结果
+            if(nums[i] === current) {
+            count++;
+        } else {
+            if(count > target) {
+                res.push(current);
+            }
+            current = nums[i];
+            count = 1
+        }
+    }
+    return res;
+};
+majorityElement([3,2,3])
+```
+
+### 238. Product of Array Except Self
+<img src="http://lrun1124.github.io/img/leetcode/238.png" width="500"/>
+
+```js
+Input:  [1,2,3,4] [1,2,6]
+Output: [24,12,8,6]
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var productExceptSelf = function(nums) {
+    var len = nums.length,
+        RightProduct = 1, //记录右边总乘
+        res = new Array(len); //利用结果数组不计入空间复杂度的方式，res[i]为左边数的总乘
+    res[0] = 1;//第一个左边没有数，设为1
+    for(let i=1; i<len; i++) {
+        res[i] = res[i-1] * nums[i-1]; //计算左边总乘
+    }
+    for(let i=len-1; i>=0; i--) {
+        res[i] = res[i] * RightProduct; //nums[i]的结果为它左边总乘，乘右边总乘
+        RightProduct *=nums[i];
+    }
+    return res;
+};
+productExceptSelf([1,2,3,4]);
+```
+
+题目要求不能用除法并且O(1)， 思路：nums[i]的结果为它左边总乘，乘右边总乘，用res数组本身记录左侧总乘，节省空间复杂度
+
+
+### 268. Missing Number
+<img src="http://lrun1124.github.io/img/leetcode/268.png" width="500"/>
+
+```js
+Input: nums = [3,0,1]
+Output: 2
+
+var missingNumber = function(nums) {
+    var sum = nums.length;
+    for(let i=0; i<nums.length; i++) {
+        sum = sum + i - nums[i]; 
+    }
+    return sum;
+};
+missingNumber([3,0,1]);
+```
+比较hack的解法，加i再减去当前数，剩下的就是缺失的那个，击败98%
+
+```js
+var missingNumber = function(nums) {
+    var res = nums.length;
+    for(let i=0; i<nums.length; i++) {
+        res ^= i ^ nums[i];
+    }
+    return res;
+};
+missingNumber([3,0,1]);
+```
+
+利用异或，两个N^N = 0, 最后剩下的就是缺的，击败80%
+
+### 283. Move Zeroes
+<img src="http://lrun1124.github.io/img/leetcode/283.png" width="500"/>
+
+```js
+/**
+Input: [0,1,0,3,12]
+Output: [1,3,12,0,0]
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var moveZeroes = function(nums) {
+    let left = right = 0;
+    while(right < nums.length) {
+        if(nums[right]) {
+            nums[left] = nums[right];
+            left++;
+        }
+        right++;
+    }‘
+
+
+    for(let i=left; i<nums.length; i++) {
+        nums[i] = 0;
+    }
+};
+var test = [0,0,1];
+moveZeroes(test);
+console.log(test)
+```
+
+双指针，思想就是把非0的值，按顺序放到前面去，再把后面的0补齐，left就代表非0值的序列，right代表遍历数组的序列
+
+### 287. Find the Duplicate Number
+
+<img src="http://lrun1124.github.io/img/leetcode/287.png" width="500"/>
+
+```js
+var findDuplicate = function(nums) {
+    debugger;
+    let left = 1,
+        right = nums.length-1,
+        mid;
+    while(left < right) {
+        mid = (left + right) >>> 1;
+        let count = 0;
+        for(let i=0; i<nums.length; i++) {
+            if(nums[i] <= mid) count++;
+        }
+        if(count > mid) {
+            right = mid;
+        } else {
+            left = mid+1;
+        }
+    }
+    return left;
+}
+findDuplicate([1,3,4,2,2]);
+```
+由于范围是[1，n]，又是整数，所以可以用抽屉原理，每次找一个[left,right]中间的数mid，然后遍历nums找有多少个比mid小或等于mid数，如果count比mid大，根据抽屉原理，说明肯定有一个[left, mid]中间的数混了进去，缩小范围到[left, mid]继续找，否则就肯定在另一边，直到left和right相遇
+
+```js
+Input: nums = [1,3,4,2,2]
+Output: 2
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findDuplicate = function(nums) {
+    let fast = 0, slow = 0;
+    while(true){
+        fast = nums[nums[fast]];
+        slow = nums[slow];
+        if(fast == slow)
+            break;
+    }
+    console.log(slow);
+    let finder = 0;
+    while(true){
+        finder = nums[finder];
+        slow = nums[slow];
+        if(slow == finder)
+            break;        
+    }
+    return slow;
+};
+findDuplicate([1,3,4,2,2])
+```
+快慢指针
+
+ public int findDuplicate(int[] nums) {
+        int len = nums.length;
+        int left = 1;
+        int right = len - 1;
+        while (left < right) {
+            // 在 Java 里可以这么用，当 left + right 溢出的时候，无符号右移保证结果依然正确
+            int mid = (left + right) >>> 1;
+            
+            int cnt = 0;
+            for (int num : nums) {
+                if (num <= mid) {
+                    cnt += 1;
+                }
+            }
+            //[2, 4, 5, 6, 3, 1, 2, 7]
+            // 根据抽屉原理，小于等于 4 的个数如果严格大于 4 个
+            // 此时重复元素一定出现在 [1, 4] 区间里
+            if (cnt > mid) {
+                // 重复元素位于区间 [left, mid]
+                right = mid;
+            } else {
+                // if 分析正确了以后，else 搜索的区间就是 if 的反面
+                // [mid + 1, right]
+                left = mid + 1;
+            }
+        }
+        return left;
+    }
