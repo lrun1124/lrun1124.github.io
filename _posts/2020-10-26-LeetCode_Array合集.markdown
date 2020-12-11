@@ -2417,7 +2417,7 @@ var findPairs = function(nums, k) {
             if(nums[j] - nums[i] > k) break;
             if((nums[j] - nums[i]) === k) {
                 res++;
-                break;
+                break; //记得break，不然相同值会重复记录
             }
         }
     }
@@ -2425,12 +2425,99 @@ var findPairs = function(nums, k) {
 };
 findPairs([1,2,4,4,3,3,0,9,2,3],3)
 ```
-先排序，再根据每个当前值向后遍历，遇到和前一个相同的就跳过
+先排序，再根据每个当前值向后遍历，遇到和前一个相同的就跳过，因为排序了所以不会有重复
 
+### 560.Subarray Sum Equals K
 
+<img src="http://lrun1124.github.io/img/leetcode/560.png" width="500"/>
 
+```js
+Input: nums = [1,1,1], k = 2
+Output: 2
+Input: nums = [1,2,3], k = 3
+Output: 2
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var subarraySum = function(nums, k) {
+    let hash = {},
+        res = 0,
+        sum = 0;
+    for(let i=0; i<nums.length; i++) {
+        sum += nums[i];
+        if(sum === k) res++;
+        if(hash[sum-k]) res+=hash[sum-k];
+        if(hash[sum]) hash[sum]++;
+        else hash[sum] = 1; 
+    }
+    return res;
+};
+subarraySum([1,1,1],2);
+```
 
+O(n)的解法，因为我们只关心数量不关心具体值，用hash记录，key为累加值，value为次数, 计算某项的结果时，就去前面找sum-k有多少种组合
 
+### 628. Maximum Product of Three Numbers
 
+<img src="http://lrun1124.github.io/img/leetcode/628.png" width="500"/>
 
+```js
+Input: nums = [1,2,3]
+Output: 6
+Input: nums = [1,2,3,4]
+Output: 24
+Input: nums = [-1,-2,-3]
+Output: -6
+
+[-1,-2,0, 2,3]
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maximumProduct = function(nums) {
+    let len = nums.length;
+    nums.sort((a,b)=>{return a-b;});
+    //找两个最小的负数和最大整数相乘，或者三个最大的正数相乘，注意这里实际上有0，负数只有1个，这两种情况已经被包含进去了
+    //[-1,-2,0,2,3]
+    //[-1,2,3]
+    //[-1,-2,-3,0]
+    return Math.max(nums[0] * nums[1] * nums[len-1], nums[len-1] * nums[len-2] * nums[len-3]);
+};
+maximumProduct([1,2,3])
+```
+也可以把这个五个数遍历出来，效率会更高，复杂度线性
+
+### 643. Maximum Average Subarray I
+
+<img src="http://lrun1124.github.io/img/leetcode/643.png" width="500"/>
+
+```js
+Input: [1,12,-5,-6,50,3], k = 4
+Output: 12.75
+Explanation: Maximum average is (12-5-6+50)/4 = 51/4 = 12.75
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var findMaxAverage = function(nums, k) {
+    let sum = 0;
+    for(let i=0; i<k; i++) { //先算前k个数的和
+        sum +=nums[i];
+    }
+    let maxSum = sum; 
+    for(let i=k; i<nums.length; i++) {
+        sum = sum + nums[i] - nums[i-k]; //每次滑动，加上新的减掉旧的
+        maxSum = Math.max(sum, maxSum); //记录下更大的
+    }
+    return maxSum/k;
+};
+
+findMaxAverage([1,12,-5,-6,50,3],4)
+```
+
+双指针滑动窗口，击败96.7%
 
