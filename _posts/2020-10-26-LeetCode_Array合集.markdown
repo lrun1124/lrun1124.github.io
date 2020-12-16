@@ -2521,3 +2521,53 @@ findMaxAverage([1,12,-5,-6,50,3],4)
 
 双指针滑动窗口，击败96.7%
 
+### 581. Shortest Unsorted Continuous Subarray
+
+<img src="http://lrun1124.github.io/img/leetcode/581.png" width="500"/>
+
+```js
+Input: nums = [2,6,5,4,8,10,9,15] 
+Output: 5
+Explanation: You need to sort [6, 4, 8, 10, 9] in ascending order to make the whole array sorted in ascending order.
+Input: nums = [1,2,3,4] 
+Output: 0
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findUnsortedSubarray = function(nums) {
+    let len = nums.length,
+        left = 0,
+        right = nums.length-1;
+    //从左边找到逆序开始
+    while(left < len-1 && nums[left] <= nums[left+1]) left++;
+    //如果一直递增，那就不需要重排
+    if(left === len-1) return 0;
+    //从右边找到逆序开始
+    while(right > 0 && nums[right] >= nums[right-1]) right--;
+
+    let maxVal = minVal = nums[left];
+    //找中间部分数组的最大最小值
+    for(let i=left; i<=right; i++) {
+        if(nums[i] > maxVal) maxVal = nums[i];
+        if(nums[i] < minVal) minVal = nums[i];
+    }
+
+    //从左找到第一个比中间最小值大的数，说明中间最小值应该放在这个数前面，这个点就是左边起点
+    for(let i=0; i<left; i++) {
+        if(nums[i] > minVal) {left = i; break;}
+    }
+    //从右找到第一个比中间最大值小的数，说明中间最大值应该放在这个数后面，这个点就是右边终点
+    for(let i=len-1; i>right; i--) {
+        if(nums[i] < maxVal) {right = i; break;}
+    }
+    return right - left + 1;
+};
+
+findUnsortedSubarray([1,2,3,3,3])
+findUnsortedSubarray([1]);
+findUnsortedSubarray([2,6,4,8,10,9,15]);
+```
+
+把数组分成，[左边递增) + [中间乱序] + (右边递增]，满足左边都比中间最小值小，右边都比中间最大值大，注意中间乱序需要包括两个边界，不然处理不了右边比左边都小的情况，比如[2,6,4,8,10,0,1]
+
