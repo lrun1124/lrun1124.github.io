@@ -339,8 +339,8 @@ Permutation是字典字，next Permutation就是按字典序排列的下一个�
 1. 将nums[i-1]之后的数组排列
 1. 如没有进入前四步，说明输入已经是最大的字典序，直接输出倒序
 
-### 032.Search in Rotated Sorted Array
-<img src="http://lrun1124.github.io/img/leetcode/032.png" width="500"/>
+### 033.Search in Rotated Sorted Array
+<img src="http://lrun1124.github.io/img/leetcode/033.png" width="500"/>
 
 ```js
 /**

@@ -105,18 +105,46 @@ longestPalindrome("babad")
 
 ### 17. Letter Combinations of a Phone Number
 
+```
 Input: digits = "23"
 Output: ["ad","ae","af","bd","be","bf","cd","ce","cf"]
-
-```
+Input: digits = "2"
+Output: ["a","b","c"]
 /**
  * @param {string} digits
  * @return {string[]}
  */
 var letterCombinations = function(digits) {
-    
+    debugger;
+    let len = digits.length;
+    if(len === 0) return [];
+    let m = {
+        2 : ['a','b','c'],
+        3 : ['d','e','f'],
+        4 : ['g','h','i'],
+        5 : ['j','k','l'],
+        6 : ['m','n','o'],
+        7 : ['p','q','r','s'],
+        8 : ['t','u','v'],
+        9 : ['w','x','y','z']
+    }
+    let dp = new Array(len);
+    //这里不能写成let dp = new Array(len).fill([]);
+    dp[0] = m[digits[0]];
+    for(let i=1; i<len; i++) {
+        let current = m[digits[i]];
+        dp[i] = [];
+        for(let j=0; j<dp[i-1].length; j++) {
+            for(let k=0; k<current.length; k++) {
+                dp[i].push(dp[i-1][j] + current[k]);
+            }
+        }
+    }
+    return dp[len-1];
 };
+letterCombinations("234");
 ```
+DP公式dp[i].push(dp[i-1][j] + current[k])
 
 ### 22. Generate Parentheses
 
@@ -546,6 +574,7 @@ var isValid = function(s) {
 用一个stack，左括号每次进展，每次pop和右括号匹配，最后判断栈是否为空
 
 ### 67. Add Binary
+
 <img src="http://lrun1124.github.io/img/leetcode/067.png" width="500"/>
 
 
@@ -592,4 +621,236 @@ addBinary("11", "1")
 
 先补0再从末尾加
 
+### 91. Decode Ways
 
+<img src="http://lrun1124.github.io/img/leetcode/091.png" width="500"/>
+
+```js
+'A' -> 1
+'B' -> 2
+...
+'Z' -> 26
+Input: s = "12"
+Output: 2
+Explanation: It could be decoded as "AB" (1 2) or "L" (12).
+Input: s = "226"
+Output: 3
+Explanation: It could be decoded as "BZ" (2 26), "VF" (22 6), or "BBF" (2 2 6).
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var numDecodings = function(s) {
+    debugger;
+    let len = s.length,
+        dp = new Array(len+1);
+    if(len === 0 || s.charAt(0) === "0") return 0;
+    dp[0] = 1;
+    dp[1] = 1;
+    for(let i=2; i<=len; i++) {
+        let current = Number.parseInt(s.charAt(i-1)),
+            before = Number.parseInt(s.charAt(i-2));
+        if(current === 0) {
+            if(before === 1 || before === 2) {
+                 dp[i] = dp[i-2];
+            } else {
+                return 0;
+            }
+        } else {
+            dp[i] = ((before === 0) || (before*10 + current) > 26) ? dp[i-1] : (dp[i-1] + dp[i-2]);
+        }
+    }
+    return dp[len];
+};
+```
+这道题虽然容易想到DP, 但是坑很多，要讨论各种情况。
+
+### 93. Restore IP Addresses
+
+<img src="http://lrun1124.github.io/img/leetcode/093.png" width="500"/>
+
+```js
+Input: s = "25525511135"
+Output: ["255.255.11.135","255.255.111.35"]
+Input: s = "101023"
+Output: ["1.0.10.23","1.0.102.3","10.1.0.23","10.10.2.3","101.0.2.3"]
+/**
+ * @param {string} s
+ * @return {string[]}
+ */
+var restoreIpAddresses = function(s) {
+    var res = [],
+        len = s.length;
+    const dfs = (sub, start) => {
+        //console.log(sub);
+        if(sub.length === 4 && start === len) { // 片段满4段，且耗尽所有字符
+            res.push(sub.join('.'));
+            return;
+        }
+        if(sub.length === 4 && start < len - 1) return; // 满4段，字符未耗尽，不用往下选了
+        for(let i=1; i<=3; i++) {  // 枚举出选择，三种切割长度
+            if(start+i > len) return; // 加上要切的长度就越界，不能切这个长度
+            if(i!=1 && s[start] === '0') return; //大于两位，首位不能为0
+            let current = s.substring(start, start + i); 
+            if(i === 3 && +current > 255) return;  //不能大于255
+            sub.push(current);
+            dfs(sub, start + i);
+            sub.pop();
+        } 
+    }
+    dfs([],0);
+    return res;
+};
+restoreIpAddresses("25525511135");
+```
+分隔的问题都可以用回溯解决，记住模板
+
+### 32. Longest Valid Parentheses
+
+<img src="http://lrun1124.github.io/img/leetcode/032.png" width="500"/>
+
+Input: s = "(()"
+Output: 2
+Explanation: The longest valid parentheses substring is "()".
+Input: s = ")()())"
+Output: 4
+Explanation: The longest valid parentheses substring is "()()".
+```js
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var longestValidParentheses = function(s) {
+    debugger;
+    var len = s.length,
+        dp = [],
+        res = 0;
+    if(len === 0) return 0;
+    dp[0] = 0;
+    for(let i=1; i<len; i++) {
+        if(s[i] === '(') { //如果当前为'(',不可能组成回文
+            dp[i] = 0;
+        } else {
+            if(s[i-1] === '(') {
+                dp[i] = i > 2 ? dp[i-2] + 2 : 2; //如果前一个是'(', 组成'()',加上再前面的dp[i-2]，难点1 ,这里可能过界
+            } else {
+                let left = i - dp[i-1] - 1; //如果前一个是')',就去找左边对应的位置，看能否匹配，")()())"为例，位置是5-4-1，这是难点2
+                if(s[left] === ')' || left < 0) { //难点3，left可能过界要处理
+                    dp[i] = 0;
+                } else {
+                    dp[i] =  dp[i-1] + 2 ;
+                    dp[i] += left >= 1 ? dp[left-1] : 0; //难点4， 如果left能匹配，还要加上再前面可能有的回文串，难点5，left-1也可能过界
+                }
+            }
+        }
+        res = Math.max(dp[i], res);
+    }
+    return res;
+};
+longestValidParentheses("(()())")
+```
+dp[i] 表示以s[i]结尾的最长回文串的长度。这题难就难在各种细节的越界
+
+### 13. Roman to Integer
+
+<img src="http://lrun1124.github.io/img/leetcode/013.png" width="500"/>
+
+```js
+Symbol       Value
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+
+Input: s = "IX"
+Output: 9
+
+Input: s = "LVIII"
+Output: 58
+Explanation: L = 50, V= 5, III = 3.
+Example 5:
+
+Input: s = "MCMXCIV"
+Output: 1994
+Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var romanToInt = function(s) {
+    let len = s.length;
+    if(len === 0) return 0;
+    let m = {
+            I : 1,
+            V : 5,
+            X : 10,
+            L : 50,
+            C : 100,
+            D : 500,
+            M : 1000
+        },
+        res = 0;
+    for(let i=0; i<len; i++) {
+        let l = m[s[i]];
+        let r = i+1 < len ? m[s[i+1]] : 0; //注意最后一个数i+1=len
+        if(l < r) {
+            res += r - l;
+            i++;
+        } else {
+            res += l;
+        }
+    }
+    return res;
+};
+romanToInt("LVIII")
+```
+
+检测当前和后一个数，如果前面的小，就后减前，跳两位，否则加上当前
+
+### 12. Integer to Roman
+<img src="http://lrun1124.github.io/img/leetcode/012.png" width="500"/>
+
+```js
+Symbol       Value
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+Input: num = 4
+Output: "IV"
+
+Input: num = 9
+Output: "IX"
+
+Input: num = 58
+Output: "LVIII"
+Explanation: L = 50, V = 5, III = 3.
+
+Input: num = 1994
+Output: "MCMXCIV"
+Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
+/**
+ * @param {number} num
+ * @return {string}
+ */
+var intToRoman = function(num) {
+    const m = ['M','CM','D','CD','C','XC','L','XL','X','IX','V','IV','I'],
+          n = [1000,900,500,400,100,90,50,40,10,9,5,4,1];
+    let res = '';
+    for(let i=0; i<n.length && num>0; i++) { //从最大的开始，其中的每一个元素可能出现[0,3]次
+        while(num >= n[i]) {  
+            res += m[i];
+            num -= n[i]; //每次减去插入的数，如果还有就继续减，直到这个数不能被使用了，换下一个
+        }
+    } 
+    return res;
+};
+intToRoman(58);
+```
+击败99.7，贪心算法，罗马数字只有三总情况，要么是一个1000数字，'M',要么是9和4，用类似'CM'，要么重复1-3次，如'III'，所以我们可以列出编码组合，从最大到最小，结果逃脱不出这个组合，其中的每一个元素可能出现[0,3]次
