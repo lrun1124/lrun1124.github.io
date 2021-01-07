@@ -854,3 +854,137 @@ var intToRoman = function(num) {
 intToRoman(58);
 ```
 击败99.7，贪心算法，罗马数字只有三总情况，要么是一个1000数字，'M',要么是9和4，用类似'CM'，要么重复1-3次，如'III'，所以我们可以列出编码组合，从最大到最小，结果逃脱不出这个组合，其中的每一个元素可能出现[0,3]次
+
+
+### 72. Edit Distance
+
+<img src="http://lrun1124.github.io/img/leetcode/072.png" width="500"/>
+
+```js
+Input: word1 = "horse", word2 = "ros"
+Output: 3
+Explanation: 
+horse -> rorse (replace 'h' with 'r')
+rorse -> rose (remove 'r')
+rose -> ros (remove 'e')
+
+Input: word1 = "intention", word2 = "execution"
+Output: 5
+Explanation: 
+intention -> inention (remove 't')
+inention -> enention (replace 'i' with 'e')
+enention -> exention (replace 'n' with 'x')
+exention -> exection (replace 'n' with 'c')
+exection -> execution (insert 'u')
+
+/**
+ * @param {string} word1
+ * @param {string} word2
+ * @return {number}
+ */
+var minDistance = function(word1, word2) {
+    debugger;
+    let len1 = word1.length,
+        len2 = word2.length,
+        dp = [];
+    for(let i=0; i<=len1; i++) { //dp[i][j] 代表 word1 到 i 位置转换成 word2 到 j 位置需要最少步数,为了初始化考虑加入'',所以len+1
+        dp.push(new Array(len2+1));
+    }
+    for(let i=0; i<=len2; i++) { //第一行，是 word1 为空变成 word2 最少步数，就是插入操作
+        dp[0][i] = i;
+    }
+    for(let i=0; i<=len1; i++) { //第一列，是 word2 为空，需要的最少步数，就是删除操作
+        dp[i][0] = i;
+    }
+    for(let i=1; i<=len1; i++) {
+        for(let j=1; j<=len2; j++) {
+            if(word1[i-1] === word2[j-1]) { //这里容易错，容易写成word1[i] === word2[j]，这样就从第二个元素开始了
+                dp[i][j] = dp[i-1][j-1];
+            } else {
+                dp[i][j] = Math.min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]) + 1; //dp[i-1][j-1] 表示替换操作，dp[i-1][j] 表示删除操作，dp[i][j-1] 表示插入操作。
+            }
+        }
+    }
+    //console.log(dp);
+    return dp[len1][len2];
+};
+minDistance("horse", "ros")
+//minDistance("intention", "execution")
+```
+dp[i][j] 代表 word1 到 i 位置转换成 word2 到 j 位置需要最少步数
+
+当 word1[i] == word2[j]，dp[i][j] = dp[i-1][j-1]；
+
+当 word1[i] != word2[j]，dp[i][j] = min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]) + 1
+
+其中，dp[i-1][j-1] 表示替换操作，dp[i-1][j] 表示删除操作，dp[i][j-1] 表示插入操作。
+
+注意，针对第一行，第一列要单独考虑，引入前面的空"",
+
+第一行，是 word1 为空变成 word2 最少步数，就是插入操作
+
+第一列，是 word2 为空，需要的最少步数，就是删除操作
+
+### 76. Minimum Window Substring
+
+<img src="http://lrun1124.github.io/img/leetcode/076.png" width="500"/>
+
+```js
+Input: s = "ADOBECODEBANC", t = "ABC"
+Output: "BANC"
+
+Input: s = "a", t = "a"
+Output: "a"
+
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {string}
+ */
+var minWindow = function(s, t) {
+    debugger;
+    let m = {},
+        left = 0,
+        right = 0,
+        lenS = s.length,
+        lenT = t.length,
+        resLeft = lenS, //
+        minLen = lenS, //最小匹配长单独，赋值lenS是为了应对返回""的情况
+        missingType = 0; //缺失的字符种类数目，当降为0时，说明没有缺的了，需要左滑
+
+    for(let i=0; i<lenT; i++) { //先把t里需要找的字符放到map里
+        let tChar = t[i];
+        if(m[tChar] === undefined) {
+            m[tChar] = 1;
+            missingType++;
+        } else {
+            m[tChar]++;
+        }
+    }
+    while(right < s.length) {
+        let rightChar = s[right];
+        if(m[rightChar] !== undefined) {
+            m[rightChar]--;
+            if(m[rightChar] === 0) missingType--; //找到一个就减去一个需求
+        }
+        while(missingType === 0) { //当降为0时，说明没有缺的了，需要left滑动，直到开始出现缺口
+            let leftChar = s[left];
+            if(m[leftChar] !== undefined) { //不能直接用m[leftChar]，因为可能为0
+                m[leftChar]++;
+                if(m[leftChar] > 0) missingType++; //需求的字符补回来
+            }
+            if(right - left + 1 <= minLen) { //更新匹配小长度
+                minLen = right - left + 1;
+                resLeft = left;
+            }
+            left++;
+        }
+        right++; //每次右指针都滑动
+    }
+    return resLeft === lenS ? "" : s.substring(resLeft, resLeft + minLen);
+};
+minWindow("a","a");
+minWindow("a","aa");
+minWindow("ADOBECODEBANC","ABC");
+```
+滑动窗口，right右移找到满足条件的子串 -> left右移直到出现缺口 -> right找直到到找到满足条件的子串 -> ...
