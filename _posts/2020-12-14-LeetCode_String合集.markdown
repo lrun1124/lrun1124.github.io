@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "LeetCode Array合集"
+title:      "LeetCode String合集"
 subtitle:   ""
 date:       2020-11-14 10:00:00
 author:     "Run"

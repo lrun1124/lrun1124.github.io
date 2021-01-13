@@ -2,7 +2,7 @@
 layout:     post
 title:      "LeetCode Bit合集"
 subtitle:   ""
-date:       2020-11-14 10:00:00
+date:       2021-01-06 10:00:00
 author:     "Run"
 header-img: "img/ArrayUnique-bg.jpg"
 tags:
@@ -116,3 +116,4 @@ hammingDistance(1,4)
 
 这是布赖恩·克尼根位计数算法的基本思想。当我们在 number 和 number-1 上做 AND 位运算时，原数字 number 的最右边等于 1 的比特会被移除,直到1全部被移除，数字为0，该算法使用特定比特位和算术运算移除等于 1 的最右比特位。
 比如111 & 110 = 110, 100 & 011 = 000
+
