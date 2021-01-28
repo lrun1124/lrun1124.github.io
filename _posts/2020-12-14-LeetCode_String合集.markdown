@@ -988,3 +988,34 @@ minWindow("a","aa");
 minWindow("ADOBECODEBANC","ABC");
 ```
 滑动窗口，right右移找到满足条件的子串 -> left右移直到出现缺口 -> right找直到到找到满足条件的子串 -> ...
+
+### 139. Word Break
+
+<img src="http://lrun1124.github.io/img/leetcode/139.png" width="500"/>
+
+```js
+Input: s = "applepenapple", wordDict = ["apple", "pen"]
+Output: true
+Input: s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]
+Output: false
+
+var wordBreak = function(s, wordDict) {
+    //debugger;
+    let len = s.length,
+        set = new Set(wordDict),
+        dp = new Array(len+1).fill(false);
+    dp[0] = true;
+    for(let i=1; i<=len; i++) {
+        for(let j=0; j<i; j++) {
+            if(dp[j] && set.has(s.substring(j, i))) {
+                dp[i] = true;
+                break;
+            }
+        }
+    }
+    return dp[len];
+};
+wordBreak("leetcode",  ["leet","code"]);
+```
+
+dp思想，判断dp[i], 从0-找一个分隔点j，满足dp[j] = true 并且substring(i, j)这段满足字典
