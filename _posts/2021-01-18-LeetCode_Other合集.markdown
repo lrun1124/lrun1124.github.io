@@ -806,4 +806,192 @@ canPartition([1,2,5])
 
 dp[i][j] = dp[i - 1][j] or dp[i - 1][j - nums[i]]
 
+### 438. Find All Anagrams in a String
 
+<img src="http://lrun1124.github.io/img/leetcode/438.png" width="500"/>
+
+```js
+
+Input:
+s: "cbaebabacd" p: "abc"
+Output:
+[0, 6]
+Explanation:
+The substring with start index = 0 is "cba", which is an anagram of "abc".
+The substring with start index = 6 is "bac", which is an anagram of "abc".
+/**
+ * @param {string} s
+ * @param {string} p
+ * @return {number[]}
+ */
+var findAnagrams = function(s, p) {
+    let len = p.length,
+        count =  left = right = 0, //count表示窗口里有多少个值匹配的上p里的值
+        mapA = {}, //记录p需要的值和次数
+        mapB = {}, //记录滑动窗口信息
+        res = [];
+    for(let i=0; i<p.length; i++) { 
+        if(mapA[p[i]] === undefined) mapA[p[i]] = 1;
+        else mapA[p[i]] = mapA[p[i]]+1;
+    }
+    var moveLeft = () => { //左移函数
+        mapB[s[left]]--; //把窗口里的值减掉，这里不用判断，因为能进窗口一定是在p里的
+        left++;
+        count--; 
+    };
+    while(right < s.length) {
+        let cur = s[right];
+        if(mapA[cur] === undefined) { //碰到不在p里的重置
+            mapB = new Object();
+            count = 0;
+            right++;
+            left = right;
+            continue;
+        }
+        if(mapB[cur] === undefined) { //窗口里没有，写入
+            mapB[cur] = 1;
+            count++;
+        } else { //窗口里有的话，先写入再判断是否溢出
+            mapB[cur]++;
+            count++;
+            if(mapB[cur] > mapA[cur]){ //如果溢出
+                //这时要左移去掉一个cur，移动左侧到和cur相同的值
+                while(s[left] !== cur) {
+                    moveLeft();
+                }
+                //left移动到这个值后面
+                moveLeft();
+            }
+        }
+        if(count === len) {
+            res.push(left);
+            moveLeft();
+        }
+        right++;
+    }
+    return res;
+};
+//findAnagrams("abaacbabc", "abc")
+findAnagrams("cbaebabacd", "abc")
+```
+
+
+### 494. Target Sum
+
+<img src="http://lrun1124.github.io/img/leetcode/494.png" width="500"/>
+
+```js
+Input: nums is [1, 1, 1, 1, 1], S is 3. 
+Output: 5
+Explanation: 
+
+-1+1+1+1+1 = 3
++1-1+1+1+1 = 3
++1+1-1+1+1 = 3
++1+1+1-1+1 = 3
++1+1+1+1-1 = 3
+
+There are 5 ways to assign symbols to make the sum of nums be target 3.
+/**
+ * @param {number[]} nums
+ * @param {number} S
+ * @return {number}
+ */
+var findTargetSumWays = function(nums, S) {
+    debugger;
+    let len = nums.length,
+        dp = new Array(len),
+        sum = 0,
+    S = Math.abs(S); //-S和+S的结果是相同的
+    for(let i=0; i<len; i++) {
+        sum += nums[i];
+    }
+    if(S > sum) return 0; //边界条件
+    sum <<= 1; //取二倍的，本质在于下一层始终依赖上一层，j+nums[i]会过界
+    for(let i=0; i<len; i++) {
+        dp[i] = new Array(sum+1).fill(0);
+    }
+    dp[0][nums[0]] = nums[0] === 0? 2 : 1;//这是个坑，初始为0的时候
+    for(let i=1; i<len; i++) {
+        for(let j=0; j<=sum; j++) {
+            dp[i][j] = dp[i-1][Math.abs(j-nums[i])] + dp[i-1][Math.abs(j+nums[i])];
+        }
+    }
+    return dp[len-1][S];
+};
+//findTargetSumWays([7,9,3,8,0,2,4,8,3,9],0)
+findTargetSumWays([1,1,1,1,1],-3)
+//findTargetSumWays([0,0,0,0,0,0,0,0,1],1)
+//findTargetSumWays([1000],-1000)
+```
+
+### 621. Task Scheduler
+
+<img src="http://lrun1124.github.io/img/leetcode/621.png" width="500"/>
+
+```js
+Input: tasks = ["A","A","A","B","B","B"], n = 2
+Output: 8
+Explanation: 
+A -> B -> idle -> A -> B -> idle -> A -> B
+Input: tasks = ["A","A","A","A","A","A","B","C","D","E","F","G"], n = 2
+Output: 16
+Explanation: 
+One possible solution is
+A -> B -> C -> A -> D -> E -> A -> F -> G -> A -> idle -> idle -> A -> idle -> idle -> A
+/**
+ * @param {character[]} tasks
+ * @param {number} n
+ * @return {number}
+ */
+var leastInterval = function(tasks, n) {
+    debugger;
+    let maxCount = 0, //最多数量的任务数
+        map = {},
+        len = tasks.length,
+        maxType = 0; //最多数量的任务的种类
+    for(let i=0; i<len; i++) {
+        if(map[tasks[i]] !== undefined) {
+            map[tasks[i]]++;
+        } else {
+            map[tasks[i]] = 1;
+        }
+        maxCount = Math.max(map[tasks[i]], maxCount);
+    }
+    for(let key in map) {
+        if(map[key] === maxCount) maxType++; 
+    }
+    return Math.max(len, (maxCount-1)*(n+1)+1+(maxType-1));
+};
+leastInterval(["A","A","A","B","B","B"],2)
+```
+找出最多数量的任务，每一个建立一个size为n+1的桶，这时候有两种情况：
+1. 其他任务全部能填进去，那么总时间就位，每个桶的长度(n+1) * 桶的数量(maxCount-1) + 1  + 同样有最大数量的其他任务数(maxType-1)
+1. 其他任务不能完全填进去，那么增长桶的长度，这时无论插入多少任务，因为桶的长度可以无限增加，所以总是能填的进去，因为这些多的任务足以填充所有空值的位子，所以最终结果就等于task的数量
+
+### 739. Daily Temperatures
+
+```js
+For example, given the list of temperatures T = [73, 74, 75, 71, 69, 72, 76, 73], your output should be [1, 1, 4, 2, 1, 1, 0, 0].
+/**
+ * @param {number[]} T
+ * @return {number[]}
+ */
+var dailyTemperatures = function(T) {
+    debugger;
+    let s = [],
+        len = T.length,
+        res = new Array(len).fill(0);
+    for(let i=0; i<len; i++) {
+        while(s.length > 0 && T[i] > s[s.length-1][1]) {//那么如果碰到比栈顶的大，这个值一定是第一个比栈顶大的值，计算距离后出栈
+            let top = s.pop();
+            res[top[0]] = i - top[0]; 
+        }
+        s.push([i, T[i]]);
+    }
+    return res;
+};
+dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73])
+```
+
+维护一个递减栈，如果小就持续入栈，那么如果碰到比栈顶的大，这个值一定是第一个比栈顶大的值，计算距离后出栈，直到出栈到栈顶值更大，把这个值压入

@@ -24,8 +24,7 @@ var twoSum = function(nums, target) {
     for(let i = 0; i < nums.length; i++){
     	if(m.has(target - nums[i])){
     		return [m.get(target - nums[i]), i];
-    	}
-    	else{
+    	} else{
     		m.set(nums[i], i);
     	}
     }
@@ -1406,7 +1405,7 @@ var getRow = function(rowIndex) {
             } 
         }
         res.push(row);
-    }
+    } 
     return res[rowIndex];
 };
 console.log(getRow(3))
