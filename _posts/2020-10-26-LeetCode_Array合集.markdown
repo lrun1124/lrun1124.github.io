@@ -74,16 +74,11 @@ var threeSum = function(nums) {
     if(nums.length < 3) return [];
     //先排序
     nums = nums.sort(function(a,b){ return a - b });
-    let res = [];
     //特殊处理全0和全其他值
     if(nums[0] === nums[nums.length-1]) {
-        if(nums[0] === 0) {
-            res.push([0,0,0]);
-            return res;
-        } else {
-            return [];
-        }
+        return nums[0] === 0 ? [0,0,0] : [];
     }
+    let res = [];
     for(let i=0; i<nums.length; i++) {
         if(i !== 0 && nums[i] === nums[i-1]) continue;
         //two point，变成sum2问题
@@ -93,11 +88,10 @@ var threeSum = function(nums) {
             let sum = nums[i] + nums[mid] + nums[end];
             if(sum === 0) {
                 res.push([nums[i], nums[mid], nums[end]]);
-                //向右向左滑动，找到第一个不同的值，注意就算没有相同的值也要滑动，所以用do-while，否则会无限循环
-                do{ mid++; } while(mid < end && nums[mid] === nums[mid-1])
+                //两边找到第一个不同的值，注意就算没有相同的值也要滑动，所以用do-while，否则会无限循环
+                do{ mid++; } while(mid < end && nums[mid] === nums[mid-1]) 
                 do{ end--; } while(mid < end && nums[end] === nums[end+1])
-            }
-            else if(sum > 0) {
+            } else if(sum > 0) {
                 do{ end--; } while(mid < end && nums[end] === nums[end+1])
             } else {
                 do{ mid++; } while(mid < end && nums[mid] === nums[mid-1])
@@ -109,7 +103,7 @@ var threeSum = function(nums) {
 console.log(threeSum([-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6]));
 ```
 
-先排序，循环数组，内层变成2sum问题，再用两个指针滑动，和为0记录，内外循环过程中下一个遇相同的值跳过
+先排序，循环数组，内层变成2sum问题，再用两个指针滑动，和为0就记录，大于0右滑，小于0左滑，遇相同的值跳过
 
 ### 016.3SumClosest
 
@@ -138,9 +132,9 @@ var threeSumClosest = function(nums, target) {
                 res = sum;
             }
             if(sum > target) {
-                do {end--} while(mid<end && nums[end] === nums[end+1]);
+                do {end--} while(mid < end && nums[end] === nums[end+1]);
             } else if (sum < target) {
-                do {mid++} while(mid<end && nums[mid] === nums[mid-1]);
+                do {mid++} while(mid < end && nums[mid] === nums[mid-1]);
             } else {
                 return sum;
             }
@@ -181,12 +175,12 @@ var fourSum = function(nums, target) {
                 sum = nums[i] + nums[j] + nums[mid] + nums[end];
                 if(sum === target) {
                     res.push([nums[i],nums[j],nums[mid],nums[end]]);
-                    do{ mid++ } while(mid<end && nums[mid] === nums[mid-1]);
-                    do{ end-- } while(mid<end && nums[end] === nums[end+1]);
+                    do{ mid++ } while(mid < end && nums[mid] === nums[mid-1]);
+                    do{ end-- } while(mid < end && nums[end] === nums[end+1]);
                 } else if (sum < target) {
-                    do{ mid++ } while(mid<end && nums[mid] === nums[mid-1]);
+                    do{ mid++ } while(mid < end && nums[mid] === nums[mid-1]);
                 } else {
-                    do{ end-- } while(mid<end && nums[end] === nums[end+1]);
+                    do{ end-- } while(mid < end && nums[end] === nums[end+1]);
                 }
             }
         }
@@ -202,6 +196,25 @@ console.log(fourSum([1, 0, -1, 0, -2, 2], 0))
 ### 026.Remove Duplicates from Sorted Array
 <img src="http://lrun1124.github.io/img/leetcode/018.png" width="500"/>
 
+```js
+
+nums = [0,0,1,1,1,2,2,3,3,4];
+
+var removeDuplicates = function(nums) {
+    let l = 0, r = 1,
+        len = nums.length;
+    if(len === 0) return 0;
+    while(r < len) {
+        if(nums[l] !== nums[r]) {
+            l++;
+            nums[l] = nums[r];
+        }
+        r++;
+    }
+    return l+1; //长度等于下标+1
+}
+```
+双指针，r一直走，l做记录
 
 ```js
 /**
@@ -229,6 +242,7 @@ var removeDuplicates = function(nums) {
 
 有序用current记录，指针滑动，遇到相同的splice，否则更新current
 
+
 ```js
 /**
  * @param {number[]} nums
@@ -252,6 +266,12 @@ var removeDuplicates = function(nums) {
 };
 
 console.log(removeDuplicates([0,0,1,1,1,2,2,3,3,4]))
+
+//无需改变ref的去重
+var removeDuplicates = function(nums) {
+    return nums = [...new Set(nums)];
+}
+removeDuplicates([1,1,2])
 ```
 
 无序用hash记录，指针滑动，遇到相同的splice，否则更新记入hash
@@ -278,30 +298,68 @@ var removeElement = function(nums, val) {
 
 ```js
 var removeElement = function(nums, val) {
-    let i = 0;
-    for (let j = 0; j < nums.length; j++) {
-        if (nums[j] != val) {
-            nums[i] = nums[j];
-            i++;
+    let l = 0, r = 0, len = nums.length;
+    while (r < len) {
+        if (nums[r] != val) {
+            nums[l] = nums[r];
+            l++;
         }
+        r++;
     }
-    return i;
+    return l;
 }
 ```
 
 1. 用splice, splice后记得--
-2. 两个指针i和j, j一直+1，i遇到非target+1并赋值
+2. 两个指针l和r, r一直走，l做记录
 
 ### 031.Next Permutation
 <img src="http://lrun1124.github.io/img/leetcode/031.png" width="500"/>
 
 ```JS
+Input: nums = [1,2,3]
+Output: [1,3,2]
+Input: nums = [3,2,1]
+Output: [1,2,3]
+
+//123465
+
+var nextPermutation = function(nums) {
+    debugger;
+    let len = nums.length;
+    if(len === 0) return;
+    let p = q = len-1;
+    while(p > 0 && nums[p] <= nums[p-1]) p--; //先从后往前，找后一个比前一个大的位置p-1
+    if(p > 0) { //如果找不到说明本身就是逆序，跳过这步
+        while(q >= p && nums[q] <= nums[p-1]) q--; //再从后往前，找第一个比位置q
+        [nums[p-1], nums[q]] = [nums[q], nums[p-1]];
+    }
+    for(let i=p,j=len-1; i<j; i++,j--) { //revese [p-1, len-1]这部分
+        [nums[i], nums[j]] = [nums[j], nums[i]]; //交换的es5结构写法
+    }
+}
+
+nextPermutation([5,1,1])
+
+```
+Permutation是字典字，next Permutation就是按字典序排列的下一个排列
+
+思路：
+
+主要思想是先找到要替换的位置，再找到最小的替换数,123465为例，先从后向前找到6>4, 再从后向前找到5第一个大于4，交换4，6让数字变大，变成123564，再把5后面的部分升序排列，这样数字再尽可能小
+
+1. 先从后往前，找后一个比前一个大的位置p-1
+1. 再从后往前，找第一个比位置q
+1. 交换p-1 和 q
+1. 将p-1之后的数组升序
+1. 如没有进入前四步，说明输入已经是最大的字典序，直接输出倒序
+
+```js
 /**
  * @param {number[]} nums
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var nextPermutation = function(nums) {
-    debugger;
     if(nums.length === 1) return nums;
     for(let i=nums.length-1; i>0; i--) {
         if(nums[i]>nums[i-1]) {
@@ -324,19 +382,8 @@ var swap = function(nums, i, j) {
     nums[j] = temp;
 }
 console.log(nextPermutation([1,2,3]))
+
 ```
-
-Permutation是字典字，next Permutation就是按字典序排列的下一个排列
-
-思路：
-
-主要思想是找到两个值，一个是从后第一个比前一个大的值，第二个第一个是比这个值大的，后面升序排列即可
-
-1. 先从后往前，找后一个比前一个大的nums[i-1]
-1. 再从后往前，找第一个比nums[i-1]大的nums[j]
-1. 交换nums[i-1] 和 nums[j]
-1. 将nums[i-1]之后的数组排列
-1. 如没有进入前四步，说明输入已经是最大的字典序，直接输出倒序
 
 ### 033.Search in Rotated Sorted Array
 <img src="http://lrun1124.github.io/img/leetcode/033.png" width="500"/>
@@ -353,15 +400,15 @@ var search = function(nums, target) {
         right = nums.length-1,
         mid;
     while(left <= right) {
-        mid = Math.floor(left + (right-left) / 2);
+        mid = (left + right) >> 1;
         if(nums[mid] === target) return mid;
-        if(nums[mid] > nums[right]) {
+        if(nums[mid] > nums[right]) { //左边有序
             if(nums[left] <= target && nums[mid] >= target) {
                 right = mid - 1;
             } else {
                 left = mid + 1;
             }
-        } else {
+        } else { //右边有序
             if(nums[mid] <= target && nums[right] >= target) {
                 left = mid + 1;
             } else {
@@ -375,11 +422,14 @@ console.log(search([4,5,6,7,0,1,2],0));
 ```
 
 继续用二分查找，目的是判断target在前半段还是后半段
+
 <img src="http://lrun1124.github.io/img/leetcode/032_1.png" width="500"/>
+
 观察规律，当中间的数大于最右边大的数，左边有序，否则右边有序，把target跟有序的数组的头尾比较，就能确认target是否在有序这边
 
 ### 035.Search Insert Position
-<img src="http://lrun1124.github.io/img/leetcode/032.png" width="500"/>
+
+<img src="http://lrun1124.github.io/img/leetcode/035.png" width="500"/>
 
 ```JS
 /**
@@ -393,7 +443,7 @@ var searchInsert = function(nums, target) {
         right = nums.length - 1,
         mid;
     while(left <= right) {
-        mid = Math.floor(left + (right - left)/2);
+        mid = (left + right) >> 1;
         if(nums[mid] === target) return mid;
         if(nums[mid] > target) {
             right = mid - 1;
@@ -401,7 +451,7 @@ var searchInsert = function(nums, target) {
             left = mid + 1;
         }
     }
-    return  right + 1;
+    return right + 1;
 };
 
 console.log(searchInsert([1,3,5,6],2))
@@ -410,18 +460,18 @@ console.log(searchInsert([1,3,5,6],2))
 二分查找，最终right所在的位置一定是target前的位置，注意二分如果mid-1，那么left<=right, =不能丢
 
 ### 039.Combination Sum
+
 <img src="http://lrun1124.github.io/img/leetcode/039.png" width="500"/>
 
 ```JS
 var combinationSum = function(candidates, target) {
     var res = [];
     /**
-     * @param candidates 候选数组
      * @param begin      搜索起点
      * @param target     每减去一个元素，目标值变小
      * @param path       从根结点到叶子结点的路径，是一个栈
      */
-    const dfs = (candidates, begin, target, path) => {
+    const dfs = (begin, target, path) => {
         //终止条件
         if(target < 0) return;
         if(target === 0) {
@@ -430,19 +480,19 @@ var combinationSum = function(candidates, target) {
         }
         for(let i = begin; i < candidates.length; i++) {
             path.push(candidates[i]);
-            //打印出所有路径序列
-            console.log(path);
-            dfs(candidates, i, target - candidates[i], path);
+            //console.log(path); //打印出所有路径序列
+            dfs(i, target - candidates[i], path);
             path.pop();
         }
     }
-    dfs(candidates, 0, target, [], res);
+    dfs(0, target, []);
     return res;
 }
 console.log(combinationSum([2,3,6,7],7));
 ```
 
 递归思想，先想好终止条件，往往来自题目，回溯
+
 <img src="http://lrun1124.github.io/img/leetcode/039_1.png" width="500"/>
 
 以上方法是列出所有的回溯结果，考虑到如果 target 减去一个数得到负数，那么减去一个更大的树依然是负数，同样搜索不到结果。基于这个想法，我们可以对输入数组进行排序，添加相关逻辑达到进一步剪枝的目的
@@ -452,12 +502,11 @@ var combinationSum = function(candidates, target) {
     var res = [];
     candidates.sort((a, b) => {return a - b});
     /**
-     * @param candidates 候选数组
      * @param begin      搜索起点
      * @param target     每减去一个元素，目标值变小
      * @param path       从根结点到叶子结点的路径，是一个栈
      */
-    const dfs = (candidates, begin, target, path) => {
+    const dfs = (begin, target, path) => {
         //终止条件
         if(target < 0) return;
         if(target === 0) {
@@ -470,11 +519,11 @@ var combinationSum = function(candidates, target) {
             path.push(candidates[i]);
             //打印出所有路径序列
             //console.log(path);
-            dfs(candidates, i, target - candidates[i], path);
+            dfs(i, target - candidates[i], path);
             path.pop();
         }
     }
-    dfs(candidates, 0, target, [], res);
+    dfs(0, target, []);
     return res;
 }
 console.log(combinationSum([10,1,2,7,6,1,5],8));
@@ -489,12 +538,11 @@ var combinationSum2 = function(candidates, target) {
     var res = [];
     candidates.sort((a, b) => {return a - b});
     /**
-     * @param candidates 候选数组
      * @param begin      搜索起点
      * @param target     每减去一个元素，目标值变小
      * @param path       从根结点到叶子结点的路径，是一个栈
      */
-    const dfs = (candidates, begin, target, path) => {
+    const dfs = (begin, target, path) => {
         //终止条件
         if(target < 0) return;
         if(target === 0) {
@@ -510,11 +558,11 @@ var combinationSum2 = function(candidates, target) {
             //打印出所有路径序列
             //console.log(path);
             // 因为元素不可以重复使用，这里递归传递下去的是 i + 1 而不是 i
-            dfs(candidates, i + 1, target - candidates[i], path);
+            dfs(i + 1, target - candidates[i], path);
             path.pop();
         }
     }
-    dfs(candidates, 0, target, [], res);
+    dfs(0, target, []);
     return res;
 }
 console.log(combinationSum([10,1,2,7,6,1,5],8));
@@ -539,11 +587,13 @@ var firstMissingPositive = function(nums) {
             let temp = nums[nums[i]-1];
             nums[nums[i]-1] = nums[i];
             nums[i] = temp;
+            // let t = nums[i]-1;
+            // [nums[i], nums[t]] = [nums[t], nums[i]]
         }
     }
     //第一个位置不对的数位置+1
     for(let i =0; i<nums.length; i++) {
-        if(nums[i] !== i+1) return i+1;
+        if(nums[i] !== i+1) return i+1; //注意返回的是key
     }
     return nums.length + 1;
 };
@@ -557,7 +607,9 @@ console.log(firstMissingPositive([3,4,-1,1]))
 
 ```
 
-原地hash，哈希的规则是nums[i] = i+1, 占座思想，让nums[i]都坐在i-1的位置上，最后第一个不满足规则的数的位置+1，就是结果
+原地hash，哈希的规则是nums[i] = i+1, 因为第一个位置坐1，所以不是nums[i] = i
+
+占座思想，让nums[i]都坐在i-1的位置上，最后第一个不满足规则的数的位置+1，就是结果
 
 ### 004.Median of Two Sorted Arrays
 
@@ -599,19 +651,25 @@ console.log(findMedianSortedArrays([1,2],[3,4]))
 
 O(m+n)的解法：找中位数就是找nums1和nums2合并起来的下标为len/2的数，所以遍历len/2+1次，找到这个数，同时记录他前面的数，再分别处理奇偶情况
 
-O(log(m+n))的解法：Todo...
+O(log(m+n))的解法
+
+```js
+
+```
+
 
 
 ### 048.Rotate Image
 
 <img src="http://lrun1124.github.io/img/leetcode/048.png" width="500"/>
 
+```js
 Input: matrix = [[1,2,3],[4,5,6],[7,8,9]] 
 Output: [[7,4,1],[8,5,2],[9,6,3]]
 
 Input: matrix = [[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]
 Output: [[15,13,2,5],[14,3,4,1],[12,6,8,9],[16,7,10,11]]
-```js
+
 /**
  * @param {number[][]} matrix
  * @return {void} Do not return anything, modify matrix in-place instead.
