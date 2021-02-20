@@ -559,50 +559,6 @@ maximalSquare(matrix)
 主要是把dp理解为以i，j为右下角的正方形，而不是i,j之内最大的，这样比较每次结果就行
 dp[i][j] = Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) + 1，（i,j）相邻的三个点，最小的一个补上一层
 
-### 309. Best Time to Buy and Sell Stock with Cooldown
-
-
-<img src="http://lrun1124.github.io/img/leetcode/309.png" width="500"/>
-
-```js
-Input: [1,2,3,0,2]
-Output: 3 
-Explanation: transactions = [buy, sell, cooldown, buy, sell]
-
-分今天持股和不持股两种情况，再分今天操作不操作两种状态
-[
-    持股&今天买的，
-    持股&之前买的，
-    不持股&今天卖的，
-    不持股&之前卖的
-]
-dp[i][0] = dp[i-1][3] - price[i] //因为今天买，所以昨天肯定是不持股，并且是昨天肯定没卖，因为冷静期
-dp[i][1] = Math.max(dp[i-1][0], dp[i-1][1]); //昨天肯定持股，可能是昨天买的，可能是昨天之前买的
-dp[i][2] = Math.max(dp[i-1][0], dp[i-1][1]) + price[i]; //昨天的收益 + 今天卖出的收益
-dp[i][3] = Math.max(dp[i-1][2], dp[i-1][3]); //昨天肯定不持有，昨天卖的，或者昨天之前卖的
-/**
- * @param {number[]} prices
- * @return {number}
- */
-var maxProfit = function(prices) {
-    debugger;
-    let len = prices.length,
-        dp = [];
-    if(len === 0) return 0;
-    dp.push([-1 * prices[0],  -1 * prices[0], 0, 0]); 
-    for(let i=1; i<len; i++) {
-        dp.push([
-            dp[i-1][3] - prices[i], //持股&今天买的
-            Math.max(dp[i-1][0], dp[i-1][1]), //持股&之前买的
-            Math.max(dp[i-1][0], dp[i-1][1]) + prices[i], //不持股&今天卖的
-            Math.max(dp[i-1][2], dp[i-1][3]) //不持股&之前卖的
-        ])
-    }
-    return Math.max(dp[len-1][2], dp[len-1][3]); //比较两种不持有的状态
-};
-maxProfit([1,2,3,0,2]);
-```
-
 
 ### 322. Coin Change
 

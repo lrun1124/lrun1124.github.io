@@ -33,6 +33,38 @@ var twoSum = function(nums, target) {
 console.log(twoSum([2,7,11,15],9));
 ```
 
+### 167. Two Sum II - Input array is sorted
+
+<img src="http://lrun1124.github.io/img/leetcode/167.png" width="500"/>
+
+```js   
+Input: numbers = [2,7,11,15], target = 9
+Output: [1,2]
+/**
+ * @param {number[]} numbers
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(numbers, target) {
+    debugger;
+    let left = 0,
+        right = numbers.length - 1,
+        sum;
+    while(left < right) {
+        sum = numbers[left] + numbers[right];
+        if(sum === target) return [++left, ++right];
+        if(sum > target) {
+            right--;
+        } else {
+            left++;
+        }
+    }
+}; 
+twoSum([2,7,11,15],9)
+```
+因为有序，可以用双指针，一头一尾，大了就尾挪动，小了就头动，如果无序，还是用hash
+
+
 ### 011.Contain the most water
 
 <img src="http://lrun1124.github.io/img/leetcode/011_1.png" width="500"/>
@@ -385,48 +417,6 @@ console.log(nextPermutation([1,2,3]))
 
 ```
 
-### 033.Search in Rotated Sorted Array
-<img src="http://lrun1124.github.io/img/leetcode/033.png" width="500"/>
-
-```js
-/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number}
- */
-var search = function(nums, target) {
-    debugger;
-    var left = 0,
-        right = nums.length-1,
-        mid;
-    while(left <= right) {
-        mid = (left + right) >> 1;
-        if(nums[mid] === target) return mid;
-        if(nums[mid] > nums[right]) { //左边有序
-            if(nums[left] <= target && nums[mid] >= target) {
-                right = mid - 1;
-            } else {
-                left = mid + 1;
-            }
-        } else { //右边有序
-            if(nums[mid] <= target && nums[right] >= target) {
-                left = mid + 1;
-            } else {
-                right = mid - 1;
-            }
-        }
-    }
-    return  -1;
-};
-console.log(search([4,5,6,7,0,1,2],0));
-```
-
-继续用二分查找，目的是判断target在前半段还是后半段
-
-<img src="http://lrun1124.github.io/img/leetcode/032_1.png" width="500"/>
-
-观察规律，当中间的数大于最右边大的数，左边有序，否则右边有序，把target跟有序的数组的头尾比较，就能确认target是否在有序这边
-
 ### 035.Search Insert Position
 
 <img src="http://lrun1124.github.io/img/leetcode/035.png" width="500"/>
@@ -463,14 +453,31 @@ console.log(searchInsert([1,3,5,6],2))
 
 <img src="http://lrun1124.github.io/img/leetcode/039.png" width="500"/>
 
+combination组合问题就是递归，递归遍历一棵树的模板如下
+
+```js
+/**
+ * @param begin      搜索起点
+ * @param target     目标值，用于判断终止或者push结果
+ * @param path       记录结果
+ */
+const dfs = (begin, sum, path) => {
+    if(终止条件) {
+        //一些操作，比如push进res
+        return;
+    }
+    for(从begin开始循环) {
+        //加一些剪枝
+        path.push(当前); //当前入栈
+        dfs(...);
+        path.pop() //上一次return，说明不满足，最后一次结果出栈
+    }
+}
+```
+
 ```JS
 var combinationSum = function(candidates, target) {
     var res = [];
-    /**
-     * @param begin      搜索起点
-     * @param target     每减去一个元素，目标值变小
-     * @param path       从根结点到叶子结点的路径，是一个栈
-     */
     const dfs = (begin, target, path) => {
         //终止条件
         if(target < 0) return;
@@ -501,11 +508,6 @@ console.log(combinationSum([2,3,6,7],7));
 var combinationSum = function(candidates, target) {
     var res = [];
     candidates.sort((a, b) => {return a - b});
-    /**
-     * @param begin      搜索起点
-     * @param target     每减去一个元素，目标值变小
-     * @param path       从根结点到叶子结点的路径，是一个栈
-     */
     const dfs = (begin, target, path) => {
         //终止条件
         if(target < 0) return;
@@ -517,8 +519,6 @@ var combinationSum = function(candidates, target) {
             //剪枝
             if(target - candidates[i] < 0) break;
             path.push(candidates[i]);
-            //打印出所有路径序列
-            //console.log(path);
             dfs(i, target - candidates[i], path);
             path.pop();
         }
@@ -537,11 +537,7 @@ console.log(combinationSum([10,1,2,7,6,1,5],8));
 var combinationSum2 = function(candidates, target) {
     var res = [];
     candidates.sort((a, b) => {return a - b});
-    /**
-     * @param begin      搜索起点
-     * @param target     每减去一个元素，目标值变小
-     * @param path       从根结点到叶子结点的路径，是一个栈
-     */
+
     const dfs = (begin, target, path) => {
         //终止条件
         if(target < 0) return;
@@ -555,8 +551,6 @@ var combinationSum2 = function(candidates, target) {
             // 小剪枝：同一层相同数值的结点，从第 2 个开始，候选数更少，结果一定发生重复，因此跳过，用 continue
             if(i > begin && candidates[i] === candidates[i-1]) continue;
             path.push(candidates[i]);
-            //打印出所有路径序列
-            //console.log(path);
             // 因为元素不可以重复使用，这里递归传递下去的是 i + 1 而不是 i
             dfs(i + 1, target - candidates[i], path);
             path.pop();
@@ -567,6 +561,45 @@ var combinationSum2 = function(candidates, target) {
 }
 console.log(combinationSum([10,1,2,7,6,1,5],8));
 
+```
+
+### 216. Combination Sum III
+
+<img src="http://lrun1124.github.io/img/leetcode/216.png" width="500"/>
+
+```js
+Input: k = 3, n = 7
+Output: [[1,2,4]]
+Input: k = 3, n = 9
+Output: [[1,2,6],[1,3,5],[2,3,4]]
+/**
+ * @param {number} k
+ * @param {number} n
+ * @return {number[][]}
+ */
+var combinationSum3 = function(k, n) {
+    var res = [];
+    const dfs = (begin, sum, path) => {
+        //console.log(path);
+        if(path.length === k) {
+            if(sum === 0) {
+                res.push(path.slice(0));
+                return;
+            }
+            if(sum < 0) {
+                return;
+            }
+        }
+        for(let i=begin; i<=9; i++) {
+            path.push(i);
+            dfs(i+1, sum-i, path);
+            path.pop();
+        }
+    }
+    dfs(1,n,[]);
+    return res;
+};
+combinationSum3(3,7)
 ```
 
 ### 041.First Missing Positive
@@ -675,28 +708,44 @@ Output: [[15,13,2,5],[14,3,4,1],[12,6,8,9],[16,7,10,11]]
  * @return {void} Do not return anything, modify matrix in-place instead.
  */
 
- 1,2,3  7,4,1
- 4,5,6  8,5,2
- 7,8,9  9,6,3 
+过程：
+1,2,3  1,4,7  7,4,1
+4,5,6  2,5,8  8,5,2
+7,8,9  3,6,9  9,6,3 
 
 var rotate = function(matrix) {
-    debugger;
-    //先矩阵转置
+    //左上右下对角线翻转一次(转置)
     for(let i=0; i<matrix.length; i++) {
         for(let j=i; j<matrix.length; j++) {
             //matrix[i][j]别写成matrix[i,j]!!!
-            let temp = matrix[i][j];
-            matrix[i][j] = matrix[j][i];
-            matrix[j][i] = temp;
+            [matrix[i][j],matrix[j][i]] = [matrix[j][i],matrix[i][j]];
         }
     }
-    //再反转每行
+    //横向中线翻转一次
     for(let i=0; i<matrix.length; i++) {
-        matrix[i].reverse();
+        for(let left=0, right=matrix[0].length-1; left < right; left++, right--) {
+            [matrix[i][left], matrix[i][right]] = [matrix[i][right], matrix[i][left]];
+        }
     }
 }
-console.log(rotate([[1,2,3],[4,5,6],[7,8,9]]))
+//拓展：左转
+var rotate = function(matrix) {
+    for(let i=0; i<matrix.length; i++) {
+        for(let j=i; j<matrix.length; j++) {
+            [matrix[i][j],matrix[j][i]] = [matrix[j][i],matrix[i][j]];
+        }
+    }
+    //竖向中线翻转一次
+    for(let i=0; i<matrix[0].length; i++) {
+        for(let up=0, down=matrix.length-1; up < down; up++, down--) {
+            [matrix[up][i], matrix[down][i]] = [matrix[down][i], matrix[up][i]];
+        }
+    }
+}
+rotate([[1,2,3],[4,5,6],[7,8,9]])
 ```
+右翻：左上右下对角线翻转一次（转置），横向中线翻转一次（反转每行）
+左翻：左上右下对角线翻转一次（转置），竖向中线翻转一次（反转每列）
 
 ### 55.Jump Game
 
@@ -735,13 +784,12 @@ console.log(canJump([2,3,1,1,4]));
 <img src="http://lrun1124.github.io/img/leetcode/056.png" width="500"/>
 
 ```js
+Input: intervals = [[1,3],[2,6],[8,10],[15,18]]
+Output: [[1,6],[8,10],[15,18]]
 /**
  * @param {number[][]} intervals
  * @return {number[][]}
  */
-
-Input: intervals = [[1,3],[2,6],[8,10],[15,18]]
-Output: [[1,6],[8,10],[15,18]]
 
 var merge = function(intervals) {
     var current,
@@ -784,20 +832,22 @@ var insert = function(intervals, newInterval) {
     let len = intervals.length,
         i = 0,
         res = [];
-    //第一阶段，不和newInterval重叠，在newInterval前面的部分，直接push
+    //第一部分，不和newInterval重叠，在newInterval前面的部分，直接push
     while(i<len && intervals[i][1] < newInterval[0]) {
         res.push(intervals[i]);
         i++;
     }
-    //第二阶段，和newInterval重叠，不断更新前后端的值，直到不重叠
-    while(i<len && intervals[i][0] <= newInterval[1]) {
+    //第二阶段，确定重叠部分
+    if(i < len) { //确定左侧
         newInterval[0] = Math.min(intervals[i][0], newInterval[0]);
+    }
+    while(i<len && intervals[i][0] <= newInterval[1]) { //确定右侧
         newInterval[1] = Math.max(intervals[i][1], newInterval[1]);
         i++;
     }
-    //第三阶段，不和newInterval重叠，在newInterval后面的部分，直接push
     res.push(newInterval);
-    while(i<len) {
+    //第三阶段，不和newInterval重叠，在newInterval后面的部分，直接push
+    while(i < len) {
         res.push(intervals[i]);
         i++;
     }
@@ -967,10 +1017,8 @@ var uniquePaths = function(m, n) {
     debugger;
     let dp = [];
     for(let i=0; i<m; i++) {
-        dp.push(new Array(n));
+        dp.push(new Array(n).fill(1));
     }
-    for(let i=0; i<n; i++) {dp[0][i] = 1;} //填上横1
-    for(let i=0; i<m; i++) {dp[i][0] = 1;} //填上竖1
     for(let i=1; i<m; i++) {
         for(let j=1; j<n; j++) {
             dp[i][j] = dp[i-1][j] + dp[i][j-1];
@@ -999,19 +1047,12 @@ There are two ways to reach the bottom-right corner:
  * @return {number}
  */
 var uniquePathsWithObstacles = function(obstacleGrid) {
-    debugger;
     if(!obstacleGrid && obstacleGrid.length === 0) return 0;
     let m = obstacleGrid.length,
         n = obstacleGrid[0].length,
         dp = [];
     for(let i=0; i<m; i++) {
-        dp.push(new Array(n));
-    }
-    for(let i=0; i<m; i++) {
-        dp[i][0] = 0;
-    }
-    for(let i=0; i<n; i++) {
-        dp[0][i] = 0;
+        dp.push(new Array(n).fill(0));
     }
     //第一列，碰到障碍前都设为1
     for(let i=0; i<m && obstacleGrid[i][0] === 0; i++) {
@@ -1023,10 +1064,7 @@ var uniquePathsWithObstacles = function(obstacleGrid) {
     }
     for(let i=1; i<m; i++) {
         for(let j=1; j<n; j++) {
-            if(obstacleGrid[i][j] === 1) dp[i][j] = 0;
-            else {
-                dp[i][j] = dp[i-1][j] + dp[i][j-1];
-            }
+            dp[i][j] = obstacleGrid[i][j] === 1 ? 0 : dp[i-1][j] + dp[i][j-1];
         }
     }
     return dp[m-1][n-1];
@@ -1039,12 +1077,14 @@ DP思想同上，第一行第一列，如果碰到障碍，后面的位置就都
 <img src="http://lrun1124.github.io/img/leetcode/064.png" width="500"/>
 
 ```js
+输入：grid = [[1,3,1],[1,5,1],[4,2,1]]
+输出：7
+解释：因为路径 1→3→1→1→1 的总和最小。
 /**
  * @param {number[][]} grid
  * @return {number}
  */
 var minPathSum = function(grid) {
-    debugger;
     if(!grid) return 0;
     var m = grid.length,
         n = grid[0].length,
@@ -1089,14 +1129,14 @@ var plusOne = function(digits) {
             break;
         }
         digits[i] = 0;
-        if(i===0){digits.splice(0,0,1);}
+        if(i===0) digits.splice(0,0,1);
     }
     return digits;
 };
 console.log(plusOne([1,9,9]))
 ```
 
-碰到非9就+1然后break，否则继续，直到最高位，插入1
+碰到非9就+1然后break，否则继续，如果最高位还没break，插入1
 
 ### 73. Set Matrix Zeroes
 <img src="http://lrun1124.github.io/img/leetcode/073.png" width="500"/>
@@ -1134,7 +1174,6 @@ console.log(test);
 ```
 
 题目要求有限空间
-
 O(m+n)解法是用一个set记录下值0所在的横竖坐标
 O(1)解法是遍历中将值为0的横竖都变成一另一个值，最后再遍历一次将0换回来
 
@@ -1157,7 +1196,7 @@ var searchMatrix = function(matrix, target) {
         right = m*n-1,
         mid;
     while(left <= right) { //注意是<=,不然会丢一次循环
-        mid = left + Math.floor(right-left);
+        mid = (left + right) >> 1;
         x = Math.floor(mid/n);
         y = mid % n;
         if(matrix[x][y] === target) return true;
@@ -1169,7 +1208,7 @@ var searchMatrix = function(matrix, target) {
 console.log(searchMatrix([[1,3,5,7],[10,11,16,20],[23,30,34,50]],3))
 ```
 
-两种思路，一种两次二分，先找到行，在对行内二分;另一种，对整个矩阵进行二分，计算坐标，x = Math.floor(mid/n); y = mid % n;
+两种思路，一种两次二分，先找到行，在对行内二分; 另一种，对整个矩阵进行二分，计算坐标，x = Math.floor(mid/n); y = mid % n;
 
 ### 75. Sort Colors
 <img src="http://lrun1124.github.io/img/leetcode/075.png" width="500"/>
@@ -1195,7 +1234,7 @@ var sortColors = function(nums) {
             nums[i] = nums[two];
             nums[two] = 2;
             two--;
-            i--;
+            i--; //换过来的可能还是2，所以i--继续
         }
     }
 };
@@ -1226,10 +1265,9 @@ Output: [[],[0]]
  * @return {number[][]}
  */
 var subsets = function(nums) {
-    debugger;
     if(nums.length === 0) return [[]];
-    var res = [[], [nums[0]]];
-    for(let i=1; i<nums.length; i++) {
+    var res = [[]];
+    for(let i=0; i<nums.length; i++) {
         var temp = [];
         for(let j=0; j<res.length; j++) {
             temp.push([...res[j], nums[i]]);
@@ -1243,118 +1281,6 @@ console.log(subsets([1,2,3]))
 
 DP思想, [1,2,3] 是[1,2]的subset+3, 初始化结果[[], [nums[0]]]
 
-### 79. Word Search 
-
-<img src="http://lrun1124.github.io/img/leetcode/079.png" width="500"/>
-
-```js
-/**
- * @param {character[][]} board
- * @param {string} word
- * @return {boolean}
- */
-Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"
-Output: true
-Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCB"
-Output: false
-var exist = function(board, word) {
-  const m = board.length;
-  const n = board[0].length;
-  const used = new Array(m);    // 二维矩阵used，存放bool值
-  for (let i = 0; i < m; i++) {
-    used[i] = new Array(n);
-  }
-  // canFind 判断当前点是否是目标路径上的点
-  const canFind = (row, col, i) => { // row col 当前点的坐标，i当前考察的word字符索引
-    if (i == word.length) {          // 递归结束条件
-      return true;
-    }
-    if (row < 0 || row >= m || col < 0 || col >= n) { // 当前点要存在，不越界
-      return false;
-    }
-    if (used[row][col] || board[row][col] != word[i]) { // 当前点已经访问过，或，非目标点
-      return false;
-    }
-    // 排除掉上面的false情况，当前点是合格的，可以继续递归考察
-    used[row][col] = true;  // 记录一下当前点被访问了
-
-    const canFindRest = canFind(row + 1, col, i + 1) || canFind(row - 1, col, i + 1) ||
-      canFind(row, col + 1, i + 1) || canFind(row, col - 1, i + 1); 
-
-    if (canFindRest) { // 基于当前点[row,col]，可以为剩下的字符找到路径
-      return true;    
-    }
-    used[row][col] = false; // 不能为剩下字符找到路径，返回false，撤销当前点的访问状态，继续考察别的分支
-    return false;
-  };
-
-  for (let i = 0; i < m; i++) {   // 找 dfs 的入口
-    for (let j = 0; j < n; j++) {
-      if (board[i][j] == word[0] && canFind(i, j, 0)) { // 找到起点，递归结果true，找到目标路径
-        return true; 
-      }
-    }
-  }
-  return false; // 怎么样都没有返回true，则返回false
-};
-
-```
-
-回溯经典题，标记
-
-### 80. Remove Duplicates from Sorted Array II
-<img src="http://lrun1124.github.io/img/leetcode/080.png" width="500"/>
-
-```js
-/**
- * @param {number[]} nums
- * @return {number}
- */
- 对于无序的，不考虑O(1)空间的解法，用hash
-var removeDuplicates = function(nums) {
-    debugger;
-    let hash = {};
-    for(let i=0; i<nums.length; i++) {
-        if(!hash[nums[i]]) {
-            hash[nums[i]] = 1;
-        } else if(hash[nums[i]] < 2) {
-            hash[nums[i]]++;
-        } else {
-            nums.splice(i,1);
-            i--;
-        }
-    }
-    return nums.length;
-};
-console.log(removeDuplicates([0,0,1,1,1,1,2,3,3]));
-```
-
-```js
-/**
- * @param {number[]} nums
- * @return {number}
- */
-对有序的，O(1)空间的解法
-var removeDuplicates = function(nums) {
-    if(nums.length == 0) return 0;
-    var count = 1; //记录出现次数
-    for(let i=1; i<nums.length; i++) {
-        if(nums[i] === nums[i-1]) {
-            if(count >= 2) {
-                nums.splice(i,1);
-                i--;
-                continue;
-            }
-            count++;
-        } else {
-            count = 1;
-        }
-    }
-    return nums.length;
-};
-console.log(removeDuplicates([0,0,1,1,1,1,2,3,3]));
-```
-
 ### 90. Subsets II
 <img src="http://lrun1124.github.io/img/leetcode/090.png" width="500"/>
 
@@ -1364,7 +1290,7 @@ console.log(removeDuplicates([0,0,1,1,1,1,2,3,3]));
  * @return {number[][]}
  */
 
- Input: [1,2,2]
+Input: [1,2,2]
 Output:
 [
   [2],
@@ -1400,6 +1326,133 @@ var subsetsWithDup = function(nums) {
 console.log(subsetsWithDup([4,4,4,1,4]))
 ```
 动态规划，跟78题Subsets比主要是处理重复的情况, 先排序, 规律是碰到和上一个相同的数，那就从上一次新加的子数组中生产，而不是从整个结果数组生产子集，每次记下上一次的子数组，击败99.7%
+
+### 79. Word Search 
+
+<img src="http://lrun1124.github.io/img/leetcode/079.png" width="500"/>
+
+```js
+/**
+ * @param {character[][]} board
+ * @param {string} word
+ * @return {boolean}
+ */
+Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"
+Output: true
+Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCB"
+Output: false
+var exist = function(board, word) {
+  const m = board.length;
+  const n = board[0].length;
+  const used = new Array(m); // 二维矩阵used，存放bool值
+  for (let i = 0; i < m; i++) {
+    used[i] = new Array(n);
+  }
+  // dfs 判断当前点是否是目标路径上的点
+  const dfs = (row, col, i) => { // row col 当前点的坐标，i当前考察的word字符索引
+    if (i == word.length) return true;// 递归结束条件
+    if (row < 0 || row >= m || col < 0 || col >= n) return false; // 当前点要存在，不越界
+    if (used[row][col] || board[row][col] != word[i]) return false; // 当前点已经访问过，或，非目标点
+    // 排除掉上面的false情况，当前点是合格的，可以继续递归考察
+    used[row][col] = true;  // 记录一下当前点被访问了
+    const canFindRest = dfs(row + 1, col, i + 1) || dfs(row - 1, col, i + 1) ||
+      dfs(row, col + 1, i + 1) || dfs(row, col - 1, i + 1); 
+    if (canFindRest) return true;// 基于当前点[row,col]，可以为剩下的字符找到路径
+    used[row][col] = false; // 不能为剩下字符找到路径，返回false，撤销当前点的访问状态，继续考察别的分支
+  };
+
+  for (let i = 0; i < m; i++) {   // 找 dfs 的入口
+    for (let j = 0; j < n; j++) {
+      if (board[i][j] == word[0] && dfs(i, j, 0)) { // 找到起点，递归结果true，找到目标路径
+        return true; 
+      }
+    }
+  }
+  return false; // 怎么样都没有返回true，则返回false
+};
+exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]],"ABCCED")
+```
+回溯经典题，标记
+
+### 80. Remove Duplicates from Sorted Array II
+<img src="http://lrun1124.github.io/img/leetcode/080.png" width="500"/>
+
+```js
+[0,0,1,1,1,1,2,3,3]
+//双指针
+var removeDuplicates = function(nums) {
+    debugger;
+    let l = 1,
+        r = 1,
+        count = 1;
+    while(r < nums.length) {
+        if(nums[r] === nums[r-1]) {
+            count++;
+        } else {
+            count = 1;
+        }
+        if(count <= 2) {
+            nums[l] = nums[r];
+            l++;
+        }
+        r++;
+    }
+    return l;
+}
+removeDuplicates([1,1,1,2,2,3])
+```
+
+```js
+//用splice
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+//用splice,对有序的，O(1)空间的解法
+var removeDuplicates = function(nums) {
+    if(nums.length == 0) return 0;
+    var count = 1; //记录出现次数
+    for(let i=1; i<nums.length; i++) {
+        if(nums[i] === nums[i-1]) {
+            if(count >= 2) {
+                nums.splice(i,1);
+                i--;
+                continue;
+            }
+            count++;
+        } else {
+            count = 1;
+        }
+    }
+    return nums.length;
+};
+console.log(removeDuplicates([0,0,1,1,1,1,2,3,3]));
+```
+
+```js
+//拓展，对于无序的，不考虑O(1)空间的解法，用hash
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var removeDuplicates = function(nums) {
+    debugger;
+    let hash = {};
+    for(let i=0; i<nums.length; i++) {
+        if(!hash[nums[i]]) {
+            hash[nums[i]] = 1;
+        } else if(hash[nums[i]] < 2) {
+            hash[nums[i]]++;
+        } else {
+            nums.splice(i,1);
+            i--;
+        }
+    }
+    return nums.length;
+};
+console.log(removeDuplicates([0,0,1,1,1,1,2,3,3]));
+```
+
 
 ### 118. Pascal's Triangle
 
@@ -1474,49 +1527,16 @@ console.log(getRow(3))
 <img src="http://lrun1124.github.io/img/leetcode/120.png" width="500"/>
 
 ```js
-递归解法
+//DP解法
 /**
  * @param {number[][]} triangle
  * @return {number}
  */
 var minimumTotal = function(triangle) {
-    var helper = (i, j) => {
-        if(i === triangle.length - 1) {
-            return triangle[i][j];
-        }
-        return triangle[i][j] + Math.min(helper(i+1,j), helper(i+1,j+1));
-    }
-    return helper(0, 0);
-};
-var test =  [
-     [2],
-    [3,4],
-   [6,5,7],
-  [4,1,8,3]
-];
-minimumTotal(test)
-```
-递归, triangle[i][j]到底部的最小距离，等于triangle[i][j]+ 下一层的邻居triangle[i+1][j]和triangle[i+1][j+1]到底部距离的较小值，递归会超时
-
-```js
-DP解法
-/**
- * @param {number[][]} triangle
- * @return {number}
- */
-var minimumTotal = function(triangle) {
-    debugger;
-    let len = triangle.length,
-        dp = [];
+    let len = triangle.length;
     if(len === 0) return 0;
     if(len === 1) return triangle[0][0];
-    for(let i=0; i<len; i++) {
-        if(i===len-1) {
-            dp.push(triangle[i].slice(0));
-        } else {
-            dp.push(new Array(i+1));
-        }
-    }
+    const dp = triangle.slice();
     for(let i=len-2; i>=0; i--) {
         for(let j=0; j<=i; j++) {
             dp[i][j] = triangle[i][j] + Math.min(dp[i+1][j], dp[i+1][j+1]);
@@ -1533,6 +1553,30 @@ var test =  [
 minimumTotal(test)
 ```
 dp公式dp[i][j] = triangle[i][j] + Math.min(dp[i+1][j], dp[i+1][j+1]);
+
+```js
+     [2],
+    [3,4],
+   [6,5,7],
+  [4,1,8,3]
+2->3->5>1
+//递归解法
+/**
+ * @param {number[][]} triangle
+ * @return {number}
+ */
+var minimumTotal = function(triangle) {
+    var helper = (i, j) => {
+        if(i === triangle.length - 1) {
+            return triangle[i][j];
+        }
+        return triangle[i][j] + Math.min(helper(i+1,j), helper(i+1,j+1));
+    }
+    return helper(0, 0);
+};
+```
+递归, triangle[i][j]到底部的最小距离，等于triangle[i][j]+ 下一层的邻居triangle[i+1][j]和triangle[i+1][j+1]到底部距离的较小值，递归会超时
+
 
 ### 121. Best Time to Buy and Sell Stock
 
@@ -1551,32 +1595,28 @@ Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-
  */
 var maxProfit = function(prices) {
     let len = prices.length;
-    if(len===0 || len===1) return 0;
-    let dp = [0],
-        minPrice = prices[0], //记下最低的买入价格
+    if(len <= 1) return 0;
+    let minPrice = prices[0], //记下最低的买入价格
         res = 0;
     for(let i=1; i<len; i++) {
-        let current = prices[i] - minPrice;
-        dp[i] = dp[i] < dp[i-1] ? dp[i-1] : current;
-        if(prices[i] < minPrice) { //更新最低的价格
-            minPrice = prices[i];
+        let cur = prices[i] - minPrice;
+        if(cur > res) { //同时记住最大的值
+            res = cur;
         }
-        if(current > res) { //同时记住最大的值
-            res = current;
-        }
+        minPrice = Math.min(prices[i], minPrice);
     }
     return res;
 }
-maxProfit([1,2])
+maxProfit([7,1,5,1,3,6,4])
 ```
 
-只能单次买卖，dp公式dp[i] = Math.max(dp[i-1], prices[i] - minPrice)，遍历过程要记下最低的价格，用于计算当前的值，同时顺便记住最大的值
+只能单次买卖，遍历过程要记下最低的价格，用于计算当前利润，更新最大的利润
 
 ### 122. Best Time to Buy and Sell Stock II
 <img src="http://lrun1124.github.io/img/leetcode/122.png" width="500"/>
 
 ```js
-Input: [7,1,5,3,6,4] [1,7,5,6,7] [0,6,6,7,6]
+Input: [7,1,5,3,6,4]
 Output: 7
 Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-1 = 4.
              Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3.
@@ -1587,7 +1627,7 @@ Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-
  */
 var maxProfit = function(prices) {
     let len = prices.length;
-    if(len === 0 || len === 1) return 0;
+    if(len <= 1) return 0;
     let dp = [0];
     for(let i=1; i<prices.length; i++) {
         //如果比昨天跌了，那就是昨天的收益不变，如果涨了就是今天卖，加上今天和昨天的差价，因为如果昨天卖了，那么今天价格更高，就等今天卖，加差值，如果昨天没卖，那就加上一笔昨天买，今天卖的收益，还是加差值。
@@ -1600,7 +1640,7 @@ maxProfit([7,1,5,3,6,4]);
 可以多次买卖，dp公式  dp[i] = prices[i] < prices[i-1] ? dp[i-1] : (dp[i-1] + prices[i] - prices[i-1]); 和上一题的区别在于，不用记住最小的买入值了，直接算卖出差价就知道当前的值, 为什么？
 因为如果昨天卖了，那么今天价格更高，就等今天卖，加差值，如果昨天没卖，那就加上一笔昨天买，今天卖的收益，还是加差值。
 
-### 123. Best Time to Buy and Sell Stock III (有问题)
+### 123. Best Time to Buy and Sell Stock III
 <img src="http://lrun1124.github.io/img/leetcode/123.png" width="500"/>
 
 ```js
@@ -1609,47 +1649,135 @@ Output: 6
 Explanation: Buy on day 4 (price = 0) and sell on day 6 (price = 3), profit = 3-0 = 3.
 Then buy on day 7 (price = 1) and sell on day 8 (price = 4), profit = 4-1 = 3.
 
+[
+    没有操作过，0
+    第一次买入，1
+    第一次卖出，2
+    第二次买入，3
+    第二次卖出 4
+]
+//错误，以每天的操作来算
+dp[i][0] = dp[i-1][0], dp[i-1][2], dp[i-1][4]); //昨天可能不操作，或者卖出
+dp[i][1] = dp[i-1][0] - prices[i] //昨天肯定没操作
+dp[i][2] = Math.max(dp[i-1[0]], dp[i-1][1]) + prices[i] //要么昨天第一次买，要么之前买的昨天没动
+dp[i][3] = Math.max(dp[i-1][0], dp[i-1][2]) - prices[i] //要么昨天不动，要么昨天第一次卖
+dp[i][4] = Math.max(dp[i-1][0], dp[i-1][3]) + prices[i] //要么昨天第二次买，要么之前买的昨天没动
+
+//正确，要以每天结束的状态来算!!
+dp[i][0] = dp[i-1][0] //之前都没操作过
+dp[i][1] = Math.max(dp[i-1][0] - prices[i], dp[i-1][1]) //今天买的，或者之前买的
+dp[i][2] = Math.max(dp[i-1][1] + prices[i], dp[i-1][2])//今天卖的，昨天第一次买入的状态, 或者之前卖的，昨天已经是第一次卖出状态
+dp[i][3] = Math.max(dp[i-1][2] - prices[i], dp[i-1][3])//今天买的，昨天要处于第一次卖出状态，或者之前买的
+dp[i][4] = Math.max(dp[i-1][3] + prices[i], dp[i-1][4]) //今天卖的，昨天第二次买入的状态, 或者之前卖的，昨天已经是第二次卖出状态
+
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function(prices) {
+    let len = prices.length;
+    if(len <= 1) return 0;
+    let dp = [];
+    dp.push([0, -prices[0], 0, -prices[0], 0]);
+    for(let i=1; i<len; i++) {
+        dp.push([
+            dp[i-1][0],
+            Math.max(dp[i-1][0] - prices[i], dp[i-1][1]),
+            Math.max(dp[i-1][1] + prices[i], dp[i-1][2]),
+            Math.max(dp[i-1][2] - prices[i], dp[i-1][3]),
+            Math.max(dp[i-1][3] + prices[i], dp[i-1][4])
+        ]);
+    }
+    return Math.max(dp[len-1][0], dp[len-1][2], dp[len-1][4]);
+};
+maxProfit([3,3,5,0,0,3,1,4]);
+```
+
+### 309. Best Time to Buy and Sell Stock with Cooldown
+
+
+<img src="http://lrun1124.github.io/img/leetcode/309.png" width="500"/>
+
+```js
+Input: [1,2,3,0,2]
+Output: 3 
+Explanation: transactions = [buy, sell, cooldown, buy, sell]
+
+考虑每天结束时的状态，先分持股和不持股两种情况，再分今天操作不操作两种状态
+[
+    持股&今天买的，0
+    持股&之前买的，1
+    不持股&今天卖的，2
+    不持股&之前卖的 3
+]
+dp[i][0] = dp[i-1][3] - price[i] //因为今天买，所以昨天肯定是不持股，并且是昨天肯定没卖，因为冷静期
+dp[i][1] = Math.max(dp[i-1][0], dp[i-1][1]); //昨天肯定持股，可能是昨天买的，可能是昨天之前买的
+dp[i][2] = Math.max(dp[i-1][0], dp[i-1][1]) + price[i]; //昨天的收益 + 今天卖出的收益
+dp[i][3] = Math.max(dp[i-1][2], dp[i-1][3]); //昨天肯定不持有，昨天卖的，或者昨天之前卖的
 /**
  * @param {number[]} prices
  * @return {number}
  */
 var maxProfit = function(prices) {
     debugger;
-    let len = prices.length;
-    if(len === 0 || len === 1) return 0;
-    let dp = [0],
-        count = [0],
-        lastSellIdx = -1;
-    for(let i=1; i<prices.length; i++) {
-        if(prices[i] <= prices[i-1]) {
-            dp[i] = dp[i-1];
-            count[i] = count[i-1];
-        } else {
-            if(count[i-1] < 2) {
-                dp[i] = dp[i-1] + prices[i] - prices[i-1];
-                count[i] = lastSellIdx < (i-1) ? (count[i-1] + 1) : count[i-1];
-                lastSellIdx = i;
+    let len = prices.length,
+        dp = [];
+    if(len === 0) return 0;
+    dp.push([-prices[0],  -prices[0], 0, 0]); 
+    for(let i=1; i<len; i++) {
+        dp.push([
+            dp[i-1][3] - prices[i], //持股&今天买的
+            Math.max(dp[i-1][0], dp[i-1][1]), //持股&之前买的
+            Math.max(dp[i-1][0], dp[i-1][1]) + prices[i], //不持股&今天卖的
+            Math.max(dp[i-1][2], dp[i-1][3]) //不持股&之前卖的
+        ])
+    }
+    return Math.max(dp[len-1][2], dp[len-1][3]); //比较两种不持有的状态
+};
+maxProfit([1,2,3,0,2]);
+```
+
+### 033.Search in Rotated Sorted Array
+<img src="http://lrun1124.github.io/img/leetcode/033.png" width="500"/>
+
+```js
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var search = function(nums, target) {
+    debugger;
+    var left = 0,
+        right = nums.length-1,
+        mid;
+    while(left <= right) {
+        mid = (left + right) >> 1;
+        if(nums[mid] === target) return mid;
+        if(nums[mid] > nums[right]) { //左边有序
+            if(nums[left] <= target && nums[mid] >= target) {
+                right = mid - 1;
             } else {
-                if(prices[i] < prices[lastSellIdx]) {
-                    dp[i] = dp[i-1];
-                } else {
-                    dp[i] = dp[i-1] + prices[i] - prices[lastSellIdx];
-                    lastSellIdx = i;
-                }
-                count[i] = count[i-1];
+                left = mid + 1;
+            }
+        } else { //右边有序
+            if(nums[mid] <= target && nums[right] >= target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
             }
         }
-        console.log("dp:" + dp);
-        //console.log("count:" + count);
-        // console.log("lastSellPrice:" + lastSellPrice);
     }
-    return dp[len-1];
+    return  -1;
 };
-//maxProfit([2,1,4,5,2,9,7]);
-maxProfit([14,9,10,12,4,8,1,16]);
+console.log(search([4,5,6,7,0,1,2],0));
 ```
-因为如果昨天卖了，那么今天价格更高，就等今天卖，加差值
-如果昨天没卖，买卖次数少于2，那就加上一笔昨天买，今天卖的收益，还是加差值，否则等于dp[i-1]
+
+继续用二分查找，目的是判断target在前半段还是后半段
+
+<img src="http://lrun1124.github.io/img/leetcode/032_1.png" width="500"/>
+
+观察规律，当中间的数大于最右边大的数，左边有序，否则右边有序，把target跟有序的数组的头尾比较，就能确认target是否在有序这边
 
 ### 153. Find Minimum in Rotated Sorted Array
 <img src="http://lrun1124.github.io/img/leetcode/153.png" width="500"/>
@@ -1663,30 +1791,22 @@ Output: 11
  * @param {number[]} nums
  * @return {number}
  */
+
 var findMin = function(nums) {
-    let len  = nums.length;
-    if(len === 1 ) return nums[0];
     let left = 0,
         right = nums.length - 1,
         mid;
-    while(left <= right) {
-        if(left === right) return nums[left];
-        if(right - left === 1) {
-            return Math.min(nums[left], nums[right]);
-        }
-        mid = left + Math.floor((right-left)/2);
-        if((nums[mid] < nums[mid+1] && nums[mid] < nums[mid-1])) {
-            return nums[mid];
-        }
-        if(nums[mid] > nums[right]) {
-            left = mid+1;
-        } else {
-            right = mid-1;
-        }
+    while(left < right) {
+        mid = (left + right) >> 1;
+        if(nums[mid] > nums[right]) left = mid+1;
+        else right = mid; //注意这里right = mid，不是right = mid-1,因为有可能就是mid自己
     }
-};
-console.log(findMin([2,1]));
+    return nums[left];
+}
+
+findMin([3,4,5,1,2]);
 ```
+三种情况可以合并，二分一直缩小范围
 
 ### 152. Maximum Product Subarray
 <img src="http://lrun1124.github.io/img/leetcode/152.png" width="500"/>
@@ -1716,43 +1836,12 @@ maxProduct([2,3,-2,4]);
 ```
 DP思想，因为负数相乘可能更大，所以要同时记住最大最小的数
 
-### 167. Two Sum II - Input array is sorted
-
-<img src="http://lrun1124.github.io/img/leetcode/167.png" width="500"/>
-
-```js   
-Input: numbers = [2,7,11,15], target = 9
-Output: [1,2]
-/**
- * @param {number[]} numbers
- * @param {number} target
- * @return {number[]}
- */
-var twoSum = function(numbers, target) {
-    debugger;
-    let left = 0,
-        right = numbers.length - 1,
-        sum;
-    while(left < right) {
-        sum = numbers[left] + numbers[right];
-        if(sum === target) return [++left, ++right];
-        if(sum > target) {
-            right--;
-        } else {
-            left++;
-        }
-    }
-}; 
-twoSum([2,7,11,15],9)
-```
-因为有序，可以用双指针，一头一尾，大了就尾挪动，小了就头动，如果无序，还是用hash
-
 ### 169. Majority Element
 
 <img src="http://lrun1124.github.io/img/leetcode/169.png" width="500"/>
 
 ```js
-先排序，中间肯定是众数
+//先排序，中间肯定是众数
 Input: [3,2,3]
 Output: 3
 /**
@@ -1769,7 +1858,7 @@ majorityElement([3,2,3]);
 解法一：先排序，取中间值
 
 ```js
-摩尔投票
+//摩尔投票
 /**
  * @param {number[]} nums
  * @return {number}
@@ -1793,7 +1882,49 @@ var majorityElement = function(nums) {
 };
 majorityElement([3,2,3]);
 ```
-解法二：摩尔投票，如果碰到相同的就count+1，否则-1，到0换新数字，原理很简单，因为majority num的数目肯定是大于一半以上的，也就是说会有一半以上的人投支持票+1，也就是投反对票-1的人少于一半，那最后剩下的肯定是majority num
+解法二：摩尔投票，如果碰到相同的就count+1，否则-1，到0换新数字，原理很简单，因为majority num的数目肯定是大于一半以上的，也就是说会有一半以上的人投支持票+1，也就是投反对票-1的人少于一半，+1-1抵消，那最后剩下的多的肯定是majority num
+
+### 229.Majority Element II
+
+<img src="http://lrun1124.github.io/img/leetcode/229.png" width="500"/>
+
+```js
+Input: nums = [3,2,3]
+Output: [3]
+
+Input: nums = [1]
+Output: [1]
+
+Input: nums = [1,2]
+Output: [1,2]
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var majorityElement = function(nums) {
+    debugger;
+    let len = nums.length;
+    if(len === 0) return [];
+    nums.sort((a,b)=>{return a-b;});
+    let current,
+        count = 0,
+        target = Math.floor(len/3),
+        res = [];
+    for(let i=0; i<=nums.length; i++) { //<=多执行一遍,结尾的值也要写入结果
+            if(nums[i] === current) {
+            count++;
+        } else {
+            if(count > target) {
+                res.push(current);
+            }
+            current = nums[i];
+            count = 1
+        }
+    }
+    return res;
+};
+majorityElement([3,2,3])
+```
 
 ### 189. Rotate Array
 
@@ -1840,7 +1971,7 @@ var minSubArrayLen = function(s, nums) {
     let start = 0,
         end = 0,
         sum = 0,
-        res = Number.MAX_VALUE;
+        res = nums.length+1; //最长就是nums.length
     while(end < nums.length) {
         sum += nums[end]; //每次向右滑动
         while(sum >= s) { //然后从左开始缩短数组，记录到最短的值
@@ -1850,72 +1981,13 @@ var minSubArrayLen = function(s, nums) {
         }
         end++;
     }
-    return res === Number.MAX_VALUE ? 0 : res;
+    return res === nums.length+1 ? 0 : res;
 };
 minSubArrayLen(3,[2,3,1,2,4,3])
 ```
 
 滑动窗口，双指针
 
-### 216. Combination Sum III
-
-<img src="http://lrun1124.github.io/img/leetcode/216.png" width="500"/>
-
-```js
-Input: k = 3, n = 7
-Output: [[1,2,4]]
-Input: k = 3, n = 9
-Output: [[1,2,6],[1,3,5],[2,3,4]]
-Explanation:
-1 + 2 + 4 = 7
-There are no other valid combinations.
-/**
- * @param {number} k
- * @param {number} n
- * @return {number[][]}
- */
-var combinationSum3 = function(k, n) {
-    var res = [];
-    const dfs = (begin, sum, path) => {
-        //console.log(path);
-        if(path.length === k) {
-            if(sum === 0) {
-                res.push(path.slice(0));
-                return;
-            }
-            if(sum < 0) {
-                return;
-            }
-        }
-        for(let i=begin; i<=9; i++) {
-            path.push(i);
-            dfs(i+1, sum-i, path);
-            path.pop();
-        }
-    }
-    dfs(1,n,[]);
-    return res;
-};
-combinationSum3(3,7)
-```
-combination组合问题就是递归，递归遍历一棵树的模板如下
-
-```js
-begin是开始节点
-sum用于判断递归终止
-path记录路径
-const dfs = (begin, sum, path) => {
-    if(终止条件) {
-        //一些操作，比如push进res
-        return;
-    }
-    for(从begin开始循环) {
-        path.push(当前); //当前入栈
-        dfs(...);
-        path.pop() //上一次return，说明不满足，最后一次结果出栈
-    }
-}
-```
 
 ### 217. Contains Duplicate
 
@@ -1964,7 +2036,7 @@ var containsNearbyDuplicate = function(nums, k) {
 };
 containsNearbyDuplicate([0,1,2,3,4,0,0,7,8,9,10,11,12,0], 1);
 ```
-维护一个set，滑动窗口
+这种判断一个距离内判断的题都是滑动窗口
 
 ### 228. Summary Ranges
 
@@ -1984,7 +2056,7 @@ var summaryRanges = function(nums) {
     let res = [],
         start = 0, //双指针
         end = 0;
-    do {
+    while(end < nums.length) {
         if(nums[end+1]-nums[end] === 1) end++;
         else {
             if(end === start) {
@@ -1995,59 +2067,17 @@ var summaryRanges = function(nums) {
             end++;
             start = end;
         }
-    } while(end < nums.length) //用do-while因为end到末尾后需要再push一次结果
-    return res;
-};
-summaryRanges([0,2,3,4,6,8,9])
-```
-
-### 229.Majority Element II
-
-<img src="http://lrun1124.github.io/img/leetcode/229.png" width="500"/>
-
-```js
-Input: nums = [3,2,3]
-Output: [3]
-
-Input: nums = [1]
-Output: [1]
-
-Input: nums = [1,2]
-Output: [1,2]
-/**
- * @param {number[]} nums
- * @return {number[]}
- */
-var majorityElement = function(nums) {
-    debugger;
-    let len = nums.length;
-    if(len === 0) return [];
-    nums.sort((a,b)=>{return a-b;});
-    let current,
-        count = 0,
-        target = Math.floor(len/3),
-        res = [];
-    for(let i=0; i<=nums.length; i++) { //<=多执行一遍,结尾的值也要写入结果
-            if(nums[i] === current) {
-            count++;
-        } else {
-            if(count > target) {
-                res.push(current);
-            }
-            current = nums[i];
-            count = 1
-        }
     }
     return res;
 };
-majorityElement([3,2,3])
+summaryRanges([0,2,3,4,6,8,9])
 ```
 
 ### 238. Product of Array Except Self
 <img src="http://lrun1124.github.io/img/leetcode/238.png" width="500"/>
 
 ```js
-Input:  [1,2,3,4] [1,2,6]
+Input:  [1,2,3,4] 
 Output: [24,12,8,6]
 /**
  * @param {number[]} nums
@@ -2063,7 +2093,7 @@ var productExceptSelf = function(nums) {
     }
     for(let i=len-1; i>=0; i--) {
         res[i] = res[i] * RightProduct; //nums[i]的结果为它左边总乘，乘右边总乘
-        RightProduct *=nums[i];
+        RightProduct *=nums[i]; //右边总乘用过就改
     }
     return res;
 };
@@ -2083,7 +2113,7 @@ Output: 2
 var missingNumber = function(nums) {
     var sum = nums.length;
     for(let i=0; i<nums.length; i++) {
-        sum = sum + i - nums[i]; 
+        sum += i - nums[i]; 
     }
     return sum;
 };
