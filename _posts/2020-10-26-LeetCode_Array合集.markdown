@@ -2152,8 +2152,7 @@ var moveZeroes = function(nums) {
             left++;
         }
         right++;
-    }‘
-
+    }
 
     for(let i=left; i<nums.length; i++) {
         nums[i] = 0;
@@ -2220,6 +2219,8 @@ var findDuplicate = function(nums) {
 };
 findDuplicate([1,3,4,2,2])
 ```
+将每个节点指针指向val对应的index
+1 -> 3 -> 2 -> 4 -> 2 -> 4
 快慢指针, 快慢指针相遇的地方肯定是环的入口
 
 ### 414. Third Maximum Number
@@ -2292,13 +2293,13 @@ var findDuplicates = function(nums) {
         if(nums[current-1] < 0) {
             res.push(current);
         }
-        nums[current-1] = -nums[current-1]
+        nums[current-1] = -nums[current-1] //因为是[1, n]所以要-1
     }
     return res;
 }
 findDuplicates([4,3,2,7,8,2,3,1]);
 ```
-如果不能用额外空间，因为有[0,n]的范围，讲对应的位置取反，如果当前值已经是负数了，说明之前已经取反了，就证明是重复的数
+如果不能用额外空间，因为有[1,n]的范围，讲对应的位置取反，如果当前值已经是负数了，说明之前已经取反了，就证明是重复的数
 
 ### 448. Find All Numbers Disappeared in an Array
 
@@ -2410,6 +2411,21 @@ Although we have two 1s in the input, we should only return the number of unique
  * @return {number}
  */
 var findPairs = function(nums, k) {
+    let s = new Set(),  //不能一开始就new Set(nums)
+        diff = new Set();
+    for(let i of nums) {
+        if(s.has(i-k)) diff.add(i-k); //记录较小的
+        if(s.has(i+k)) diff.add(i); //记录较小的
+        s.add(i); //一个个加，这样可以处理0的情况
+    }
+    return diff.size;
+}
+findPairs([3,1,4,1,5],2)
+findPairs([1,3,1,5,4],0)
+```
+
+```js
+var findPairs = function(nums, k) {
     let res = 0;
     nums.sort((a,b)=>{return a-b;})
     for(let i=0; i<nums.length; i++) {
@@ -2427,6 +2443,7 @@ var findPairs = function(nums, k) {
 findPairs([1,2,4,4,3,3,0,9,2,3],3)
 ```
 先排序，再根据每个当前值向后遍历，遇到和前一个相同的就跳过，因为排序了所以不会有重复
+
 
 ### 560.Subarray Sum Equals K
 
@@ -2472,7 +2489,7 @@ Output: 24
 Input: nums = [-1,-2,-3]
 Output: -6
 
-[-1,-2,0, 2,3]
+[-1,-2,0,2,3]
 /**
  * @param {number[]} nums
  * @return {number}
@@ -2527,7 +2544,7 @@ findMaxAverage([1,12,-5,-6,50,3],4)
 <img src="http://lrun1124.github.io/img/leetcode/581.png" width="500"/>
 
 ```js
-Input: nums = [2,6,5,4,8,10,9,15] 
+Input: nums = [2,6,4,8,10,9,15] 
 Output: 5
 Explanation: You need to sort [6, 4, 8, 10, 9] in ascending order to make the whole array sorted in ascending order.
 Input: nums = [1,2,3,4] 
@@ -2553,7 +2570,7 @@ var findUnsortedSubarray = function(nums) {
         if(nums[i] > maxVal) maxVal = nums[i];
         if(nums[i] < minVal) minVal = nums[i];
     }
-
+    //注意这里不能直接返回，最大最小值可能在中间
     //从左找到第一个比中间最小值大的数，说明中间最小值应该放在这个数前面，这个点就是左边起点
     for(let i=0; i<left; i++) {
         if(nums[i] > minVal) {left = i; break;}

@@ -14,7 +14,7 @@ tags:
 <img src="http://lrun1124.github.io/img/leetcode/003.png" width="500"/>
 
 ```js
-Input: s = "abcabcbb"  "bacabcbb"
+Input: s = "abcabcbb"
 Output: 3
 Explanation: The answer is "abc", with the length of 3.
 /**
@@ -26,7 +26,7 @@ var lengthOfLongestSubstring = function(s) {
         res = 0,
         left = 0,
         right = 0,
-        hash = {};
+        hash = {}; //用一个hash记录当前已有的值，并在hash里记录每个元素的下标
     while(right < len) {
         let rightChar = s.charAt(right);
         if(hash[rightChar] !== undefined) {
@@ -37,8 +37,8 @@ var lengthOfLongestSubstring = function(s) {
             //更新left到下一个开始
             left = hash[rightChar] + 1;
         }
-        //用一个hash记录当前已有的值，顺便在hash里记录每个元素的index
-        //这里两种情况，如果hash里没有rightChar那么设置进新的index，否则也是要覆盖原有的index，合并为一句
+        //这里两种情况，如果hash里没有rightChar那么设置进新的index，
+        //否则也是要覆盖原有的index，合并为一句
         hash[rightChar] = right;
         res = Math.max(res, right - left + 1);
         //每次right都右移
@@ -49,7 +49,7 @@ var lengthOfLongestSubstring = function(s) {
 lengthOfLongestSubstring("bbbbb");
 lengthOfLongestSubstring("abcabcbb");
 ```
-滑动窗口，用一个hash记录当前已有的值，顺便在hash里记录每个元素的index，根据right的值，移动left
+滑动窗口，用一个hash记录当前已有的值，顺便在hash里记录每个元素的下标，如果发现重复就移动left到前面重复值的后面，每次更新最大窗口长度
 
 ### 5. Longest Palindromic Substring
 
@@ -58,9 +58,10 @@ lengthOfLongestSubstring("abcabcbb");
 ```js
 Input: s = "babad"
 Output: "bab"
+Note: "aba" is also a valid answer.
 Input: s = "cbbd"
 Output: "bb"
-Note: "aba" is also a valid answer.
+
 /**
  * @param {string} s
  * @return {string}
@@ -73,14 +74,10 @@ var longestPalindrome = function(s) {
         left = 0,
         right = 0;
     for(let i=0; i<len; i++) {
-        dp.push(new Array(len));
-    }
-    for(let i=0; i<len; i++) {
-        dp[i][i] = true;
+        dp.push(new Array(len).fill(true));
     }
     for(let j=1; j<len; j++) {
         for(let i=0; i<j; i++) {
-            //如果相同，中间只有一个或没有数，肯定是回文，否则参考dp[i+1][j-1]
             if(s.charAt(i) == s.charAt(j) && ((j-i <= 2) || dp[i+1][j-1])) {
                 dp[i][j] = true;
                 //记录新的最大长度和新的左右标记
@@ -99,13 +96,13 @@ var longestPalindrome = function(s) {
 }
 longestPalindrome("babad")
 ```
-动态规划，dp[i][j]表示从i到j是否是回文串，注意填表顺序要竖着填，因为我们要根据dp[i+1][j-1]的值生产，在表中的偏左偏下一格的位置，比如我们填[0,5]的时候，实际要从[1,4]去取，所以上一次循环要保证[1,4有值]，[1,4]要去[2,3]取，到了[2,3]就根据(j-i <= 2) 这个条件来判断了
+动态规划，dp[i][j]表示从i到j是否是回文串，注意填表顺序要竖着填，因为我们要根据dp[i+1][j-1]的值生产，在表中的偏左偏下一格的位置，也就是要先把左边一列算出来，比如我们填[0,5]的时候，实际要从[1,4]去取，所以上一次循环要保证[1,4]有值，[1,4]要去[2,3]取，到了[2,3]就根据(j-i <= 2) 这个条件来判断了
 
 <img src="http://lrun1124.github.io/img/leetcode/005-1.png" width="500"/>
 
 ### 17. Letter Combinations of a Phone Number
 
-```
+```js
 Input: digits = "23"
 Output: ["ad","ae","af","bd","be","bf","cd","ce","cf"]
 Input: digits = "2"
@@ -294,7 +291,7 @@ var countSubstrings = function(s) {
 };
 countSubstrings("abc")
 ```
-dp[i][j]表示i到j是否是回文串
+dp[i][j]表示i到j是否是回文串，和第5条Longest Palindromic Substring
 
 ### 6. ZigZag Conversion
 
@@ -326,11 +323,32 @@ A     N
  * @param {number} numRows
  * @return {string}
  */
+//优解
+var convert = function(s, numRows) {
+    debugger;
+    if(numRows < 2) return s;
+    let row = 0,
+        flag = -1, //因为一开始就要触发反转，所以先设为-1
+        res = new Array(numRows).fill('');
+    for(let i=0; i<s.length; i++) {
+        res[row] += s[i];
+        if(row === numRows-1 || row === 0) flag = -flag; //顶部和底部时转向
+        row += flag
+    }
+    return res.join("");
+}
+convert("PAYPALISHIRING",3)
+```
+用一个flag来控制上下，到顶部为+1，底部为-1
+
+
+```js
+//原解
 var convert = function(s, numRows) {
     debugger;
     let len = s.length,
         arr = [],
-        col = 0,
+        row = 0,
         flag = true,
         res = "";
     if(numRows === 1) return s;
@@ -338,33 +356,32 @@ var convert = function(s, numRows) {
         arr.push(new Array());
     }
     for(let i=0; i<len; i++) {
-        arr[col].push(s.charAt(i));
+        arr[row].push(s.charAt(i));
         if(flag) { //向下
-            if(col === numRows-1) {
-                col = numRows-2;
-                flag = numRows > 2 ? false : true; //注意这里如果numRows<2, 就完全没有向上的部分
+            if(row === numRows-1) {
+                row = numRows-2;
+                flag = numRows > 2 ? false : true; //注意这里如果numRows<=2, 就完全没有向上的部分
             } else {
-                col++;
+                row++;
             }
         } else { //向上
-            if(col === 1) {
-                col = 0;
+            if(row === 1) {
+                row = 0;
                 flag = true;
             } else {
-                col--;
+                row--;
             }
         }
     }
     for(let i=0; i<numRows; i++) {
-        for(let j=0; j<arr[i].length; j++) {
-            res += arr[i][j];
-        }
+        res += arr[i].join("");
     }
     return res;
 };
-convert("ABCD",2)
+convert("PAYPALISHIRING",3)
 ```
-建立一个二维数组arr，flag来控制向下还是向上，遍历数组向arr里push
+建立一个二维数组arr，flag来控制向下还是向上，遍历数组向arr里的每一行push
+
 
 ### 10. Regular Expression Matching
 
@@ -392,8 +409,9 @@ var isMatch = function(s, p) {
     }
     for(let i=0; i<=sLen; i++) {
         for(let j=0; j<=pLen; j++) {
-            if(p.charAt(j-1) === s.charAt(i-1) || p.charAt(j-1) === ".") dp[i][j] = dp[i-1][j-1];
-            else if (p.charAt(j-1) === "*") {
+            if(p.charAt(j-1) === s.charAt(i-1) || p.charAt(j-1) === ".") {
+                dp[i][j] = dp[i-1][j-1];
+            } else if (p.charAt(j-1) === "*") {
                 if(p.charAt(j-2) === s.charAt(i-1) || p.charAt(j-2) === ".") {
                     dp[i][j] = dp[i-1][j] || dp[i][j-1] || dp[i][j-2];
                 } else {
@@ -415,14 +433,17 @@ DP思想 dp[i][j] 表示前i个数能否匹配前j个pattern, 也就是从[0,i-1
 因为第一行代表了空串去匹配，第一列代表了匹配空的pattern，所以我们需要一个大小为s.length+1和p.length+1的dp数组
 
 当我们要确定dp[i][j]的时候
-如果 p.charAt(j-1) == s.charAt(i-1) : dp[i][j] = dp[i-1][j-1]；//因为p，s是从0开始的
-如果 p.charAt(j-1) == '.' : dp[i][j] = dp[i-1][j-1]；
-如果 p.charAt(j-1) == '*'：
-如果 p.charAt(j-2) != s.charAt(i-1) : dp[i][j] = dp[i][j-2] //in this case, a* only counts as empty
-如果 p.charAt(i-2) == s.charAt(i-1) or p.charAt(i-2) == '.'：
-dp[i][j] = dp[i-1][j] //in this case, a* counts as multiple a    xxxaa xxxa*
-or dp[i][j] = dp[i][j-1] // in this case, a* counts as single a  xxxa xxxa*
-or dp[i][j] = dp[i][j-2] // in this case, a* counts as empty     xxx xxxa*
+1. 如果 p.charAt(j-1) == s.charAt(i-1) : dp[i][j] = dp[i-1][j-1]；//因为p，s是从0开始的
+1. 如果 p.charAt(j-1) == '.' : dp[i][j] = dp[i-1][j-1]；
+1. 如果 p.charAt(j-1) == '*'，分以下情况
+
+1. 如果 p.charAt(i-2) == s.charAt(i-1) or p.charAt(i-2) == '.', 如果*前的相等，或者p前一个为.,满足以下3种都行
+
+1. dp[i][j] = dp[i-1][j] //in this case, a* counts as multiple a    xxxaa xxxa*
+1. or dp[i][j] = dp[i][j-1] // in this case, a* counts as single a  xxxa xxxa*
+1. or dp[i][j] = dp[i][j-2] // in this case, a* counts as empty     xxx xxxa*
+
+1. 否则 dp[i][j] = dp[i][j-2] 如果*前的不相等，那么要看前一个字符
 
 
 ### 28. Implement strStr()
@@ -457,13 +478,17 @@ var strStr = function(haystack, needle) {
 击败99%，再优化用kmp
 
 ### 43. Multiply Strings
-<img src="http://lrun1124.github.io/img/leetcode/043.png" width="500"/>
+```
+Given two non-negative integers num1 and num2 represented as strings, return the product of num1 and num2, also represented as a string.
 
-```js
 Input: num1 = "2", num2 = "3"
 Output: "6"
 Input: num1 = "123", num2 = "456"
 Output: "56088"
+```
+<img src="http://lrun1124.github.io/img/leetcode/043.png" width="500"/>
+
+```js
 /**
  * @param {string} num1
  * @param {string} num2
@@ -1019,3 +1044,66 @@ wordBreak("leetcode",  ["leet","code"]);
 ```
 
 dp思想，判断dp[i], 从0-找一个分隔点j，满足dp[j] = true 并且substring(i, j)这段满足字典
+
+### 399. Evaluate Division
+
+<img src="http://lrun1124.github.io/img/leetcode/399.png" width="500"/>
+
+```js
+Input: equations = [["a","b"],["b","c"],["bc","cd"]], values = [1.5,2.5,5.0], queries = [["a","c"],["c","b"],["bc","cd"],["cd","bc"]]
+Output: [3.75000,0.40000,5.00000,0.20000]
+/**
+ * @param {string[][]} equations
+ * @param {number[]} values
+ * @param {string[][]} queries
+ * @return {number[]}
+ */
+var calcEquation = function(equations, values, queries) {
+    
+};
+```
+
+class UnionFind {
+    constructor (n) {
+        this.parent = new Uint8Array(n)
+        this.weight = new Float32Array(n)
+        while (n--) {
+            this.parent[n] = n //
+            this.weight[n] = 1.0
+        }
+    }
+    union (x, y, value) {
+        const rootX = this.find(x), rootY = this.find(y)
+        if (rootX !== rootY) {
+            this.parent[rootX] = rootY
+            this.weight[rootX] = this.weight[y] * value / this.weight[x]
+        }
+    }
+    find (x) {
+        if (x !== this.parent[x]) {
+            const orginX = this.parent[x]
+            this.parent[x] = this.find(this.parent[x])
+            this.weight[x] *= this.weight[orginX]
+        } 
+        return this.parent[x]
+    }
+    isConnected (x, y) {
+        const rootX = this.find(x), rootY = this.find(y)
+        return rootX !== void 0 && rootX === rootY ? this.weight[x] / this.weight[y] : -1.0
+    }
+}
+
+
+var calcEquation = function(equations, values, queries) {
+    debugger;
+    const unionFind = new UnionFind(values.length << 1), h = new Map
+    for (let i = 0, id = 0; i < values.length; i++) {
+        const x = equations[i][0], y = equations[i][1]
+        if (!Array.from(h.keys()).includes(x)) h.set(x, id++)
+        if (!Array.from(h.keys()).includes(y)) h.set(y, id++)
+        unionFind.union(h.get(x), h.get(y), values[i])
+    }
+    return queries.map(([x, y]) => unionFind.isConnected(h.get(x), h.get(y)))
+};
+
+calcEquation([["a","b"],["b","c"],["bc","cd"]], [1.5,2.5,5.0], [["a","c"],["c","b"],["bc","cd"],["cd","bc"]])
