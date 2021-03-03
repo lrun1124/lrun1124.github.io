@@ -11,7 +11,11 @@ tags:
 
 ### 3. Longest Substring Without Repeating Characters
 
-<img src="http://lrun1124.github.io/img/leetcode/003.png" width="500"/>
+```
+Given a string s, find the length of the longest substring without repeating characters.
+```
+
+滑动窗口, 用一个hash记录当前已有的值，顺便在hash里记录每个元素的下标，如果发现重复就移动left到前面重复值的后面，每次更新最大窗口长度
 
 ```js
 Input: s = "abcabcbb"
@@ -49,19 +53,22 @@ var lengthOfLongestSubstring = function(s) {
 lengthOfLongestSubstring("bbbbb");
 lengthOfLongestSubstring("abcabcbb");
 ```
-滑动窗口，用一个hash记录当前已有的值，顺便在hash里记录每个元素的下标，如果发现重复就移动left到前面重复值的后面，每次更新最大窗口长度
 
 ### 5. Longest Palindromic Substring
 
-<img src="http://lrun1124.github.io/img/leetcode/005.png" width="500"/>
+```
+Given a string s, return the longest palindromic substring in s.
 
-```js
 Input: s = "babad"
 Output: "bab"
 Note: "aba" is also a valid answer.
 Input: s = "cbbd"
 Output: "bb"
+```
 
+dp思想，dp[i][j]表示从i到j是否是回文串，注意填表顺序要竖着填，因为我们要根据dp[i+1][j-1]的值生产，在表中的偏左偏下一格的位置，也就是要先把左边一列算出来，比如我们填[0,5]的时候，实际要从[1,4]去取，所以上一次循环要保证[1,4]有值，[1,4]要去[2,3]取，到了[2,3]就根据(j-i <= 2) 这个条件来判断了
+
+```js
 /**
  * @param {string} s
  * @return {string}
@@ -96,17 +103,25 @@ var longestPalindrome = function(s) {
 }
 longestPalindrome("babad")
 ```
-动态规划，dp[i][j]表示从i到j是否是回文串，注意填表顺序要竖着填，因为我们要根据dp[i+1][j-1]的值生产，在表中的偏左偏下一格的位置，也就是要先把左边一列算出来，比如我们填[0,5]的时候，实际要从[1,4]去取，所以上一次循环要保证[1,4]有值，[1,4]要去[2,3]取，到了[2,3]就根据(j-i <= 2) 这个条件来判断了
 
 <img src="http://lrun1124.github.io/img/leetcode/005-1.png" width="500"/>
 
 ### 17. Letter Combinations of a Phone Number
 
-```js
+```
+Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in any order.
+
+A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
+
 Input: digits = "23"
 Output: ["ad","ae","af","bd","be","bf","cd","ce","cf"]
 Input: digits = "2"
 Output: ["a","b","c"]
+```
+
+DP公式dp[i] = dp[i-1][j] + current[k]
+
+```js
 /**
  * @param {string} digits
  * @return {string[]}
@@ -141,19 +156,23 @@ var letterCombinations = function(digits) {
 };
 letterCombinations("234");
 ```
-DP公式dp[i].push(dp[i-1][j] + current[k])
 
 ### 22. Generate Parentheses
 
-<img src="http://lrun1124.github.io/img/leetcode/022.png" width="500"/>
+```
+Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
 
-```js
 Input: n = 1
 Output: ["()"]
 Input: n = 2   
 Output: ["(())","()()"]
 Input: n = 3   
 Output: ["((()))","(()())","(())()","()(())","()()()"]
+```
+ss
+动态规划，因为左边一定是左括号，所以可以分成这几部分dp[i] = ( + dp[p] + ) + dp[q], 满足p+q=i-1，比如dp[2] = ( + dp[0] + ) + dp[1]和( + dp[1] + ) + dp[0]这两部分，所以我们需要4层循环
+
+```js
 /**
  * @param {number} n
  * @return {string[]}
@@ -179,15 +198,43 @@ var generateParenthesis = function(n) {
 };
 generateParenthesis(2);
 ```
-动态规划，因为左边一定是左括号，所以可以分成这几部分dp[i] = ( + dp[p] + ) + dp[q], 满足p+q=i-1，比如dp[2] = ( + dp[0] + ) + dp[1]和( + dp[1] + ) + dp[0]这两部分，所以我们需要4层循环
 
 ### 49. Group Anagrams
 
-<img src="http://lrun1124.github.io/img/leetcode/049.png" width="500"/>
+```
+Given an array of strings strs, group the anagrams together. You can return the answer in any order.
 
-```js
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
 Input: strs = ["eat","tea","tan","ate","nat","bat"]
 Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+```
+
+先排序再用hash记录，根据排序后新数组和原数组下标一致的特点push进对应的key里，可以一次遍历中完成,
+
+```js
+//更简单的排序写法，实际可以再一遍遍历中完成
+var groupAnagrams = function(strs) {
+    let myStrs = [],
+        res = [],
+        m = new Map();
+    for(let i=0; i<strs.length; i++) {
+        //字符串排序的简便写法
+        let sortStr = strs[i].split('').sort().join('');
+        if(m.has(sortStr)) {
+            m.get(sortStr).push(strs[i]);
+        } else {
+            m.set(sortStr, [strs[i]]);
+        }
+    }
+    //hash写入数组的渐变写法
+    return Array.from(m.values());
+}
+groupAnagrams(["eat","tea","tan","ate","nat","bat"]);
+```
+
+原解
+```js
 /**
  * @param {string[]} strs
  * @return {string[][]}
@@ -230,37 +277,21 @@ var mySort = (str) => {
 }
 groupAnagrams(["eat","tea","tan","ate","nat","bat"]);
 ```
-先排序再用hash记录，根据排序后新数组和原数组下标一致的特点push进对应的key里
-实际可以再一遍遍历中完成, 写法也可以更加简便
-```js
-//更简单的排序写法，实际可以再一遍遍历中完成
-var groupAnagrams = function(strs) {
-    let myStrs = [],
-        res = [],
-        m = new Map();
-    for(let i=0; i<strs.length; i++) {
-        //字符串排序的简便写法
-        let sortStr = strs[i].split('').sort().join('');
-        if(m.has(sortStr)) {
-            m.get(sortStr).push(strs[i]);
-        } else {
-            m.set(sortStr, [strs[i]]);
-        }
-    }
-    //hash写入数组的渐变写法
-    return Array.from(m.values());
-}
-groupAnagrams(["eat","tea","tan","ate","nat","bat"]);
-```
 
 ### 647. Palindromic Substrings
+```
+Given a string, your task is to count how many palindromic substrings in this string.
 
-<img src="http://lrun1124.github.io/img/leetcode/049.png" width="500"/>
+The substrings with different start indexes or end indexes are counted as different substrings even they consist of same characters.
 
-```js
 Input: "abc"
 Output: 3
 Explanation: Three palindromic strings: "a", "b", "c".
+```
+
+dp[i][j]表示i到j是否是回文串，和第5题Longest Palindromic Substring类似
+
+```js
 /**
  * @param {string} s
  * @return {number}
@@ -291,13 +322,11 @@ var countSubstrings = function(s) {
 };
 countSubstrings("abc")
 ```
-dp[i][j]表示i到j是否是回文串，和第5条Longest Palindromic Substring
 
 ### 6. ZigZag Conversion
 
-<img src="http://lrun1124.github.io/img/leetcode/049.png" width="500"/>
-
-```js
+```
+The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
 
 Input: s = "PAYPALISHIRING", numRows = 3
 Output: "PAHNAPLSIIGYIR"
@@ -318,6 +347,11 @@ A   S I
 Y  I  R
 P L   I G
 A     N
+```
+
+遍历字符串，每一行一个字符串，用一个flag来控制上下移动，到顶部为+1，底部为-1
+
+```js
 /**
  * @param {string} s
  * @param {number} numRows
@@ -339,53 +373,45 @@ var convert = function(s, numRows) {
 }
 convert("PAYPALISHIRING",3)
 ```
-用一个flag来控制上下，到顶部为+1，底部为-1
-
-
-```js
-//原解
-var convert = function(s, numRows) {
-    debugger;
-    let len = s.length,
-        arr = [],
-        row = 0,
-        flag = true,
-        res = "";
-    if(numRows === 1) return s;
-    for(let i=0; i<numRows; i++) {
-        arr.push(new Array());
-    }
-    for(let i=0; i<len; i++) {
-        arr[row].push(s.charAt(i));
-        if(flag) { //向下
-            if(row === numRows-1) {
-                row = numRows-2;
-                flag = numRows > 2 ? false : true; //注意这里如果numRows<=2, 就完全没有向上的部分
-            } else {
-                row++;
-            }
-        } else { //向上
-            if(row === 1) {
-                row = 0;
-                flag = true;
-            } else {
-                row--;
-            }
-        }
-    }
-    for(let i=0; i<numRows; i++) {
-        res += arr[i].join("");
-    }
-    return res;
-};
-convert("PAYPALISHIRING",3)
-```
-建立一个二维数组arr，flag来控制向下还是向上，遍历数组向arr里的每一行push
-
 
 ### 10. Regular Expression Matching
+```
+Given an input string (s) and a pattern (p), implement regular expression matching with support for '.' and '*' where: 
 
-<img src="http://lrun1124.github.io/img/leetcode/010.png" width="500"/>
+'.' Matches any single character.​​​​
+'*' Matches zero or more of the preceding element.
+The matching should cover the entire input string (not partial)
+
+Input: s = "aa", p = "a*"
+Output: true
+Explanation: '*' means zero or more of the preceding element, 'a'. Therefore, by repeating 'a' once, it becomes "aa".
+
+Input: s = "ab", p = ".*"
+Output: true
+Explanation: ".*" means "zero or more (*) of any character (.)".
+
+Input: s = "aab", p = "c*a*b"
+Output: true
+Explanation: c can be repeated 0 times, a can be repeated 1 time. Therefore, it matches "aab"..
+```
+
+```
+DP思想 dp[i][j] 表示前i个数能否匹配前j个pattern, 也就是从[0,i-1]的子串能否匹配[0,j-1]的pattern，
+因为第一行代表了空串去匹配，第一列代表了匹配空的pattern，所以我们需要一个大小为s.length+1和p.length+1的dp数组
+
+当我们要确定dp[i][j]的时候
+1. 如果 p.charAt(j-1) == s.charAt(i-1) : dp[i][j] = dp[i-1][j-1]；//因为p，s是从0开始的
+2. 如果 p.charAt(j-1) == '.' : dp[i][j] = dp[i-1][j-1]；
+3. 如果 p.charAt(j-1) == '*'，分以下情况
+
+   a. 如果 p.charAt(i-2) == s.charAt(i-1) or p.charAt(i-2) == '.', 如果*前的相等，或者p前一个为.,满足以下3种都行
+
+     1. dp[i][j] = dp[i-1][j] //in this case, a* counts as multiple a    xxxaa xxxa*
+     2. or dp[i][j] = dp[i][j-1] // in this case, a* counts as single a  xxxa xxxa*
+     3. or dp[i][j] = dp[i][j-2] // in this case, a* counts as empty     xxx xxxa*
+
+   b. 否则 dp[i][j] = dp[i][j-2] 如果*前的不相等，那么要看前一个字符
+```
 
 ```js
 /**
@@ -429,32 +455,21 @@ isMatch("aab", "c*a*b")
 //isMatch("mississippi", "mis*is*p*.")
 ```
 
-DP思想 dp[i][j] 表示前i个数能否匹配前j个pattern, 也就是从[0,i-1]的子串能否匹配[0,j-1]的pattern，
-因为第一行代表了空串去匹配，第一列代表了匹配空的pattern，所以我们需要一个大小为s.length+1和p.length+1的dp数组
-
-当我们要确定dp[i][j]的时候
-1. 如果 p.charAt(j-1) == s.charAt(i-1) : dp[i][j] = dp[i-1][j-1]；//因为p，s是从0开始的
-1. 如果 p.charAt(j-1) == '.' : dp[i][j] = dp[i-1][j-1]；
-1. 如果 p.charAt(j-1) == '*'，分以下情况
-
-1. 如果 p.charAt(i-2) == s.charAt(i-1) or p.charAt(i-2) == '.', 如果*前的相等，或者p前一个为.,满足以下3种都行
-
-1. dp[i][j] = dp[i-1][j] //in this case, a* counts as multiple a    xxxaa xxxa*
-1. or dp[i][j] = dp[i][j-1] // in this case, a* counts as single a  xxxa xxxa*
-1. or dp[i][j] = dp[i][j-2] // in this case, a* counts as empty     xxx xxxa*
-
-1. 否则 dp[i][j] = dp[i][j-2] 如果*前的不相等，那么要看前一个字符
-
-
 ### 28. Implement strStr()
+```
+Implement strStr().
 
-<img src="http://lrun1124.github.io/img/leetcode/028.png" width="500"/>
+Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
 
-```js
-Input: haystack = "hello", needle = "ll"  "lall"
+Input: haystack = "hello", needle = "ll"
 Output: 2
 Input: haystack = "aaaaa", needle = "bba"
 Output: -1
+```
+
+击败99%，再优化用kmp
+
+```js
 /**
  * @param {string} haystack
  * @param {string} needle
@@ -475,7 +490,6 @@ var strStr = function(haystack, needle) {
     return -1; //上面没返回就证明没匹配
 };
 ```
-击败99%，再优化用kmp
 
 ### 43. Multiply Strings
 ```
@@ -486,7 +500,8 @@ Output: "6"
 Input: num1 = "123", num2 = "456"
 Output: "56088"
 ```
-<img src="http://lrun1124.github.io/img/leetcode/043.png" width="500"/>
+
+模拟竖式乘法，关键点num1[i] 和 num2[j] 的乘积对应的就是 res[i+j] 和 res[i+j+1] 这两个位置。
 
 ```js
 /**
@@ -495,7 +510,6 @@ Output: "56088"
  * @return {string}
  */
 var multiply = function(num1, num2) {
-    debugger;
     let num1Len = num1.length,
         num2Len = num2.length, 
         arr = new Array(num1Len + num2Len).fill(0), //两个数相乘，长度只可能为两数长度之和或之和-1
@@ -508,10 +522,9 @@ var multiply = function(num1, num2) {
             arr[i+j] += Math.floor(sum/10); //这里不需要处理超过10的情况是因为，我们是从最低位开始加的，如果超过了10，下一次也会进位上去
         }
     }
-    //console.log(arr);
     let start = 0;
     while(!arr[start] && start < arr.length) start++; //找到第一个非零的位置
-    for(let i=start; i<arr.length; i++) { //因为数组的大小，末尾肯定是个位，必须要处理末尾
+    for(let i=start; i<arr.length; i++) { //因为数组的大小，末尾肯定是个位，无需处理末尾
         res += arr[i];
     } 
     return res === "" ? "0" : res; //注意"0", "0"这种特殊情况，这种情况下arr是[0,0]
@@ -520,16 +533,19 @@ multiply("0", "0")
 //multiply("123", "456")
 ```
 
-模拟竖式乘法，关键点num1[i] 和 num2[j] 的乘积对应的就是 res[i+j] 和 res[i+j+1] 这两个位置。
-
 ### 14. Longest Common Prefix
-<img src="http://lrun1124.github.io/img/leetcode/014.png" width="500"/>
-
-```js
+```
+Write a function to find the longest common prefix string amongst an array of strings.
+If there is no common prefix, return an empty string "".
 Input: strs = ["flower","flow","flight"]
 Output: "fl"
 Input: strs = ["dog","racecar","car"]
 Output: ""
+```
+
+过界或者不匹配就停止
+
+```js
 /**
  * @param {string[]} strs
  * @return {string}
@@ -559,11 +575,18 @@ var longestCommonPrefix = function(strs) {
 longestCommonPrefix(["flower","flow","flight"]);
 ```
 
-过界或者不匹配就停止
-
 ### 20. Valid Parentheses
 
-<img src="http://lrun1124.github.io/img/leetcode/020.png" width="500"/>
+```
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+```
+
+用一个stack，左括号每次进展，每次pop和右括号匹配，最后判断栈是否为空
 
 ```js
 Input: s = "()[]{}"
@@ -575,7 +598,6 @@ Output: false
  * @return {boolean}
  */
 var isValid = function(s) {
-    debugger;
     var stack = [];
     for(let i=0; i<s.length; i++) {
         let current = s.charAt(i);
@@ -596,18 +618,20 @@ var isValid = function(s) {
 };
 ```
 
-用一个stack，左括号每次进展，每次pop和右括号匹配，最后判断栈是否为空
-
 ### 67. Add Binary
+```
+Given two binary strings a and b, return their sum as a binary string.
 
-<img src="http://lrun1124.github.io/img/leetcode/067.png" width="500"/>
-
-
-```js
 Input: a = "11", b = "1"
 Output: "100"
+
 Input: a = "1010", b = "1011"
 Output: "10101"
+```
+
+先补0，再从末尾逐位加，记录进位
+
+```js
 /**
  * @param {string} a
  * @param {string} b
@@ -630,27 +654,22 @@ var addBinary = function(a, b) {
             a = '0' + a;
         }
     }
-    let m=n=a.length-1;
-    while(m>=0 && n>=0) {
-        let sum = Number.parseInt(a.charAt(m)) + Number.parseInt(b.charAt(n)) + plus;
-        if(sum >= 2) plus = 1;
-        else plus = 0;
+    let i=a.length-1; //重新获得长度
+    while(i>=0) {
+        let sum = (+a[i]) + (+b[i]) + plus;
+        plus = sum >= 2 ? 1 : 0;
         res = sum%2 + res;
-        m--;
-        n--;
+        i--;
     }
     return plus === 1 ? ("1" + res) : res; //别忘最后可能进上去的一位
 };
-addBinary("11", "1")
+addBinary("1", "1111")
 ```
-
-先补0再从末尾加
 
 ### 91. Decode Ways
 
-<img src="http://lrun1124.github.io/img/leetcode/091.png" width="500"/>
-
-```js
+```
+A message containing letters from A-Z can be encoded into numbers using the following mapping
 'A' -> 1
 'B' -> 2
 ...
@@ -661,6 +680,12 @@ Explanation: It could be decoded as "AB" (1 2) or "L" (12).
 Input: s = "226"
 Output: 3
 Explanation: It could be decoded as "BZ" (2 26), "VF" (22 6), or "BBF" (2 2 6).
+```
+<img src="http://lrun1124.github.io/img/leetcode/091.png" width="500"/>
+
+这道题虽然容易想到DP, 但是坑很多，要讨论各种情况。
+
+```js
 /**
  * @param {string} s
  * @return {number}
@@ -688,17 +713,23 @@ var numDecodings = function(s) {
     return dp[len];
 };
 ```
-这道题虽然容易想到DP, 但是坑很多，要讨论各种情况。
 
 ### 93. Restore IP Addresses
 
-<img src="http://lrun1124.github.io/img/leetcode/093.png" width="500"/>
+```
+Given a string s containing only digits, return all possible valid IP addresses that can be obtained from s. You can return them in any order.
 
-```js
+A valid IP address consists of exactly four integers, each integer is between 0 and 255, separated by single dots and cannot have leading zeros. For example, "0.1.2.201" and "192.168.1.1" are valid IP addresses and "0.011.255.245", "192.168.1.312" and "192.168@1.1" are invalid IP addresses. 
+
 Input: s = "25525511135"
 Output: ["255.255.11.135","255.255.111.35"]
 Input: s = "101023"
 Output: ["1.0.10.23","1.0.102.3","10.1.0.23","10.10.2.3","101.0.2.3"]
+```
+
+分隔的问题都可以用回溯解决，记住模板
+
+```js
 /**
  * @param {string} s
  * @return {string[]}
@@ -728,18 +759,21 @@ var restoreIpAddresses = function(s) {
 };
 restoreIpAddresses("25525511135");
 ```
-分隔的问题都可以用回溯解决，记住模板
 
 ### 32. Longest Valid Parentheses
 
-<img src="http://lrun1124.github.io/img/leetcode/032.png" width="500"/>
-
+```
+Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring.
 Input: s = "(()"
 Output: 2
 Explanation: The longest valid parentheses substring is "()".
 Input: s = ")()())"
 Output: 4
 Explanation: The longest valid parentheses substring is "()()".
+```
+
+dp[i] 表示以s[i]结尾的最长回文串的长度。这题难就难在各种细节的越界
+
 ```js
 /**
  * @param {string} s
@@ -774,13 +808,12 @@ var longestValidParentheses = function(s) {
 };
 longestValidParentheses("(()())")
 ```
-dp[i] 表示以s[i]结尾的最长回文串的长度。这题难就难在各种细节的越界
 
 ### 13. Roman to Integer
 
 <img src="http://lrun1124.github.io/img/leetcode/013.png" width="500"/>
 
-```js
+```
 Symbol       Value
 I             1
 V             5
@@ -801,6 +834,11 @@ Example 5:
 Input: s = "MCMXCIV"
 Output: 1994
 Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
+```
+
+检测相邻两个数，如果前面的小，就后减前，跳两位，否则加上当前
+
+```js
 /**
  * @param {string} s
  * @return {number}
@@ -819,8 +857,8 @@ var romanToInt = function(s) {
         },
         res = 0;
     for(let i=0; i<len; i++) {
-        let l = m[s[i]];
-        let r = i+1 < len ? m[s[i+1]] : 0; //注意最后一个数i+1=len
+        let l = m[s[i]]; //前数
+        let r = i+1 < len ? m[s[i+1]] : 0; //后数，注意最后一个数i+1=len
         if(l < r) {
             res += r - l;
             i++;
@@ -832,8 +870,6 @@ var romanToInt = function(s) {
 };
 romanToInt("LVIII")
 ```
-
-检测当前和后一个数，如果前面的小，就后减前，跳两位，否则加上当前
 
 ### 12. Integer to Roman
 <img src="http://lrun1124.github.io/img/leetcode/012.png" width="500"/>
@@ -860,6 +896,11 @@ Explanation: L = 50, V = 5, III = 3.
 Input: num = 1994
 Output: "MCMXCIV"
 Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
+```
+
+击败99.7，贪心算法，罗马数字只有三总情况，要么是一个1000数字，'M',要么是9和4，用类似'CM'，要么重复1-3次，如'III'，所以我们可以列出编码组合，从最大到最小，结果逃脱不出这个组合，每次优先用大的，可以用多次，直到用不了了换下一个，其中的每一个元素可能出现[0,3]次
+
+```js
 /**
  * @param {number} num
  * @return {string}
@@ -878,14 +919,18 @@ var intToRoman = function(num) {
 };
 intToRoman(58);
 ```
-击败99.7，贪心算法，罗马数字只有三总情况，要么是一个1000数字，'M',要么是9和4，用类似'CM'，要么重复1-3次，如'III'，所以我们可以列出编码组合，从最大到最小，结果逃脱不出这个组合，其中的每一个元素可能出现[0,3]次
-
 
 ### 72. Edit Distance
 
-<img src="http://lrun1124.github.io/img/leetcode/072.png" width="500"/>
+```
+Given two strings word1 and word2, return the minimum number of operations required to convert word1 to word2.
 
-```js
+You have the following three operations permitted on a word:
+
+Insert a character
+Delete a character
+Replace a character
+
 Input: word1 = "horse", word2 = "ros"
 Output: 3
 Explanation: 
@@ -901,7 +946,23 @@ inention -> enention (replace 'i' with 'e')
 enention -> exention (replace 'n' with 'x')
 exention -> exection (replace 'n' with 'c')
 exection -> execution (insert 'u')
+```
 
+dp[i][j] 代表 word1 到 i 位置转换成 word2 到 j 位置需要最少步数
+
+当 word1[i] == word2[j]，dp[i][j] = dp[i-1][j-1]；
+
+当 word1[i] != word2[j]，dp[i][j] = min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]) + 1
+
+其中，dp[i-1][j-1] 表示替换操作，dp[i-1][j] 多一步删掉word[i]，dp[i][j-1]多一步插入word[j]。
+
+注意，针对第一行，第一列要单独考虑，引入前面的空"",
+
+第一行，是 word1 为空变成 word2 最少步数，就是插入操作
+
+第一列，是 word2 为空，需要的最少步数，就是删除操作
+
+```js
 /**
  * @param {string} word1
  * @param {string} word2
@@ -936,31 +997,24 @@ var minDistance = function(word1, word2) {
 minDistance("horse", "ros")
 //minDistance("intention", "execution")
 ```
-dp[i][j] 代表 word1 到 i 位置转换成 word2 到 j 位置需要最少步数
-
-当 word1[i] == word2[j]，dp[i][j] = dp[i-1][j-1]；
-
-当 word1[i] != word2[j]，dp[i][j] = min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]) + 1
-
-其中，dp[i-1][j-1] 表示替换操作，dp[i-1][j] 表示删除操作，dp[i][j-1] 表示插入操作。
-
-注意，针对第一行，第一列要单独考虑，引入前面的空"",
-
-第一行，是 word1 为空变成 word2 最少步数，就是插入操作
-
-第一列，是 word2 为空，需要的最少步数，就是删除操作
 
 ### 76. Minimum Window Substring
 
-<img src="http://lrun1124.github.io/img/leetcode/076.png" width="500"/>
+```
+Given two strings s and t, return the minimum window in s which will contain all the characters in t. If there is no such window in s that covers all characters in t, return the empty string "".
 
-```js
+Note that If there is such a window, it is guaranteed that there will always be only one unique minimum window in s.
+
 Input: s = "ADOBECODEBANC", t = "ABC"
 Output: "BANC"
 
 Input: s = "a", t = "a"
 Output: "a"
 
+```
+滑动窗口，right右移找到满足条件的子串 -> left右移直到出现缺口 -> right找直到到找到满足条件的子串 -> ...
+
+```js
 /**
  * @param {string} s
  * @param {string} t
@@ -1012,20 +1066,22 @@ minWindow("a","a");
 minWindow("a","aa");
 minWindow("ADOBECODEBANC","ABC");
 ```
-滑动窗口，right右移找到满足条件的子串 -> left右移直到出现缺口 -> right找直到到找到满足条件的子串 -> ...
 
 ### 139. Word Break
 
-<img src="http://lrun1124.github.io/img/leetcode/139.png" width="500"/>
+```
+Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
 
-```js
 Input: s = "applepenapple", wordDict = ["apple", "pen"]
 Output: true
 Input: s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]
 Output: false
+```
 
+dp思想，判断dp[i], 从[0, i]中找一个分隔点j，满足dp[j] = true && substring(j, i)是字典
+
+```js
 var wordBreak = function(s, wordDict) {
-    //debugger;
     let len = s.length,
         set = new Set(wordDict),
         dp = new Array(len+1).fill(false);
@@ -1043,15 +1099,23 @@ var wordBreak = function(s, wordDict) {
 wordBreak("leetcode",  ["leet","code"]);
 ```
 
-dp思想，判断dp[i], 从0-找一个分隔点j，满足dp[j] = true 并且substring(i, j)这段满足字典
 
 ### 399. Evaluate Division
 
-<img src="http://lrun1124.github.io/img/leetcode/399.png" width="500"/>
+```
+You are given an array of variable pairs equations and an array of real numbers values, where equations[i] = [Ai, Bi] and values[i] represent the equation Ai / Bi = values[i]. Each Ai or Bi is a string that represents a single variable.
 
-```js
+You are also given some queries, where queries[j] = [Cj, Dj] represents the jth query where you must find the answer for Cj / Dj = ?.
+
+Return the answers to all queries. If a single answer cannot be determined, return -1.0.
+
+Note: The input is always valid. You may assume that evaluating the queries will not result in division by zero and that there is no contradiction.
+
 Input: equations = [["a","b"],["b","c"],["bc","cd"]], values = [1.5,2.5,5.0], queries = [["a","c"],["c","b"],["bc","cd"],["cd","bc"]]
 Output: [3.75000,0.40000,5.00000,0.20000]
+```
+
+```js
 /**
  * @param {string[][]} equations
  * @param {number[]} values
