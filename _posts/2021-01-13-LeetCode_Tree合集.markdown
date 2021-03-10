@@ -11,22 +11,13 @@ tags:
 
 ### 94. Binary Tree Inorder Traversal
 
-<img src="http://lrun1124.github.io/img/leetcode/094.png" width="500"/>
+```
+Given the root of a binary tree, return the inorder traversal of its nodes' values.
+```
+
+递归，中序自带递归属性 
 
 ```js
-/**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
- */
-/**
- * @param {TreeNode} root
- * @return {number[]}
- */
- //递归，中序自带递归属性 
 var inorderTraversal = function(root) {
     var res = [];
     var inorder = (root) => {
@@ -38,8 +29,11 @@ var inorderTraversal = function(root) {
     inorder(root);
     return res;
 };
+```
 
-//迭代，显式地将递归栈模拟出来
+迭代，显式地将递归栈模拟出来
+
+```js
 var inorderTraversal = function(root) {
     var res = [],
         s = [];
@@ -54,8 +48,12 @@ var inorderTraversal = function(root) {
     }
     return res;
 };
+```
 
-//标记法，正常中序中，非根节点第一次访问会入栈，第二次访问才输出值。这里是第一次访问时就把值顺便入栈了，所以碰到值就意味着访问过了，直接输出
+标记法，正常中序中，非根节点第一次访问会入栈，第二次访问才输出值。这里是第一次访问时就把值顺便入栈了，所以碰到值就意味着访问过了，直接输出
+
+```js
+
 var inorderTraversal = function(root) {
     let s = [root], res = [];
     while(s.length > 0) {
@@ -69,6 +67,15 @@ var inorderTraversal = function(root) {
     }
     return res;
 }
+```
+
+```
+morris遍历，空间复杂度O(1)
+
+1. 碰到没有left的就直接插入当前，然后访问right
+2. 找到left的前驱节点（最右节点），如果前驱没right，链接到当前，继续left，如果前驱有right，插入，断链，直接通过right回去
+
+其实整个过程我们就多做一步：假设当前遍历到的节点为 x，将 x 的左子树中最右边的节点的右孩子指向 x，这样在左子树遍历完成后我们通过这个指向走回了 x，且能通过这个指向知晓我们已经遍历完成了左子树，而不用再通过栈来维护，省去了栈的空间复杂度。
 
     1
    / \
@@ -80,7 +87,10 @@ var inorderTraversal = function(root) {
 3. root 为 3, 无left, 插入[3], 回到2
 4. root 为 2, 有left,  mostRight为3，mostRight右孩子不为空，插入[3,2],断开，root->root.right
 5. root 为 4, 无left, 回到4.right->1, 回到1
-//morris遍历
+
+```
+
+```js
 var inorderTraversal = function(root) {
     const res = [];
     let mostRight = null; 
@@ -108,16 +118,26 @@ var inorderTraversal = function(root) {
     return res;
 };
 ```
-1. 碰到没有left的就直接插入当前，然后访问right
-1. 找到left的前驱节点（最右节点），如果前驱没right，链接到当前，继续left，如果前驱有right，插入，断链，直接通过right回去
-
-其实整个过程我们就多做一步：假设当前遍历到的节点为 x，将 x 的左子树中最右边的节点的右孩子指向 x，这样在左子树遍历完成后我们通过这个指向走回了 x，且能通过这个指向知晓我们已经遍历完成了左子树，而不用再通过栈来维护，省去了栈的空间复杂度。
 
 ### 96. Unique Binary Search Trees
 
+```
+Given an integer n, return the number of structurally unique BST's (binary search trees) which has exactly n nodes of unique values from 1 to n.
+
+Input: n = 3
+Output: 5
+
+Input: n = 1
+Output: 1
+```
+
 <img src="http://lrun1124.github.io/img/leetcode/096.png" width="500"/>
 
-```js
+dp思想
+
+```
+每个节点轮流做根节点，左侧总数 * 右侧总数
+
 F(i,n) = G(i-1) * G(n-i) //以i为根节点长度为n的组合
 G(n) = F(1, n) + F(2, n) + ... + F(n,n)
 
@@ -126,7 +146,9 @@ G(2) = G(0) * G(1) + G(1) * G(0)
 
 G(3) = F(1,3) + F(2,3) + F(3,3)
 G(3) = G(0) * G(2) + G(1) * G(1) + G(2) * G(0)
+```
 
+```js
 //根据上面的dp公式写
 var numTrees = function(n) {
     let dp = new Array(n+1).fill(0);
@@ -140,11 +162,22 @@ var numTrees = function(n) {
 }
 numTrees(3)
 ```
-每个节点轮流做根节点，左侧总数 * 右侧总数
 
 ### 98. Validate Binary Search Tree
 
+```
+Given the root of a binary tree, determine if it is a valid binary search tree (BST).
+
+A valid BST is defined as follows:
+
+The left subtree of a node contains only nodes with keys less than the node's key.
+The right subtree of a node contains only nodes with keys greater than the node's key.
+Both the left and right subtrees must also be binary search trees.
+```
+
 <img src="http://lrun1124.github.io/img/leetcode/098.png" width="500"/>
+
+中序遍历就是，左中右，所以BST的中序遍历必然满足增序，用pre记录前一个值，每次比较，一旦当前小于或等于pre就不满足
 
 ```js
 /**
@@ -187,44 +220,51 @@ var isValidBST = function(root) {
     return res;
 };
 ```
-中序遍历就是，左中右，所以BST的中序遍历必然满足增序，用pre记录前一个值，每次比较，一旦当前小于或等于pre就不满足
 
 ### 101. Symmetric Tree
+
+```
+Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).
+```
 
 <img src="http://lrun1124.github.io/img/leetcode/101.png" width="500"/>
 <img src="http://lrun1124.github.io/img/leetcode/101_1.png" width="500"/>
 
+该问题可以转化为：两个树在什么情况下互为镜像？
+
+如果同时满足下面的条件，两个树互为镜像：
+
+1. 判断两个指针当前节点值是否相等
+1. 判断 A 的右子树与 B 的左子树是否对称
+1. 判断 A 的左子树与 B 的右子树是否对称
+
 ```js
-递归结束条件：
-都为空指针则返回 true, 只有一个为空则返回 false
-
-递归过程：
-判断两个指针当前节点值是否相等
-判断 A 的右子树与 B 的左子树是否对称
-判断 A 的左子树与 B 的右子树是否对称
-
 /**
  * @param {TreeNode} root
  * @return {boolean}
  */
 var isSymmetric = function(root) {
     var check = (p, q) => {
-        if(!p && !q) return true;
-        if(!p || !q) return false;
-        return p.val === q.val ? check(p.left, q.right) && check(p.right, q.left): false;
+        if(!p && !q) return true; //都为空指针则返回 true,
+        if(!p || !q) return false; // 只有一个为空则返回 false
+        return p.val === q.val ? check(p.left, q.right) && check(p.right, q.left) : false;
     }
     return check(root, root);
 };
 ```
 
-因此，该问题可以转化为：两个树在什么情况下互为镜像？
-
-如果同时满足下面的条件，两个树互为镜像：
-
-它们的两个根结点具有相同的值
-每个树的右子树都与另一个树的左子树镜像对称
-
 ### 102. Binary Tree Level Order Traversal
+
+```
+Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
+
+Input: root = [1]
+Output: [[1]]
+Example 3:
+
+Input: root = []
+Output: []
+```
 
 <img src="http://lrun1124.github.io/img/leetcode/102.png" width="500"/>
 
@@ -264,7 +304,11 @@ var levelOrder = function(root) {
 
 ### 104. Maximum Depth of Binary Tree
 
-<img src="http://lrun1124.github.io/img/leetcode/104.png" width="500"/>
+```
+Given the root of a binary tree, return its maximum depth.
+
+A binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+```
 
 ```js
 //利用广度优先遍历，记录层数
@@ -292,40 +336,33 @@ var maxDepth = function(root) {
 ```
 
 ### 105. Construct Binary Tree from Preorder and Inorder Traversal
-<img src="http://lrun1124.github.io/img/leetcode/105.png" width="500"/>
 
-```js
-/**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
- */
-/**
- * @param {number[]} preorder
- * @param {number[]} inorder
- * @return {TreeNode}
- */
+```
+Given two integer arrays preorder and inorder where preorder is the preorder traversal of a binary tree and inorder is the inorder traversal of the same tree, construct and return the binary tree.
+```
+
+```
+先序遍历的顺序是根节点，左子树，右子树。中序遍历的顺序是左子树，根节点，右子树。
+
+所以我们只需要根据先序遍历得到根节点，然后在中序遍历中找到根节点的位置，它的左边就是左子树的节点，右边就是右子树的节点。
 
 preorder = [3,9,20,15,7]
 inorder =  [9,3,15,20,7]
 
 preorder = [3,9,20,15,7]
 inorder = [9,3,15,20,7]
-首先根据 preorder 找到根节点是 3
-    
-然后根据根节点将 inorder 分成左子树和右子树
+
+首先根据 preorder 找到根节点是 3, 然后根据3将 inorder 分成左子树和右子树
 左子树 inorder [9] 右子树 inorder [15,20,7]
 
-再划分，问题成两个问题
-左子树preorder[9] inorder [9]
-
-右子树preorder[20 15 7] inorder [15,20,7]
+再划分，问题成两个子问题:
+1. 左子树preorder[9] inorder [9]
+2. 右子树preorder[20 15 7] inorder [15,20,7]
 
 重复上边的步骤继续划分，直到 preorder 和 inorder 都为空，返回 null 即可
+```
 
+```js
 var buildTree = function(preorder, inorder) {
     var len = preorder.length,
         hashMap = {};
@@ -336,7 +373,7 @@ var buildTree = function(preorder, inorder) {
     }
     var builder = (preorder_left, preorder_right, inorder_left, inorder_right) => {
         //preorder_left - preorder_right ： 前序的数组下标
-        //inorder_left -  inorder_right ： 后续的数组下标
+        //inorder_left -  inorder_right ： 后序的数组下标
         if(preorder_left > preorder_right) {
             return null; //叶子节点
         }
@@ -354,18 +391,20 @@ var buildTree = function(preorder, inorder) {
 
 console.log(buildTree([3,9,20,15,7], [9,3,15,20,7]));
 ```
-先序遍历的顺序是根节点，左子树，右子树。中序遍历的顺序是左子树，根节点，右子树。
-
-所以我们只需要根据先序遍历得到根节点，然后在中序遍历中找到根节点的位置，它的左边就是左子树的节点，右边就是右子树的节点。
 
 ### 106. Construct Binary Tree from Inorder and Postorder Traversal
 
-<img src="http://lrun1124.github.io/img/leetcode/106.png" width="500"/>
+```
+Given two integer arrays inorder and postorder where inorder is the inorder traversal of a binary tree and postorder is the postorder traversal of the same tree, construct and return the binary tree.
+
+Input: inorder = [9,3,15,20,7], postorder = [9,15,7,20,3]
+Output: [3,9,20,null,null,15,7]
+
+```
+
+关键还是找到根节点，观察规律，后序从后向前就是根节点的位置，所以对中序迭代就好
 
 ```js
-inorder = [9,3,15,20,7]
-postorder = [9,15,7,20,3]
-
 var buildTree = function(inorder, postorder) {
     debugger;
     var len = inorder.length;
@@ -394,60 +433,16 @@ var buildTree = function(inorder, postorder) {
 console.log(buildTree([9,3,15,20,7], [9,15,7,20,3]));
 ```
 
-观察规律，后续从后向前就是根节点的位置，所以对中序迭代就好
-
 ### 114. Flatten Binary Tree to Linked List
 
-<img src="http://lrun1124.github.io/img/leetcode/114.png" width="500"/>
+```
+Given the root of a binary tree, flatten the tree into a "linked list":
+
+The "linked list" should use the same TreeNode class where the right child pointer points to the next node in the list and the left child pointer is always null.
+The "linked list" should be in the same order as a pre-order traversal of the binary tree.
+```
 
 ```js
-//解法1:先序递归
-var flatten = function(root) {
-    let arr = [];
-    //先序递归
-    const preorder = (root) => {
-        if(!root) return;
-        arr.push(root);
-        preorder(root.left);
-        preorder(root.right);
-    }
-    preorder(root);
-    let len = arr.length;
-    if(len === 0) return null;
-    for(let i=0; i<len; i++) {
-        let cur = arr[i];
-        cur.left = null;
-        cur.right = i === (len-1) ? null : arr[i+1];
-    }
-}
-
-//解法2:先序迭代
-var flatten = function(root) {
-    let arr = [];
-    //先序迭代
-    const preorder = function(root) {
-        var s = [];
-        while(root || s.length > 0) {
-            while(root) {
-                arr.push(root);
-                s.push(root);
-                root = root.left;
-            }
-            root = s.pop();
-            root = root.right;
-        }
-    };
-    preorder(root);
-    let len = arr.length;
-    if(len === 0) return null;
-    for(let i=0; i<len; i++) {
-        let cur = arr[i];
-        cur.left = null;
-        cur.right = i === (len-1) ? null : arr[i+1];
-    }
-}
-
-
     1
    / \
   2   5
@@ -523,10 +518,73 @@ var flatten = function(root) {
 }
 ```
 
+```js
+//解法1:先序递归
+var flatten = function(root) {
+    let arr = [];
+    //先序递归
+    const preorder = (root) => {
+        if(!root) return;
+        arr.push(root);
+        preorder(root.left);
+        preorder(root.right);
+    }
+    preorder(root);
+    let len = arr.length;
+    if(len === 0) return null;
+    for(let i=0; i<len; i++) {
+        let cur = arr[i];
+        cur.left = null;
+        cur.right = i === (len-1) ? null : arr[i+1];
+    }
+}
+
+//解法2:先序迭代
+var flatten = function(root) {
+    let arr = [];
+    //先序迭代
+    const preorder = function(root) {
+        var s = [];
+        while(root || s.length > 0) {
+            while(root) {
+                arr.push(root);
+                s.push(root);
+                root = root.left;
+            }
+            root = s.pop();
+            root = root.right;
+        }
+    };
+    preorder(root);
+    let len = arr.length;
+    if(len === 0) return null;
+    for(let i=0; i<len; i++) {
+        let cur = arr[i];
+        cur.left = null;
+        cur.right = i === (len-1) ? null : arr[i+1];
+    }
+}
+```
+
 ### 226. Invert Binary Tree
 
-<img src="http://lrun1124.github.io/img/leetcode/226.png" width="500"/>
+```
+Invert a binary tree.
+Input:
 
+     4
+   /   \
+  2     7
+ / \   / \
+1   3 6   9
+Output:
+
+     4
+   /   \
+  7     2
+ / \   / \
+9   6 3   1
+```
 
 ```js
 
@@ -560,7 +618,24 @@ var invertTree = function(root) {
 
 ### 236. Lowest Common Ancestor of a Binary Tree
 
+```
+Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
+
+According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself).”
+```
+
 <img src="http://lrun1124.github.io/img/leetcode/236.png" width="500"/>
+
+ lowestCommonAncestor这个函数不要理解为找公共祖先，而就理解为帮两个节点找祖先 传入的值是root, p, q，帮p和q找到一个祖先就行，找到两个就更好了，如果找不到就返回NULL 在root->left里面找一次，root->right里面再找一次，如果某一边返回值是NULL， 那么说明两个值都在另一边 由于找的时候，一定是找的最近的祖先返回，所以这里直接返回前面的返回值就行了，可以保证是最近的公共祖先 如果左右的返回值都不是NULL，那说明p和q分别在两边，则当前节点就是最近公共祖先 左右都找不到就直接返回NULL
+
+```
+ (1） 如果当前结点 root 等于 NULL，则直接返回 NULL
+（2） 如果 root 等于 p 或者 q ，那这棵树一定返回 p 或者 q
+（3） 然后递归左右子树，因为是递归，使用函数后可认为左右子树已经算出结果，用 leftleft 和 rightright 表示
+（4） 此时若leftleft为空，那最终结果只要看 rightright；若 rightright 为空，那最终结果只要看 leftleft
+（5） 如果 leftleft 和 rightright 都非空，因为只给了 pp 和 qq 两个结点，都非空，说明一边一个，因此 rootroot 是他们的最近公共祖先
+（6） 如果 leftleft 和 rightright 都为空，则返回空（其实已经包含在前面的情况中了）
+```
 
 ```js
 var lowestCommonAncestor = function(root, p, q) {
@@ -572,22 +647,15 @@ var lowestCommonAncestor = function(root, p, q) {
     if(left && right) return root; //左右都找到了，就说明一边一个
     return null; //两边都找不到
 };
-
- lowestCommonAncestor这个函数不要理解为找公共祖先，而就理解为帮两个节点找祖先 传入的值是root, p, q，帮p和q找到一个祖先就行，找到两个就更好了，如果找不到就返回NULL 在root->left里面找一次，root->right里面再找一次，如果某一边返回值是NULL， 那么说明两个值都在另一边 由于找的时候，一定是找的最近的祖先返回，所以这里直接返回前面的返回值就行了，可以保证是最近的公共祖先 如果左右的返回值都不是NULL，那说明p和q分别在两边，则当前节点就是最近公共祖先 左右都找不到就直接返回NULL
-
- (1） 如果当前结点 root 等于 NULL，则直接返回 NULL
-（2） 如果 root 等于 p 或者 q ，那这棵树一定返回 p 或者 q
-（3） 然后递归左右子树，因为是递归，使用函数后可认为左右子树已经算出结果，用 leftleft 和 rightright 表示
-（4） 此时若leftleft为空，那最终结果只要看 rightright；若 rightright 为空，那最终结果只要看 leftleft
-（5） 如果 leftleft 和 rightright 都非空，因为只给了 pp 和 qq 两个结点，都非空，说明一边一个，因此 rootroot 是他们的最近公共祖先
-（6） 如果 leftleft 和 rightright 都为空，则返回空（其实已经包含在前面的情况中了）
 ```
 
 ### 337. House Robber III
 
-<img src="http://lrun1124.github.io/img/leetcode/337.png" width="500"/>
+```
+The thief has found himself a new place for his thievery again. There is only one entrance to this area, called the "root." Besides the root, each house has one and only one parent house. After a tour, the smart thief realized that "all houses in this place forms a binary tree". It will automatically contact the police if two directly-linked houses were broken into on the same night.
 
-```js
+Determine the maximum amount of money the thief can rob tonight without alerting the police.
+
 输入: [3,2,3,null,3,null,1]
 
      3
@@ -597,8 +665,15 @@ var lowestCommonAncestor = function(root, p, q) {
  1   3   1
           \
           10
+```
 
+这道题实际上是求，不相邻情况下，加权最大值，dp思想，check表示选中，uncheck表示不选中
+```
+check[root] = uncheck[root.left] + uncheck[root.right]
+uncheck[root] = Math.max(check[root.left], unckeck[root.left]) + Math.max(check[root.right], uncheck[root.right]);
+```
 
+```js
 var rob = function(root) {
     var check = new Map(), //要用map，对象结果不对
         uncheck = new Map();
@@ -618,19 +693,20 @@ var rob = function(root) {
     return Math.max(check.get(root) || 0, uncheck.get(root) || 0);
 };
 ```
-这道题实际上是求，不相邻情况下，加权最大值，dp思想
-check表示选中，uncheck表示不选中
-root选中，check[root] = uncheck[root.left] + uncheck[root.right]
-root不选，uncheck[root] = Math.max(check[root.left], unckeck[root.left]) + Math.max(check[root.right], uncheck[root.right]);
-
 
 ### 437. Path Sum III
 
-<img src="http://lrun1124.github.io/img/leetcode/437.png" width="500"/>
+```
+You are given a binary tree in which each node contains an integer value.
 
+Find the number of paths that sum to a given value.
 
-```js
+The path does not need to start or end at the root or a leaf, but it must go downwards (traveling only from parent nodes to child nodes).
+
+The tree has no more than 1,000 nodes and the values are in the range -1,000,000 to 1,000,000.
+
 root = [10,5,-3,3,2,null,11,3,-2,null,1], sum = 8
+output: 3
 
       10
      /  \
@@ -643,12 +719,25 @@ root = [10,5,-3,3,2,null,11,3,-2,null,1], sum = 8
 1.  5 -> 3
 2.  5 -> 2 -> 1
 3. -3 -> 11
-/**
- * @param {TreeNode} root
- * @param {number} sum
- * @return {number}
- */
-//用sumlist记录了从当前节点往回走的各个长度的路径的和，并且因为是递归，在返回上一层时，sumlist又变回了与根节点相对应的sumlist
+```
+
+双递归，以每个节点为根节点，都算一遍路径和为sum的有几条，然后加起来
+
+```js
+var pathSum = function(root, sum) {
+    if(!root) return 0;
+    var dfs = (root, sum) => {
+        if(!root) return 0;
+        sum -= root.val;
+        return (sum === 0 ? 1 : 0) + dfs(root.left, sum) + dfs(root.right, sum)
+    }
+    return dfs(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
+}
+```
+
+用sumlist记录了从当前节点往回走的各个长度的路径的和，并且因为是递归，在返回上一层时，sumlist又变回了与根节点相对应的sumlist
+
+```js
 var pathSum = function(root, sum) {
     var dfs = (root, list) => {
         if(!root) return 0;
@@ -662,29 +751,29 @@ var pathSum = function(root, sum) {
     }
     return dfs(root, []);
 };
-
-//双递归，以每个节点为根节点，都算一遍路径和为sum的有几条，然后加起来
-var pathSum = function(root, sum) {
-    if(!root) return 0;
-    var dfs = (root, sum) => {
-        if(!root) return 0;
-        sum -= root.val;
-        return (sum === 0 ? 1 : 0) + dfs(root.left, sum) + dfs(root.right, sum)
-    }
-    return dfs(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
-}
 ```
 
 ### 538. Convert BST to Greater Tree
 
-<img src="http://lrun1124.github.io/img/leetcode/538.png" width="500"/>
+```
+Given the root of a Binary Search Tree (BST), convert it to a Greater Tree such that every key of the original BST is changed to the original key plus sum of all keys greater than the original key in BST.
 
+As a reminder, a binary search tree is a tree that satisfies these constraints:
+
+The left subtree of a node contains only nodes with keys less than the node's key.
+The right subtree of a node contains only nodes with keys greater than the node's key.
+Both the left and right subtrees must also be binary search trees.
+```
+
+Input: root = [4,1,6,0,2,5,7,null,null,null,3,null,null,null,8]
+Output: [30,36,21,36,35,26,15,null,null,null,33,null,null,null,8]
+
+其实就是从右边累加到左边，中序遍历是左中右，所以用逆向中序，用sum记录累加
 ```js
 /**
  * @param {TreeNode} root
  * @return {TreeNode}
  */
- //逆向中序
 var convertBST = function(root) {
     var sum = 0;
     var dfs = (root) => {
@@ -701,13 +790,19 @@ var convertBST = function(root) {
 
 ### 543. Diameter of Binary Tree
 
+```
+Given the root of a binary tree, return the length of the diameter of the tree.
+
+The diameter of a binary tree is the length of the longest path between any two nodes in a tree. This path may or may not pass through the root.
+
+The length of a path between two nodes is represented by the number of edges between them.
+```
+
 <img src="http://lrun1124.github.io/img/leetcode/543.png" width="500"/>
 
+计算每个节点的节点深度，也就是当前节点到叶子节点的距离，叶子节点为1，左右加起来最大的就是最长的路径
+
 ```js
-/**
- * @param {TreeNode} root
- * @return {number}
- */
 var diameterOfBinaryTree = function(root) {
     var max = 0;
     var dfs = (root) => {
@@ -721,15 +816,19 @@ var diameterOfBinaryTree = function(root) {
     return max;
 };
 ```
-节点深度：当前节点到跟子节点的距离，叶子节点为1
 
 
 ### 617. Merge Two Binary Trees
 
-<img src="http://lrun1124.github.io/img/leetcode/617.png" width="500"/>
+```
+You are given two binary trees root1 and root2.
 
-```js
-Input: 
+Imagine that when you put one of them to cover the other, some nodes of the two trees are overlapped while the others are not. You need to merge the two trees into a new binary tree. The merge rule is that if two nodes overlap, then sum node values up as the new value of the merged node. Otherwise, the NOT null node will be used as the node of the new tree.
+
+Return the merged tree.
+
+Note: The merging process must start from the root nodes of both trees.
+
 	Tree 1                     Tree 2                  
           1                         2                             
          / \                       / \                            
@@ -738,6 +837,13 @@ Input:
       5                             4   7      
 
 
+Input: root1 = [1,3,2,5], root2 = [2,1,3,null,4,null,7]
+Output: [3,4,5,5,4,null,7]
+```
+
+不改变原本的树，用new的节点
+
+```js
 var mergeTrees = function(t1, t2) {
     if(!t1) return t2; //如果t1为空，就t2接上去
     if(!t2) return t1; //如果t2为空，就t1接上去
@@ -747,4 +853,3 @@ var mergeTrees = function(t1, t2) {
     return node;
 };
 ```
-不改变原本的树，用new的节点

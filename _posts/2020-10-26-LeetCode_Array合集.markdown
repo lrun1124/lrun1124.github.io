@@ -2589,3 +2589,374 @@ findUnsortedSubarray([2,6,4,8,10,9,15]);
 
 把数组分成，[左边递增) + [中间乱序] + (右边递增]，满足左边都比中间最小值小，右边都比中间最大值大，注意中间乱序需要包括两个边界，不然处理不了右边比左边都小的情况，比如[2,6,4,8,10,0,1]
 
+### 46. Permutations
+
+```
+Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.
+
+Input: nums = [1,2,3]
+Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+[
+    [[1]],
+    [[1,2][2,1]],
+    [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+]
+```
+
+dp思想, dp[i]用nums[i]在dp[i-1]里插空
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var permute = function(nums) {
+    //debugger;
+    let len = nums.length,
+        dp = new Array(nums.length);
+    if(len === 0) return [];
+    for(let i=0; i<len; i++) {
+        dp[i] = new Array();
+    }
+    dp[0].push([nums[0]]);
+    for(let i=1; i<len; i++) {
+        let pre = dp[i-1];
+        for(let j=0; j<pre.length; j++) {
+            let cur = pre[j];
+            for(let k=0; k<cur.length+1; k++) {
+                let tmp = cur.slice();
+                tmp.splice(k, 0, nums[i]);
+                dp[i].push(tmp);
+            }
+        }
+    }
+    return dp[len-1];
+};
+permute([1,2,3]);
+```
+
+### 221. Maximal Square
+
+```
+Given an m x n binary matrix filled with 0's and 1's, find the largest square containing only 1's and return its area.
+```
+
+<img src="http://lrun1124.github.io/img/leetcode/208.png" width="500"/>
+
+主要是把dp理解为以i，j为右下角的正方形，而不是i,j之内最大的，这样比较（i,j）相邻的三个点，最小的一个补上一层
+
+为什么选最小的，是因为我们要在此基础上加一行一列，那么最小的就意味着能包含在两个点的正方形之内
+
+dp[i][j] = Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) + 1
+
+```js
+var maximalSquare = function(matrix) {
+    debugger;
+    let row = matrix.length,
+        col = matrix[0].length,
+        dp = new Array(row),
+        max = 0;
+    if(row === 0 || col === 0) return 0;
+    for(let i=0; i<row; i++) {
+        dp[i] = new Array(col);
+    }
+    for(let i=0; i<row; i++) {
+        for(let j=0; j<col; j++) {
+            if(matrix[i][j] === '0' ) {
+                dp[i][j] = 0;
+                continue;
+            }
+            if(i===0 || j===0) {
+                dp[i][j] = 1; 
+            } else {
+                dp[i][j] = Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) + 1;
+            }
+            max = Math.max(dp[i][j], max);
+        }
+    }
+    return max * max;
+};
+var matrix = [["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","0","1","0"]];
+maximalSquare(matrix)
+```
+
+
+### 322. Coin Change
+
+```
+You are given coins of different denominations and a total amount of money amount. Write a function to compute the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.
+
+You may assume that you have an infinite number of each kind of coin.
+
+Input: coins = [1,2,5], amount = 11
+Output: 3
+
+Explanation: 11 = 5 + 5 + 1
+Input: coins = [2], amount = 3
+Output: -1
+```
+
+DP公式
+```
+F(11) = Math.min(F(11-1) + F(11-2) + F(11-5)) + 1
+      = Math.min(F(10) + F(9) + F(6)) + 1
+      = Math.min(F(10-1) + F(10-2) + F(10-5) + F(9-1) + F(9-2) + F(9-5)) + 1
+      ...
+```
+
+```js
+//自底向上
+var coinChange = function(coins, amount) {
+    debugger;
+    let len = coins.length,
+        dp = new Array(amount+1).fill(amount+1); //设为amount+1用来处理无法组成的情况
+    dp[0] = 0;
+    for(let i=1; i<=amount; i++) {
+        for(let j=0; j<len; j++) {
+            if(i-coins[j] >=0) {
+                dp[i] = Math.min(dp[i], dp[i-coins[j]]+1);
+            }
+        }
+    }
+    return dp[amount] > amount ? -1 : dp[amount];
+}
+coinChange([1,2,5],11)
+```
+
+### 198. House Robber
+
+```
+You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.
+
+Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.
+
+Input: nums = [1,2,3,1]
+Output: 4
+Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).
+             Total amount you can rob = 1 + 3 = 4.
+Input: nums = [2,7,9,3,1]
+Output: 12
+Explanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (money = 1).
+             Total amount you can rob = 2 + 9 + 1 = 12.
+```
+
+DP公式, 每个点分为选和不选
+```
+selected[i] = unselected[i-1] + x;
+unselected[i] = Math.max(selected[i-1], unselected[i-1])
+```
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var rob = function(nums) {
+    let len = nums.length,
+        selected = new Array(len+1).fill(0),
+        unselected = new Array(len+1).fill(0);
+    for(let i=1; i<=len; i++) {
+        selected[i] = unselected[i-1] + nums[i-1];
+        unselected[i] = Math.max(selected[i-1], unselected[i-1]); //这里容易错，因为前面可选可不选
+    }
+    return Math.max(selected[len], unselected[len]);
+};
+rob([2,1,1,2])
+```
+
+### 200. Number of Islands
+
+```
+Given an m x n 2d grid map of '1's (land) and '0's (water), return the number of islands.
+
+An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+
+Input: grid = [
+  ["1","1","1","1","0"],
+  ["1","1","0","1","0"],
+  ["1","1","0","0","0"],
+  ["0","0","0","0","0"]
+]
+Output: 1
+
+Input: grid = [
+  ["1","1","0","0","0"],
+  ["1","1","0","0","0"],
+  ["0","0","1","0","0"],
+  ["0","0","0","1","1"]
+]
+Output: 3
+```
+
+dfs解决岛屿问题
+
+```js
+/**
+ * @param {character[][]} grid
+ * @return {number}
+ */
+var numIslands = function(grid) {
+    let rows = grid.length,
+        cols = grid[0].length,
+        res = 0;
+    const inArea = (r, c) => {
+        return r>=0 && r<rows && c>=0 && c<cols;
+    }
+    const dfs = (r, c) => {
+        if(!inArea(r,c) || grid[r][c] !== '1') return;
+        grid[r][c] = '2'; //标记访问过了
+        dfs(r-1, c);
+        dfs(r+1, c);
+        dfs(r, c-1);
+        dfs(r, c+1);
+    }
+    for(let i=0; i<rows; i++) {
+        for(let j=0; j<cols; j++) {
+            if(grid[i][j] === '1') {
+                res++;
+                dfs(i, j); //用dfs找到所有边界，并标记为'2'，这样后面就不会重复
+            }
+        }
+    }
+    return res;
+};
+
+var island = [
+  ["1","1","0","0","0"],
+  ["1","1","0","0","0"],
+  ["0","0","1","0","0"],
+  ["0","0","0","1","1"]
+];
+numIslands(island);
+```
+
+### 463. Island Perimeter
+
+```
+You are given row x col grid representing a map where grid[i][j] = 1 represents land and grid[i][j] = 0 represents water.
+
+Grid cells are connected horizontally/vertically (not diagonally). The grid is completely surrounded by water, and there is exactly one island (i.e., one or more connected land cells).
+
+The island doesn't have "lakes", meaning the water inside isn't connected to the water around the island. One cell is a square with side length 1. The grid is rectangular, width and height don't exceed 100. Determine the perimeter of the island.
+
+Input: grid = [
+    [0,1,0,0],
+    [1,1,1,0],
+    [0,1,0,0],
+    [1,1,0,0]
+]
+Output: 16
+Explanation: The perimeter is the 16 yellow stripes in the image above.
+```
+
+dfs岛屿周长，分情况判断
+
+```js
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+var islandPerimeter = function(grid) {
+    let rows = grid.length,
+        cols = grid[0].length,
+        res = 0;
+    if(rows === 0 && cols === 0) return 0;
+    const inArea = (r, c) => {
+        return r>=0 && r<rows && c>=0 && c<cols; 
+    }
+    const dfs = (r, c) => {
+        if(!inArea(r,c) || grid[r][c] == 0) { //到达边缘或海洋时周长加1
+            res++; 
+            return;
+        }
+        if(grid[r][c] == 2) { //到达已经遍历过得点周长不加
+            return;
+        }
+        grid[r][c] = 2;
+        dfs(r-1, c);
+        dfs(r+1, c);
+        dfs(r, c-1);
+        dfs(r, c+1);
+    }
+    for(let i=0; i<rows; i++) {
+        for(let j=0; j<cols; j++) {
+            if(grid[i][j] === 1) dfs(i, j);
+        }
+    }
+    return res;
+};
+
+var grid = [
+    [0,1,0,0],
+    [1,1,1,0],
+    [0,1,0,0],
+    [1,1,0,0]
+];
+islandPerimeter(grid);
+```
+
+### 695. Max Area of Island
+
+```
+Given a non-empty 2D array grid of 0's and 1's, an island is a group of 1's (representing land) connected 4-directionally (horizontal or vertical.) You may assume all four edges of the grid are surrounded by water.
+
+Find the maximum area of an island in the given 2D array. (If there is no island, the maximum area is 0.)
+
+Example 1:
+[[0,0,1,0,0,0,0,1,0,0,0,0,0],
+ [0,0,0,0,0,0,0,1,1,1,0,0,0],
+ [0,1,1,0,1,0,0,0,0,0,0,0,0],
+ [0,1,0,0,1,1,0,0,1,0,1,0,0],
+ [0,1,0,0,1,1,0,0,1,1,1,0,0],
+ [0,0,0,0,0,0,0,0,0,0,1,0,0],
+ [0,0,0,0,0,0,0,1,1,1,0,0,0],
+ [0,0,0,0,0,0,0,1,1,0,0,0,0]]
+Given the above grid, return 6. Note the answer is not 11, because the island must be connected 4-directionally.
+```
+
+<img src="http://lrun1124.github.io/img/leetcode/695.png" width="500"/>
+
+```js
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+var maxAreaOfIsland = function(grid) {
+    let rows = grid.length,
+        cols = grid[0].length,
+        maxArea = 0,
+        curArea = 0;
+    if(rows === 0 && cols === 0) return 0;
+    const inArea = (r, c) => {
+        return r>=0 && r<rows && c>=0 && c<cols; 
+    }
+    const dfs = (r, c) => {
+        if(!inArea(r,c) || grid[r][c] !== 1) return;
+        curArea++;
+        grid[r][c] = 2;
+        dfs(r-1, c);
+        dfs(r+1, c);
+        dfs(r, c-1);
+        dfs(r, c+1);
+    }
+    for(let i=0; i<rows; i++) {
+        for(let j=0; j<cols; j++) {
+            if(grid[i][j] === 1) {
+                curArea = 0;
+                dfs(i, j);
+                maxArea = Math.max(curArea, maxArea);
+            }
+        }
+    }
+    return maxArea;
+};
+var grid = [[0,0,1,0,0,0,0,1,0,0,0,0,0],
+ [0,0,0,0,0,0,0,1,1,1,0,0,0],
+ [0,1,1,0,1,0,0,0,0,0,0,0,0],
+ [0,1,0,0,1,1,0,0,1,0,1,0,0],
+ [0,1,0,0,1,1,0,0,1,1,1,0,0],
+ [0,0,0,0,0,0,0,0,0,0,1,0,0],
+ [0,0,0,0,0,0,0,1,1,1,0,0,0],
+ [0,0,0,0,0,0,0,1,1,0,0,0,0]];
+maxAreaOfIsland(grid);
+```
