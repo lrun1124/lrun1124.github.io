@@ -2960,3 +2960,200 @@ var grid = [[0,0,1,0,0,0,0,1,0,0,0,0,0],
  [0,0,0,0,0,0,0,1,1,0,0,0,0]];
 maxAreaOfIsland(grid);
 ```
+
+### 347. Top K Frequent Elements
+
+```
+Given a non-empty array of integers, return the k most frequent elements.
+
+Input: nums = [1,1,1,2,2,3], k = 2
+Output: [1,2]
+Input: nums = [1], k = 1
+Output: [1]
+```
+
+用一个hash记录次数，数组排序
+
+满足题目条件 O(nlogn)的解法要用一个小顶堆，维护前k大的元素（js里堆实现复杂）
+
+```js
+var topKFrequent = function(nums, k) {
+    debugger;
+    let m = new Map(),
+        len = nums.length;
+    for(let i=0; i<len; i++) {
+        m.set(nums[i], m.get(nums[i]) === undefined ? 1 : m.get(nums[i]) + 1); //注意这里是判断undefined，有可能是0
+    }
+    if(m.size <= k) return [...new Set(nums)]; //特殊处理
+    let array = [];
+    for(let [key, val] of m) {
+        array.push([key, val]);
+    }
+    array.sort((a,b) => b[1]-a[1]); 
+    let res = [];
+    for(let i=0; i<k; i++) {
+        res.push(array[i][0]);
+    }
+    return res;
+};
+topKFrequent([3,0,1,0],1)
+```
+
+### 406. Queue Reconstruction by Height
+```
+You are given an array of people, people, which are the attributes of some people in a queue (not necessarily in order). Each people[i] = [hi, ki] represents the ith person of height hi with exactly ki other people in front who have a height greater than or equal to hi.
+
+Reconstruct and return the queue that is represented by the input array people. The returned queue should be formatted as an array queue, where queue[j] = [hj, kj] is the attributes of the jth person in the queue (queue[0] is the person at the front of the queue).
+
+Input: people = [[7,0],[4,4],[7,1],[5,0],[6,1],[5,2]]
+Output: [[5,0],[7,0],[5,2],[6,1],[4,4],[7,1]]
+```
+
+<img src="http://lrun1124.github.io/img/leetcode/406.png" width="500"/>
+
+留空位思想：按身高把比当前矮的人先安排了，那么留出比当前高的人的空位，就能确定当前位置
+
+```js
+/**
+ * @param {number[][]} people
+ * @return {number[][]}
+ */
+var reconstructQueue = function(people) {
+    debugger;
+    let len = people.length,
+        res = new Array(len);
+    if(len === 0) return [];
+    people.sort((a,b) => a[0] === b[0] ? b[1] - a[1] : a[0] - b[0]); //对于身高相同的[7,1][7,0]，要先安排[7,1]为前面的[7，0]留出位置
+    for(let i=0; i<len; i++) {
+        let emptyPos = people[i][1] + 1; //这里多一个位置，以[4,4]，留出4个位置，自己在第5个
+        for(let j=0; j<len; j++) {
+            if(res[j] === undefined) { //数空的位置
+                emptyPos--; //留出emptyPos个空位
+                if(emptyPos === 0) {
+                    res[j] = people[i];  //空位留好了，当前位置找到了
+                    break;
+                }
+            }
+        }
+    }
+    return res;
+};
+reconstructQueue([[7,0],[4,4],[7,1],[5,0],[6,1],[5,2]]);
+```
+
+### 416. Partition Equal Subset Sum
+
+```
+Given a non-empty array nums containing only positive integers, find if the array can be partitioned into two subsets such that the sum of elements in both subsets is equal.
+
+Input: nums = [1,5,11,5]
+Output: true
+Explanation: The array can be partitioned as [1, 5, 5] and [11].
+
+Input: nums = [1,2,3,5]
+Output: false
+Explanation: The array cannot be partitioned into equal sum subsets.
+```
+
+这个题可以转化为，能否在nums找到一个子集的和为总和的一半，0，1背包， dp[i][j]表示[0, i - 1]内是否有等于j的
+
+1. 不选择 nums[i]，如果在 [0, i - 1] 这个子区间内已经有一部分元素，使得它们的和为 j ，那么 dp[i][j] = true；
+1. 选择 nums[i]，如果在 [0, i - 1] 这个子区间内就得找到一部分元素，使得它们的和为 j - nums[i]
+
+dp[i][j] = dp[i - 1][j] || dp[i - 1][j - nums[i]]
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var canPartition = function(nums) {
+    debugger;
+    let len = nums.length,
+        sum = 0;
+    for(let i=0; i<len; i++) {
+        sum+=nums[i];
+    }
+    if(sum & 1 === 1) return false; //如果和是奇数，那肯定找不到
+    let target = sum >> 1,
+        dp = new Array(len);
+    for(let i=0; i<len; i++) {
+        dp[i] = new Array(target+1).fill(false);
+    }
+    // 先填表格第 0 行，第 1 个数只能让容积为它自己的背包恰好装满
+    if (nums[0] <= target) {
+        dp[0][nums[0]] = true;
+    }
+    for(let i=1; i<len; i++) {
+        for(let j=0; j<=target; j++) {
+            if(j<nums[i]) { //说明用不到当前值，看前面的
+                dp[i][j] = dp[i-1][j];
+            } else if (j===nums[i]) { //直接等于就为true
+                dp[i][j] = true;
+            } else {
+                dp[i][j] = dp[i-1][j] || dp[i-1][j-nums[i]]; //不用当前，直接用前面的，或者用当前，就看前面能不能组成target减去当前值
+            }
+        }
+    }
+    return dp[len-1][target];
+};
+canPartition([1,2,5])
+```
+
+### 494. Target Sum
+
+```
+You are given a list of non-negative integers, a1, a2, ..., an, and a target, S. Now you have 2 symbols + and -. For each integer, you should choose one from + and - as its new symbol.
+
+Find out how many ways to assign symbols to make sum of integers equal to target S.
+
+Input: nums is [1, 1, 1, 1, 1], S is 3. 
+Output: 5
+Explanation: 
+
+-1+1+1+1+1 = 3
++1-1+1+1+1 = 3
++1+1-1+1+1 = 3
++1+1+1-1+1 = 3
++1+1+1+1-1 = 3
+```
+
+dp[i][j]表示前i个数和为j有多少种，dp公式，注意nums[0]为0时的初始化问题            
+
+dp[i][j] = dp[i-1][Math.abs(j-nums[i])] + dp[i-1][Math.abs(j+nums[i])];
+
+
+```js
+There are 5 ways to assign symbols to make the sum of nums be target 3.
+/**
+ * @param {number[]} nums
+ * @param {number} S
+ * @return {number}
+ */
+var findTargetSumWays = function(nums, S) {
+    debugger;
+    let len = nums.length,
+        dp = new Array(len),
+        sum = 0,
+    S = Math.abs(S); //-S和+S的结果是相同的
+    for(let i=0; i<len; i++) {
+        sum += nums[i];
+    }
+    if(S > sum) return 0; //边界条件
+    sum <<= 1; //取二倍的，本质在于下一层始终依赖上一层，j+nums[i]会过界
+    for(let i=0; i<len; i++) {
+        dp[i] = new Array(sum+1).fill(0);
+    }
+    dp[0][nums[0]] = nums[0] === 0 ? 2 : 1;//这是个坑，初始为0的时候
+    for(let i=1; i<len; i++) {
+        for(let j=0; j<=sum; j++) {
+            dp[i][j] = dp[i-1][Math.abs(j-nums[i])] + dp[i-1][Math.abs(j+nums[i])];
+        }
+    }
+    return dp[len-1][S];
+};
+//findTargetSumWays([7,9,3,8,0,2,4,8,3,9],0)
+findTargetSumWays([1,1,1,1,1],-3)
+//findTargetSumWays([0,0,0,0,0,0,0,0,1],1)
+//findTargetSumWays([1000],-1000)
+```

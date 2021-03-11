@@ -225,312 +225,36 @@ class Trie {
 }
 ```
 
-### 347. Top K Frequent Elements
-
-```
-Given a non-empty array of integers, return the k most frequent elements.
-
-Input: nums = [1,1,1,2,2,3], k = 2
-Output: [1,2]
-Input: nums = [1], k = 1
-Output: [1]
-```
-
-用一个hash记录次数，数组排序
-
-满足题目条件 O(nlogn)的解法要用一个小顶堆，维护前k大的元素（js里堆实现复杂）
-
-```js
-var topKFrequent = function(nums, k) {
-    debugger;
-    let m = new Map(),
-        len = nums.length;
-    for(let i=0; i<len; i++) {
-        m.set(nums[i], m.get(nums[i]) === undefined ? 1 : m.get(nums[i]) + 1); //注意这里是判断undefined，有可能是0
-    }
-    if(m.size <= k) return [...new Set(nums)]; //特殊处理
-    let array = [];
-    for(let [key, val] of m) {
-        array.push([key, val]);
-    }
-    array.sort((a,b) => b[1]-a[1]); 
-    let res = [];
-    for(let i=0; i<k; i++) {
-        res.push(array[i][0]);
-    }
-    return res;
-};
-topKFrequent([3,0,1,0],1)
-```
-
-### 394. Top K Frequent Elements
-
-<img src="http://lrun1124.github.io/img/leetcode/394.png" width="500"/>
-
-<img src="http://lrun1124.github.io/img/leetcode/394_1.png" width="500"/>
-
-```js
-Input: s = "3[a]2[bc]"
-Output: "aaabcbc"
-Input: s = "2[abc]3[cd]ef"
-Output: "abcabccdcdcdef"
-var decodeString = function(s) {
-    debugger;
-    let len = s.length,
-        repeat = 0,
-        res = "",
-        numStack = [],
-        resStack = [];
-    if(len === 0) return "";
-    for(let i=0; i<len; i++) {
-        if(s[i] >= '0' && s[i] <= '9') { //用于后续倍数计算；
-            repeat = repeat * 10 + (s[i] - '0');  //可能为多位数
-        } else if (s[i] === '[') { 
-            numStack.push(repeat);//记录此 [ 前的片段和需要重复几次入栈，用于 ] 时的拼接操作
-            resStack.push(res);
-            res = ""; //清空片段和重复次数
-            repeat = 0;
-        } else if(s[i] === ']') {
-            let tmp = resStack.pop(); //上个 [ 到当前 [ 的片段，例如 "3[a2[c]]" 中的 a；
-            let num = numStack.pop(); // 上个片段重复次数
-            for(let i=0; i<num; i++) tmp += res; //注意tmp在前, 这时候res分别为'c'，'acc'
-            res = tmp;
-        } else {
-            res += s[i]; //当 c 为字母时，在 res 尾部添加 c；
-        }
-        console.log(s[i] + ' :numStack: ' + numStack + "   resStack:" + resStack + "   res:" + res + " repect:" + repeat);
-    }
-    return res;
-};
-decodeString("3[a2[c]]")
-```
-
-### 406. Queue Reconstruction by Height
-
-<img src="http://lrun1124.github.io/img/leetcode/406.png" width="500"/>
-
-```js
-Input: people = [[7,0],[4,4],[7,1],[5,0],[6,1],[5,2]]
-Output: [[5,0],[7,0],[5,2],[6,1],[4,4],[7,1]]
-/**
- * @param {number[][]} people
- * @return {number[][]}
- */
-var reconstructQueue = function(people) {
-    debugger;
-    let len = people.length,
-        res = new Array(len);
-    if(len === 0) return [];
-    people.sort((a,b) => a[0] === b[0] ? b[1] - a[1] : a[0] - b[0]); //对于身高相同的[7,1][7,0]，要先安排[7,1]为前面的[7，0]留出位置
-    for(let i=0; i<len; i++) {
-        let emptyPos = people[i][1] + 1; //这里多一个位置，以[4,4]，留出4个位置，自己在第5个
-        for(let j=0; j<len; j++) {
-            if(res[j] === undefined) {
-                emptyPos--; //留出emptyPos个空位
-                if(emptyPos === 0) {
-                    res[j] = people[i];  //空位留好了，当前位置找到了
-                    break;
-                }
-            }
-        }
-    }
-    return res;
-};
-reconstructQueue([[7,0],[4,4],[7,1],[5,0],[6,1],[5,2]]);
-```
-留空位思想：把比当前矮的人先安排了，那么留出比当前高的人的位置，就能确定当前位置
-
-
-### 416. Partition Equal Subset Sum
-
-<img src="http://lrun1124.github.io/img/leetcode/416.png" width="500"/>
-
-```js
-Input: nums = [1,5,11,5]
-Output: true
-Explanation: The array can be partitioned as [1, 5, 5] and [11].
-Input: nums = [1,2,3,5]
-Output: false
-Explanation: The array cannot be partitioned into equal sum subsets.
-/**
- * @param {number[]} nums
- * @return {boolean}
- */
-var canPartition = function(nums) {
-    debugger;
-    let len = nums.length,
-        sum = 0;
-    for(let i=0; i<len; i++) {
-        sum+=nums[i];
-    }
-    if(sum & 1 === 1) return false;
-    let target = sum >> 1,
-        dp = new Array(len);
-    //dp[0] = new Array(target+1).fill(true);
-    for(let i=0; i<len; i++) {
-        dp[i] = new Array(target+1).fill(false);
-    }
-    // 先填表格第 0 行，第 1 个数只能让容积为它自己的背包恰好装满
-    if (nums[0] <= target) {
-        dp[0][nums[0]] = true;
-    }
-    
-    for(let i=1; i<len; i++) {
-        for(let j=0; j<=target; j++) {
-            if(j<nums[i]) { //说明用不到当前值，看前面的
-                dp[i][j] = dp[i-1][j];
-            } else if (j===nums[i]) { //直接等于就为true
-                dp[i][j] = true;
-            } else {
-                dp[i][j] = dp[i-1][j] || dp[i-1][j-nums[i]]; //不用当前，直接用前面的，或者用当前，就看前面能不能组成target减去当前值
-            }
-        }
-    }
-    console.log(dp);
-    return dp[len-1][target];
-};
-canPartition([1,2,5])
-```
-
-0，1背包
-不选择 nums[i]，如果在 [0, i - 1] 这个子区间内已经有一部分元素，使得它们的和为 j ，那么 dp[i][j] = true；
-选择 nums[i]，如果在 [0, i - 1] 这个子区间内就得找到一部分元素，使得它们的和为 j - nums[i]
-
-dp[i][j] = dp[i - 1][j] or dp[i - 1][j - nums[i]]
-
-### 438. Find All Anagrams in a String
-
-<img src="http://lrun1124.github.io/img/leetcode/438.png" width="500"/>
-
-```js
-
-Input:
-s: "cbaebabacd" p: "abc"
-Output:
-[0, 6]
-Explanation:
-The substring with start index = 0 is "cba", which is an anagram of "abc".
-The substring with start index = 6 is "bac", which is an anagram of "abc".
-/**
- * @param {string} s
- * @param {string} p
- * @return {number[]}
- */
-var findAnagrams = function(s, p) {
-    let len = p.length,
-        count =  left = right = 0, //count表示窗口里有多少个值匹配的上p里的值
-        mapA = {}, //记录p需要的值和次数
-        mapB = {}, //记录滑动窗口信息
-        res = [];
-    for(let i=0; i<p.length; i++) { 
-        if(mapA[p[i]] === undefined) mapA[p[i]] = 1;
-        else mapA[p[i]] = mapA[p[i]]+1;
-    }
-    var moveLeft = () => { //左移函数
-        mapB[s[left]]--; //把窗口里的值减掉，这里不用判断，因为能进窗口一定是在p里的
-        left++;
-        count--; 
-    };
-    while(right < s.length) {
-        let cur = s[right];
-        if(mapA[cur] === undefined) { //碰到不在p里的重置
-            mapB = new Object();
-            count = 0;
-            right++;
-            left = right;
-            continue;
-        }
-        if(mapB[cur] === undefined) { //窗口里没有，写入
-            mapB[cur] = 1;
-            count++;
-        } else { //窗口里有的话，先写入再判断是否溢出
-            mapB[cur]++;
-            count++;
-            if(mapB[cur] > mapA[cur]){ //如果溢出
-                //这时要左移去掉一个cur，移动左侧到和cur相同的值
-                while(s[left] !== cur) {
-                    moveLeft();
-                }
-                //left移动到这个值后面
-                moveLeft();
-            }
-        }
-        if(count === len) {
-            res.push(left);
-            moveLeft();
-        }
-        right++;
-    }
-    return res;
-};
-//findAnagrams("abaacbabc", "abc")
-findAnagrams("cbaebabacd", "abc")
-```
-
-
-### 494. Target Sum
-
-<img src="http://lrun1124.github.io/img/leetcode/494.png" width="500"/>
-
-```js
-Input: nums is [1, 1, 1, 1, 1], S is 3. 
-Output: 5
-Explanation: 
-
--1+1+1+1+1 = 3
-+1-1+1+1+1 = 3
-+1+1-1+1+1 = 3
-+1+1+1-1+1 = 3
-+1+1+1+1-1 = 3
-
-There are 5 ways to assign symbols to make the sum of nums be target 3.
-/**
- * @param {number[]} nums
- * @param {number} S
- * @return {number}
- */
-var findTargetSumWays = function(nums, S) {
-    debugger;
-    let len = nums.length,
-        dp = new Array(len),
-        sum = 0,
-    S = Math.abs(S); //-S和+S的结果是相同的
-    for(let i=0; i<len; i++) {
-        sum += nums[i];
-    }
-    if(S > sum) return 0; //边界条件
-    sum <<= 1; //取二倍的，本质在于下一层始终依赖上一层，j+nums[i]会过界
-    for(let i=0; i<len; i++) {
-        dp[i] = new Array(sum+1).fill(0);
-    }
-    dp[0][nums[0]] = nums[0] === 0? 2 : 1;//这是个坑，初始为0的时候
-    for(let i=1; i<len; i++) {
-        for(let j=0; j<=sum; j++) {
-            dp[i][j] = dp[i-1][Math.abs(j-nums[i])] + dp[i-1][Math.abs(j+nums[i])];
-        }
-    }
-    return dp[len-1][S];
-};
-//findTargetSumWays([7,9,3,8,0,2,4,8,3,9],0)
-findTargetSumWays([1,1,1,1,1],-3)
-//findTargetSumWays([0,0,0,0,0,0,0,0,1],1)
-//findTargetSumWays([1000],-1000)
-```
-
 ### 621. Task Scheduler
 
-<img src="http://lrun1124.github.io/img/leetcode/621.png" width="500"/>
+```
+Given a characters array tasks, representing the tasks a CPU needs to do, where each letter represents a different task. Tasks could be done in any order. Each task is done in one unit of time. For each unit of time, the CPU could complete either one task or just be idle.
 
-```js
+However, there is a non-negative integer n that represents the cooldown period between two same tasks (the same letter in the array), that is that there must be at least n units of time between any two same tasks.
+
+Return the least number of units of times that the CPU will take to finish all the given tasks.
+
 Input: tasks = ["A","A","A","B","B","B"], n = 2
 Output: 8
 Explanation: 
 A -> B -> idle -> A -> B -> idle -> A -> B
+
 Input: tasks = ["A","A","A","A","A","A","B","C","D","E","F","G"], n = 2
 Output: 16
 Explanation: 
 One possible solution is
 A -> B -> C -> A -> D -> E -> A -> F -> G -> A -> idle -> idle -> A -> idle -> idle -> A
+```
+
+找出最多数量maxCount的任务，每一个建立一个size为n+1的桶，这时候有两种情况：
+
+1. 其他任务全部能填进去，那么总时间就为: 每个桶的长度(n+1) * 桶的数量(maxCount-1) + 1  + 同样有最大数量的其他任务数(maxType-1)
+1. 其他任务不能完全填进去，那么可以增长桶的长度，这时无论插入多少任务，因为桶的长度可以无限增加，所以总是能填的进去，这些多的任务足以填充所有空值的位子，相当于其他任务够多，让maxCount的任务有足够时间间隔，所以最终结果就等于task的数量
+
+如果有idle时间的，情况1肯定大于等于情况2，如果不需要idle时间，情况1肯定小于等于情况2，所以取最大值
+
+
+```js
 /**
  * @param {character[]} tasks
  * @param {number} n
@@ -553,18 +277,24 @@ var leastInterval = function(tasks, n) {
     for(let key in map) {
         if(map[key] === maxCount) maxType++; 
     }
-    return Math.max(len, (maxCount-1)*(n+1)+1+(maxType-1));
+    return Math.max((maxCount-1)*(n+1)+1+(maxType-1), len);
 };
 leastInterval(["A","A","A","B","B","B"],2)
 ```
-找出最多数量的任务，每一个建立一个size为n+1的桶，这时候有两种情况：
-1. 其他任务全部能填进去，那么总时间就位，每个桶的长度(n+1) * 桶的数量(maxCount-1) + 1  + 同样有最大数量的其他任务数(maxType-1)
-1. 其他任务不能完全填进去，那么增长桶的长度，这时无论插入多少任务，因为桶的长度可以无限增加，所以总是能填的进去，因为这些多的任务足以填充所有空值的位子，所以最终结果就等于task的数量
 
 ### 739. Daily Temperatures
 
-```js
+```
+Given a list of daily temperatures T, return a list such that, for each day in the input, tells you how many days you would have to wait until a warmer temperature. If there is no future day for which this is possible, put 0 instead.
+
 For example, given the list of temperatures T = [73, 74, 75, 71, 69, 72, 76, 73], your output should be [1, 1, 4, 2, 1, 1, 0, 0].
+
+Note: The length of temperatures will be in the range [1, 30000]. Each temperature will be an integer in the range [30, 100].
+```
+
+维护一个递减栈，如果比栈顶小就持续入栈，入栈时把index也入栈了，方便计算距离，那么如果碰到比栈顶的大，这个值一定是第一个比栈顶大的值，计算距离后出栈，持续出栈到栈顶值更大，计算每一个的距离
+
+```js
 /**
  * @param {number[]} T
  * @return {number[]}
@@ -586,4 +316,3 @@ var dailyTemperatures = function(T) {
 dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73])
 ```
 
-维护一个递减栈，如果小就持续入栈，那么如果碰到比栈顶的大，这个值一定是第一个比栈顶大的值，计算距离后出栈，直到出栈到栈顶值更大，把这个值压入

@@ -543,8 +543,23 @@ Input: strs = ["dog","racecar","car"]
 Output: ""
 ```
 
-过界或者不匹配就停止
+直接对str排序，然后比较头尾
 
+```js
+var longestCommonPrefix = function(strs) {
+    let len = strs.length,
+        res = "";
+    strs.sort();
+    for(let i=0; i < strs[0].length; i++) {
+        if(strs[0][i] === strs[len-1][i]) res+=strs[0][i];
+        else break;
+    }
+    return res;
+}
+longestCommonPrefix(["flower","flow","flight"]);
+```
+
+双循环解法，从第一个str开始，后面过界或者不匹配就停止
 ```js
 /**
  * @param {string[]} strs
@@ -1099,75 +1114,126 @@ var wordBreak = function(s, wordDict) {
 wordBreak("leetcode",  ["leet","code"]);
 ```
 
-
-### 399. Evaluate Division
+### 394. Decode String
 
 ```
-You are given an array of variable pairs equations and an array of real numbers values, where equations[i] = [Ai, Bi] and values[i] represent the equation Ai / Bi = values[i]. Each Ai or Bi is a string that represents a single variable.
+Given an encoded string, return its decoded string.
 
-You are also given some queries, where queries[j] = [Cj, Dj] represents the jth query where you must find the answer for Cj / Dj = ?.
+The encoding rule is: k[encoded_string], where the encoded_string inside the square brackets is being repeated exactly k times. Note that k is guaranteed to be a positive integer.
 
-Return the answers to all queries. If a single answer cannot be determined, return -1.0.
+You may assume that the input string is always valid; No extra white spaces, square brackets are well-formed, etc.
 
-Note: The input is always valid. You may assume that evaluating the queries will not result in division by zero and that there is no contradiction.
-
-Input: equations = [["a","b"],["b","c"],["bc","cd"]], values = [1.5,2.5,5.0], queries = [["a","c"],["c","b"],["bc","cd"],["cd","bc"]]
-Output: [3.75000,0.40000,5.00000,0.20000]
+Furthermore, you may assume that the original data does not contain any digits and that digits are only for those repeat numbers, k. For example, there won't be input like 3a or 2[4]
 ```
+
+<img src="http://lrun1124.github.io/img/leetcode/394.png" width="500"/>
+
+<img src="http://lrun1124.github.io/img/leetcode/394_1.png" width="500"/>
 
 ```js
-/**
- * @param {string[][]} equations
- * @param {number[]} values
- * @param {string[][]} queries
- * @return {number[]}
- */
-var calcEquation = function(equations, values, queries) {
-    
+Input: s = "3[a]2[bc]"
+Output: "aaabcbc"
+Input: s = "2[abc]3[cd]ef"
+Output: "abcabccdcdcdef"
+var decodeString = function(s) {
+    debugger;
+    let len = s.length,
+        repeat = 0,
+        res = "",
+        numStack = [],
+        resStack = [];
+    if(len === 0) return "";
+    for(let i=0; i<len; i++) {
+        if(s[i] >= '0' && s[i] <= '9') { //用于后续倍数计算；
+            repeat = repeat * 10 + (s[i] - '0');  //可能为多位数
+        } else if (s[i] === '[') { 
+            numStack.push(repeat);//记录此 [ 前的片段和需要重复几次入栈，用于 ] 时的拼接操作
+            resStack.push(res);
+            res = ""; //清空片段和重复次数
+            repeat = 0;
+        } else if(s[i] === ']') {
+            let tmp = resStack.pop(); //上个 [ 到当前 [ 的片段，例如 "3[a2[c]]" 中的 a；
+            let num = numStack.pop(); // 上个片段重复次数
+            for(let i=0; i<num; i++) tmp += res; //注意tmp在前, 这时候res分别为'c'，'acc'
+            res = tmp;
+        } else {
+            res += s[i]; //当 c 为字母时，在 res 尾部添加 c；
+        }
+        console.log(s[i] + ' :numStack: ' + numStack + "   resStack:" + resStack + "   res:" + res + " repect:" + repeat);
+    }
+    return res;
 };
+decodeString("3[a2[c]]")
 ```
 
-class UnionFind {
-    constructor (n) {
-        this.parent = new Uint8Array(n)
-        this.weight = new Float32Array(n)
-        while (n--) {
-            this.parent[n] = n //
-            this.weight[n] = 1.0
-        }
-    }
-    union (x, y, value) {
-        const rootX = this.find(x), rootY = this.find(y)
-        if (rootX !== rootY) {
-            this.parent[rootX] = rootY
-            this.weight[rootX] = this.weight[y] * value / this.weight[x]
-        }
-    }
-    find (x) {
-        if (x !== this.parent[x]) {
-            const orginX = this.parent[x]
-            this.parent[x] = this.find(this.parent[x])
-            this.weight[x] *= this.weight[orginX]
-        } 
-        return this.parent[x]
-    }
-    isConnected (x, y) {
-        const rootX = this.find(x), rootY = this.find(y)
-        return rootX !== void 0 && rootX === rootY ? this.weight[x] / this.weight[y] : -1.0
-    }
-}
+### 438. Find All Anagrams in a String
 
+```
+Given a string s and a non-empty string p, find all the start indices of p's anagrams in s.
 
-var calcEquation = function(equations, values, queries) {
-    debugger;
-    const unionFind = new UnionFind(values.length << 1), h = new Map
-    for (let i = 0, id = 0; i < values.length; i++) {
-        const x = equations[i][0], y = equations[i][1]
-        if (!Array.from(h.keys()).includes(x)) h.set(x, id++)
-        if (!Array.from(h.keys()).includes(y)) h.set(y, id++)
-        unionFind.union(h.get(x), h.get(y), values[i])
+Strings consists of lowercase English letters only and the length of both strings s and p will not be larger than 20,100.
+
+The order of output does not matter.
+
+Input:
+s: "cbaebabacd" p: "abc"
+Output:
+[0, 6]
+Explanation:
+The substring with start index = 0 is "cba", which is an anagram of "abc".
+The substring with start index = 6 is "bac", which is an anagram of "abc".
+```
+
+滑动窗口，用map维护窗口里的char和次数，碰到不在p里就重置左移，遇到溢出的就左移
+
+```js
+var findAnagrams = function(s, p) {
+    let len = p.length,
+        count =  left = right = 0, //count表示窗口里有多少个值匹配的上p里的值
+        mapA = {}, //记录p需要的值和次数
+        mapB = {}, //记录滑动窗口信息
+        res = [];
+    for(let i=0; i<p.length; i++) { 
+        if(mapA[p[i]] === undefined) mapA[p[i]] = 1;
+        else mapA[p[i]] = mapA[p[i]]+1;
     }
-    return queries.map(([x, y]) => unionFind.isConnected(h.get(x), h.get(y)))
+    var moveLeft = () => { //左移函数
+        mapB[s[left]]--; //把窗口里的值减掉，这里不用判断，因为能进窗口一定是在p里的
+        left++;
+        count--; 
+    };
+    while(right < s.length) {
+        let cur = s[right];
+        if(mapA[cur] === undefined) { //碰到不在p里的重置
+            mapB = new Object();
+            count = 0;
+            right++;
+            left = right;
+            continue;
+        }
+        if(mapB[cur] === undefined) { //窗口里没有，写入
+            mapB[cur] = 1;
+            count++;
+        } else { //窗口里有的话，先写入再判断是否溢出
+            mapB[cur]++;
+            count++;
+            if(mapB[cur] > mapA[cur]){ //如果溢出
+                //这时要左移去掉一个cur，移动左侧到和cur相同的值
+                while(s[left] !== cur) {
+                    moveLeft();
+                }
+                //left移动到这个值后面
+                moveLeft();
+            }
+        }
+        if(count === len) {
+            res.push(left);
+            moveLeft();
+        }
+        right++;
+    }
+    return res;
 };
-
-calcEquation([["a","b"],["b","c"],["bc","cd"]], [1.5,2.5,5.0], [["a","c"],["c","b"],["bc","cd"],["cd","bc"]])
+//findAnagrams("abaacbabc", "abc")
+findAnagrams("cbaebabacd", "abc")
+```
